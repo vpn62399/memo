@@ -1,0 +1,205 @@
+https://developer.mozilla.org/ja/docs/Web/JavaScript
+https://developer.mozilla.org/zh-CN/docs/Web/JavaScript
+
+tag=abba-logo-cr-jp-22	レノボ
+tag=a00bb14064712-22	ADSE広告
+tag=amzzca-22           知らない
+tag=mozillajapan-fx-22  
+Mexico
+https://chrome.google.com/webstore/developer/dashboard
+https://developer.chrome.com/extensions/index
+http://dev.screw-axis.com/doc/chrome_extensions/
+
+QEdb.db
+chcp 65001
+
+http://www.amazon.co.jp/gp/search?tag=amzzca-22&ie=UTF8&keywords=key
+
+.d  dump
+.e  exit
+.h help
+.i
+.q exit
+.s schema
+.v ver
+
+
+NULL       NULL値
+INTEGER    符号付整数。1, 2, 3, 4, 6, or 8 バイトで格納
+REAL       浮動小数点数。8バイトで格納
+TEXT       テキスト。UTF-8, UTF-16BE or UTF-16-LEのいずれかで格納
+BLOB       Binary Large OBject。入力データをそのまま格納
+
+
+CREATE TABLE テーブル名(カラム名 PRIMARY KEY, ...);
+CREATE TABLE テーブル名(カラム名1, カラム名2, ... , PRIMARY KEY(カラム名1, カラム名2, ...));
+CREATE TABLE テーブル名(カラム名 INTEGER PRIMARY KEY, ...);
+CREATE TABLE テーブル名(カラム名 INTEGER PRIMARY KEY AUTOINCREMENT, ...);
+CREATE TABLE テーブル名(カラム名 NOT NULL, ...);
+CREATE TABLE テーブル名(カラム名 UNIQUE, ...);
+CREATE TABLE テーブル名(カラム名 DEFAULT 値, ...);
+CREATE TABLE テーブル名(カラム名 CHECK(条件式), ...);
+CREATE INDEX インデックス名 ON テーブル名(カラム名1, カラム名2, ...);
+CREATE UNIQUE INDEX インデックス名 ON テーブル名(カラム名1, カラム名2, ...);
+CREATE VIEW ビュー名 AS SELECT文;
+CREATE TRIGGER トリガー名 [ BEFORE | AFTER | INSTEAD OF]
+ { DELETE | UPDATE [OF カラム名, ...] | INSERT } ON テーブル名
+ [ FOR EACH ROW | FOR EACH STATEMENT ]
+ [ WHERE 条件式 ]
+ BEGIN
+  SQL文1;
+  SQL文2;
+  ...
+ END;
+CREATE TRIGGER トリガー名 UPDATE OF カラム名 ON テーブル名
+ BEGIN
+  SQL文1;
+  SQL文2;
+  ...
+ END;
+CREATE TRIGGER トリガー名 DELETE ON テーブル名
+ BEGIN
+  SQL文1;
+  SQL文2;
+  ...
+ END;
+CREATE TRIGGER トリガー名 INSERT ON テーブル名
+ BEGIN
+  SQL文1;
+  SQL文2;
+  ...
+ END;
+
+
+INSERT INTO テーブル名 VALUES(値1, 値2, ...);
+INSERT INTO テーブル名(カラム1, カラム2, ...) VALUES(値1, 値2, ...);
+INSERT INTO テーブル名 DEFAULT VALUES;
+INSERT INTO テーブル名 SQL文;
+INSERT INTO テーブル名(カラム名1, カラム名2, ...) SQL文;
+REPLACE INTO tbl1 VALUES(1,'古田一郎', '埼玉県', 30);
+
+UPDATE テーブル名 SET カラム名1 = 値1, カラム名2 = 値2, ... WHERE 条件式;
+UPDATE テーブル名 SET カラム名1 = 値1, カラム名2 = 値2, ...;
+
+SELECT カラム名1, カラム名2, ... FROM テーブル名;
+SELECT カラム名 , ... FROM テーブル名 ORDER BY カラム名1 [ASC | DESC], カラム名2 [ASC | DESC], ...;
+SELECT カラム名 , ... FROM テーブル名 WHERE 条件式;
+SELECT カラム名 , ... FROM テーブル名 WHERE カラム >= 値1 AND カラム <= 値2;
+SELECT カラム名 , ... FROM テーブル名 WHERE カラム BETWEEN 値1 AND 値2;
+SELECT カラム名 , ... FROM テーブル名 WHEREカラム NOT BETWEEN 値1 AND 値2;
+SELECT カラム名 , ... FROM テーブル名 WHERE カラム >= 値1 OR カラム <= 値2 OR ...;
+SELECT カラム名 , ... FROM テーブル名 WHERE カラム IN(値1, 値2, ...);
+SELECT カラム名 , ... FROM テーブル名 WHERE カラム NOT IN(値1, 値2, ...);
+SELECT カラム名 , ... FROM テーブル名 WHERE カラム IN(SELECT カラム名 FROM テーブル名);
+SELECT カラム名 , ... FROM テーブル名 WHERE カラム NOT IN(SELECT カラム名 FROM テーブル名);
+SELECT カラム名 , ... FROM テーブル名 WHERE カラム LIKE パターン;
+ select author from vid where author like '%kan%';
+SELECT カラム名 , ... FROM テーブル名 WHERE カラム LIKE パターン ESCAPE エスケープ文字;
+SELECT カラム名 , ... FROM テーブル名 WHERE カラム GLOB パターン;
+SELECT カラム名 , ... FROM テーブル名 WHERE カラム IS NULL;
+SELECT カラム名 , ... FROM テーブル名 WHERE カラム IS NOT NULL;
+SELECT カラム名 AS 別名, ... FROM テーブル名;
+SELECT DISTINCT カラム名, ... FROM テーブル名;
+SELECT ALL カラム名, ... FROM テーブル名;
+SELECT カラム名, ... FROM テーブル名 LIMIT 行数;
+SELECT カラム名, ... FROM テーブル名 LIMIT 行数 OFFSET 開始位置;
+SELECT カラム名, ... FROM テーブル名 LIMIT 開始位置, 行数;
+SELECT カラム名 演算子 値 FROM テーブル名;
+SELECT
+  CASE
+    WHEN 条件式1 THEN 値1
+    WHEN 条件式2 THEN 値2
+    ELSE 値3
+  END
+FROM テーブル名;
+SELECT
+  CASE 式
+    WHEN 値1 THEN 式1
+    WHEN 値2 THEN 式2
+    ELSE 式3
+  END
+FROM テーブル名;
+SELECT カラム名, ... FROM テーブル名 GROUP BY カラム名, カラム名, ...;
+SELECT カラム名, ... FROM テーブル名 WHERE 条件式 GROUP BY カラム名, ...;
+SELECT カラム名, ... FROM テーブル名 GROUP BY カラム名, ... HAVING 条件式;
+SELECT テーブル名.カラム名, ... FROM テーブル名1 INNER JOIN テーブル名2 ON テーブル名1.カラム名1 = テーブル名2.カラム名2;
+SELECT テーブル名.カラム名, ... FROM テーブル名1 LEFT OUTER JOIN テーブル名2 ON テーブル名1.カラム名1 = テーブル名2.カラム名2;
+SELECT テーブル名.カラム名, ... FROM テーブル名1 RIGHT OUTER JOIN テーブル名2 ON テーブル名1.カラム名1 = テーブル名2.カラム名2;
+SELECT テーブル名.カラム名, ... FROM テーブル名1 FULL OUTER JOIN テーブル名2 ON テーブル名1.カラム名1 = テーブル名2.カラム名2;
+SELECT テーブル名.カラム名, ... FROM テーブル名1 CROSS JOIN テーブル名2 ON テーブル名1.カラム名1 = テーブル名2.カラム名2;
+SELECT テーブル名.カラム名, ... FROM テーブル名1 NATURAL INNER JOIN テーブル名2;
+SELECT テーブル名.カラム名, ... FROM テーブル名1 NATURAL LEFT OUTER JOIN テーブル名2;
+SELECT 別名1.カラム名, ... FROM テーブル名 別名1 INNER JOIN テーブル名 別名2 ON 別名1.カラム名 = 別名2.カラム名;
+
+ALTER TABLE テーブル名 RENAME TO 新しいテーブル名;
+ALTER TABLE テーブル名 ADD COLUMN カラム名[ データ型];
+ALTER TABLE tbl_name ADD [COLUMN] column_definition;
+ALTER TABLE tbl_name ADD [COLUMN] column_definition FIRST;
+ALTER TABLE tbl_name ADD [COLUMN] column_definition AFTER col_name;
+ALTER TABLE tbl_name DROP [COLUMN] col_name;c
+ALTER TABLE tbl_name RENAME [TO] new_tbl_name;
+
+DROP VIEW ビュー名;
+DROP INDEX インデックス名;
+DROP TRIGGER トリガー名;
+DROP TABLE テーブル名 
+DELETE FROM テーブル名 WHERE 条件式;
+DELETE FROM テーブル名;
+VACUUM;
+
+
+SQLite関数
+SUM	総和を求める。
+MAX	最大値を求める。
+MIN	最小値を求める。
+AVG	平均値を求める。
+COUNT	総数を求める。
+total(カラム名)
+
+集計関数(Aggregate Functions)
+count						カラムまたはテーブルに含まれる行数を取得
+select count(address) from customer;
+select count(*) from customer;
+
+
+sum  / total 					カラムの値の合計を取得
+avg 						カラムの値の平均を取得
+max  / min 					カラムの値の最大値と最小値を取得
+group_concat 					グループ内のカラムの値を連結
+
+日付/時刻関数(Date And Time Functions)
+date  / time  / datetime 			日付と時刻を取得
+julianday 					日付と時刻をユリウス日で取得
+strftime 					指定のフォーマットで日付と時刻を取得
+Modifiers(修飾子)の指定
+Modifiersの指定方法
+// select date('now');
+
+
+
+コア関数(Core Functions)
+length 						文字数を取得
+lower  / upper 					文字列を小文字/大文字に変換
+replace 					文字列を別の文字列に置換
+substr 						部分文字列を取得
+trim  / rtrim  / ltrim 				文字列の前後から特定の文字を取り除く
+quote 						クォートした結果を取得
+round 						数値を四捨五入する
+abs 						数値の絶対値を取得
+random 						数値の乱数を生成
+hex 						BLOB型の値を16進数表記する
+randomblob 					BLOB型の値の乱数を生成
+zeroblob 					指定したバイト数分のBLOB型の0x00の値を生成
+changes 					直近に実行されたSQL文により更新/削除/追加された行数を取得
+total_changes 					データベースに接続後にSQL文により更新/削除/追加されたトータル行数を取得
+ifnull 	/ coalesce 				NULLでない最初の値を取得
+nullif 						2つの値を比較し、等しければNULL、異なれば最初の値を返す
+last_insert_rowid 				最後に挿入された行のROWIDを取得
+typeof 						値のデータ型を取得
+sqlite_version 					SQLiteのバージョンを取得
+
+
+
+
+CREATE VIEW tp5 as select * from qeid where strftime('%s','now')-time<86400 orde
+r by acc desc limit 5;
