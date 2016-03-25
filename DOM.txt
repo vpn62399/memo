@@ -1,0 +1,111 @@
+var x = document.getElementById('topMain');
+x.style.transform = "rotate( -12deg )"
+Math.random()*10
+
+	var x = document.getElementsByTagName('img');
+	for(var j=0; j< x.length; j++){
+		x[j].style.transform = "rotate(" + i + "deg)";
+		//x[j].style.transform = "rotate(" + Math.random()*1 + "deg)";
+	}
+	
+	if(chk == 0){
+		i++;
+		if(i == 360){
+			chk = 1;
+		}
+	}
+	
+	if(chk == 1){
+		i--;
+		if(i == 0){
+			chk = 0;
+		}
+	
+	}
+}
+
+
+//親要素
+	element.parentNode;
+	element.parentElement;
+
+//子要素
+	element.firstElementChild; //最初の子要素
+	x.firstChild;
+	element.lastElementChild;  //最後の子要素
+	x.lastChild;
+	element.children; //子要素リスト
+	x.childNodes;
+	x.childElementCount;
+
+
+//１つ前の要素
+	element.previousElementSibling;
+	x.previousSibling;
+
+//１つ後の要素
+	element.nextElementSibling;
+	x.nextSibling
+
+
+
+//要素の作成
+	var div = document.createElement('div');
+	div.textContent = 'hoge';
+	  x.innerText = 'hoge';
+
+	  
+//最後の子要素として追加
+	element.appendChild(div);
+
+	
+//最初の子要素として追加
+	element.insertBefore(div, element.firstChild);
+	
+
+//要素の直前に追加
+	element.parentNode.insertBefore(div, element); 
+
+//要素の直後に追加
+	element.parentNode.insertBefore(div, element.nextSibling); 
+	要素の削除
+
+//特定の子要素削除
+	element.removeChild(child); 
+
+//自分を削除
+	element.parentNode.removeChild(element);
+
+//子要素を全て削除
+	while (element.firstChild) element.removeChild(element.firstChild);
+
+//子要素を全て削除(part2)
+	element.textContent = null;
+	属性の操作
+
+//属性の取得
+	element.getAttribute('href');
+
+//属性を設定
+	element.setAttribute('href', 'http://localhost:3000');
+
+//属性を削除
+	element.removeAttribute('href');
+	スタイル関連操作
+
+//class追加
+	element.classList.add('active');
+
+//class削除
+	element.classList.remove('active');
+
+//classをトグル
+	element.classList.toggle('active');
+
+//スタイルを直接指定
+	element.style.backgroundColor = '#ff0000';
+	
+	
+CSS
+
+	background:url(/images/nav_logo242.png) no-repeat -107px -55px
