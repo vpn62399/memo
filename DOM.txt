@@ -35,8 +35,7 @@
 
 //要素の直後に追加
 	element.parentNode.insertBefore(div, element.nextSibling); 
-	要素の削除
-
+	
 //特定の子要素削除
 	element.removeChild(child); 
 
