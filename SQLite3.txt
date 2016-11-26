@@ -203,3 +203,15 @@ sqlite_version 					SQLiteのバージョンを取得
 
 CREATE VIEW tp5 as select * from qeid where strftime('%s','now')-time<86400 orde
 r by acc desc limit 5;
+
+
+
+		$create_db = 
+			"create table log(
+				rowid INTEGER PRIMARY KEY AUTOINCREMENT,
+				request_time text default current_timestamp,
+				remote_addr text,
+				http_user_agent text,
+				request_uri text,
+				http_accept_language text		
+			)";
