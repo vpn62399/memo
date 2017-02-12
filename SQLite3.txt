@@ -93,7 +93,14 @@ SELECT カラム名 , ... FROM テーブル名 WHERE カラム NOT IN(値1, 値2
 SELECT カラム名 , ... FROM テーブル名 WHERE カラム IN(SELECT カラム名 FROM テーブル名);
 SELECT カラム名 , ... FROM テーブル名 WHERE カラム NOT IN(SELECT カラム名 FROM テーブル名);
 SELECT カラム名 , ... FROM テーブル名 WHERE カラム LIKE パターン;
- select author from vid where author like '%kan%';
+select author from vid where author like '%kan%';
+
+android
+String sql= "SELECT title, body FROM notes WHERE body LIKE '%?%'";  NG
+String sql= "SELECT title, body FROM notes WHERE body LIKE '%' || ? || '%' ESCAPE '$'";
+String searchWord = "qqq";
+Cursor cursor = db.rawQuery(sql, new String[] { searchWord });
+ 
 SELECT カラム名 , ... FROM テーブル名 WHERE カラム LIKE パターン ESCAPE エスケープ文字;
 SELECT カラム名 , ... FROM テーブル名 WHERE カラム GLOB パターン;
 SELECT カラム名 , ... FROM テーブル名 WHERE カラム IS NULL;
