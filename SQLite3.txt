@@ -182,6 +182,15 @@ Modifiers(修飾子)の指定
 Modifiersの指定方法
 // select date('now');
 
+//ミリ秒フォーマット
+String = "insert into time_item (itme_time, _display_name,last_acctime) values(420,420, strftime('%s','now') * 1000)";
+select * from itme_time;
+          _id = 1
+    itme_time = 420
+_display_name = 420
+ last_acctime = 1498856637000
+    setActive = 1
+        count = 1
 
 
 コア関数(Core Functions)
