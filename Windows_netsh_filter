@@ -1,0 +1,39 @@
+netsh ipsec static add policy name = noUpdate
+netsh ipsec static add filterlist name = upurl
+netsh ipsec static add filteraction name = up_block action = block
+
+rem ip filter
+netsh ipsec static add filter filterlist =upurl srcaddr = 134.170.51.0 dstaddr= me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = 13.107.4.0 dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = 23.219.39.0 dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = 151.139.128.0 dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = 23.219.39.0 dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = 111.221.29.0 dstaddr = me srcmask=255.255.255.0 mirrored=yes
+
+
+rem DNS filter
+netsh ipsec static add filter filterlist =upurl srcaddr = download.microsoft.com dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = update.microsoft.com dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = windowsupdate.com dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = windowsupdate.microsoft.com dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = ntservicepack.microsoft.com dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = download.windowsupdate.com dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = au.windowsupdate.com dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = tlu.dl.delivery.mp.microsoft.com dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = c.microsoft.com dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = config.office.microsoft.com dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = go.microsoft.com dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = sqm.microsoft.com dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = urs.microsoft.com dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = au.download.windowsupdate.com dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = stats.update.microsoft.com dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = v4.windowsupdate.microsoft.com dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = v5.windowsupdate.microsoft.com dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = www.download.windowsupdate.com dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = www.update.microsoft.com dstaddr = me srcmask=255.255.255.0 mirrored=yes
+
+rem onTesting.
+netsh ipsec static add filter filterlist =upurl srcaddr = www.msn.com dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = www.bing.com dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add rule name = newrule policy = noUpdate filterlist = upurl  filteraction = up_block
+netsh ipsec static set policy name = noUpdate assign=yes
