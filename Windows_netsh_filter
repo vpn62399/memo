@@ -11,13 +11,13 @@ netsh ipsec static add filter filterlist =upurl srcaddr = 23.99.125.126 dstaddr 
 netsh ipsec static add filter filterlist =upurl srcaddr = 23.210.229.201 dstaddr = me srcmask=255.255.255.0 mirrored=yes
 netsh ipsec static add filter filterlist =upurl srcaddr = 23.210.230.208 dstaddr = me srcmask=255.255.255.0 mirrored=yes
 netsh ipsec static add filter filterlist =upurl srcaddr = 23.219.39.0 dstaddr = me srcmask=255.255.255.0 mirrored=yes
-netsh ipsec static add filter filterlist =upurl srcaddr = 23.219.39.0 dstaddr = me srcmask=255.255.255.0 mirrored=yes
 netsh ipsec static add filter filterlist =upurl srcaddr = 67.24.53.254 dstaddr = me srcmask=255.255.255.0 mirrored=yes
 netsh ipsec static add filter filterlist =upurl srcaddr = 111.221.29.0 dstaddr = me srcmask=255.255.255.0 mirrored=yes
 netsh ipsec static add filter filterlist =upurl srcaddr = 111.221.29.193 dstaddr = me srcmask=255.255.255.0 mirrored=yes
 netsh ipsec static add filter filterlist =upurl srcaddr = 134.170.58.118 dstaddr= me srcmask=255.255.255.0 mirrored=yes
 netsh ipsec static add filter filterlist =upurl srcaddr = 134.170.51.0 dstaddr= me srcmask=255.255.255.0 mirrored=yes
 netsh ipsec static add filter filterlist =upurl srcaddr = 151.139.128.0 dstaddr = me srcmask=255.255.255.0 mirrored=yes
+netsh ipsec static add filter filterlist =upurl srcaddr = 184.26.211.225 dstaddr = me srcmask=255.255.255.0 mirrored=yes
 netsh ipsec static add filter filterlist =upurl srcaddr = 192.229.232.240 dstaddr = me srcmask=255.255.255.0 mirrored=yes
 netsh ipsec static add filter filterlist =upurl srcaddr = 204.79.197.200 dstaddr = me srcmask=255.255.255.0 mirrored=yes
 netsh ipsec static add filter filterlist =upurl srcaddr = 204.79.197.0 dstaddr = me srcmask=255.255.255.0 mirrored=yes
