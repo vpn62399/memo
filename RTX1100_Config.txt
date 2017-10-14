@@ -1,7 +1,7 @@
 #	RTX1100 Rev.8.03.94 (Thu Dec  5 19:06:16 2013)
 #		Memory 32Mbytes, 3LAN, 1BRI
 #
-#	Reporting Date: Oct 6 09:54:00 2017
+#	Reporting Date: Oct 14 08:56:04 2017
 
 # If you want to clear ALL configuration to default,
 #  remove `#' of next line.
@@ -36,7 +36,8 @@ ip filter directed-broadcast on
 
 ip lan1 address 192.168.0.1/24
 ip lan2 address dhcp
-ip lan2 secure filter in 1012 1013 3000
+ip lan2 secure filter in 200000 200001 200002 200003 200020 200021 200022 200023 200024 200025 200030 200031 200032 200033 200035 200099
+ip lan2 secure filter out 200010 200011 200012 200013 200020 200021 200022 200023 200024 200025 200026 200027 200099
 ip lan2 nat descriptor 1
 
 #
@@ -64,7 +65,6 @@ pp select anonymous
  pp auth username usere usere
  pp auth username userf userf
  pp auth username userg userg
- pp auth username dalaohu dalaohu
  ppp ipcp ipaddress on
  ppp ipcp msext on
  ppp ccp type mppe-any
@@ -95,7 +95,7 @@ tunnel select 2
   ipsec ike local address 2 192.168.0.1
   ipsec ike log 2 message-info
   ipsec ike nat-traversal 2 on
-  ipsec ike pre-shared-key 2 text dalaohu
+  ipsec ike pre-shared-key 2 text xxxxxx
   ipsec ike remote address 2 any
  l2tp tunnel disconnect time off
  l2tp keepalive use on 10 3
@@ -114,7 +114,7 @@ tunnel select 3
   ipsec ike local address 3 192.168.0.1
   ipsec ike log 3 message-info
   ipsec ike nat-traversal 3 on
-  ipsec ike pre-shared-key 3 text dalaohu
+  ipsec ike pre-shared-key 3 text xxxxxx
   ipsec ike remote address 3 any
  l2tp tunnel disconnect time off
  l2tp keepalive use on 10 3
@@ -133,7 +133,7 @@ tunnel select 4
   ipsec ike local address 4 192.168.0.1
   ipsec ike log 4 message-info
   ipsec ike nat-traversal 4 on
-  ipsec ike pre-shared-key 4 text dalaohu
+  ipsec ike pre-shared-key 4 text xxxxxx
   ipsec ike remote address 4 any
  l2tp tunnel disconnect time off
  l2tp keepalive use on 10 3
@@ -152,7 +152,7 @@ tunnel select 5
   ipsec ike local address 5 192.168.0.1
   ipsec ike log 5 message-info
   ipsec ike nat-traversal 5 on
-  ipsec ike pre-shared-key 5 text dalaohu
+  ipsec ike pre-shared-key 5 text xxxxxx
   ipsec ike remote address 5 any
  l2tp tunnel disconnect time off
  l2tp keepalive use on 10 3
@@ -171,7 +171,7 @@ tunnel select 6
   ipsec ike local address 6 192.168.0.1
   ipsec ike log 6 message-info
   ipsec ike nat-traversal 6 on
-  ipsec ike pre-shared-key 6 text dalaohu
+  ipsec ike pre-shared-key 6 text xxxxxx
   ipsec ike remote address 6 any
  l2tp tunnel disconnect time off
  l2tp keepalive use on 10 3
@@ -189,33 +189,43 @@ tunnel select 6
 # IP filter configuration
 #
 
-ip filter 1010 reject * * udp,tcp 135 *
-ip filter 1011 reject * * udp,tcp * 135
-ip filter 1012 reject * * udp,tcp netbios_ns-netbios_ssn *
-ip filter 1013 reject * * udp,tcp * netbios_ns-netbios_ssn
-ip filter 1014 reject * * udp,tcp 445 *
-ip filter 1015 reject * * udp,tcp * 445
-ip filter 1020 reject 192.168.0.0/24 *
-ip filter 1030 pass * 192.168.0.0/24 icmp
-ip filter 1040 pass * 192.168.0.1 tcp * 1723
-ip filter 1041 pass * 192.168.0.1 gre
-ip filter 1042 pass * 192.168.0.1 udp * 500
-ip filter 1043 pass * 192.168.0.1 udp * 4500
-ip filter 1044 pass * 192.168.0.1 esp
-ip filter 2000 reject * *
-ip filter 3000 pass * *
+ip filter 200000 reject 10.0.0.0/8 * * * *
+ip filter 200001 reject 172.16.0.0/12 * * * *
+ip filter 200002 reject 192.168.0.0/16 * * * *
+ip filter 200003 reject 192.168.0.0/24 * * * *
+ip filter 200010 reject * 10.0.0.0/8 * * *
+ip filter 200011 reject * 172.16.0.0/12 * * *
+ip filter 200012 reject * 192.168.0.0/16 * * *
+ip filter 200013 reject * 192.168.0.0/24 * * *
+ip filter 200020 reject * * udp,tcp 135 *
+ip filter 200021 reject * * udp,tcp * 135
+ip filter 200022 reject * * udp,tcp netbios_ns-netbios_ssn *
+ip filter 200023 reject * * udp,tcp * netbios_ns-netbios_ssn
+ip filter 200024 reject * * udp,tcp 445 *
+ip filter 200025 reject * * udp,tcp * 445
+ip filter 200026 restrict * * tcpfin * www,21,nntp
+ip filter 200027 restrict * * tcprst * www,21,nntp
+ip filter 200030 pass * 192.168.0.0/24 icmp * *
+ip filter 200031 pass * 192.168.0.0/24 established * *
+ip filter 200032 pass * 192.168.0.0/24 tcp * ident
+ip filter 200033 pass * 192.168.0.0/24 tcp ftpdata *
+ip filter 200034 pass * 192.168.0.0/24 tcp,udp * domain
+ip filter 200035 pass * 192.168.0.0/24 udp domain *
+ip filter 200036 pass * 192.168.0.0/24 udp * ntp
+ip filter 200037 pass * 192.168.0.0/24 udp ntp *
+ip filter 200099 pass * * * * *
 
 #
 # IP dynamic filter configuration
 #
 
-ip filter dynamic 100 * * ftp
-ip filter dynamic 101 * * www
-ip filter dynamic 102 * * domain
-ip filter dynamic 103 * * smtp
-ip filter dynamic 104 * * pop3
-ip filter dynamic 105 * * tcp
-ip filter dynamic 106 * * udp
+ip filter dynamic 200080 * * ftp
+ip filter dynamic 200081 * * domain
+ip filter dynamic 200082 * * www
+ip filter dynamic 200083 * * smtp
+ip filter dynamic 200084 * * pop3
+ip filter dynamic 200098 * * tcp
+ip filter dynamic 200099 * * udp
 
 #
 # IP forward filter configuration
@@ -227,7 +237,7 @@ ip filter dynamic 106 * * udp
 #
 
 nat descriptor type 1 masquerade
-nat descriptor address outer 1 220.220.220.220
+nat descriptor address outer 1 111.111.111.111
 nat descriptor masquerade static 1 1 192.168.0.1 tcp 1723
 nat descriptor masquerade static 1 2 192.168.0.1 gre
 nat descriptor masquerade static 1 3 192.168.0.1 udp 500
