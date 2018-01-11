@@ -1,0 +1,26 @@
+
+////////////////////////////////////////////////////////
+var ver = "1.0 first"
+var item = document.getElementsByClassName('item');
+var j={};
+for(var i = 0; i <  item.length; i++){
+	var at = item[i].getElementsByClassName('non-link-type')[0].innerText;
+	var ti = item[i].getElementsByTagName('h4')[0].firstElementChild.title;
+	j[i] = at + ' - ' + ti;}
+console.log(JSON.stringify(j));
+
+
+////////////////////////////////////////////////////////
+var ver = "1.01 new kkobox 2018,1,11"
+var j={};
+var ix = 0;
+var item = document.getElementsByClassName('charts-list-row');
+for(var i = 0; i <  item.length; i++){
+	var at = item[i].getElementsByClassName('charts-list-artist')[0].innerText;
+	var ti = item[i].getElementsByClassName('charts-list-song')[0].title;
+	if(at != ""){
+		ix = ix + 1;
+		j[ix] = at + ' - ' + ti;
+	}
+}
+console.log(JSON.stringify(j));
