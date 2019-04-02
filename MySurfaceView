@@ -1,0 +1,78 @@
+import android.content.Context;
+import android.graphics.Canvas;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.view.SurfaceView;
+import android.view.SurfaceHolder;
+
+public class MySurfaceView extends SurfaceView implements SurfaceHolder.Callback, Runnable {
+    private final String T = "### TAG MySurfaceView";
+    private SurfaceHolder surfaceHolder;
+    private Canvas canvas;
+    private boolean flag;
+    private Thread refreshTH;
+    private int refreshSpeed = 50;
+    private Paint paintX;
+
+    {
+        flag = false;
+        paintX = new Paint();
+    }
+
+    public MySurfaceView(Context context) {
+        super(context);
+        surfaceHolder = this.getHolder();
+        surfaceHolder.addCallback(this);
+    }
+
+    @Override
+    public void surfaceCreated(SurfaceHolder holder) {
+        flag = true;
+        refreshTH = new Thread(this);
+        refreshTH.start();
+    }
+
+    @Override
+    public void surfaceChanged(SurfaceHolder holder, int format, int width, int height) {
+
+    }
+
+    @Override
+    public void surfaceDestroyed(SurfaceHolder holder) {
+        flag = false;
+
+    }
+
+    private void MyDraw() {
+        try {
+            canvas = surfaceHolder.lockCanvas();
+            canvas.drawColor(Color.BLUE);
+            paintX.setStrokeWidth(20);
+            paintX.setColor(Color.RED);
+            canvas.drawLine(0, 0, getWidth(), getHeight(), paintX);
+
+        } catch (Exception e) {
+
+        } finally {
+            if (canvas != null) {
+                surfaceHolder.unlockCanvasAndPost(canvas);
+            }
+        }
+    }
+
+    @Override
+    public void run() {
+        while (flag) {
+            long s = System.currentTimeMillis();
+            MyDraw();
+            long e = System.currentTimeMillis();
+            if (refreshSpeed > (e - s)) {
+                try {
+                    Thread.sleep(refreshSpeed - (e - s));
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+            }
+        }
+    }
+}
