@@ -1,0 +1,85 @@
+package com.kankanla.e560.m190326t;
+
+import android.os.Bundle;
+import android.support.v4.content.ContextCompat;
+import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.RelativeLayout;
+
+import com.google.android.gms.ads.AdListener;
+import com.google.android.gms.ads.AdRequest;
+import com.google.android.gms.ads.AdSize;
+import com.google.android.gms.ads.AdView;
+import com.google.android.gms.ads.MobileAds;
+
+public class MainActivity extends AppCompatActivity {
+    private String T = "### MainActivity";
+    private MySurfaceView3 mySurfaceView;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        mySurfaceView = new MySurfaceView3(this);
+        RelativeLayout.LayoutParams rl = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT);
+        addContentView(mySurfaceView, rl);
+        Google_admob();
+
+        View view = findViewById(R.id.activity_main);
+        view.bringToFront();
+    }
+
+    protected void Google_admob() {
+        MobileAds.initialize(this, "ca-app-pub-3940256099942544~3347511713");
+
+        ViewGroup viewGroup = findViewById(R.id.activity_main);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT, RelativeLayout.LayoutParams.WRAP_CONTENT);
+
+        AdView adView = new AdView(this);
+        adView.setAdSize(AdSize.BANNER);
+        adView.setBackgroundColor(ContextCompat.getColor(this, R.color.colorAccent));
+        layoutParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        adView.setLayoutParams(layoutParams);
+
+        adView.setAdUnitId("ca-app-pub-3940256099942544/6300978111");
+
+        AdRequest.Builder builder = new AdRequest.Builder();
+        builder.addTestDevice("7026FA2EC1DC7E60FBEA02C64D33BD8B");
+        builder.addTestDevice("53185CF5BFA5B2121DF7FA86E7064C22");
+
+        AdRequest adRequest = builder.build();
+        adView.loadAd(adRequest);
+
+        viewGroup.addView(adView);
+
+        adView.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                super.onAdLoaded();
+                Log.i(T, "onAdLoaded");
+            }
+
+            @Override
+            public void onAdOpened() {
+                super.onAdOpened();
+                Log.i(T, "onAdOpened");
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                super.onAdLeftApplication();
+                Log.i(T, "onAdLeftApplication");
+            }
+
+            @Override
+            public void onAdClosed() {
+                super.onAdClosed();
+                Log.i(T, "onAdClosed");
+            }
+        });
+    }
+}
