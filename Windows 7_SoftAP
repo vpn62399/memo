@@ -25,6 +25,6 @@ rem pause
 wifi-show.cmd
 ----------------------------------------
 @echo off
-for /L %%a IN (1,1,30000) DO netsh wlan show hostednetwork  && echo %%a && timeout /t 10
+for /L %%a IN (1,1,30000) DO netsh wlan show hostednetwork  && echo %%a && arp -a | find "b6-03" && timeout /t 10 |echo "key=1234567890"  
 rem for /L %%a IN (1,1,30000) DO netsh wlan show hostednetwork  && echo %%a && timeout /t 10 && cls
 pause
