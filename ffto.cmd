@@ -49,7 +49,11 @@ pause
 
 
 
-
+echo off
+for  %%a in (*.BMP) do ffmpeg -i %%a %%a.JPG
+for  %%a in (*.BMP) do del %%a
+timeout 9
+rem pause
 
 
 
