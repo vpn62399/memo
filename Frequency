@@ -1,0 +1,20 @@
+android 音声の周波数を作成
+android 音声の周波数を作成
+
+byte b = (byte)(Math.sin(bufferIndex/2*Math.PI(SamplingRate /Frequency))
+
+角度 =bufferIndex /2*Math.PI(4400/800);
+byte値(音声のビット、B辺) = (byte) (Math.sin(temp) * 120(C辺);
+
+    private void hz() {
+        byte[] bs = new byte[44100];
+        Double temp;
+        for (int i = 0; i < bs.length; i++) {
+            temp = i / 2 * Math.PI / (44100 / Double.parseDouble("800"));
+            bs[i] = (byte) (Math.sin(temp) * 120);
+        }
+        audioTrack.play();
+        while (true) {
+            audioTrack.write(bs, 0, bs.length);
+        }
+    }
