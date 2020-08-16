@@ -1,0 +1,33 @@
+
+CREATE TABLE loto6(
+  "t1" INTEGER,
+  "d1" TEXT,
+  "x1" INTEGER,
+  "x2" INTEGER,
+  "x3" INTEGER,
+  "x4" INTEGER,
+  "x5" INTEGER,
+  "x6" INTEGER,
+  "b1" INTEGER,
+  "n1" INTEGER,
+  "n2" TEXT,
+  "n3" TEXT
+);
+
+
+CREATE TABLE loto7(
+  "t1" INTEGER,
+  "d1" TEXT,
+  "s1" INTEGER,
+  "s2" INTEGER,
+  "s3" INTEGER,
+  "s4" INTEGER,
+  "s5" INTEGER,
+  "s6" INTEGER,
+  "s7" INTEGER,
+  "b1" INTEGER,
+  "b2" INTEGER,
+  "n1" INTEGER,
+  "n2" TEXT,
+  "n3" TEXT
+);
