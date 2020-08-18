@@ -1,7 +1,7 @@
 
 CREATE TABLE loto6(
-  "t1" INTEGER,
-  "d1" TEXT,
+  "t1" INTEGER UNIQUE,
+  "d1" TEXT UNIQUE,
   "x1" INTEGER,
   "x2" INTEGER,
   "x3" INTEGER,
@@ -11,13 +11,25 @@ CREATE TABLE loto6(
   "b1" INTEGER,
   "n1" INTEGER,
   "n2" TEXT,
-  "n3" TEXT
+  "n3" TEXT,
+  "z1" TEXT,
+  "z2" TEXT
 );
 
-
-CREATE TABLE loto7(
+CREATE TABLE loto6c(
   "t1" INTEGER,
   "d1" TEXT,
+  "x1" INTEGER,
+  "x2" INTEGER,
+  "x3" INTEGER,
+  "x4" INTEGER,
+  "x5" INTEGER,
+  "x6" INTEGER
+);
+
+CREATE TABLE loto7(
+  "t1" INTEGER UNIQUE,
+  "d1" TEXT UNIQUE,
   "s1" INTEGER,
   "s2" INTEGER,
   "s3" INTEGER,
@@ -29,5 +41,28 @@ CREATE TABLE loto7(
   "b2" INTEGER,
   "n1" INTEGER,
   "n2" TEXT,
-  "n3" TEXT
+  "n3" TEXT,
+  "z1" TEXT,
+  "z2" TEXT
 );
+
+CREATE TABLE loto7c(
+  "t1" INTEGER,
+  "d1" TEXT,
+  "s1" INTEGER,
+  "s2" INTEGER,
+  "s3" INTEGER,
+  "s4" INTEGER,
+  "s5" INTEGER,
+  "s6" INTEGER,
+  "s7" INTEGER
+);
+
+.mode csv
+.import loto6.csv loto6
+.import loto7.csv loto7
+.mode table
+
+.mode csv
+.import loto6c.csv loto6c
+.import loto7c.csv loto7c
