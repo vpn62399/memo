@@ -59,10 +59,87 @@ CREATE TABLE loto7c(
 );
 
 .mode csv
+delete from loto6;
+delete from loto7;
 .import loto6.csv loto6
 .import loto7.csv loto7
 .mode table
 
 .mode csv
+delete from loto7c;
+delete from loto6c;
 .import loto6c.csv loto6c
 .import loto7c.csv loto7c
+
+
+5,8,15,23,29,30,35
+
+http://www.htmq.com/color/websafe216.shtml
+http://www.ohtashp.com/topics/takarakuji/
+function fn(x,y){
+  var ns= document.getElementsByClassName('hon');
+  var count=0;
+  for(var i=0; i< ns.length; i++){
+    if(ns[i].innerText == x){
+      switch(y){
+        case 1:
+          ns[i].style.backgroundColor='#FF6666';
+          break;
+        case 2:
+          ns[i].style.backgroundColor='#99CC66';
+          break;
+        case 3:
+          ns[i].style.backgroundColor='#33FFCC';
+          break;
+        case 4:
+          ns[i].style.backgroundColor='#CC66CC';
+          break;
+        case 5:
+          ns[i].style.backgroundColor='#FFFF00';
+          break;
+        case 6:
+          ns[i].style.backgroundColor='#FF33CC';
+          break;
+        case 7:
+          ns[i].style.backgroundColor='#FF6600';
+          break;
+        defult:
+          ns[i].style.backgroundColor='#CC66CC';
+      }
+      count++;
+    }
+  }
+  console.log(x + ' == ' + count);
+}
+
+
+
+function fn(x,y){
+  //fn(2,1);
+  var cs = ['#FF6666','#99CC66','#33FFCC','#CC66CC','#FFFF00','#FF33CC','#FF6600','#99FF00','#CC66CC'];
+  var ns= document.getElementsByClassName('hon');
+  var count=0;
+  for(var i=0; i< ns.length; i++){
+    if(ns[i].innerText == x){
+      ns[i].style.backgroundColor=cs[y];
+      count++;
+    }
+  }
+  console.log(x + ' == ' + count);
+}
+
+function fns(x){
+  //fns([2,3,5,8,19,22,37]);
+  var cs = ['#FF6666','#99CC66','#33FFCC','#CC66CC','#FFFF00','#FF33CC','#FF6600','#99FF00','#CC66CC'];
+  var ns= document.getElementsByClassName('hon');
+  var count=0;
+  for(var j=0; j<x.length; j++){
+    for(var i=0; i< ns.length; i++){
+      if(ns[i].innerText == x[j]){
+        ns[i].style.backgroundColor=cs[j];
+        count++;
+      }
+    }
+    console.log(x + ' == ' + count);
+  }
+}
