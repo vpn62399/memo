@@ -132,8 +132,8 @@ function fns(x){
   //fns([2,3,5,8,19,22,37]);
   var cs = ['#FF6666','#99CC66','#33FFCC','#CC66CC','#FFFF00','#FF33CC','#FF6600','#99FF00','#CC66CC'];
   var ns= document.getElementsByClassName('hon');
-  var count=0;
   for(var j=0; j<x.length; j++){
+    var conut =0;
     for(var i=0; i< ns.length; i++){
       if(ns[i].innerText == x[j]){
         ns[i].style.backgroundColor=cs[j];
