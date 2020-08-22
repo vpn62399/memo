@@ -161,3 +161,8 @@ function fns(x){
 //7 fns([3,5,9,13,14,22,37])
 //7 fns([10,11,17,18,19,31,32]) out
 
+var item2 = document.getElementsByClassName('m_lotteryNumContainer_item2');
+var items = item2[0].getElementsByClassName('m_lotteryNumInputNum_btn is_random');
+for( var i=0; i<items.length; i++){
+  console.log(items[i].innerText);
+}
