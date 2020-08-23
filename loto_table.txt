@@ -72,72 +72,21 @@ delete from loto6c;
 .import loto7c.csv loto7c
 
 
-5,8,15,23,29,30,35
-
-http://www.htmq.com/color/websafe216.shtml
-http://www.ohtashp.com/topics/takarakuji/
-function fn(x,y){
-  var ns= document.getElementsByClassName('hon');
-  var count=0;
-  for(var i=0; i< ns.length; i++){
-    if(ns[i].innerText == x){
-      switch(y){
-        case 1:
-          ns[i].style.backgroundColor='#FF6666';
-          break;
-        case 2:
-          ns[i].style.backgroundColor='#99CC66';
-          break;
-        case 3:
-          ns[i].style.backgroundColor='#33FFCC';
-          break;
-        case 4:
-          ns[i].style.backgroundColor='#CC66CC';
-          break;
-        case 5:
-          ns[i].style.backgroundColor='#FFFF00';
-          break;
-        case 6:
-          ns[i].style.backgroundColor='#FF33CC';
-          break;
-        case 7:
-          ns[i].style.backgroundColor='#FF6600';
-          break;
-        defult:
-          ns[i].style.backgroundColor='#CC66CC';
-      }
-      count++;
-    }
-  }
-  console.log(x + ' == ' + count);
-}
-
-
-
-function fn(x,y){
-  //fn(2,1);
-  var cs = ['#FF6666','#99CC66','#33FFCC','#CC66CC','#FFFF00','#FF33CC','#FF6600','#99FF00','#CC66CC'];
-  var ns= document.getElementsByClassName('hon');
-  var count=0;
-  for(var i=0; i< ns.length; i++){
-    if(ns[i].innerText == x){
-      ns[i].style.backgroundColor=cs[y];
-      count++;
-    }
-  }
-  console.log(x + ' == ' + count);
-}
-
 
 function fns(x){
   //http://www.ohtashp.com/topics/takarakuji/
-  var cs = ['#FF6666','#99CC66','#33FFCC','#CC66CC','#FFFF00','#FF33CC','#FF6600','#99FF00','#CC66CC'];
+  var colors = ['#FF6666','#99CC66','#33FFCC','#CC66CC','#FFFF00','#FF33CC','#FF6600','#99FF00','#CC66CC'];
   var ns= document.getElementsByClassName('hon');
+  if (x[0] >= 10){
+    document.getElementById('c'+x[0]).click();
+  }else{
+      document.getElementById('c0'+x[0]).click();
+  }
   for(var j=0; j<x.length; j++){
     var count =0;
     for(var i=0; i< ns.length; i++){
       if(ns[i].innerText == x[j]){
-        ns[i].style.backgroundColor=cs[j];
+        ns[i].style.backgroundColor=colors[j];
         count++;
       }
     }
@@ -161,8 +110,40 @@ function fns(x){
 //7 fns([3,5,9,13,14,22,37])
 //7 fns([10,11,17,18,19,31,32]) out
 
+
+
+//https://www.takarakuji-official.jp/ec/loto7/
+//ランダム取得
 var item2 = document.getElementsByClassName('m_lotteryNumContainer_item2');
 var items = item2[0].getElementsByClassName('m_lotteryNumInputNum_btn is_random');
-for( var i=0; i<items.length; i++){
-  console.log(items[i].innerText);
+var but = item2[0].getElementsByClassName('m_btn m_lotteryNumInputFunc_btn m_btn__colorRandom m_btn__block');
+var numitems = [];
+var size = 0;
+
+function gnum(){
+  numitems[size]=[];
+  for( var i=0; i<items.length; i++){
+    numitems[size].push(parseInt(items[i].innerText,10));
+  }
+  size+=1;
+  console.log(numitems);
 }
+
+function list(){
+  var funlink = new String();
+  for(var i=0; i< numitems.length; i++){
+    funlink = i + '     fns([' + numitems[i] + '])';
+    console.log(funlink);
+  }
+}
+
+function ck(){
+   but[0].click()
+   gnum();
+   list();
+}
+
+
+//結果
+2020-08-23
+fns([1,8,12,14,21,24,25])
