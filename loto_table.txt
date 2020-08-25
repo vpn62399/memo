@@ -1,4 +1,4 @@
-﻿
+
 CREATE TABLE loto6(
   "t1" INTEGER UNIQUE,
   "d1" TEXT UNIQUE,
@@ -71,7 +71,7 @@ delete from loto6c;
 .import loto6c.csv loto6c
 .import loto7c.csv loto7c
 
-
+//////////////////////////////////////////////////////////
 
 function fns(x){
   //http://www.ohtashp.com/topics/takarakuji/
@@ -94,7 +94,28 @@ function fns(x){
   }
 }
 
+function add (x){
+  var tb = document.getElementsByTagName('tbody');
+  var pf = tb[0].firstElementChild;
+  tb[0].insertBefore(pf,tb[0].firstElementChild);
+  var cc = pf.cloneNode(true);
+  var t1=cc.getElementsByTagName('th');
+  t1[0].innerText="ADD"
+  var tx = cc.getElementsByClassName('hon')
 
+  for(var i=0; i<6 ; i++){
+    tx[i].innerText = x[i];
+  }
+  tb[0].insertBefore(cc,pf)
+}
+
+//////////////////////////////////////////////////////////////////////////
+
+
+
+
+
+//////////////////////////////////////////////////////////////////////////
 //https://www.takarakuji-official.jp/ec/loto7/
 //ランダム取得
 var item2 = document.getElementsByClassName('m_lotteryNumContainer_item2');
@@ -126,14 +147,11 @@ function ck(){
    list();
 }
 
+//////////////////////////////////////////////////////////////////////////
+
 7l384
 fns([4,10,14,26,30,33,34])
 fns([1,6,14,24,25,27,29])
 fns([5,8,15,23,29,30,35])
 
 
-
-
-//
-
-<tbody>
