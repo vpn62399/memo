@@ -23,6 +23,9 @@
 	var div = document.createElement('div');
 	div.textContent = 'hoge';
 	  x.innerText = 'hoge';
+	  x.cloneNode(true);
+	  
+	  
 
 //最後の子要素として追加
 	element.appendChild(div);
