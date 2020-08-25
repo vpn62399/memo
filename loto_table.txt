@@ -97,16 +97,22 @@ function fns(x){
 function add (x){
   var tb = document.getElementsByTagName('tbody');
   var pf = tb[0].firstElementChild;
-  tb[0].insertBefore(pf,tb[0].firstElementChild);
   var cc = pf.cloneNode(true);
-  var t1=cc.getElementsByTagName('th');
-  t1[0].innerText="ADD"
+  cc.getElementsByTagName('th')[0].innerText="ADD";
   var tx = cc.getElementsByClassName('hon')
-
   for(var i=0; i<6 ; i++){
     tx[i].innerText = x[i];
   }
   tb[0].insertBefore(cc,pf)
+}
+
+function rd (x){
+  var tb = document.getElementsByTagName('tbody');
+  var pf = tb[0].firstElementChild;
+  var tx = pf.getElementsByClassName('hon')
+  for(var i=0; i<6 ; i++){
+    tx[i].innerText = x[i];
+  }
 }
 
 //////////////////////////////////////////////////////////////////////////
