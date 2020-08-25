@@ -94,7 +94,8 @@ function fns(x){
   }
 }
 
-function add (x){
+function ad6 (x){
+  //http://www.ohtashp.com/topics/takarakuji/index_loto6.html
   var tb = document.getElementsByTagName('tbody');
   var pf = tb[0].firstElementChild;
   var cc = pf.cloneNode(true);
@@ -106,7 +107,8 @@ function add (x){
   tb[0].insertBefore(cc,pf)
 }
 
-function rd (x){
+function rd6 (x){
+  //http://www.ohtashp.com/topics/takarakuji/index_loto6.html
   var tb = document.getElementsByTagName('tbody');
   var pf = tb[0].firstElementChild;
   var tx = pf.getElementsByClassName('hon')
@@ -114,6 +116,31 @@ function rd (x){
     tx[i].innerText = x[i];
   }
 }
+
+
+function ad7 (x){
+  //http://www.ohtashp.com/topics/takarakuji/
+  var tb = document.getElementsByTagName('tbody');
+  var pf = tb[1].firstElementChild;
+  var cc = pf.cloneNode(true);
+  cc.getElementsByTagName('th')[0].innerText="ADD";
+  var tx = cc.getElementsByClassName('hon')
+  for(var i=0; i<7 ; i++){
+    tx[i].innerText = x[i];
+  }
+  tb[1].insertBefore(cc,pf)
+}
+
+function rd7 (x){
+  //http://www.ohtashp.com/topics/takarakuji/
+  var tb = document.getElementsByTagName('tbody');
+  var pf = tb[1].firstElementChild;
+  var tx = pf.getElementsByClassName('hon')
+  for(var i=0; i<7 ; i++){
+    tx[i].innerText = x[i];
+  }
+}
+
 
 //////////////////////////////////////////////////////////////////////////
 
