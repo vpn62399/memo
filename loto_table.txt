@@ -117,6 +117,11 @@ function rd6 (x){
   }
 }
 
+function rm6(){
+  var tb = document.getElementsByTagName('tbody');
+  var pf = tb[0].firstElementChild;
+  tb[0].removeChild(pf); 
+}
 
 function ad7 (x){
   //http://www.ohtashp.com/topics/takarakuji/
@@ -139,6 +144,12 @@ function rd7 (x){
   for(var i=0; i<7 ; i++){
     tx[i].innerText = x[i];
   }
+}
+
+function rm7(){
+  var tb = document.getElementsByTagName('tbody');
+  var pf = tb[1].firstElementChild;
+  tb[1].removeChild(pf); 
 }
 
 
