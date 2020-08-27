@@ -75,6 +75,7 @@ delete from loto6c;
 
 function fns(x){
   //http://www.ohtashp.com/topics/takarakuji/
+  //http://www.ohtashp.com/topics/takarakuji/index_loto6.html
   var colors = ['#FF6666','#99CC66','#33FFCC','#CC66CC','#FFFF00','#FF33CC','#FF6600','#99FF00','#CC66CC'];
   var ns= document.getElementsByClassName('hon');
   if (x[0] >= 10){
