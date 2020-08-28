@@ -120,10 +120,16 @@ function fns (x){
 				}
 			}
 		}
-		if(xc >= 3 ){
+		if(xc == 3 ){
 			trs[0].style.backgroundColor=colors[j]
 			xca++;
 		}
+
+    if(xc == 4){
+      trs[0].style.backgroundColor=colors[j+1]
+      xca++;
+    }
+
 	} while (fc=fc.nextElementSibling);
 	console.log("d3c all = " + xca);
 }
@@ -163,9 +169,14 @@ function ad7 (x){
   var pf = tb[1].firstElementChild;
   var cc = pf.cloneNode(true);
   cc.getElementsByTagName('th')[0].innerText="ADD";
-  var tx = cc.getElementsByClassName('hon')
-  for(var i=0; i<7 ; i++){
-    tx[i].innerText = x[i];
+  var ff = cc.firstElementChild.nextElementSibling.nextElementSibling;
+  do{
+      ff.className="xxx";
+  }while(ff=ff.nextElementSibling)
+  var ff = cc.firstElementChild.nextElementSibling;
+  for(var i=0; i<7; i++){
+    ff= ff.nextElementSibling;
+    ff.innerText=x[i];
   }
   tb[1].insertBefore(cc,pf)
 }
@@ -174,7 +185,7 @@ function rd7 (x){
   //http://www.ohtashp.com/topics/takarakuji/
   var tb = document.getElementsByTagName('tbody');
   var pf = tb[1].firstElementChild;
-  var tx = pf.getElementsByClassName('hon')
+  var tx = pf.getElementsByClassName('xxx')
   for(var i=0; i<7 ; i++){
     tx[i].innerText = x[i];
   }
