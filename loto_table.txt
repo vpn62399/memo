@@ -73,7 +73,7 @@ delete from loto6c;
 
 //////////////////////////////////////////////////////////
 
-function fns(x){
+function fns2(x){
   //http://www.ohtashp.com/topics/takarakuji/
   //http://www.ohtashp.com/topics/takarakuji/index_loto6.html
   var colors = ['#FF6666','#99CC66','#33FFCC','#CC66CC','#FFFF00','#FF33CC','#FF6600','#99FF00','#CC66CC'];
@@ -93,6 +93,39 @@ function fns(x){
     }
     console.log(x[j] + ' == ' + count);
   }
+}
+
+//////////////////////////////////////////////////////////////////
+function fns (x){
+  //http://www.ohtashp.com/topics/takarakuji/
+  //http://www.ohtashp.com/topics/takarakuji/index_loto6.html
+  var colors = ['#FF6666','#99CC66','#33FFCC','#CC66CC','#FFFF00','#FF33CC','#FF6600','#99FF00','#CC66CC'];
+	var tb = document.getElementsByTagName('tbody')[1];
+	var fc = tb.firstElementChild;
+	var xca = 0;
+	var ns= document.getElementsByClassName('hon');
+  if (x[0] >= 10){
+    	document.getElementById('c'+x[0]).click();
+  }else{
+      document.getElementById('c0'+x[0]).click();
+  }
+	do{
+		var trs = fc.getElementsByTagName('td');
+		var xc=0;
+		for(var i = 1; i< 8; i++){
+			for(var j = 0; j < x.length; j++){
+				if(trs[i].innerText == x[j]){
+					trs[i].style.backgroundColor=colors[j];
+					xc++;
+				}
+			}
+		}
+		if(xc >= 3 ){
+			trs[0].style.backgroundColor=colors[j]
+			xca++;
+		}
+	} while (fc=fc.nextElementSibling);
+	console.log("d3c all = " + xca);
 }
 
 function ad6 (x){
