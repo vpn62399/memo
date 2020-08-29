@@ -220,7 +220,7 @@ function l7(){
       j.push(c);
     }
   }while(j.length < 7);
-  return j;
+  return j.sort();
 }
 
 for(var i=0 ; i<10; i++){
