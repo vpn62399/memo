@@ -109,29 +109,38 @@ function fns (x){
   }else{
       document.getElementById('c0'+x[0]).click();
   }
-	do{
-		var trs = fc.getElementsByTagName('td');
-		var xc=0;
-		for(var i = 1; i< 8; i++){
-			for(var j = 0; j < x.length; j++){
-				if(trs[i].innerText == x[j]){
-					trs[i].style.backgroundColor=colors[j];
-					xc++;
-				}
-			}
-		}
-		if(xc == 3 ){
-			trs[0].style.backgroundColor=colors[j]
-			xca++;
-		}
-
-    if(xc == 4){
-      trs[0].style.backgroundColor=colors[j+1]
+  do{
+    var trs = fc.getElementsByTagName('td');
+    var xc=0;
+    for(var i = 1; i< 8; i++){
+      for(var j = 0; j < x.length; j++){
+        if(trs[i].innerText == x[j]){
+          trs[i].style.backgroundColor=colors[j];
+          xc++;
+        }
+      }
+    }
+    
+    if(xc == 4 ){
+      trs[0].style.backgroundColor=colors[0];
       xca++;
     }
 
-	} while (fc=fc.nextElementSibling);
-	console.log("d3c all = " + xca);
+    if(xc == 5){
+      trs[0].style.backgroundColor=colors[1];
+      xca++;
+    }
+
+    if(xc == 6){
+      trs[0].style.backgroundColor=colors[2];
+      xca++;
+    }
+  } while (fc=fc.nextElementSibling);
+	
+  if(xca >5 ){
+    console.log("   d4c all = " + xca);
+    console.log(x);
+  }
 }
 
 function ad6 (x){
@@ -195,6 +204,27 @@ function rm7(){
   var tb = document.getElementsByTagName('tbody');
   var pf = tb[1].firstElementChild;
   tb[1].removeChild(pf); 
+}
+
+function l7(){
+  var j = [];
+  do{
+    var chk = "OK";
+    var c = Math.floor(Math.random()*(1-38)+38);
+    for (var i=0; i<j.length; i++){
+      if(j[i] == c){
+        chk = "NG";
+      }
+    }
+    if(chk != "NG"){
+      j.push(c);
+    }
+  }while(j.length < 7);
+  return j;
+}
+
+for(var i=0 ; i<10; i++){
+  fns(l7());
 }
 
 
