@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+                      "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+<meta http-equiv="Content-Script-Type" content="text/javascript">
+<title>xxx</title>
+</head>
+<body>
+	<script type="text/javascript">
+		function setCSV(){
+			var req = new XMLHttpRequest();
+			req.onreadystatechange = function(){
+				console.log("3333");
+				console.log(req.responseText);
+			}
+			req.open("GET","http://192.168.137.1/loto6.csv",true);
+			req.send(null);
+		}
+		setCSV();
+	</script>
+<tbody>
+<tr>
+<th>第1513回</th>
+<td class="naka">2020/8/31</td>
+<td class="hon c13">13</td>
+<td class="hon c14">14</td>
+<td class="hon c18">18</td>
+<td class="hon c19">19</td>
+<td class="hon c25">25</td>
+<td class="hon c42">42</td>
+<td class="bou">05</td>
+<td class="naka">1</td>
+<td class="naka">2億円</td>
+<td class="naka">5千万円</td>
+</tr>
+</tbody>
+
+</body>
+
+</html>
