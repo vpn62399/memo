@@ -125,11 +125,20 @@ function l7(x){
 //////////////////////////////////////////////////////////////////////////
 //https://www.takarakuji-official.jp/ec/loto7/
 //ランダム取得
-var item2 = document.getElementsByClassName('m_lotteryNumContainer_item2');
-var items = item2[0].getElementsByClassName('m_lotteryNumInputNum_btn is_random');
-var but = item2[0].getElementsByClassName('m_btn m_lotteryNumInputFunc_btn m_btn__colorRandom m_btn__block');
 var numitems = [];
 var size = 0;
+var item2;
+var items ;
+var but ;
+var xx = function (){
+  if(location.href != 'https://www.takarakuji-official.jp/ec/loto7/'){
+    alert("URL 不正 ファンクション不正");
+    return;
+  }
+  item2 = document.getElementsByClassName('m_lotteryNumContainer_item2');
+  items = item2[0].getElementsByClassName('m_lotteryNumInputNum_btn is_random');
+  but = item2[0].getElementsByClassName('m_btn m_lotteryNumInputFunc_btn m_btn__colorRandom m_btn__block');
+}();
 
 function gnum(){
   numitems[size]=[];
