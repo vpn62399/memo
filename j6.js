@@ -48,7 +48,7 @@ function fns6 (x){
     }
   } while (fc=fc.nextElementSibling);
   
-  if(xca > 20 ){
+  if( xca > 4 ){
     console.log('fns6(  [' + x + ']  )' + "  d3c = " + xca);
   }
 }
