@@ -61,7 +61,7 @@ function ck(x){
   for(var i=0 ; i<x; i++){
     var temp = l6(6);
     if(x == 1){
-      console.log(temp);
+      console.log('fns6( [' + temp + '] )');
     }
     fns6(temp);
   }

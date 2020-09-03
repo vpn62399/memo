@@ -46,7 +46,7 @@ function fns(x){
     }
   } while (fc=fc.nextElementSibling);
 	
-  if(xca == 0 ){
+  if(xca > 3 ){
     console.log('fns(  [' + x + ']  )' + "  d4c = " + xca);
   }
 }
@@ -59,7 +59,7 @@ function ck(x){
   for(var i=0 ; i<x; i++){
     var temp= l7(7);
     if(x==1){
-      console.log(temp);
+      console.log('fns( [' + temp + '] )');
     }
     fns(temp);
   }
