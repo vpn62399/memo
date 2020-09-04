@@ -132,7 +132,6 @@ var items ;
 var but ;
 var xx = function (){
   if(location.href != 'https://www.takarakuji-official.jp/ec/loto7/'){
-    alert("URL 不正 ファンクション不正");
     return;
   }
   item2 = document.getElementsByClassName('m_lotteryNumContainer_item2');
@@ -157,7 +156,7 @@ function list(){
   }
 }
 
-function ck(){
+function fk(){
    but[0].click()
    gnum();
    list();

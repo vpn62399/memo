@@ -1,6 +1,7 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
                       "http://www.w3.org/TR/html4/loose.dtd">
 <html>
+<!-- https://hakuhin.jp/js/xmlhttprequest.html -->
 <head>
 <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
 <meta http-equiv="Content-Script-Type" content="text/javascript">
@@ -11,13 +12,28 @@
 		function setCSV(){
 			var req = new XMLHttpRequest();
 			req.onreadystatechange = function(){
-				console.log("3333");
-				console.log(req.responseText);
+				console.log(req.readyState);
+				if(req.readyState == 4 && req.status == 200){
+					vvv(req.responseText);
+				}
 			}
-			req.open("GET","http://192.168.137.1/loto6.csv",true);
+			req.open("GET",'/loto6.csv',true);
 			req.send(null);
 		}
+
 		setCSV();
+
+		window.onload = function(){
+			console.log("windw.onload");
+		}
+
+		function vvv(str){
+			var xx = str.split('\n');
+			// console.log(xx);
+			console.log(xx.length);
+		}
+
+
 	</script>
 <tbody>
 <tr>
