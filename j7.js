@@ -4,6 +4,7 @@
 //////////////fns7////////////////////////////////////////////////////
 //////////////fns7////////////////////////////////////////////////////
 function fns(x){
+  // xのアレーの数字を色で表示
   //http://www.ohtashp.com/topics/takarakuji/
   //https://www.mizuhobank.co.jp/retail/takarakuji/loto/loto7/index.html
   if(location.href != 'http://www.ohtashp.com/topics/takarakuji/'){
@@ -52,14 +53,15 @@ function fns(x){
   }
 }
 
-function ck(x){
+function ck(k){
+  //k回のランダム7数字を出す
   if(location.href != 'http://www.ohtashp.com/topics/takarakuji/'){
     alert("URL 不正 ファンクション不正");
     return;
   }
-  for(var i=0 ; i<x; i++){
+  for(var i=0 ; i<k; i++){
     var temp= l7(7);
-    if(x==1){
+    if(k==1){
       console.log('fns( [' + temp + '] )');
     }
     fns(temp);
@@ -67,6 +69,7 @@ function ck(x){
 }
 
 function ad7 (x){
+  //仮設番号の追加
   //http://www.ohtashp.com/topics/takarakuji/
   var tb = document.getElementsByTagName('tbody');
   var pf = tb[1].firstElementChild;
@@ -85,6 +88,7 @@ function ad7 (x){
 }
 
 function rd7 (x){
+  //仮設番号の変更
   //http://www.ohtashp.com/topics/takarakuji/
   var tb = document.getElementsByTagName('tbody');
   var pf = tb[1].firstElementChild;
@@ -101,6 +105,7 @@ function rm7(){
 }
 
 function l7(x){
+  // ランダムの数字を発生
   var j = [];
   do{
     var chk = "OK";
@@ -118,7 +123,7 @@ function l7(x){
 }
 
 function fnm(a,b){
-  //再現未出数字を検索
+  //aからb回目の再現未出数字を検索
   var xc = 0;
   var numx = [];
   var xnumx = [];
@@ -154,6 +159,38 @@ function fnm(a,b){
   console.log('fns( [' + numx + '] )');
   console.log('fns( [' + xnumx + '] )');
 }
+
+function fink(x){
+  //指定の番号の列と一個前の列を表示
+  //x=0の場合、すべての表示する。
+  if(x==0){
+    var tb = document.getElementsByTagName('tbody')[1];
+    var fc =tb.firstElementChild;
+    do{
+      fc.style="";
+    }while(fc = fc.nextElementSibling);
+    return null;
+  }
+  var tb = document.getElementsByTagName('tbody')[1];
+  var fc = tb.firstElementChild;
+  do{
+    var temp = fc.getElementsByTagName('td');
+    var temp2 = [];
+    for(var i=1; i<8;i++){
+      temp2.push(parseInt(temp[i].innerText));
+    }
+
+    if(temp2.indexOf(x) == -1){
+      fc.style.display= "none";
+    }else{
+      if(fc.previousElementSibling){
+        fc.previousElementSibling.style = " ";
+      }
+    }
+  }while(fc = fc.nextElementSibling);
+}
+
+
 
 
 //////////////////////////////////////////////////////////////////////////
