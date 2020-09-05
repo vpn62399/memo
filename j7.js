@@ -3,6 +3,12 @@
 //////////////fns7////////////////////////////////////////////////////
 //////////////fns7////////////////////////////////////////////////////
 //////////////fns7////////////////////////////////////////////////////
+
+
+var set1 = 0;  //0色の表示をつつける,1色一回のみ
+var set2 = 0;  //0色初期化する,1色初期化しない
+var set3 = 3;  //連番数
+
 function fns(x){
   // xのアレーの数字を色で表示
   //http://www.ohtashp.com/topics/takarakuji/
@@ -14,12 +20,17 @@ function fns(x){
 	var tb = document.getElementsByTagName('tbody')[1];
 	var fc = tb.firstElementChild;
 	var xca = 0;
-	var ns= document.getElementsByClassName('hon');
-  if (x[0] >= 10){
-    	document.getElementById('c'+x[0]).click();
-  }else{
-      document.getElementById('c0'+x[0]).click();
+    if(set2 == 0){
+    	var ns= document.getElementsByClassName('hon');
+      for(var i = 0; i< ns.length; i++){
+        ns[i].style="";
+      }
+    var ns= document.getElementsByClassName('naka');
+    for(var i = 0; i< ns.length; i++){
+      ns[i].style="";
+    }
   }
+
   do{
     var trs = fc.getElementsByTagName('td');
     var xc=0;
@@ -28,6 +39,9 @@ function fns(x){
         if(trs[i].innerText == x[j]){
           trs[i].style.backgroundColor=colors[j];
           xc++;
+          if(set1 == 1){
+            x.splice(j,1);
+          }
         }
       }
     }
@@ -48,8 +62,8 @@ function fns(x){
     }
   } while (fc=fc.nextElementSibling);
 	
-  if(xca > 3 ){
-    console.log('fns(  [' + x + ']  )' + "  d4c = " + xca);
+  if(xca > set2 ){
+    console.log('fns(  [' + x.sort((a,b) => a-b) + ']  )' + "  d4c = " + xca);
   }
 }
 
@@ -63,6 +77,7 @@ function ck(k){
     var temp= l7(7);
     if(k==1){
       console.log('fns( [' + temp + '] )');
+      console.log(nom);
     }
     fns(temp);
   }
@@ -122,11 +137,12 @@ function l7(x){
   return j.sort((a, b) => a - b);
 }
 
+var nom = [];  //出ないアレー
 function fnm(a,b){
   //aからb回目の再現未出数字を検索
   var xc = 0;
   var numx = [];
-  var xnumx = [];
+  // var nom = []; //出ないアレー
   var bnumx = [];
   var tb = document.getElementsByTagName('tbody')[1];
   var fc = tb.firstElementChild;
@@ -152,42 +168,50 @@ function fnm(a,b){
   }else{
     bnumx.filter(function(nx){
       if(numx.indexOf(nx) == -1){
-        xnumx.push(nx)
+        if(nom.indexOf(nx) == -1){
+          nom.push(nx)
+        }
       }
     })
   }
   console.log('fns( [' + numx + '] )');
-  console.log('fns( [' + xnumx + '] )');
+  console.log('fns( [' + nom + '] )');
 }
 
-function fink(x){
+function fik(x){
   //指定の番号の列と一個前の列を表示
   //x=0の場合、すべての表示する。
+  var tb = document.getElementsByTagName('tbody')[1];
+  var fc =tb.firstElementChild;
+  var pa = [];
   if(x==0){
-    var tb = document.getElementsByTagName('tbody')[1];
-    var fc =tb.firstElementChild;
     do{
       fc.style="";
     }while(fc = fc.nextElementSibling);
     return null;
   }
-  var tb = document.getElementsByTagName('tbody')[1];
-  var fc = tb.firstElementChild;
   do{
     var temp = fc.getElementsByTagName('td');
     var temp2 = [];
     for(var i=1; i<8;i++){
       temp2.push(parseInt(temp[i].innerText));
     }
-
     if(temp2.indexOf(x) == -1){
       fc.style.display= "none";
     }else{
       if(fc.previousElementSibling){
         fc.previousElementSibling.style = " ";
+        var t3= fc.previousElementSibling.getElementsByTagName('td'); 
+        for(var i=1; i<8;i++){
+          if(pa.indexOf(parseInt(t3[i].innerText)) == -1){
+            pa.push(parseInt(t3[i].innerText));
+          }
+        }
       }
     }
   }while(fc = fc.nextElementSibling);
+  console.log('fns( [' + pa.sort((a,b) => a-b) + '] )' + '  x = ' + x );
+  fns([x]);
 }
 
 
