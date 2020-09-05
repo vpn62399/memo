@@ -5,10 +5,11 @@
 //////////////fns7////////////////////////////////////////////////////
 function fns(x){
   //http://www.ohtashp.com/topics/takarakuji/
+  //https://www.mizuhobank.co.jp/retail/takarakuji/loto/loto7/index.html
   if(location.href != 'http://www.ohtashp.com/topics/takarakuji/'){
     alert("URL 不正 ファンクション不正");
   }
-  var colors = ['#FF6666','#99CC66','#33FFCC','#CC66CC','#FFFF00','#FF33CC','#FF6600','#99FF00','#CC66CC'];
+  var colors = ['#FF6666','#99CC66','#33FFCC','#CC66CC','#FFFF00','#FF33CC','#FF6600','#99FF00','#CC66CC','#ffd700','#ff00ff','#adff2f','#8a2be2','#808000','#ff1493','#2f4f4f','#40e0d0'];
 	var tb = document.getElementsByTagName('tbody')[1];
 	var fc = tb.firstElementChild;
 	var xca = 0;
@@ -114,6 +115,44 @@ function l7(x){
     }
   }while(j.length < x);
   return j.sort((a, b) => a - b);
+}
+
+function fnm(a,b){
+  //再現未出数字を検索
+  var xc = 0;
+  var numx = [];
+  var xnumx = [];
+  var bnumx = [];
+  var tb = document.getElementsByTagName('tbody')[1];
+  var fc = tb.firstElementChild;
+  for(var j=1; j<38; j++){
+    bnumx.push(j);
+  }
+  do{
+    xc++;
+    if(xc >= a && xc < a+b){
+      var temp = fc.getElementsByTagName('td');
+      for(var i = 1; i < 8 ; i++ ){
+        if(numx.indexOf(parseInt(temp[i].innerText)) < 0){
+          numx.push(parseInt(temp[i].innerText));
+          numx.sort((a,b)=>a-b);
+        }
+      }
+    }else{
+      break;
+    }
+  }while(fc=fc.nextElementSibling);
+  if(numx.length == 37){
+    console.log("37");
+  }else{
+    bnumx.filter(function(nx){
+      if(numx.indexOf(nx) == -1){
+        xnumx.push(nx)
+      }
+    })
+  }
+  console.log('fns( [' + numx + '] )');
+  console.log('fns( [' + xnumx + '] )');
 }
 
 

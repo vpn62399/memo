@@ -70,4 +70,5 @@ delete from loto7c;
 delete from loto6c;
 .import loto6c.csv loto6c
 .import loto7c.csv loto7c
+.mode table
 
