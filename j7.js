@@ -9,6 +9,33 @@ var set1 = 0;  //0色の表示をつつける,1色一回のみ
 var set2 = 0;  //0色初期化する,1色初期化しない
 var set3 = 3;  //連番数
 
+function fnsa(x){
+  set1=0;
+  set2=0;
+  fns(x);
+}
+
+function fns1(x){
+  set1=1;
+  fns(x);
+  set1=0;
+}
+
+function fnsp(x){
+  set2=1;
+  fns(x);
+  set2=0;
+}
+
+function fnspa(x){
+  set2=1;
+  set1=0;
+  fns(x);
+  set2=0;
+  set1=0;
+}
+
+
 function fns(x){
   // xのアレーの数字を色で表示
   //http://www.ohtashp.com/topics/takarakuji/
