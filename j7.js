@@ -35,6 +35,19 @@ function fnspa(x){
   set1=0;
 }
 
+function ck1(){
+  set1=1;
+  ck(1)
+  set1=0;
+}
+
+function rfns(x){
+  set1=1;
+  rm7();
+  fns(x);
+  set1=0;
+}
+
 
 function fns(x){
   // xのアレーの数字を色で表示
@@ -89,7 +102,7 @@ function fns(x){
     }
   } while (fc=fc.nextElementSibling);
 	
-  if(xca > set2 ){
+  if(xca > set3 ){
     console.log('fns(  [' + x.sort((a,b) => a-b) + ']  )' + "  d4c = " + xca);
   }
 }
@@ -106,7 +119,7 @@ function ck(k){
       console.log('fns( [' + temp + '] )');
       console.log(nom);
     }
-    fns(temp);
+    fns1(temp);
   }
 }
 
@@ -211,6 +224,11 @@ function fik(x){
   var tb = document.getElementsByTagName('tbody')[1];
   var fc =tb.firstElementChild;
   var pa = [];
+  var nol = [];
+  var noli = new Array (38);
+  for(var i=1; i<38; i++){
+    noli[i] = 0;
+  }
   if(x==0){
     do{
       fc.style="";
@@ -230,6 +248,7 @@ function fik(x){
         fc.previousElementSibling.style = " ";
         var t3= fc.previousElementSibling.getElementsByTagName('td'); 
         for(var i=1; i<8;i++){
+          nol.push(parseInt(t3[i].innerText));
           if(pa.indexOf(parseInt(t3[i].innerText)) == -1){
             pa.push(parseInt(t3[i].innerText));
           }
@@ -239,7 +258,17 @@ function fik(x){
   }while(fc = fc.nextElementSibling);
   console.log('fns( [' + pa.sort((a,b) => a-b) + '] )' + '  x = ' + x );
   fns([x]);
+  nol=nol.sort((a,b)=>a-b)
+  do{
+    var i = nol.pop();
+    noli[i] = noli[i] +1;
+  }while(nol.length !=0)
+  console.table(noli);
+  // noli.forEach(function(v,i,ar){
+  //   console.log(" " + i + "   " + v);
+  // })
 }
+
 
 
 
