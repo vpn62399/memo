@@ -48,7 +48,6 @@ function rfns(x){
   set1=0;
 }
 
-
 function fns(x){
   // xのアレーの数字を色で表示
   //http://www.ohtashp.com/topics/takarakuji/
