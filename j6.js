@@ -28,6 +28,10 @@ function fns6 (x){
         if(trs[i].innerText == x[j]){
           trs[i].style.backgroundColor=colors[j];
           xc++;
+          var set1=0;
+          if(set1 == 1){
+            x.splice(j,1);
+          }
         }
       }
     }
@@ -67,7 +71,7 @@ function ck(x){
   }
 }
 
-function ad6 (x){
+function ad6kk (x){
   //http://www.ohtashp.com/topics/takarakuji/index_loto6.html
   var tb = document.getElementsByTagName('tbody');
   var pf = tb[0].firstElementChild;
@@ -111,4 +115,58 @@ function l6(x){
     }
   }while(j.length < x);
   return j.sort((a, b) => a - b);
+}
+
+function fik(x){
+  //指定の番号の列と一個前の列を表示
+  //x=0の場合、すべての表示する。
+  var tb = document.getElementsByTagName('tbody')[0];
+  var fc =tb.firstElementChild;
+  var pa = [];
+  var nol = [];
+  var noli = new Array (44);
+  for(var i=1; i<44; i++){
+    noli[i] = 0;
+  }
+  if(x==0){
+    do{
+      fc.style="";
+    }while(fc = fc.nextElementSibling);
+    return null;
+  }
+  do{
+    var temp = fc.getElementsByTagName('td');
+    if(temp.length < 11){
+      break;
+    }
+    var temp2 = [];
+    for(var i=1; i<7;i++){
+      temp2.push(parseInt(temp[i].innerText));
+    }
+    if(temp2.indexOf(x) == -1){
+      fc.style.display= "none";
+    }else{
+      if(fc.previousElementSibling){
+        fc.previousElementSibling.style = " ";
+        var t3= fc.previousElementSibling.getElementsByTagName('td'); 
+        for(var i=1; i<7;i++){
+          nol.push(parseInt(t3[i].innerText));
+          if(pa.indexOf(parseInt(t3[i].innerText)) == -1){
+            pa.push(parseInt(t3[i].innerText));
+          }
+        }
+      }
+    }
+  }while(fc = fc.nextElementSibling);
+  console.log('fns( [' + pa.sort((a,b) => a-b) + '] )' + '  x = ' + x );
+  fns6([x]);
+  nol=nol.sort((a,b)=>a-b)
+  do{
+    var i = nol.pop();
+    noli[i] = noli[i] +1;
+  }while(nol.length !=0)
+  console.table(noli);
+  // noli.forEach(function(v,i,ar){
+  //   console.log(" " + i + "   " + v);
+  // })
 }
