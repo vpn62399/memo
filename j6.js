@@ -2,6 +2,13 @@
 //////////////fns6////////////////////////////////////////////////////
 //////////////fns6////////////////////////////////////////////////////
 //////////////fns6////////////////////////////////////////////////////
+
+var set1 = 0;  //0色の表示をつつける,1色一回のみ
+var set2 = 0;  //0色初期化する,1色初期化しない
+var set3 = 3;  //連番数
+
+
+
 function fns6 (x){
   //http://www.ohtashp.com/topics/takarakuji/index_loto6.html
   if(location.href != 'http://www.ohtashp.com/topics/takarakuji/index_loto6.html'){
@@ -28,8 +35,7 @@ function fns6 (x){
         if(trs[i].innerText == x[j]){
           trs[i].style.backgroundColor=colors[j];
           xc++;
-          var set1=0;
-          if(set1 == 1){
+          if(set1 == 0){
             x.splice(j,1);
           }
         }
