@@ -300,7 +300,7 @@ function gnum(){
     numitems[size].push(parseInt(items[i].innerText,10));
   }
   size+=1;
-  console.log(numitems);
+  // console.log(numitems);
 }
 
 function list(){
@@ -314,7 +314,19 @@ function list(){
 function fk(){
    but[0].click()
    gnum();
-   list();
+   // list();
+}
+
+function fkk(x){
+  var i =0;
+  var tid = setInterval(function (){
+    fk();
+    i++;
+    if(i>x){
+      clearInterval(tid);
+      list();
+    }
+  },50);
 }
 
 //////////////////////////////////////////////////////////////////////////
