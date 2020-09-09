@@ -9,8 +9,10 @@ var set3 = 3;  //連番数
 
 function fns6 (x,set1=0){
   //http://www.ohtashp.com/topics/takarakuji/index_loto6.html
-  if(location.href != 'http://www.ohtashp.com/topics/takarakuji/index_loto6.html'){
-    alert("URL 不正 ファンクション不正");
+  var url = 'http://www.ohtashp.com/topics/takarakuji/index_loto6.html'
+  if(location.href != url ){
+    Window.open(url);
+    return;
   }
   var colors = ['#FF6666','#99CC66','#33FFCC','#CC66CC','#FFFF00','#FF33CC','#FF6600','#99FF00','#CC66CC'];
   var tb = document.getElementsByTagName('tbody')[0];
@@ -193,7 +195,9 @@ var item2;
 var items ;
 var but ;
 var xx = function (){
-  if(location.href != 'https://www.takarakuji-official.jp/ec/loto6/'){
+  var url = 'https://www.takarakuji-official.jp/ec/loto6/';
+  if(location.href != url){
+    window.open(url);
     return;
   }
   item2 = document.getElementsByClassName('m_lotteryNumContainer_item2');

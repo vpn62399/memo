@@ -26,7 +26,9 @@ function fns(x,set1=0,set2=0){
   // xのアレーの数字を色で表示
   //http://www.ohtashp.com/topics/takarakuji/
   //https://www.mizuhobank.co.jp/retail/takarakuji/loto/loto7/index.html
-  if(location.href != 'http://www.ohtashp.com/topics/takarakuji/'){
+  var url = 'http://www.ohtashp.com/topics/takarakuji/'
+  if(location.href != url ){
+    Window.open(url);
     alert("URL 不正 ファンクション不正");
   }
   var colors = ['#FF6666','#99CC66','#33FFCC','#CC66CC','#FFFF00','#FF33CC','#FF6600','#99FF00','#CC66CC','#ffd700','#ff00ff','#adff2f','#8a2be2','#808000','#ff1493','#2f4f4f','#40e0d0'];
@@ -82,7 +84,9 @@ function fns(x,set1=0,set2=0){
 
 function ck(k){
   //k回のランダム7数字を出す
-  if(location.href != 'http://www.ohtashp.com/topics/takarakuji/'){
+  var url = 'http://www.ohtashp.com/topics/takarakuji/'
+  if(location.href != url ){
+    Window.open(url);
     alert("URL 不正 ファンクション不正");
     return;
   }
@@ -260,7 +264,9 @@ var item2;
 var items ;
 var but ;
 var xx = function (){
-  if(location.href != 'https://www.takarakuji-official.jp/ec/loto7/'){
+  var url = 'https://www.takarakuji-official.jp/ec/loto7/';
+  if(location.href != rul ){
+    Window.open(url);
     return;
   }
   item2 = document.getElementsByClassName('m_lotteryNumContainer_item2');
