@@ -11,7 +11,7 @@ function fns6 (x,set1=0){
   //http://www.ohtashp.com/topics/takarakuji/index_loto6.html
   var url = 'http://www.ohtashp.com/topics/takarakuji/index_loto6.html'
   if(location.href != url ){
-    Window.open(url);
+    window.open(url);
     return;
   }
   var colors = ['#FF6666','#99CC66','#33FFCC','#CC66CC','#FFFF00','#FF33CC','#FF6600','#99FF00','#CC66CC'];
