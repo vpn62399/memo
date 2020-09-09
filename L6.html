@@ -28,14 +28,21 @@
 		}
 
 		function vvv(str){
-			var xx = str.split('\n');
-			// console.log(xx);
-			console.log(xx.length);
+            var ta = str.split('\n');
+            var tab = document.getElementsByTagName('tbody')[0];
+            var fr = tab.firstElementChild;
+            var ircc = fr.cloneNode(true);
+			do{
+            var da = ta.shift();
+            var ircc = fr.cloneNode(true);
+            tab.insertBefore(ircc,fr);
+
+			}while(ta != '');
 		}
 
 
 	</script>
-<tbody>
+<table>
 <tr>
 <th>第1513回</th>
 <td class="naka">2020/8/31</td>
@@ -50,7 +57,7 @@
 <td class="naka">2億円</td>
 <td class="naka">5千万円</td>
 </tr>
-</tbody>
+</table>
 
 </body>
 
