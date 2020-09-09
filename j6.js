@@ -178,8 +178,6 @@ function fik(x){
 }
 
 
-
-
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
@@ -189,7 +187,7 @@ function fik(x){
 ///https://www.takarakuji-official.jp/ec/loto6/
 //ランダム取得
 
-var numitems = [];
+var ms = [];
 var size = 0;
 var item2;
 var items ;
@@ -206,18 +204,18 @@ var xx = function (){
 }();
 
 function gnum(){
-  numitems[size]=[];
+  ms[size]=[];
   for( var i=0; i<items.length; i++){
-    numitems[size].push(parseInt(items[i].innerText,10));
+    ms[size].push(parseInt(items[i].innerText,10));
   }
   size+=1;
-  // console.log(numitems);
+  // console.log(ms);
 }
 
 function list(){
   var funlink = new String();
-  for(var i=0; i< numitems.length; i++){
-    funlink = i + '     fns6( [' + numitems[i] + '] )';
+  for(var i=0; i< ms.length; i++){
+    funlink = i + '     fns6( [' + ms[i] + '] )';
     console.log(funlink);
   }
 }

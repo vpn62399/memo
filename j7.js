@@ -22,15 +22,17 @@ function rfns(x){
   set1=0;
 }
 
+var start = function(){
+  var url = 'http://www.ohtashp.com/topics/takarakuji/'
+  if(location.href != url ){
+    window.open(url);
+  }
+}();
+
 function fns(x,set1=0,set2=0){
   // xのアレーの数字を色で表示
   //http://www.ohtashp.com/topics/takarakuji/
   //https://www.mizuhobank.co.jp/retail/takarakuji/loto/loto7/index.html
-  var url = 'http://www.ohtashp.com/topics/takarakuji/'
-  if(location.href != url ){
-    window.open(url);
-    alert("URL 不正 ファンクション不正");
-  }
   var colors = ['#FF6666','#99CC66','#33FFCC','#CC66CC','#FFFF00','#FF33CC','#FF6600','#99FF00','#CC66CC','#ffd700','#ff00ff','#adff2f','#8a2be2','#808000','#ff1493','#2f4f4f','#40e0d0'];
 	var tb = document.getElementsByTagName('tbody')[1];
 	var fc = tb.firstElementChild;
@@ -84,12 +86,6 @@ function fns(x,set1=0,set2=0){
 
 function ck(k){
   //k回のランダム7数字を出す
-  var url = 'http://www.ohtashp.com/topics/takarakuji/'
-  if(location.href != url ){
-    window.open(url);
-    alert("URL 不正 ファンクション不正");
-    return;
-  }
   for(var i=0 ; i<k; i++){
     var temp= l7(7);
     if(k==1){
@@ -248,8 +244,6 @@ function fik(x){
 
 
 
-
-
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////
@@ -258,7 +252,7 @@ function fik(x){
 //////////////////////////////////////////////////////////////////////////
 //https://www.takarakuji-official.jp/ec/loto7/
 //ランダム取得
-var numitems = [];
+var ms = [];
 var size = 0;
 var item2;
 var items ;
@@ -275,18 +269,18 @@ var xx = function (){
 }();
 
 function gnum(){
-  numitems[size]=[];
+  ms[size]=[];
   for( var i=0; i<items.length; i++){
-    numitems[size].push(parseInt(items[i].innerText,10));
+    ms[size].push(parseInt(items[i].innerText,10));
   }
   size+=1;
-  // console.log(numitems);
+  // console.log(ms);
 }
 
 function list(){
   var funlink = new String();
-  for(var i=0; i< numitems.length; i++){
-    funlink = i + '     fns([' + numitems[i] + '])';
+  for(var i=0; i< ms.length; i++){
+    funlink = i + '     fns([' + ms[i] + '])';
     console.log(funlink);
   }
 }
