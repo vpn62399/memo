@@ -183,17 +183,20 @@ function hiro() {
   var temp = [];
   var i = 0;
   var ix = function () {
-      var j = [];
-      do {
-          var c = Math.floor(Math.random() * (1 - 44) + 44);
-          j.indexOf(c) == -1 ? j.push(c) : '';
-      } while (j.length < 6);
-      return j.sort((a,b)=>a-b);
+    var j = [];
+    do {
+      var c = Math.floor(Math.random() * (1 - 44) + 44);
+      j.indexOf(c) == -1 ? j.push(c) : '';
+    } while (j.length < 6);
+    return j.sort((a, b) => a - b);
   }
 
   do {
-      var t2=ix();
-      temp.push(t2);
+    var t2 = ix();
+    temp.push(t2);
+    if (temp.length > 10) {
+      // break;
+    }
   } while (t2 !== t);
   console.log(temp);
 }
