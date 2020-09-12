@@ -34,7 +34,7 @@ function fns(x, set1 = 0, set2 = 0) {
     //http://www.ohtashp.com/topics/takarakuji/
     //https://www.mizuhobank.co.jp/retail/takarakuji/loto/loto7/index.html
     var colors = ['#FF6666', '#99CC66', '#33FFCC', '#CC66CC', '#FFFF00', '#FF33CC', '#FF6600', '#99FF00', '#CC66CC', '#ffd700', '#ff00ff', '#adff2f', '#8a2be2', '#808000', '#ff1493', '#2f4f4f', '#40e0d0'];
-    var tb = document.getElementsByTagName('tbody')[1];
+    var tb = document.getElementsByTagName('tbody')[0];
     var fc = tb.firstElementChild;
     var xca = 0;
     if (set2 == 0) {
