@@ -178,8 +178,8 @@ function fik(x) {
 }
 
 
-function hiro() {
-    var t = [1,2,3,4,5,6];
+function hiro6() {
+    var t = [1, 2, 3, 4, 5, 6];
     var temp = [];
     var i = 0;
     var i = 0;
@@ -190,21 +190,24 @@ function hiro() {
             j.indexOf(c) == -1 ? j.push(c) : '';
         } while (j.length < 6);
         return j.sort((a, b) => a - b);
-    }
+    };
 
-    var ct = setInterval(() => {
-        var temp = ix();
-        console.log(i);
-        if(temp.toString === t.toString){
-            console.log(temp);
-            clearInterval(ct);
-            return;
-        }
+    var bb = setInterval(function () {
         i++;
-        if(i > 1000){
-            // clearInterval(ct);
-        }
-    }, 5);
+        var temp = ix();
+        var temp2 = ix();
+        console.log(temp.toString);
+        console.log(temp2.toString);
+        console.log(t.toString);
+
+
+        //     if(t.toString === temp.toString ){
+        //         console.log("xxxxxxxxxxxxxxx");
+        //         clearInterval(bb);
+        //     }
+        // }, 100);
+
+    })
 }
 
 
