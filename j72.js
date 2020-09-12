@@ -9,6 +9,7 @@ var set1 = 0;  //0色の表示をつつける,1色一回のみ
 var set2 = 0;  //0色初期化する,1色初期化しない
 var set3 = 1;  //連番数
 var set4 = 10; //10 ボーナス数字含む、8 ボーナス数字含まない
+var set5 = 0   //0表示 1無表示
 
 function ck1() {
     set1 = 1;
@@ -40,15 +41,15 @@ function fns(x, set1 = 0, set2 = 0, set4 = 10) {
     var xca = 0;
     if (set2 == 0) {
         var ns = document.getElementsByClassName('hon');
-        for (var i = 0; i < ns.length; i++) {
+        for (let i = 0; i < ns.length; i++) {
             ns[i].style = "";
         }
         var ns = document.getElementsByClassName('naka');
-        for (var i = 0; i < ns.length; i++) {
+        for (let i = 0; i < ns.length; i++) {
             ns[i].style = "";
         }
         var ns = document.getElementsByClassName('bou');
-        for (var i = 0; i < ns.length; i++) {
+        for (let i = 0; i < ns.length; i++) {
             ns[i].style = "";
         }
     }
@@ -56,8 +57,8 @@ function fns(x, set1 = 0, set2 = 0, set4 = 10) {
     do {
         var trs = fc.getElementsByTagName('td');
         var xc = 0;
-        for (var i = 1; i < set4; i++) {
-            for (var j = 0; j < x.length; j++) {
+        for (let i = 1; i < set4; i++) {
+            for (let j = 0; j < x.length; j++) {
                 if (trs[i].innerText == x[j]) {
                     trs[i].style.backgroundColor = colors[j];
                     xc++;
@@ -101,26 +102,42 @@ function fns(x, set1 = 0, set2 = 0, set4 = 10) {
     }
 }
 
-function ck(k) {
+var cklist = [];
+function ck(k, set5 = 0) {
     //k回のランダム7数字を出す
-    var itemp = k;
-    var i = 0;
+    var ii = 0;
     if (k == 1) {
-        if (k == 1) {
-            var temp = l7(7);
-            console.log('fns( [' + temp + '] )');
-            console.log(nom);
-            fns(temp, 1);
-        }
+        let temp = l7(7);
+        console.log('fns( [' + temp + '] )');
+        console.log(nom);
+        fns(temp, 1);
     } else {
         work_ck = setInterval(function () {
-            i++;
-            if (i == k) {
+            ii++;
+            if (ii == k) {
                 clearInterval(work_ck);
+
+                let temp;
+                for (let i = 0; i < cklist.length; i++) {
+                    // console.log('fns(  [' + cklist[i] + ']  )' );
+                    temp = temp + 'fns(  [' + cklist[i] + ']  )' + '\n';
+                    // temp = temp + cklist[i].toString() + '\n';
+                }
+
+                let blob = new Blob([temp], { type: "text/csv" });
+                let link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = 'cklist.txt';
+                link.click();
             }
-            var temp = l7(7);
-            fns(temp, 0);
-        }, 10)
+
+            let temp = l7(7);
+            if (set5 == 0) {
+                fns(temp, 0);
+            } else {
+                cklist[cklist.length] = temp;
+            }
+        }, 1)
     }
 }
 
@@ -136,7 +153,7 @@ function ad7(x) {
         ff.className = "xxx";
     } while (ff = ff.nextElementSibling)
     var ff = cc.firstElementChild.nextElementSibling;
-    for (var i = 0; i < 9; i++) {
+    for (let i = 0; i < 9; i++) {
         ff = ff.nextElementSibling;
         ff.innerText = x[i];
     }
@@ -149,7 +166,7 @@ function rd7(x) {
     var tb = document.getElementsByTagName('tbody');
     var pf = tb[1].firstElementChild;
     var tx = pf.getElementsByClassName('xxx')
-    for (var i = 0; i < 9; i++) {
+    for (let i = 0; i < 9; i++) {
         tx[i].innerText = x[i];
     }
 }
@@ -166,7 +183,7 @@ function l7(x) {
     do {
         var chk = "OK";
         var c = Math.floor(Math.random() * (1 - 38) + 38);
-        for (var i = 0; i < j.length; i++) {
+        for (let i = 0; i < j.length; i++) {
             if (j[i] == c) {
                 chk = "NG";
             }
@@ -183,18 +200,18 @@ function fnm(a, b) {
     //aからb回目の再現未出数字を検索
     var xc = 0;
     var numx = [];
-    // var nom = []; //出ないアレー
+    var nom = []; //出ないアレー
     var bnumx = [];
-    var tb = document.getElementsByTagName('tbody')[1];
+    var tb = document.getElementsByTagName('tbody')[0];
     var fc = tb.firstElementChild;
-    for (var j = 1; j < 38; j++) {
+    for (let j = 1; j < 38; j++) {
         bnumx.push(j);
     }
     do {
         xc++;
         if (xc >= a && xc < a + b) {
-            var temp = fc.getElementsByTagName('td');
-            for (var i = 1; i < 10; i++) {
+            let temp = fc.getElementsByTagName('td');
+            for (let i = 1; i < 10; i++) {
                 if (numx.indexOf(parseInt(temp[i].innerText)) < 0) {
                     numx.push(parseInt(temp[i].innerText));
                     numx.sort((a, b) => a - b);
@@ -227,7 +244,7 @@ function fik(x) {
     var pa = [];
     var nol = [];
     var noli = new Array(38);
-    for (var i = 1; i < 38; i++) {
+    for (let i = 1; i < 38; i++) {
         noli[i] = 0;
     }
     if (x == 0) {
@@ -239,7 +256,7 @@ function fik(x) {
     do {
         var temp = fc.getElementsByTagName('td');
         var temp2 = [];
-        for (var i = 1; i < 10; i++) {
+        for (let i = 1; i < 10; i++) {
             temp2.push(parseInt(temp[i].innerText));
         }
         if (temp2.indexOf(x) == -1) {
@@ -248,7 +265,7 @@ function fik(x) {
             if (fc.previousElementSibling) {
                 fc.previousElementSibling.style = " ";
                 var t3 = fc.previousElementSibling.getElementsByTagName('td');
-                for (var i = 1; i < 10; i++) {
+                for (let i = 1; i < 10; i++) {
                     nol.push(parseInt(t3[i].innerText));
                     if (pa.indexOf(parseInt(t3[i].innerText)) == -1) {
                         pa.push(parseInt(t3[i].innerText));
@@ -279,7 +296,7 @@ function master() {
     do {
         l7list[li] = [];
         var da = fc.getElementsByTagName('td');
-        for (var i = 1; i < 10; i++) {
+        for (let i = 1; i < 10; i++) {
             l7list[li].push(parseInt(da[i].innerText));
         }
         li++;
@@ -313,7 +330,7 @@ function roolclock() {
     var rolldata = master();
     var tb = document.getElementsByTagName('tbody')[0];
     th = tb.getElementsByTagName('th');
-    for (var i = 0; i < th.length; i++) {
+    for (let i = 0; i < th.length; i++) {
         th[i].id = i;
         th[i].addEventListener('click', function () {
             fns(rolldata[this.id]);
@@ -323,6 +340,7 @@ function roolclock() {
 roolclock();
 
 function hiro() {
+    console.log(new Date());
     var t = [1, 2, 3, 4, 5, 6];
     var temp = [];
     var i = 0;
@@ -330,7 +348,7 @@ function hiro() {
     var ix = function () {
         var j = [];
         do {
-            var c = Math.floor(Math.random() * (1 - 38) + 38);
+            let c = Math.floor(Math.random() * (1 - 38) + 38);
             j.indexOf(c) == -1 ? j.push(c) : '';
         } while (j.length < 7);
         return j.sort((a, b) => a - b);
@@ -341,6 +359,7 @@ function hiro() {
         var temp = ix();
         console.log(temp.toString());
         if (t.toString() === temp.toString()) {
+            console.log(new Date());
             console.log("xxxxxxxxxxxxxxx");
             clearInterval(work_hiro);
         }
@@ -376,7 +395,7 @@ var xx = function () {
 
 function gnum() {
     ms[size] = [];
-    for (var i = 0; i < items.length; i++) {
+    for (let i = 0; i < items.length; i++) {
         ms[size].push(parseInt(items[i].innerText, 10));
     }
     size += 1;
@@ -386,7 +405,7 @@ function gnum() {
 
 function list() {
     var funlink = new String();
-    for (var i = 0; i < ms.length; i++) {
+    for (let i = 0; i < ms.length; i++) {
         funlink = i + '     fns([' + ms[i] + '])';
         console.log(funlink);
     }
@@ -400,6 +419,7 @@ function fk() {
 
 function fkk(x) {
     // x 回の番号を取得する
+    console.log(new Date());
     var i = 0;
     work_fkk = setInterval(function () {
         fk();
@@ -407,12 +427,14 @@ function fkk(x) {
         if (i > x) {
             clearInterval(work_fkk);
             list();
+            console.log(new Date());
         }
-    }, 50);
+    }, 5);
 }
 
 function hero2(x) {
     // x と一致の番号を探す
+    console.log(new Date());
     var count = 0;
     work_hiro2 = setInterval(function () {
         count++;
@@ -424,6 +446,7 @@ function hero2(x) {
             console.log(x.toString());
             list();
             console.log(count);
+            console.log(new Date());
         }
     }, 50)
 }
