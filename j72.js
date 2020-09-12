@@ -96,7 +96,8 @@ function fns(x, set1 = 0, set2 = 0, set4 = 10) {
     } while (fc = fc.nextElementSibling);
 
     if (xca > set3) {
-        console.log('fns(  [' + x.sort((a, b) => a - b) + ']  )' + "  d4c = " + xca);
+        // console.log('fns(  [' + x.sort((a, b) => a - b) + ']  )' + "  d4c = " + xca);
+        console.log('fns(  [' + x + ']  )' + "  d4c = " + xca);
     }
 }
 
@@ -269,6 +270,57 @@ function fik(x) {
     // })
 }
 
+function master() {
+    // すべての抽選数字をarrayに取得
+    var l7list = [];
+    var li = 0;
+    var tb = document.getElementsByTagName('tbody')[0];
+    var fc = tb.firstElementChild;
+    do {
+        l7list[li] = [];
+        var da = fc.getElementsByTagName('td');
+        for (var i = 1; i < 10; i++) {
+            l7list[li].push(parseInt(da[i].innerText));
+        }
+        li++;
+    } while (fc = fc.nextElementSibling);
+    return l7list;
+}
+
+function autoroll() {
+    var rolldata = master();
+    var work_rolldata = setInterval(function () {
+        fns(rolldata.shift());
+        if (rolldata.length == 0) {
+            clearInterval(work_rolldata);
+        }
+    }, 100);
+}
+
+function manualrool(x, set1 = 0, set2 = 0, set4 = 10) {
+    // 指定した回数の色をつける
+    var rolldata = master();
+    if (set4 == 10) {
+        fns(rolldata[rolldata.length - x], set1, set2, set4);
+    } else {
+        rolldata[rolldata.length - x].pop();
+        rolldata[rolldata.length - x].pop();
+        fns(rolldata[rolldata.length - x], set1, set2, set4);
+    }
+}
+
+function roolclock() {
+    var rolldata = master();
+    var tb = document.getElementsByTagName('tbody')[0];
+    th = tb.getElementsByTagName('th');
+    for (var i = 0; i < th.length; i++) {
+        th[i].id = i;
+        th[i].addEventListener('click', function () {
+            fns(rolldata[this.id]);
+        })
+    }
+}
+roolclock();
 
 function hiro() {
     var t = [1, 2, 3, 4, 5, 6];
