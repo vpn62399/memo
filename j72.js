@@ -9,7 +9,7 @@ var set1 = 0;  //0色の表示をつつける,1色一回のみ
 var set2 = 0;  //0色初期化する,1色初期化しない
 var set3 = 1;  //連番数
 var set4 = 10; //10 ボーナス数字含む、8 ボーナス数字含まない
-var set5 = 0   //0表示 1無表示
+var set5 = 0   //0表示 1無表示,ファイルに保存
 
 function ck1() {
     set1 = 1;
@@ -116,19 +116,20 @@ function ck(k, set5 = 0) {
             ii++;
             if (ii == k) {
                 clearInterval(work_ck);
-
-                let temp;
+                let temp2;
                 for (let i = 0; i < cklist.length; i++) {
                     // console.log('fns(  [' + cklist[i] + ']  )' );
-                    temp = temp + 'fns(  [' + cklist[i] + ']  )' + '\n';
+                    temp2 = temp2 + 'fns(  [' + cklist[i] + ']  )' + '\n';
                     // temp = temp + cklist[i].toString() + '\n';
                 }
 
-                let blob = new Blob([temp], { type: "text/csv" });
-                let link = document.createElement('a');
-                link.href = URL.createObjectURL(blob);
-                link.download = 'cklist.txt';
-                link.click();
+                if (set5 == 1) {
+                    let blob = new Blob([temp2], { type: "text/csv" });
+                    let link = document.createElement('a');
+                    link.href = URL.createObjectURL(blob);
+                    link.download = 'cklist.txt';
+                    link.click();
+                }
             }
 
             let temp = l7(7);
