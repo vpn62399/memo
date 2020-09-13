@@ -177,11 +177,12 @@ function fik(x) {
     // })
 }
 
-var hirolist = [];
+var hiro6_list = [];
 function hiro6() {
     console.log(new Date());
     let t = [1, 2, 3, 4, 5, 6];
     var i = 0;
+    hiro6_list[i] = [];
     var ix = function () {
         var j = [];
         do {
@@ -194,26 +195,45 @@ function hiro6() {
     work_hiro6 = setInterval(function () {
         let temp = ix();
         i++;
-        hirolist[i] = temp;
-        if (t.toString() === temp.toString()) {
+        hiro6_list[i] = temp;
+        if (t.toString() === hiro6_list[i - 1].toString()) {
             console.log(new Date());
             console.log(temp);
             clearInterval(work_hiro6);
-            let temp;
-            for (let i = 0; i < hirolist.length; i++) {
-                temp = temp + 'fns(  [' + hirolist[i] + ']  )' + '\n';
+            let temp2;
+            for (let i = 0; i < hiro6_list.length; i++) {
+                temp2 = temp2 + 'fns(  [' + hiro6_list[i] + ']  )' + '\n';
             }
-            let blob = new Blob([temp], { type: "text/csv" });
+            let blob = new Blob([temp2], { type: "text/csv" });
             let link = document.createElement('a');
             link.href = URL.createObjectURL(blob);
-            link.download = 'hirolist.txt';
+            link.download = 'hiro6_list.txt';
             link.click();
         }
     }, 1);
 }
 
 
-
+function stop6() {
+    var t = [1, 2, 3, 4, 5, 6];
+    var i = 0;
+    console.log(new Date());
+    var work = setInterval(() => {
+        let x = function loto6() {
+            let j = [];
+            do {
+                var c = Math.floor(Math.random() * (1 - 44) + 44);
+                j.indexOf(c) == -1 ? j.push(c) : '';
+            } while (j.length < 6);
+            return j.sort((a, b) => a - b);
+        }();
+        console.info(i++, x);
+        if (t.toString() === x.toString()) {
+            clearInterval(work);
+            console.log(new Date());
+        }
+    }, 1);
+}
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////

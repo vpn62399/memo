@@ -339,31 +339,62 @@ function roolclock() {
 }
 roolclock();
 
-function hiro() {
+var hiro7_list = [];
+function hiro6() {
     console.log(new Date());
-    var t = [1, 2, 3, 4, 5, 6, 7];
-    var temp = [];
+    let t = [1, 2, 3, 4, 5, 6, 7];
     var i = 0;
-    var i = 0;
+    hiro7_list[i] = [];
     var ix = function () {
         var j = [];
         do {
-            let c = Math.floor(Math.random() * (1 - 38) + 38);
+            var c = Math.floor(Math.random() * (1 - 38) + 38);
             j.indexOf(c) == -1 ? j.push(c) : '';
-        } while (j.length < 7);
+        } while (j.length < 6);
         return j.sort((a, b) => a - b);
     };
 
-    work_hiro = setInterval(function () {
+    work_hiro6 = setInterval(function () {
+        let temp = ix();
         i++;
-        var temp = ix();
-        console.log(temp.toString());
-        if (t.toString() === temp.toString()) {
+        hiro7_list[i] = temp;
+        if (t.toString() === hiro7_list[i - 1].toString()) {
             console.log(new Date());
-            console.log("xxxxxxxxxxxxxxx");
-            clearInterval(work_hiro);
+            console.log(temp);
+            clearInterval(work_hiro6);
+            let temp2;
+            for (let i = 0; i < hiro7_list.length; i++) {
+                temp2 = temp2 + 'fns(  [' + hiro7_list[i] + ']  )' + '\n';
+            }
+            let blob = new Blob([temp2], { type: "text/csv" });
+            let link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'hiro7_list.txt';
+            link.click();
         }
-    }, 100);
+    }, 1);
+}
+
+//Loto7
+function stop() {
+    var t = [1, 2, 3, 4, 5, 6, 7];
+    var i = 0;
+    console.log(new Date());
+    let work = setInterval(() => {
+        let x = function loto7() {
+            let j = [];
+            do {
+                let c = Math.floor(Math.random() * (1 - 38) + 38);
+                j.indexOf(c) == -1 ? j.push(c) : '';
+            } while (j.length < 7);
+            return j.sort((a, b) => a - b);
+        }();
+        console.info(i++, x);
+        if (t.toString() === x.toString()) {
+            console.log(new Date());
+            clearInterval(work);
+        }
+    }, 1);
 }
 
 
