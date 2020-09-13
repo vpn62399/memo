@@ -177,11 +177,10 @@ function fik(x) {
     // })
 }
 
-
+var hirolist = [];
 function hiro6() {
-    var t = [1, 2, 3, 4, 5, 6];
-    var temp = [];
-    var i = 0;
+    console.log(new Date());
+    let t = [1, 2, 3, 4, 5, 6];
     var i = 0;
     var ix = function () {
         var j = [];
@@ -192,24 +191,26 @@ function hiro6() {
         return j.sort((a, b) => a - b);
     };
 
-    var bb = setInterval(function () {
+    work_hiro6 = setInterval(function () {
+        let temp = ix();
         i++;
-        var temp = ix();
-        var temp2 = ix();
-        console.log(temp.toString);
-        console.log(temp2.toString);
-        console.log(t.toString);
-
-
-        //     if(t.toString === temp.toString ){
-        //         console.log("xxxxxxxxxxxxxxx");
-        //         clearInterval(bb);
-        //     }
-        // }, 100);
-
-    })
+        hirolist[i] = temp;
+        if (t.toString() === temp.toString()) {
+            console.log(new Date());
+            console.log(temp);
+            clearInterval(work_hiro6);
+            let temp;
+            for (let i = 0; i < hirolist.length; i++) {
+                temp = temp + 'fns(  [' + hirolist[i] + ']  )' + '\n';
+            }
+            let blob = new Blob([temp], { type: "text/csv" });
+            let link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = 'hirolist.txt';
+            link.click();
+        }
+    }, 1);
 }
-
 
 
 

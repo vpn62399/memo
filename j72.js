@@ -144,8 +144,8 @@ function ck(k, set5 = 0) {
 function ad7(x) {
     //仮設番号の追加
     //http://www.ohtashp.com/topics/takarakuji/
-    var tb = document.getElementsByTagName('tbody');
-    var pf = tb[1].firstElementChild;
+    var tb = document.getElementsByTagName('tbody')[0];
+    var pf = tb.firstElementChild;
     var cc = pf.cloneNode(true);
     cc.getElementsByTagName('th')[0].innerText = "ADD";
     var ff = cc.firstElementChild.nextElementSibling.nextElementSibling;
@@ -157,14 +157,14 @@ function ad7(x) {
         ff = ff.nextElementSibling;
         ff.innerText = x[i];
     }
-    tb[1].insertBefore(cc, pf)
+    tb.insertBefore(cc, pf)
 }
 
 function rd7(x) {
     //仮設番号の変更
     //http://www.ohtashp.com/topics/takarakuji/
-    var tb = document.getElementsByTagName('tbody');
-    var pf = tb[1].firstElementChild;
+    var tb = document.getElementsByTagName('tbody')[0];
+    var pf = tb.firstElementChild;
     var tx = pf.getElementsByClassName('xxx')
     for (let i = 0; i < 9; i++) {
         tx[i].innerText = x[i];
@@ -172,9 +172,9 @@ function rd7(x) {
 }
 
 function rm7() {
-    var tb = document.getElementsByTagName('tbody');
-    var pf = tb[1].firstElementChild;
-    tb[1].removeChild(pf);
+    var tb = document.getElementsByTagName('tbody')[0];
+    var pf = tb.firstElementChild;
+    tb.removeChild(pf);
 }
 
 function l7(x) {
@@ -341,7 +341,7 @@ roolclock();
 
 function hiro() {
     console.log(new Date());
-    var t = [1, 2, 3, 4, 5, 6];
+    var t = [1, 2, 3, 4, 5, 6, 7];
     var temp = [];
     var i = 0;
     var i = 0;
