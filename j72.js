@@ -377,7 +377,7 @@ function hiro6() {
 }
 
 //Loto7
-function stop() {
+function hiro7_view() {
     var t = [1, 2, 3, 4, 5, 6, 7];
     var i = 0;
     console.log(new Date());
@@ -436,11 +436,16 @@ function gnum() {
 }
 
 function list() {
-    var funlink = new String();
+    let temp2 = new String();
     for (let i = 0; i < ms.length; i++) {
-        funlink = i + '     fns([' + ms[i] + '])';
-        console.log(funlink);
+        temp2 = temp2 + ms[i] + '\n';
+        // temp2 = temp2 + 'fns(  [' + ms[i] + ']  )' + '\n';
     }
+    let blob = new Blob([temp2], { type: "text/csv" });
+    let link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'off_hiro7_list.txt';
+    link.click();
 }
 
 function fk() {
@@ -480,7 +485,7 @@ function hero2(x) {
             console.log(count);
             console.log(new Date());
         }
-    }, 50)
+    }, 5)
 }
 
 //////////////////////////////////////////////////////////////////////////

@@ -179,6 +179,7 @@ function fik(x) {
 
 var hiro6_list = [];
 function hiro6() {
+    // ==t[] までのランダムデータをファイル作成
     console.log(new Date());
     let t = [1, 2, 3, 4, 5, 6];
     var i = 0;
@@ -210,11 +211,12 @@ function hiro6() {
             link.download = 'hiro6_list.txt';
             link.click();
         }
-    }, 1);
+    }, 5);
 }
 
 
-function stop6() {
+function hiro6_view() {
+    // ==t[] までのランダムデータとまる
     var t = [1, 2, 3, 4, 5, 6];
     var i = 0;
     console.log(new Date());
@@ -270,11 +272,16 @@ function gnum() {
 }
 
 function list() {
-    var funlink = new String();
-    for (var i = 0; i < ms.length; i++) {
-        funlink = i + '     fns6( [' + ms[i] + '] )';
-        console.log(funlink);
+    let temp2 = new String();
+    for (let i = 0; i < ms.length; i++) {
+        temp2 = temp2 + ms[i] + '\n';
+        // temp2 = temp2 + 'fns6(  [' + ms[i] + ']  )' + '\n';
     }
+    let blob = new Blob([temp2], { type: "text/csv" });
+    let link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'off_hiro6_list.txt';
+    link.click();
 }
 
 function fk() {
@@ -292,7 +299,7 @@ function fkk(x) {
             clearInterval(tid);
             list();
         }
-    }, 50);
+    }, 5);
 }
 
 //////////////////////////////////////////////////////////////////////////
