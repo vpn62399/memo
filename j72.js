@@ -405,10 +405,15 @@ function hiro7_view() {
                 console.log(new Date());
                 console.log('hiro7_item  ' + hiro7_item);
                 console.log("Stop");
+                alert("Stoped");
             }
         }
     }, 500);
 }
+window.onbeforeunload = function () {
+    return "本当に離れますか？";
+}
+
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////

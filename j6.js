@@ -241,9 +241,13 @@ function hiro6_view() {
                 console.log(new Date());
                 console.log('hiro6_item  ' + hiro6_item);
                 console.log("Stop");
+                alert("Stoped");
             }
         }
     }, 500);
+}
+window.onbeforeunload = function () {
+    return "本当に離れますか？";
 }
 
 //////////////////////////////////////////////////////////////////////////
