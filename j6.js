@@ -216,7 +216,7 @@ function hiro6() {
 
 function hiro6_view() {
     // ==t[] までのランダムデータとまる
-    var t = [14, 25, 27, 30, 39, 41];
+    stop = [14, 25, 27, 30, 39, 41];
     var i = 0;
     function l6x() {
         let j = [];
@@ -231,7 +231,7 @@ function hiro6_view() {
         for (let li = 0; li < 1000; li++) {
             let x = l6x();
             console.log(i++, x);
-            if (t.toString() === x.toString()) {
+            if (stop.toString() === x.toString()) {
                 clearInterval(hiro6_view_work);
                 let x = l6x();
                 console.log(i++, x);

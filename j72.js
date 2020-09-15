@@ -379,7 +379,7 @@ function hiro6() {
 //Loto7
 function hiro7_view() {
     // ==t[] までのランダムデータとまる
-    var t = [4, 12, 14, 24, 29, 34, 35];
+    stop = [4, 12, 14, 24, 29, 34, 35];
     var i = 0;
     function l7x() {
         let j = [];
@@ -394,7 +394,7 @@ function hiro7_view() {
         for (let li = 0; li < 1000; li++) {
             let x = l7x();
             console.log(i++, x);
-            if (t.toString() === x.toString()) {
+            if (stop.toString() === x.toString()) {
                 clearInterval(hiro7_view_work);
                 let x = l7x();
                 console.log(i++, x);
