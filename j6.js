@@ -216,7 +216,8 @@ function hiro6() {
 
 function hiro6_view() {
     // ==t[] までのランダムデータとまる
-    stop = [14, 25, 27, 30, 39, 41];
+    hiro6_item = [14, 25, 27, 30, 39, 41];
+    var hiro6_item_string = hiro6_item.toString();
     var i = 0;
     function l6x() {
         let j = [];
@@ -231,11 +232,15 @@ function hiro6_view() {
         for (let li = 0; li < 1000; li++) {
             let x = l6x();
             console.log(i++, x);
-            if (stop.toString() === x.toString()) {
+            if (hiro6_item_string === x.toString()) {
                 clearInterval(hiro6_view_work);
                 let x = l6x();
                 console.log(i++, x);
                 console.log(new Date());
+                console.log(new Date());
+                console.log(new Date());
+                console.log('hiro6_item  ' + hiro6_item);
+                console.log("Stop");
             }
         }
     }, 500);

@@ -379,7 +379,9 @@ function hiro6() {
 //Loto7
 function hiro7_view() {
     // ==t[] までのランダムデータとまる
-    stop = [4, 12, 14, 24, 29, 34, 35];
+    // 8,10,19,21,24,29,30  (20200915-4379284)
+    hiro7_item = [4, 12, 14, 24, 29, 34, 35];
+    var hiro7_item_string = hiro7_item.toString();
     var i = 0;
     function l7x() {
         let j = [];
@@ -394,11 +396,15 @@ function hiro7_view() {
         for (let li = 0; li < 1000; li++) {
             let x = l7x();
             console.log(i++, x);
-            if (stop.toString() === x.toString()) {
+            if (hiro7_item_string === x.toString()) {
                 clearInterval(hiro7_view_work);
                 let x = l7x();
                 console.log(i++, x);
                 console.log(new Date());
+                console.log(new Date());
+                console.log(new Date());
+                console.log('hiro7_item  ' + hiro7_item);
+                console.log("Stop");
             }
         }
     }, 500);
