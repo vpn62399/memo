@@ -378,28 +378,31 @@ function hiro6() {
 
 //Loto7
 function hiro7_view() {
-    var t = [1, 2, 3, 4, 5, 6, 7];
+    // ==t[] までのランダムデータとまる
+    var t = [4, 12, 14, 24, 29, 34, 35];
     var i = 0;
+    function l7x() {
+        let j = [];
+        do {
+            let c = Math.floor(Math.random() * (1 - 38) + 38);
+            j.indexOf(c) == -1 ? j.push(c) : '';
+        } while (j.length < 7);
+        return j.sort((a, b) => a - b);
+    }
     console.log(new Date());
-    let work = setInterval(() => {
-        let x = function loto7() {
-            let j = [];
-            do {
-                let c = Math.floor(Math.random() * (1 - 38) + 38);
-                j.indexOf(c) == -1 ? j.push(c) : '';
-            } while (j.length < 7);
-            return j.sort((a, b) => a - b);
-        }();
-        console.info(i++, x);
-        if (t.toString() === x.toString()) {
-            console.log(new Date());
-            clearInterval(work);
+    hiro7_view_work = setInterval(() => {
+        for (let li = 0; li < 1000; li++) {
+            let x = l7x();
+            console.log(i++, x);
+            if (t.toString() === x.toString()) {
+                clearInterval(hiro7_view_work);
+                let x = l7x();
+                console.log(i++, x);
+                console.log(new Date());
+            }
         }
-    }, 1);
+    }, 500);
 }
-
-
-
 
 //////////////////////////////////////////////////////////////////////////
 //////////////////////////////////////////////////////////////////////////

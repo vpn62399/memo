@@ -214,27 +214,31 @@ function hiro6() {
     }, 5);
 }
 
-
 function hiro6_view() {
     // ==t[] までのランダムデータとまる
-    var t = [1, 2, 3, 4, 5, 6];
+    var t = [14, 25, 27, 30, 39, 41];
     var i = 0;
+    function l6x() {
+        let j = [];
+        do {
+            let c = Math.floor(Math.random() * (1 - 44) + 44);
+            j.indexOf(c) == -1 ? j.push(c) : '';
+        } while (j.length < 6);
+        return j.sort((a, b) => a - b);
+    }
     console.log(new Date());
-    var work = setInterval(() => {
-        let x = function loto6() {
-            let j = [];
-            do {
-                var c = Math.floor(Math.random() * (1 - 44) + 44);
-                j.indexOf(c) == -1 ? j.push(c) : '';
-            } while (j.length < 6);
-            return j.sort((a, b) => a - b);
-        }();
-        console.info(i++, x);
-        if (t.toString() === x.toString()) {
-            clearInterval(work);
-            console.log(new Date());
+    hiro6_view_work = setInterval(() => {
+        for (let li = 0; li < 1000; li++) {
+            let x = l6x();
+            console.log(i++, x);
+            if (t.toString() === x.toString()) {
+                clearInterval(hiro6_view_work);
+                let x = l6x();
+                console.log(i++, x);
+                console.log(new Date());
+            }
         }
-    }, 1);
+    }, 500);
 }
 
 //////////////////////////////////////////////////////////////////////////
