@@ -222,8 +222,10 @@ function hiro6_view() {
     function l6x() {
         let j = [];
         do {
-            let c = Math.floor(Math.random() * (1 - 44) + 44);
-            j.indexOf(c) == -1 ? j.push(c) : '';
+            let c = Math.floor(Math.random() * (1 - 66) + 66);
+            if (c <= 43) {
+                j.indexOf(c) == -1 ? j.push(c) : '';
+            }
         } while (j.length < 6);
         return j.sort((a, b) => a - b);
     }

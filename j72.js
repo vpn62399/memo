@@ -386,8 +386,10 @@ function hiro7_view() {
     function l7x() {
         let j = [];
         do {
-            let c = Math.floor(Math.random() * (1 - 38) + 38);
-            j.indexOf(c) == -1 ? j.push(c) : '';
+            let c = Math.floor(Math.random() * (1 - 66) + 66);
+            if (c <= 37) {
+                j.indexOf(c) == -1 ? j.push(c) : '';
+            }
         } while (j.length < 7);
         return j.sort((a, b) => a - b);
     }
