@@ -216,6 +216,8 @@ function hiro6() {
 
 function hiro6_view() {
     // ==t[] までのランダムデータとまる
+    // 6,8,15,32,38,40  (20200916-11054529)
+    // 1,10,11,17,29,32  (20200916-11054531)
     hiro6_item = [14, 25, 27, 30, 39, 41];
     var hiro6_item_string = hiro6_item.toString();
     var i = 0;
