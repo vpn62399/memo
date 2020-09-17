@@ -380,6 +380,8 @@ function hiro6() {
 function hiro7_view() {
     // ==t[] までのランダムデータとまる
     // 8,10,19,21,24,29,30  (20200915-4379284)
+    // 4,5,10,16,23,29,32  (20200917-17644786)
+    // 6,12,13,16,17,20,32  (20200917-17644788)
     hiro7_item = [4, 12, 14, 24, 29, 34, 35];
     var hiro7_item_string = hiro7_item.toString();
     var i = 0;
@@ -393,7 +395,8 @@ function hiro7_view() {
         } while (j.length < 7);
         return j.sort((a, b) => a - b);
     }
-    console.log(new Date());
+    var startT = new Date();
+    console.log(startT);
     hiro7_view_work = setInterval(() => {
         for (let li = 0; li < 1000; li++) {
             let x = l7x();
@@ -402,8 +405,7 @@ function hiro7_view() {
                 clearInterval(hiro7_view_work);
                 let x = l7x();
                 console.log(i++, x);
-                console.log(new Date());
-                console.log(new Date());
+                console.log(startT);
                 console.log(new Date());
                 console.log('hiro7_item  ' + hiro7_item);
                 console.log("Stop");

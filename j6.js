@@ -235,7 +235,8 @@ function hiro6_view() {
         } while (j.length < 6);
         return j.sort((a, b) => a - b);
     }
-    console.log(new Date());
+    var startT = new Date();
+    console.log(startT);
     hiro6_view_work = setInterval(() => {
         for (let li = 0; li < 1000; li++) {
             let x = l6x();
@@ -244,8 +245,7 @@ function hiro6_view() {
                 clearInterval(hiro6_view_work);
                 let x = l6x();
                 console.log(i++, x);
-                console.log(new Date());
-                console.log(new Date());
+                console.log(startT);
                 console.log(new Date());
                 console.log('hiro6_item  ' + hiro6_item);
                 console.log("Stop");
