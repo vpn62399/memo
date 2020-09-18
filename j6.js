@@ -58,7 +58,7 @@ function fns6(x, set1 = 0) {
         }
     } while (fc = fc.nextElementSibling);
 
-    if (xca > 4) {
+    if (xca >= set3) {
         console.log('fns6(  [' + x + ']  )' + "  d3c = " + xca);
     }
 }
@@ -106,18 +106,15 @@ function rm6() {
     tb[0].removeChild(pf);
 }
 
-function l6(x) {
+function l6(x = 6) {
+    // ランダムの数字を発生
     var j = [];
     do {
-        var chk = "OK";
-        var c = Math.floor(Math.random() * (1 - 44) + 44);
-        for (var i = 0; i < j.length; i++) {
-            if (j[i] == c) {
-                chk = "NG";
+        var c = Math.floor(Math.random() * (1 - 66) + 66);
+        if (c <= 37) {
+            if (j.indexOf(c) == -1) {
+                j.push(c);
             }
-        }
-        if (chk != "NG") {
-            j.push(c);
         }
     } while (j.length < x);
     return j.sort((a, b) => a - b);
@@ -187,8 +184,10 @@ function hiro6() {
     var ix = function () {
         var j = [];
         do {
-            var c = Math.floor(Math.random() * (1 - 44) + 44);
-            j.indexOf(c) == -1 ? j.push(c) : '';
+            var c = Math.floor(Math.random() * (1 - 66) + 66);
+            if (c <= 43) {
+                j.indexOf(c) == -1 ? j.push(c) : '';
+            }
         } while (j.length < 6);
         return j.sort((a, b) => a - b);
     };
@@ -211,7 +210,7 @@ function hiro6() {
             link.download = 'hiro6_list.txt';
             link.click();
         }
-    }, 5);
+    }, 1);
 }
 
 function hiro6_view() {

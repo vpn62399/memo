@@ -96,7 +96,7 @@ function fns(x, set1 = 0, set2 = 0, set4 = 10) {
         }
     } while (fc = fc.nextElementSibling);
 
-    if (xca > set3) {
+    if (xca >= set3) {
         // console.log('fns(  [' + x.sort((a, b) => a - b) + ']  )' + "  d4c = " + xca);
         console.log('fns(  [' + x + ']  )' + "  d4c = " + xca);
     }
@@ -178,19 +178,15 @@ function rm7() {
     tb.removeChild(pf);
 }
 
-function l7(x) {
+function l7(x = 7) {
     // ランダムの数字を発生
     var j = [];
     do {
-        var chk = "OK";
-        var c = Math.floor(Math.random() * (1 - 38) + 38);
-        for (let i = 0; i < j.length; i++) {
-            if (j[i] == c) {
-                chk = "NG";
+        var c = Math.floor(Math.random() * (1 - 66) + 66);
+        if (c <= 37) {
+            if (j.indexOf(c) == -1) {
+                j.push(c);
             }
-        }
-        if (chk != "NG") {
-            j.push(c);
         }
     } while (j.length < x);
     return j.sort((a, b) => a - b);
@@ -341,7 +337,8 @@ function roolclock() {
 roolclock();
 
 var hiro7_list = [];
-function hiro6() {
+function hiro7() {
+    // ==t[] までのランダムデータをファイル作成
     console.log(new Date());
     let t = [1, 2, 3, 4, 5, 6, 7];
     var i = 0;
@@ -349,13 +346,15 @@ function hiro6() {
     var ix = function () {
         var j = [];
         do {
-            var c = Math.floor(Math.random() * (1 - 38) + 38);
-            j.indexOf(c) == -1 ? j.push(c) : '';
-        } while (j.length < 6);
+            var c = Math.floor(Math.random() * (1 - 66) + 66);
+            if (c <= 37) {
+                j.indexOf(c) == -1 ? j.push(c) : '';
+            }
+        } while (j.length < 7);
         return j.sort((a, b) => a - b);
     };
 
-    work_hiro6 = setInterval(function () {
+    work_hiro7 = setInterval(function () {
         let temp = ix();
         i++;
         hiro7_list[i] = temp;
