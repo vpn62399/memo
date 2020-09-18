@@ -222,7 +222,6 @@ function hiro6_view() {
     // 20200818
     // 1630683 Array(6) 3,6,20,38,39,42
     // 1630685 Array(6) 17,26,31,32,40,41
-
     hiro6_item = [6, 15, 16, 22, 36, 41];
     var hiro6_item_string = hiro6_item.toString();
     var i = 0;
