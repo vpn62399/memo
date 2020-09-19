@@ -117,11 +117,12 @@ function ck(k, set5 = 0) {
         work_ck = setInterval(function () {
             if (ii > k) {
                 clearInterval(work_ck);
+                console.log("End");
                 let temp2;
-                for (let i = 0; i < cklist.length; i++) {
-                    temp2 = temp2 + cklist[i] + '\n';
-                }
                 if (set5 == 1) {
+                    for (let i = 0; i < cklist.length; i++) {
+                        temp2 = temp2 + cklist[i] + '\n';
+                    }
                     let blob = new Blob([temp2], { type: "text/csv" });
                     let link = document.createElement('a');
                     link.href = URL.createObjectURL(blob);

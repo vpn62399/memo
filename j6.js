@@ -30,12 +30,12 @@ function fns6(x, set1 = 0) {
             break;
         }
         var xc = 0;
-        for (var i = 1; i < 7; i++) {
+        for (var i = 1; i < 8; i++) {
             for (var j = 0; j < x.length; j++) {
                 if (trs[i].innerText == x[j]) {
                     trs[i].style.backgroundColor = colors[j];
                     xc++;
-                    if (set1 == 0) {
+                    if (set1 == 1) {
                         x.splice(j, 1);
                     }
                 }
@@ -63,18 +63,22 @@ function fns6(x, set1 = 0) {
     }
 }
 
-function ck(x) {
+function ck6(x) {
     if (location.href != 'http://www.ohtashp.com/topics/takarakuji/index_loto6.html') {
         alert("URL 不正 ファンクション不正");
         return;
     }
-    for (var i = 0; i < x; i++) {
-        var temp = l6(6);
+    ck6_work = setInterval(function () {
+        let temp = l6(7);
         if (x == 1) {
             console.log('fns6( [' + temp + '] )');
         }
         fns6(temp);
-    }
+        if (x-- == 0) {
+            clearInterval(ck6_work);
+            console.log('ck6_work_end');
+        }
+    }, 1);
 }
 
 function ad6kk(x) {
@@ -111,7 +115,7 @@ function l6(x = 6) {
     var j = [];
     do {
         var c = Math.floor(Math.random() * (1 - 66) + 66);
-        if (c <= 37) {
+        if (c <= 43) {
             if (j.indexOf(c) == -1) {
                 j.push(c);
             }
