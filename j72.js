@@ -432,7 +432,7 @@ var but;
 var xx = function () {
     var url = 'https://www.takarakuji-official.jp/ec/loto7/';
     if (location.href != url) {
-        // window.open(url);
+        window.open(url);
         return;
     }
     item2 = document.getElementsByClassName('m_lotteryNumContainer_item2');
