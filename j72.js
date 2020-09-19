@@ -286,20 +286,21 @@ function fik(x) {
 
 function master() {
     // すべての抽選数字をarrayに取得
-    var l7list = [];
-    var li = 0;
-    var tb = document.getElementsByTagName('tbody')[0];
-    var fc = tb.firstElementChild;
+    l7ms = [];
+    let li = 0;
+    let tb = document.getElementsByTagName('tbody')[0];
+    let fc = tb.firstElementChild;
     do {
-        l7list[li] = [];
-        var da = fc.getElementsByTagName('td');
+        l7ms[li] = [];
+        let da = fc.getElementsByTagName('td');
         for (let i = 1; i < 10; i++) {
-            l7list[li].push(parseInt(da[i].innerText));
+            l7ms[li].push(parseInt(da[i].innerText));
         }
         li++;
     } while (fc = fc.nextElementSibling);
-    return l7list;
+    return l7ms;
 }
+master();
 
 function autoroll() {
     var rolldata = master();
@@ -378,12 +379,9 @@ function hiro7() {
 //Loto7
 function hiro7_view() {
     // ==t[] までのランダムデータとまる
-    // 8,10,19,21,24,29,30  (20200915-4379284)
-    // 4,5,10,16,23,29,32  (20200917-17644786)
-    // 6,12,13,16,17,20,32  (20200917-17644788)
-    hiro7_item = [4, 12, 14, 24, 29, 34, 35];
-    var hiro7_item_string = hiro7_item.toString();
-    var i = 0;
+    hiro7_item = [9, 19, 22, 32, 35, 36, 37];  //第386回
+    let hiro7_item_string = hiro7_item.toString();
+    let i = 0;
     function l7x() {
         let j = [];
         do {
@@ -394,7 +392,7 @@ function hiro7_view() {
         } while (j.length < 7);
         return j.sort((a, b) => a - b);
     }
-    var startT = new Date();
+    let startT = new Date();
     console.log(startT);
     hiro7_view_work = setInterval(() => {
         for (let li = 0; li < 1000; li++) {
