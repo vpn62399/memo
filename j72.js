@@ -35,7 +35,8 @@ function fns(x, set1 = 0, set2 = 0, set4 = 10) {
     // xのアレーの数字を色で表示
     //http://www.ohtashp.com/topics/takarakuji/
     //https://www.mizuhobank.co.jp/retail/takarakuji/loto/loto7/index.html
-    var colors = ['#FF6666', '#99CC66', '#33FFCC', '#CC66CC', '#FFFF00', '#FF33CC', '#FF6600', '#99FF00', '#CC66CC', '#ffd700', '#ff00ff', '#adff2f', '#8a2be2', '#808000', '#ff1493', '#2f4f4f', '#40e0d0'];
+    var colors = ['#FF6666', '#99CC66', '#33FFCC', '#CC66CC', '#FFFF00', '#FF33CC', '#FF6600', '#99FF00', '#CC66CC',
+        '#ffd700', '#ff00ff', '#adff2f', '#8a2be2', '#808000', '#ff1493', '#2f4f4f', '#40e0d0'];
     var tb = document.getElementsByTagName('tbody')[0];
     var fc = tb.firstElementChild;
     var xca = 0;
@@ -104,25 +105,22 @@ function fns(x, set1 = 0, set2 = 0, set4 = 10) {
 
 var cklist = [];
 function ck(k, set5 = 0) {
-    //k回のランダム7数字を出す
+    // k回のランダム7数字を出す
+    // 0表示 1無表示,ファイルに保存
     var ii = 0;
     if (k == 1) {
-        let temp = l7(7);
+        let temp = l7(9);
         console.log('fns( [' + temp + '] )');
         console.log(nom);
         fns(temp, 1);
     } else {
         work_ck = setInterval(function () {
-            ii++;
-            if (ii == k) {
+            if (ii > k) {
                 clearInterval(work_ck);
                 let temp2;
                 for (let i = 0; i < cklist.length; i++) {
-                    // console.log('fns(  [' + cklist[i] + ']  )' );
-                    temp2 = temp2 + 'fns(  [' + cklist[i] + ']  )' + '\n';
-                    // temp = temp + cklist[i].toString() + '\n';
+                    temp2 = temp2 + cklist[i] + '\n';
                 }
-
                 if (set5 == 1) {
                     let blob = new Blob([temp2], { type: "text/csv" });
                     let link = document.createElement('a');
@@ -132,11 +130,16 @@ function ck(k, set5 = 0) {
                 }
             }
 
-            let temp = l7(7);
+            let temp = l7(9);
+            ii++;
             if (set5 == 0) {
                 fns(temp, 0);
             } else {
-                cklist[cklist.length] = temp;
+                for (let i = 0; i < 100; ++i) {
+                    ii++;
+                    temp = l7(9);
+                    cklist[cklist.length] = temp;
+                }
             }
         }, 1)
     }
@@ -394,6 +397,7 @@ function hiro7_view() {
     }
     let startT = new Date();
     console.log(startT);
+
     hiro7_view_work = setInterval(() => {
         for (let li = 0; li < 1000; li++) {
             let x = l7x();
@@ -451,6 +455,7 @@ function gnum() {
 }
 
 function list() {
+    // 取得したデーターをファイルに保存
     let temp2 = new String();
     for (let i = 0; i < ms.length; i++) {
         temp2 = temp2 + ms[i] + '\n';
@@ -464,6 +469,7 @@ function list() {
 }
 
 function fk() {
+    // ひとつの番号を取得
     but[0].click()
     gnum();
     // list();
@@ -484,21 +490,30 @@ function fkk(x) {
     }, 5);
 }
 
-function hero2(x) {
+function hiro7_off() {
     // x と一致の番号を探す
-    console.log(new Date());
-    var count = 0;
+    hiro_off_num = [9, 19, 22, 32, 35, 36, 37];  //第386回
+    let hiro7_off_num_string = hiro_off_num.toString();
+    let i = 0;
+    let startT = new Date();
+    console.log(startT);
     work_hiro2 = setInterval(function () {
-        count++;
-        but[0].click();
-        var temp2 = gnum();
-        if (temp2.toString() === x.toString()) {
-            clearInterval(work_hiro2);
-            console.log(temp2.toString());
-            console.log(x.toString());
-            list();
-            console.log(count);
-            console.log(new Date());
+        for (let li = 0; li < 1; li++) {
+            but[0].click();
+            let temp2 = gnum();
+            console.log(i++, temp2)
+            if (hiro7_off_num_string === temp2.toString()) {
+                clearInterval(work_hiro2);
+                but[0].click();
+                let temp2 = gnum();
+                console.log(i++, temp2);
+                console.lot(startT);
+                console.log(new Date());
+                console.log('hiro7_off_num_string  ' + hiro7_off_num_string);
+                console.log("Stop");
+                alert("steped");
+                list();
+            }
         }
     }, 5)
 }

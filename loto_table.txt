@@ -73,21 +73,41 @@ delete from loto6c;
 .mode table
 
 
-
-
-
-
-
-CREATE TABLE xxx(
+// memo2
+CREATE TABLE n7k(
   "s1" INTEGER,
   "s2" INTEGER,
   "s3" INTEGER,
   "s4" INTEGER,
   "s5" INTEGER,
   "s6" INTEGER,
-  "s7" INTEGER
+  "s7" INTEGER,
+  "n1" INTEGER,
+  "n2" INTEGER,
+  "n3" INTEGER
 ); 
 
 .mode csv
-.import cklist.txt xxx
+.import 7_cklist.txt n7k
 .mode table
+
+
+CREATE TABLE n9k(
+  "s1" INTEGER,
+  "s2" INTEGER,
+  "s3" INTEGER,
+  "s4" INTEGER,
+  "s5" INTEGER,
+  "s6" INTEGER,
+  "s7" INTEGER,
+  "s8" INTEGER,
+  "s9" INTEGER,
+  "n1" INTEGER,
+  "n2" INTEGER,
+  "n3" INTEGER
+); 
+
+.mode csv
+.import 9_cklist.txt n9k
+.mode table
+
