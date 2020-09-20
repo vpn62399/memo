@@ -17,7 +17,7 @@ function fns6(tx6, set1 = 0, set2 = 0) {
         window.open(url);
         return;
     }
-    console.log('tx6 =  ' + tx6);
+    // console.log('tx6 =  ' + tx6);
     let colors = ['#FF6666', '#99CC66', '#33FFCC', '#CC66CC', '#FFFF00', '#FF33CC', '#FF6600', '#99FF00', '#CC66CC'];
     let tb = document.getElementsByTagName('tbody')[0];
     let fc = tb.firstElementChild;
@@ -78,7 +78,7 @@ function fns6(tx6, set1 = 0, set2 = 0) {
 }
 
 function ck6(tx6) {
-    console.log('tx6 =  ' + tx6);
+    // console.log('tx6 =  ' + tx6);
     if (location.href != 'http://www.ohtashp.com/topics/takarakuji/index_loto6.html') {
         alert("URL 不正 ファンクション不正");
         return;
@@ -98,7 +98,7 @@ function ck6(tx6) {
 
 function ad6kk(tx6) {
     //http://www.ohtashp.com/topics/takarakuji/index_loto6.html
-    console.log('tx6 =  ' + tx6);
+    // console.log('tx6 =  ' + tx6);
     var tb = document.getElementsByTagName('tbody');
     var pf = tb[0].firstElementChild;
     var cc = pf.cloneNode(true);
@@ -112,7 +112,7 @@ function ad6kk(tx6) {
 
 function rd6(tx6) {
     //http://www.ohtashp.com/topics/takarakuji/index_loto6.html
-    console.log('tx6 =  ' + tx6);
+    // console.log('tx6 =  ' + tx6);
     var tb = document.getElementsByTagName('tbody');
     var pf = tb[0].firstElementChild;
     var tx6 = pf.getElementsByClassName('hon')
@@ -135,7 +135,7 @@ function rm6() {
 
 function l6(tx6 = 6) {
     // ランダムの数字を発生
-    console.log('tx6 =  ' + tx6);
+    // console.log('tx6 =  ' + tx6);
     var j = [];
     do {
         var c = Math.floor(Math.random() * (1 - 66) + 66);
@@ -152,7 +152,7 @@ function fik(tx6, set6 = 0) {
     //指定の番号の列と一個前の列を表示
     //tx6=0の場合、すべての表示する。
     //set6 = 0;   //0行隠ししない、1行隠しする。
-    console.log('tx6 =  ' + tx6);
+    // console.log('tx6 =  ' + tx6);
     var tb = document.getElementsByTagName('tbody')[0];
     var fc = tb.firstElementChild;
     var pa = [];

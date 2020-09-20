@@ -146,7 +146,7 @@ function ck(tx7, set5 = 0) {
 function ad7(tx7) {
     //仮設番号の追加
     //http://www.ohtashp.com/topics/takarakuji/
-    console.log('tx7 =  ' + tx7);
+    // console.log('tx7 =  ' + tx7);
     var tb = document.getElementsByTagName('tbody')[0];
     var pf = tb.firstElementChild;
     var cc = pf.cloneNode(true);
@@ -166,7 +166,7 @@ function ad7(tx7) {
 function rd7(tx7) {
     //仮設番号の変更
     //http://www.ohtashp.com/topics/takarakuji/
-    console.log('tx7 =  ' + tx7);
+    // console.log('tx7 =  ' + tx7);
     let tb = document.getElementsByTagName('tbody')[0];
     let pf = tb.firstElementChild;
     let tt = pf.getElementsByClassName('xxx')
