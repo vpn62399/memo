@@ -178,6 +178,26 @@ function fik(x) {
     // })
 }
 
+function master() {
+    // すべての抽選数字をarrayに取得
+    l6ms = [];
+    let li = 0;
+    let tb = document.getElementsByTagName('tbody')[0];
+    let fc = tb.firstElementChild;
+    do {
+        l6ms[li] = [];
+        let da = fc.getElementsByTagName('td');
+        if (da.length > 7) {
+            for (let i = 1; i < 8; i++) {
+                l6ms[li].push(parseInt(da[i].innerText));
+            }
+            li++;
+        }
+    } while (fc = fc.nextElementSibling);
+    return l6ms;
+}
+master();
+
 var hiro6_list = [];
 function hiro6() {
     // ==t[] までのランダムデータをファイル作成
