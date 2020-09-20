@@ -5,7 +5,7 @@
 
 var set1 = 0;  //0色の表示をつつける,1色一回のみ
 var set2 = 0;  //0色初期化する,1色初期化しない
-var set3 = 3;  //連番数
+var set3 = 10;  //連番数
 
 function fns6(x, set1 = 0) {
     //http://www.ohtashp.com/topics/takarakuji/index_loto6.html
