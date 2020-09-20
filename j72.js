@@ -18,13 +18,6 @@ function ck1() {
     set1 = 0;
 }
 
-function rfns(x) {
-    set1 = 1;
-    rm7();
-    fns(x);
-    set1 = 0;
-}
-
 var start = function () {
     var url = 'http://www.ohtashp.com/topics/takarakuji/'
     if (location.href != url) {
@@ -32,10 +25,11 @@ var start = function () {
     }
 }();
 
-function fns(x, set1 = 0, set2 = 0, set4 = 10) {
+function fns(tx7, set1 = 0, set2 = 0, set4 = 10) {
     // xのアレーの数字を色で表示
     //http://www.ohtashp.com/topics/takarakuji/
     //https://www.mizuhobank.co.jp/retail/takarakuji/loto/loto7/index.html
+    console.log('tx7 =  ' + tx7);
     var colors = ['#FF6666', '#99CC66', '#33FFCC', '#CC66CC', '#FFFF00', '#FF33CC', '#FF6600', '#99FF00', '#CC66CC',
         '#ffd700', '#ff00ff', '#adff2f', '#8a2be2', '#808000', '#ff1493', '#2f4f4f', '#40e0d0'];
     var tb = document.getElementsByTagName('tbody')[0];
@@ -60,12 +54,12 @@ function fns(x, set1 = 0, set2 = 0, set4 = 10) {
         var trs = fc.getElementsByTagName('td');
         var xc = 0;
         for (let i = 1; i < set4; i++) {
-            for (let j = 0; j < x.length; j++) {
-                if (trs[i].innerText == x[j]) {
+            for (let j = 0; j < tx7.length; j++) {
+                if (trs[i].innerText == tx7[j]) {
                     trs[i].style.backgroundColor = colors[j];
                     xc++;
                     if (set1 == 1) {
-                        x.splice(j, 1);
+                        tx7.splice(j, 1);
                         master();
                     }
                 }
@@ -101,23 +95,24 @@ function fns(x, set1 = 0, set2 = 0, set4 = 10) {
 
     if (xca >= set3) {
         // console.log('fns(  [' + x.sort((a, b) => a - b) + ']  )' + "  d4c = " + xca);
-        console.log('fns(  [' + x + ']  )' + "  d4c = " + xca);
+        console.log('fns(  [' + tx7 + ']  )' + "  d4c = " + xca);
     }
 }
 
 var cklist = [];
-function ck(k, set5 = 0) {
+function ck(tx7, set5 = 0) {
     // k回のランダム7数字を出す
     // 0表示 1無表示,ファイルに保存
+    console.log('tx7 =  ' + tx7);
     var ii = 0;
-    if (k == 1) {
+    if (tx7 == 1) {
         let temp = l7(9);
         console.log('fns( [' + temp + '] )');
         console.log(nom);
         fns(temp, 1);
     } else {
         work_ck = setInterval(function () {
-            if (ii > k) {
+            if (ii > tx7) {
                 clearInterval(work_ck);
                 console.log("End");
                 let temp2;
@@ -148,9 +143,10 @@ function ck(k, set5 = 0) {
     }
 }
 
-function ad7(x) {
+function ad7(tx7) {
     //仮設番号の追加
     //http://www.ohtashp.com/topics/takarakuji/
+    console.log('tx7 =  ' + tx7);
     var tb = document.getElementsByTagName('tbody')[0];
     var pf = tb.firstElementChild;
     var cc = pf.cloneNode(true);
@@ -162,26 +158,33 @@ function ad7(x) {
     var ff = cc.firstElementChild.nextElementSibling;
     for (let i = 0; i < 9; i++) {
         ff = ff.nextElementSibling;
-        ff.innerText = x[i];
+        ff.innerText = tx7[i];
     }
     tb.insertBefore(cc, pf)
 }
 
-function rd7(x) {
+function rd7(tx7) {
     //仮設番号の変更
     //http://www.ohtashp.com/topics/takarakuji/
-    var tb = document.getElementsByTagName('tbody')[0];
-    var pf = tb.firstElementChild;
-    var tx = pf.getElementsByClassName('xxx')
+    console.log('tx7 =  ' + tx7);
+    let tb = document.getElementsByTagName('tbody')[0];
+    let pf = tb.firstElementChild;
+    let tt = pf.getElementsByClassName('xxx')
     for (let i = 0; i < 9; i++) {
-        tx[i].innerText = x[i];
+        tt[i].innerText = tx7[i];
     }
 }
 
 function rm7() {
-    var tb = document.getElementsByTagName('tbody')[0];
-    var pf = tb.firstElementChild;
+    let tb = document.getElementsByTagName('tbody')[0];
+    let pf = tb.firstElementChild;
+    let ff = pf.firstElementChild;
+    let temp = '';
+    do {
+        temp = temp + ff.innerText + ', ';
+    } while (ff = ff.nextElementSibling);
     tb.removeChild(pf);
+    return temp;
 }
 
 function l7(x = 7) {
@@ -239,7 +242,7 @@ function fnm(a, b) {
     console.log('fns( [' + nom + '] )');
 }
 
-function fik(tx, set6 = 0) {
+function fik(tx7, set6 = 0) {
     //指定の番号の列と一個前の列を表示
     //x=0の場合、すべての表示する。
     var tb = document.getElementsByTagName('tbody')[0];
@@ -250,7 +253,7 @@ function fik(tx, set6 = 0) {
     for (let i = 1; i < 38; i++) {
         noli[i] = 0;
     }
-    if (tx == 0) {
+    if (tx7 == 0) {
         do {
             fc.style = "";
         } while (fc = fc.nextElementSibling);
@@ -262,7 +265,7 @@ function fik(tx, set6 = 0) {
         for (let i = 1; i < 10; i++) {
             temp2.push(parseInt(temp[i].innerText));
         }
-        if (temp2.indexOf(tx) == -1) {
+        if (temp2.indexOf(tx7) == -1) {
             //set6 = 0;  //0行隠ししない、1行隠しする。
             if (set6 == 1) {
                 fc.style.display = "none";
@@ -280,8 +283,8 @@ function fik(tx, set6 = 0) {
             }
         }
     } while (fc = fc.nextElementSibling);
-    console.log('fns( [' + pa.sort((a, b) => a - b) + '] )' + '  tx = ' + tx);
-    fns([tx]);
+    console.log('fns( [' + pa.sort((a, b) => a - b) + '] )' + '  tx7 = ' + tx7);
+    fns([tx7]);
     nol = nol.sort((a, b) => a - b)
     do {
         var i = nol.pop();
