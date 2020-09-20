@@ -5,38 +5,51 @@
 
 var set1 = 0;  //0色の表示をつつける,1色一回のみ
 var set2 = 0;  //0色初期化する,1色初期化しない
-var set3 = 10;  //連番数
+var set3 = 1;  //連番数
+var set4 = 10; //10 ボーナス数字含む、8 ボーナス数字含まない
+var set5 = 0;  //0表示 1無表示,ファイルに保存
+var set6 = 0;   //0行隠ししない、1行隠しする。
 
-function fns6(x, set1 = 0) {
+function fns6(tx, set1 = 0, set2 = 0) {
     //http://www.ohtashp.com/topics/takarakuji/index_loto6.html
     var url = 'http://www.ohtashp.com/topics/takarakuji/index_loto6.html'
     if (location.href != url) {
         window.open(url);
         return;
     }
-    var colors = ['#FF6666', '#99CC66', '#33FFCC', '#CC66CC', '#FFFF00', '#FF33CC', '#FF6600', '#99FF00', '#CC66CC'];
-    var tb = document.getElementsByTagName('tbody')[0];
-    var fc = tb.firstElementChild;
-    var xca = 0;
-    var ns = document.getElementsByClassName('hon');
-    if (x[0] >= 10) {
-        document.getElementById('c' + x[0]).click();
-    } else {
-        document.getElementById('c0' + x[0]).click();
+    let colors = ['#FF6666', '#99CC66', '#33FFCC', '#CC66CC', '#FFFF00', '#FF33CC', '#FF6600', '#99FF00', '#CC66CC'];
+    let tb = document.getElementsByTagName('tbody')[0];
+    let fc = tb.firstElementChild;
+    let xca = 0;
+    if (set2 == 0) {
+        var ns = document.getElementsByClassName('hon');
+        for (let i = 0; i < ns.length; i++) {
+            ns[i].style = "";
+        }
+        var ns = document.getElementsByClassName('naka');
+        for (let i = 0; i < ns.length; i++) {
+            ns[i].style = "";
+        }
+        var ns = document.getElementsByClassName('bou');
+        for (let i = 0; i < ns.length; i++) {
+            ns[i].style = "";
+        }
     }
+
     do {
-        var trs = fc.getElementsByTagName('td');
+        let trs = fc.getElementsByTagName('td');
         if (trs.length < 3) {
             break;
         }
-        var xc = 0;
-        for (var i = 1; i < 8; i++) {
-            for (var j = 0; j < x.length; j++) {
-                if (trs[i].innerText == x[j]) {
+        let xc = 0;
+        for (let i = 1; i < 8; i++) {
+            for (let j = 0; j < tx.length; j++) {
+                if (trs[i].innerText == tx[j]) {
                     trs[i].style.backgroundColor = colors[j];
                     xc++;
                     if (set1 == 1) {
-                        x.splice(j, 1);
+                        tx.splice(j, 1);
+                        master();
                     }
                 }
             }
@@ -59,7 +72,7 @@ function fns6(x, set1 = 0) {
     } while (fc = fc.nextElementSibling);
 
     if (xca >= set3) {
-        console.log('fns6(  [' + x + ']  )' + "  d3c = " + xca);
+        console.log('fns6(  [' + tx + ']  )' + "  d3c = " + xca);
     }
 }
 
@@ -124,9 +137,10 @@ function l6(x = 6) {
     return j.sort((a, b) => a - b);
 }
 
-function fik(x) {
+function fik(tx, set6 = 0) {
     //指定の番号の列と一個前の列を表示
-    //x=0の場合、すべての表示する。
+    //tx=0の場合、すべての表示する。
+    //set6 = 0;   //0行隠ししない、1行隠しする。
     var tb = document.getElementsByTagName('tbody')[0];
     var fc = tb.firstElementChild;
     var pa = [];
@@ -135,7 +149,7 @@ function fik(x) {
     for (var i = 1; i < 44; i++) {
         noli[i] = 0;
     }
-    if (x == 0) {
+    if (tx == 0) {
         do {
             fc.style = "";
         } while (fc = fc.nextElementSibling);
@@ -150,8 +164,11 @@ function fik(x) {
         for (var i = 1; i < 7; i++) {
             temp2.push(parseInt(temp[i].innerText));
         }
-        if (temp2.indexOf(x) == -1) {
-            fc.style.display = "none";
+        if (temp2.indexOf(tx) == -1) {
+            //set6 = 0;   //0行隠ししない、1行隠しする。
+            if (set6 == 1) {
+                fc.style.display = "none";
+            }
         } else {
             if (fc.previousElementSibling) {
                 fc.previousElementSibling.style = " ";
@@ -165,8 +182,8 @@ function fik(x) {
             }
         }
     } while (fc = fc.nextElementSibling);
-    console.log('fns( [' + pa.sort((a, b) => a - b) + '] )' + '  x = ' + x);
-    fns6([x]);
+    console.log('fns( [' + pa.sort((a, b) => a - b) + '] )' + '  tx = ' + tx);
+    fns6([tx]);
     nol = nol.sort((a, b) => a - b)
     do {
         var i = nol.pop();

@@ -10,6 +10,7 @@ var set2 = 0;  //0色初期化する,1色初期化しない
 var set3 = 1;  //連番数
 var set4 = 10; //10 ボーナス数字含む、8 ボーナス数字含まない
 var set5 = 0   //0表示 1無表示,ファイルに保存
+var set6 = 0;   //0行隠ししない、1行隠しする。
 
 function ck1() {
     set1 = 1;
@@ -65,6 +66,7 @@ function fns(x, set1 = 0, set2 = 0, set4 = 10) {
                     xc++;
                     if (set1 == 1) {
                         x.splice(j, 1);
+                        master();
                     }
                 }
             }
@@ -237,7 +239,7 @@ function fnm(a, b) {
     console.log('fns( [' + nom + '] )');
 }
 
-function fik(x) {
+function fik(tx, set6 = 0) {
     //指定の番号の列と一個前の列を表示
     //x=0の場合、すべての表示する。
     var tb = document.getElementsByTagName('tbody')[0];
@@ -248,7 +250,7 @@ function fik(x) {
     for (let i = 1; i < 38; i++) {
         noli[i] = 0;
     }
-    if (x == 0) {
+    if (tx == 0) {
         do {
             fc.style = "";
         } while (fc = fc.nextElementSibling);
@@ -260,8 +262,11 @@ function fik(x) {
         for (let i = 1; i < 10; i++) {
             temp2.push(parseInt(temp[i].innerText));
         }
-        if (temp2.indexOf(x) == -1) {
-            fc.style.display = "none";
+        if (temp2.indexOf(tx) == -1) {
+            //set6 = 0;  //0行隠ししない、1行隠しする。
+            if (set6 == 1) {
+                fc.style.display = "none";
+            }
         } else {
             if (fc.previousElementSibling) {
                 fc.previousElementSibling.style = " ";
@@ -275,8 +280,8 @@ function fik(x) {
             }
         }
     } while (fc = fc.nextElementSibling);
-    console.log('fns( [' + pa.sort((a, b) => a - b) + '] )' + '  x = ' + x);
-    fns([x]);
+    console.log('fns( [' + pa.sort((a, b) => a - b) + '] )' + '  tx = ' + tx);
+    fns([tx]);
     nol = nol.sort((a, b) => a - b)
     do {
         var i = nol.pop();
@@ -437,7 +442,7 @@ var but;
 var xx = function () {
     var url = 'https://www.takarakuji-official.jp/ec/loto7/';
     if (location.href != url) {
-        window.open(url);
+        // window.open(url);
         return;
     }
     item2 = document.getElementsByClassName('m_lotteryNumContainer_item2');
