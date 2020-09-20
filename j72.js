@@ -29,7 +29,7 @@ function fns(tx7, set1 = 0, set2 = 0, set4 = 10) {
     // xのアレーの数字を色で表示
     //http://www.ohtashp.com/topics/takarakuji/
     //https://www.mizuhobank.co.jp/retail/takarakuji/loto/loto7/index.html
-    console.log('tx7 =  ' + tx7);
+    // console.log('tx7 =  ' + tx7);
     var colors = ['#FF6666', '#99CC66', '#33FFCC', '#CC66CC', '#FFFF00', '#FF33CC', '#FF6600', '#99FF00', '#CC66CC',
         '#ffd700', '#ff00ff', '#adff2f', '#8a2be2', '#808000', '#ff1493', '#2f4f4f', '#40e0d0'];
     var tb = document.getElementsByTagName('tbody')[0];
@@ -103,7 +103,7 @@ var cklist = [];
 function ck(tx7, set5 = 0) {
     // k回のランダム7数字を出す
     // 0表示 1無表示,ファイルに保存
-    console.log('tx7 =  ' + tx7);
+    // console.log('tx7 =  ' + tx7);
     var ii = 0;
     if (tx7 == 1) {
         let temp = l7(9);
@@ -114,7 +114,7 @@ function ck(tx7, set5 = 0) {
         work_ck = setInterval(function () {
             if (ii > tx7) {
                 clearInterval(work_ck);
-                console.log("End");
+                console.log('Work_Stoped');
                 let temp2;
                 if (set5 == 1) {
                     for (let i = 0; i < cklist.length; i++) {
@@ -418,8 +418,8 @@ function hiro7_view() {
                 console.log(startT);
                 console.log(new Date());
                 console.log('hiro7_item  ' + hiro7_item);
-                console.log("Stop");
-                alert("Stoped");
+                console.log('Work_Stoped');
+                alert("Work_Stoped");
             }
         }
     }, 500);
@@ -495,6 +495,7 @@ function fkk(x) {
             clearInterval(work_fkk);
             list();
             console.log(new Date());
+            console.log('Work_Stoped');
         }
     }, 5);
 }
@@ -519,8 +520,8 @@ function hiro7_off() {
                 console.lot(startT);
                 console.log(new Date());
                 console.log('hiro7_off_num_string  ' + hiro7_off_num_string);
-                console.log("Stop");
-                alert("steped");
+                console.log('Work_Stoped');
+                alert("Work_Stoped");
                 list();
             }
         }
