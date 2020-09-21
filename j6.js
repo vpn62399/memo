@@ -227,6 +227,22 @@ function master() {
 }
 master();
 
+function roolclock() {
+    var rolldata = master();
+    var tb = document.getElementsByTagName('tbody')[0];
+    var th = tb.getElementsByTagName('th');
+    for (let i = 0; i < th.length - 1; i++) {
+        th[i].setAttribute('id', i);
+        th[i].addEventListener('click', function () {
+            fns6(rolldata[this.id]);
+            console.log(this);
+        })
+    }
+}
+roolclock();
+
+
+
 var hiro6_list = [];
 function hiro6() {
     // ==t[] までのランダムデータをファイル作成

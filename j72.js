@@ -341,7 +341,7 @@ function roolclock() {
     var tb = document.getElementsByTagName('tbody')[0];
     th = tb.getElementsByTagName('th');
     for (let i = 0; i < th.length; i++) {
-        th[i].id = i;
+        th[i].setAttribute('id', i);
         th[i].addEventListener('click', function () {
             fns(rolldata[this.id]);
         })
