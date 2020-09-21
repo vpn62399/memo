@@ -26,6 +26,7 @@
             let tr = str.split('\n');
             let ttable = document.getElementsByTagName('tbody')[0];
             let ttfe = ttable.firstElementChild;
+            ttfe = ttfe.nextElementSibling;
             do {
                 let tr_data = tr.shift();
                 let td_data = tr_data.split(',');
@@ -198,18 +199,32 @@
     </script>
     <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333">
         <tr align="right">
-            <td>0</td>
-            <td>2000/10/5</td>
-            <td>100</td>
-            <td>100</td>
-            <td>100</td>
-            <td>100</td>
-            <td>100</td>
-            <td>100</td>
-            <td>100</td>
-            <td>100</td>
-            <td>0円</td>
-            <td>0円</td>
+            <td>回別</td>
+            <td>抽選日</td>
+            <td>x1</td>
+            <td>x2</td>
+            <td>x3</td>
+            <td>x4</td>
+            <td>x5</td>
+            <td>x6</td>
+            <td>ボナ</td>
+            <td>口数</td>
+            <td>当選</td>
+            <td>オバ</td>
+        </tr>
+        <tr align="right">
+            <td>回別</td>
+            <td>抽選日</td>
+            <td>x1</td>
+            <td>x2</td>
+            <td>x3</td>
+            <td>x4</td>
+            <td>x5</td>
+            <td>x6</td>
+            <td>ボナ</td>
+            <td>口数</td>
+            <td>当選</td>
+            <td>オバ</td>
         </tr>
     </table>
 
