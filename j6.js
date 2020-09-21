@@ -235,7 +235,6 @@ function roolclock() {
         th[i].setAttribute('id', i);
         th[i].addEventListener('click', function () {
             fns6(rolldata[this.id]);
-            console.log(this);
         })
     }
 }
