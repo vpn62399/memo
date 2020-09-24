@@ -98,13 +98,15 @@
             console.log(new Date());
             ck62_work = setInterval(function () {
                 for (let i = 0; i < 1000; i++) {
-                    let temp = l6(7);
-                    fns62(temp, set3);
-                    if (tx6-- == 0) {
-                        clearInterval(ck62_work);
-                        console.log(new Date());
-                        console.log('ck62_work_end');
+                    if (tx6-- >= 0) {
+                        let temp = l6(7);
+                        fns62(temp, set3);
                     }
+                }
+                if (tx6 <= 0) {
+                    clearInterval(ck62_work);
+                    console.log(new Date());
+                    console.log('ck62_work_end');
                 }
             }, 1);
         }
