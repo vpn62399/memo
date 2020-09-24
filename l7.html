@@ -166,7 +166,7 @@
 
         function ck7(tx7) {
             ck7_work = setInterval(function () {
-                let temp = l7(7);
+                let temp = l7(9);
                 if (tx7 == 1) {
                     console.log('fns7( [' + temp + '] )');
                 }
@@ -178,12 +178,12 @@
             }, 1);
         }
 
-        function l7(tx7 = 8) {
+        function l7(tx7 = 9) {
             // ランダムの数字を発生
             // console.log('tx7 =  ' + tx7);
-            var j = [];
+            let j = [];
             do {
-                var c = Math.floor(Math.random() * (1 - 66) + 66);
+                let c = Math.floor(Math.random() * (1 - 66) + 66);
                 if (c <= 37) {
                     if (j.indexOf(c) == -1) {
                         j.push(c);
@@ -191,6 +191,43 @@
                 }
             } while (j.length < tx7);
             return j.sort((a, b) => a - b);
+        }
+
+        function hiro7_view(tx7) {
+            // ==t[] までのランダムデータとまる
+            // hiro7_item = [9, 19, 22, 32, 35, 36, 37];  //第386回
+            hiro7_item = tx7;
+            let hiro7_item_string = hiro7_item.sort((a, b) => a - b).toString();
+            let i = 0;
+            function l7x() {
+                let j = [];
+                do {
+                    let c = Math.floor(Math.random() * (1 - 66) + 66);
+                    if (c <= 37) {
+                        j.indexOf(c) == -1 ? j.push(c) : '';
+                    }
+                } while (j.length < hiro7_item.length);
+                return j.sort((a, b) => a - b);
+            }
+            let startT = new Date();
+            console.log(startT);
+
+            hiro7_view_work = setInterval(() => {
+                for (let li = 0; li < 1000; li++) {
+                    let x = l7x();
+                    console.log(i++, x);
+                    if (hiro7_item_string === x.toString()) {
+                        clearInterval(hiro7_view_work);
+                        let x = l7x();
+                        console.log(i++, x);
+                        console.log(startT);
+                        console.log(new Date());
+                        console.log('hiro7_item  ' + hiro7_item);
+                        console.log('Work_Stoped');
+                        alert("Work_Stoped");
+                    }
+                }
+            }, 500);
         }
 
         window.addEventListener('beforeunload', function () {
