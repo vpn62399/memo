@@ -193,6 +193,42 @@
             return j.sort((a, b) => a - b);
         }
 
+        function hiro6_view(tx6) {
+            //== t[] までのランダムデータとまる
+            // hiro6_item = [1, 6, 11, 13, 30, 33, 4]
+            hiro6_item = tx6;
+            var hiro6_item_string = hiro6_item.sort((a, b) => a - b).toString();
+            var i = 0;
+            function l6x() {
+                let j = [];
+                do {
+                    let c = Math.floor(Math.random() * (1 - 66) + 66);
+                    if (c <= 43) {
+                        j.indexOf(c) == -1 ? j.push(c) : '';
+                    }
+                } while (j.length < hiro6_item.length);
+                return j.sort((a, b) => a - b);
+            }
+            var startT = new Date();
+            console.log(startT);
+            hiro6_view_work = setInterval(() => {
+                for (let li = 0; li < 1000; li++) {
+                    let x = l6x();
+                    console.log(i++, x);
+                    if (hiro6_item_string === x.toString()) {
+                        clearInterval(hiro6_view_work);
+                        let x = l6x();
+                        console.log(i++, x);
+                        console.log(startT);
+                        console.log(new Date());
+                        console.log('hiro6_item  ' + hiro6_item);
+                        console.log("Stop");
+                        alert("Stoped");
+                    }
+                }
+            }, 500);
+        }
+
         window.addEventListener('beforeunload', function () {
             // console.log('beforeunload');
             // return '本当に離れますか？';

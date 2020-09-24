@@ -293,7 +293,7 @@ function hiro6_view() {
             if (c <= 43) {
                 j.indexOf(c) == -1 ? j.push(c) : '';
             }
-        } while (j.length < 6);
+        } while (j.length < hiro6_item.length);
         return j.sort((a, b) => a - b);
     }
     var startT = new Date();
@@ -315,6 +315,7 @@ function hiro6_view() {
         }
     }, 500);
 }
+
 window.onbeforeunload = function () {
     return "本当に離れますか？";
 }
