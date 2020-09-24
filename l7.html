@@ -5,15 +5,15 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta http-equiv="Content-Script-Type" content="text/javascript">
-    <title>l6.html</title>
+    <title>l7.html</title>
 </head>
 
 <body>
     <script type="text/javascript">
         function setCSV() {
             let req = new XMLHttpRequest();
-            let url = '/loto6.csv?key=' + Math.floor(Math.random() * (1 - 100) + 100);
-            // let url = '/loto6.csv';
+            let url = '/loto7.csv?key=' + Math.floor(Math.random() * (1 - 100) + 100);
+            // let url = '/loto7.csv';
             req.onreadystatechange = function () {
                 if (req.readyState == 4 && req.status == 200) {
                     vvv(req.responseText);
@@ -34,7 +34,7 @@
                 let td_data = tr_data.split(',');
                 let ircc = ttfe.cloneNode(true);
                 let tr_place = ircc.getElementsByTagName('td');
-                for (let i = 0; i <= 11; ++i) {
+                for (let i = 0; i <= 13; ++i) {
                     if (i <= 1 || i >= 9) {
                         tr_place[i].innerText = td_data[i];
                     } else {
@@ -48,21 +48,21 @@
 
         function master() {
             // すべての抽選数字をarrayに取得
-            l6ms = [];
+            l7ms = [];
             let li = 0;
             let tb = document.getElementsByTagName('tbody')[0];
             let fc = tb.firstElementChild;
             do {
-                l6ms[li] = [];
+                l7ms[li] = [];
                 let da = fc.getElementsByTagName('td');
                 if (da.length > 7) {
-                    for (let i = 2; i < 9; i++) {
-                        l6ms[li].push(parseInt(da[i].innerText));
+                    for (let i = 2; i < 11; i++) {
+                        l7ms[li].push(parseInt(da[i].innerText));
                     }
                     li++;
                 }
             } while (fc = fc.nextElementSibling);
-            return l6ms;
+            return l7ms;
         }
 
         function cc() {
@@ -72,15 +72,15 @@
             }
         }
 
-        function fns62(tx6, set3 = 160) {
-            let test = l6ms;
+        function fns72(tx7, set3 = 160) {
+            let test = l7ms;
             let vx = 0;
             let contA = 0;
             let contB = 0;
             for (let i = 0; i < test.length; i++) {
                 contA = 0;
-                for (let j = 0; j < tx6.length; j++) {
-                    if (test[i].indexOf(tx6[j]) != -1) {
+                for (let j = 0; j < tx7.length; j++) {
+                    if (test[i].indexOf(tx7[j]) != -1) {
                         contA++;
                     }
                 }
@@ -89,30 +89,30 @@
                 }
             }
             if (contB >= set3) {
-                console.log('fns6(  [' + tx6 + ']  )' + "  d3c = " + contB);
+                console.log('fns7(  [' + tx7 + ']  )' + "  d3c = " + contB);
             }
         }
 
-        function ck62(tx6, set3 = 150) {
-            // fns6([6, 10, 20, 22, 27, 28, 33])  d3c = 162
+        function ck72(tx7, set3 = 150) {
+            // fns7([6, 10, 20, 22, 27, 28, 33])  d3c = 162
             console.log(new Date());
-            ck62_work = setInterval(function () {
+            ck72_work = setInterval(function () {
                 for (let i = 0; i < 1000; i++) {
-                    if (tx6-- >= 0) {
-                        let temp = l6(7);
-                        fns62(temp, set3);
+                    if (tx7-- >= 0) {
+                        let temp = l7(7);
+                        fns72(temp, set3);
                     }
                 }
-                if (tx6 <= 0) {
-                    clearInterval(ck62_work);
+                if (tx7 <= 0) {
+                    clearInterval(ck72_work);
                     console.log(new Date());
-                    console.log('ck62_work_end');
+                    console.log('ck72_work_end');
                 }
             }, 1);
         }
 
-        function fns6(tx6, set1 = 0, set2 = 0, set3 = 100) {
-            // console.log('tx6 =  ' + tx6);
+        function fns7(tx7, set1 = 0, set2 = 0, set3 = 100) {
+            // console.log('tx7 =  ' + tx7);
             let colors = ['#FF6666', '#99CC66', '#33FFCC', '#CC66CC', '#FFFF00', '#FF33CC', '#FF6600', '#99FF00', '#CC66CC'];
             let tb = document.getElementsByTagName('tbody')[0];
             let fc = tb.firstElementChild;
@@ -126,14 +126,14 @@
                 }
                 let xc = 0;
 
-                for (let i = 2; i < 9; i++) {
-                    for (let j = 0; j < tx6.length; j++) {
-                        if (trs[i].innerText == tx6[j]) {
+                for (let i = 2; i < 11; i++) {
+                    for (let j = 0; j < tx7.length; j++) {
+                        if (trs[i].innerText == tx7[j]) {
                             trs[i].style.backgroundColor = colors[j];
                             trs[i].setAttribute('class', 'setColor');
                             xc++;
                             if (set1 == 1) {
-                                tx6.splice(j, 1);
+                                tx7.splice(j, 1);
                                 master();
                             }
                         }
@@ -160,36 +160,36 @@
             } while (fc = fc.nextElementSibling);
 
             if (xca >= set3) {
-                console.log('fns6(  [' + tx6 + ']  )' + "  d3c = " + xca);
+                console.log('fns7(  [' + tx7 + ']  )' + "  d3c = " + xca);
             }
         }
 
-        function ck6(tx6) {
-            ck6_work = setInterval(function () {
-                let temp = l6(7);
-                if (tx6 == 1) {
-                    console.log('fns6( [' + temp + '] )');
+        function ck7(tx7) {
+            ck7_work = setInterval(function () {
+                let temp = l7(7);
+                if (tx7 == 1) {
+                    console.log('fns7( [' + temp + '] )');
                 }
-                fns6(temp);
-                if (tx6-- == 0) {
-                    clearInterval(ck6_work);
-                    console.log('ck6_work_end');
+                fns7(temp);
+                if (tx7-- == 0) {
+                    clearInterval(ck7_work);
+                    console.log('ck7_work_end');
                 }
             }, 1);
         }
 
-        function l6(tx6 = 6) {
+        function l7(tx7 = 8) {
             // ランダムの数字を発生
-            // console.log('tx6 =  ' + tx6);
+            // console.log('tx7 =  ' + tx7);
             var j = [];
             do {
                 var c = Math.floor(Math.random() * (1 - 66) + 66);
-                if (c <= 43) {
+                if (c <= 37) {
                     if (j.indexOf(c) == -1) {
                         j.push(c);
                     }
                 }
-            } while (j.length < tx6);
+            } while (j.length < tx7);
             return j.sort((a, b) => a - b);
         }
 
@@ -208,7 +208,7 @@
             let iid = 0;
             for (let i = 0; i < trs.length; i++) {
                 trs[i].firstElementChild.addEventListener('click', function () {
-                    fns6(rolldata[rolldata.length - this.innerText - 1]);
+                    fns7(rolldata[rolldata.length - this.innerText - 1]);
                 });
             }
         }
@@ -247,7 +247,9 @@
             <td>(x4)</td>
             <td>(x5)</td>
             <td>(x6)</td>
-            <td>ボナ</td>
+            <td>(x7)</td>
+            <td>ボナ1</td>
+            <td>ボナ2</td>
             <td>口数</td>
             <td>当選金額</td>
             <td>オーバー</td>
@@ -261,7 +263,9 @@
             <td>(x4)</td>
             <td>(x5)</td>
             <td>(x6)</td>
-            <td>ボナ</td>
+            <td>(x7)</td>
+            <td>ボナ1</td>
+            <td>ボナ2</td>
             <td>口数</td>
             <td>当選金額</td>
             <td>オーバー</td>
