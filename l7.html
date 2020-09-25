@@ -72,7 +72,8 @@
             }
         }
 
-        function fns72(tx7, set3 = 160) {
+        function fns72(tx7, set3 = 150) {
+            // テーブルのアレと比較
             let test = l7ms;
             let vx = 0;
             let contA = 0;
@@ -84,7 +85,7 @@
                         contA++;
                     }
                 }
-                if (contA >= 2) {
+                if (contA >= 3) {
                     contB++;
                 }
             }
@@ -93,25 +94,8 @@
             }
         }
 
-        function ck72(tx7, set3 = 150) {
-            // fns7([6, 10, 20, 22, 27, 28, 33])  d3c = 162
-            console.log(new Date());
-            ck72_work = setInterval(function () {
-                for (let i = 0; i < 1000; i++) {
-                    if (tx7-- >= 0) {
-                        let temp = l7(7);
-                        fns72(temp, set3);
-                    }
-                }
-                if (tx7 <= 0) {
-                    clearInterval(ck72_work);
-                    console.log(new Date());
-                    console.log('ck72_work_end');
-                }
-            }, 1);
-        }
-
-        function fns7(tx7, set1 = 0, set2 = 0, set3 = 100) {
+        function fns7(tx7, set1 = 0, set2 = 0, set3 = 150) {
+            // HTML Table と比較
             // console.log('tx7 =  ' + tx7);
             let colors = ['#FF6666', '#99CC66', '#33FFCC', '#CC66CC', '#FFFF00', '#FF33CC', '#FF6600', '#99FF00', '#CC66CC'];
             let tb = document.getElementsByTagName('tbody')[0];
@@ -164,13 +148,31 @@
             }
         }
 
-        function ck7(tx7) {
+        function ck72(tx7, set3 = 150) {
+            // fns7([6, 10, 20, 22, 27, 28, 33])  d3c = 162
+            console.log(new Date());
+            ck72_work = setInterval(function () {
+                for (let i = 0; i < 1000; i++) {
+                    if (tx7-- >= 0) {
+                        let temp = l7(9);
+                        fns72(temp, set3);
+                    }
+                }
+                if (tx7 <= 0) {
+                    clearInterval(ck72_work);
+                    console.log(new Date());
+                    console.log('ck72_work_end');
+                }
+            }, 1);
+        }
+
+        function ck7(tx7, set3 = 150) {
             ck7_work = setInterval(function () {
                 let temp = l7(9);
                 if (tx7 == 1) {
                     console.log('fns7( [' + temp + '] )');
                 }
-                fns7(temp);
+                fns7(temp, set3);
                 if (tx7-- == 0) {
                     clearInterval(ck7_work);
                     console.log('ck7_work_end');
@@ -230,14 +232,6 @@
             }, 500);
         }
 
-        window.addEventListener('beforeunload', function () {
-            // console.log('beforeunload');
-            // return '本当に離れますか？';
-            console.log(this);
-            event.preventDefault();
-            event.returnValue = '';
-        });
-
         function roolclock() {
             let rolldata = master();
             let tb = document.getElementsByTagName('tbody')[0];
@@ -250,6 +244,13 @@
             }
         }
 
+        window.addEventListener('beforeunload', function () {
+            // console.log('beforeunload');
+            // return '本当に離れますか？';
+            console.log(this);
+            event.preventDefault();
+            event.returnValue = '';
+        });
 
         window.addEventListener('load', function () {
             console.log('window.onload');
@@ -271,7 +272,6 @@
             console.log('document.DOMContentLoaded');
 
         });
-
 
     </script>
     <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333">

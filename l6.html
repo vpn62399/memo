@@ -93,24 +93,6 @@
             }
         }
 
-        function ck62(tx6, set3 = 150) {
-            // fns6([6, 10, 20, 22, 27, 28, 33])  d3c = 162
-            console.log(new Date());
-            ck62_work = setInterval(function () {
-                for (let i = 0; i < 1000; i++) {
-                    if (tx6-- >= 0) {
-                        let temp = l6(7);
-                        fns62(temp, set3);
-                    }
-                }
-                if (tx6 <= 0) {
-                    clearInterval(ck62_work);
-                    console.log(new Date());
-                    console.log('ck62_work_end');
-                }
-            }, 1);
-        }
-
         function fns6(tx6, set1 = 0, set2 = 0, set3 = 100) {
             // console.log('tx6 =  ' + tx6);
             let colors = ['#FF6666', '#99CC66', '#33FFCC', '#CC66CC', '#FFFF00', '#FF33CC', '#FF6600', '#99FF00', '#CC66CC'];
@@ -162,6 +144,24 @@
             if (xca >= set3) {
                 console.log('fns6(  [' + tx6 + ']  )' + "  d3c = " + xca);
             }
+        }
+
+        function ck62(tx6, set3 = 150) {
+            // fns6([6, 10, 20, 22, 27, 28, 33])  d3c = 162
+            console.log(new Date());
+            ck62_work = setInterval(function () {
+                for (let i = 0; i < 1000; i++) {
+                    if (tx6-- >= 0) {
+                        let temp = l6(7);
+                        fns62(temp, set3);
+                    }
+                }
+                if (tx6 <= 0) {
+                    clearInterval(ck62_work);
+                    console.log(new Date());
+                    console.log('ck62_work_end');
+                }
+            }, 1);
         }
 
         function ck6(tx6) {
@@ -229,14 +229,6 @@
             }, 500);
         }
 
-        window.addEventListener('beforeunload', function () {
-            // console.log('beforeunload');
-            // return '本当に離れますか？';
-            console.log(this);
-            event.preventDefault();
-            event.returnValue = '';
-        });
-
         function roolclock() {
             let rolldata = master();
             let tb = document.getElementsByTagName('tbody')[0];
@@ -249,6 +241,13 @@
             }
         }
 
+        window.addEventListener('beforeunload', function () {
+            // console.log('beforeunload');
+            // return '本当に離れますか？';
+            console.log(this);
+            event.preventDefault();
+            event.returnValue = '';
+        });
 
         window.addEventListener('load', function () {
             console.log('window.onload');
@@ -270,7 +269,6 @@
             console.log('document.DOMContentLoaded');
 
         });
-
 
     </script>
     <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333">
