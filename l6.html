@@ -48,21 +48,21 @@
 
         function master() {
             // すべての抽選数字をarrayに取得
-            l6ms = [];
+            G_l6ms = [];
             let li = 0;
             let tb = document.getElementsByTagName('tbody')[0];
             let fc = tb.firstElementChild;
             do {
-                l6ms[li] = [];
+                G_l6ms[li] = [];
                 let da = fc.getElementsByTagName('td');
                 if (da.length > 7) {
                     for (let i = 2; i < 9; i++) {
-                        l6ms[li].push(parseInt(da[i].innerText));
+                        G_l6ms[li].push(parseInt(da[i].innerText));
                     }
                     li++;
                 }
             } while (fc = fc.nextElementSibling);
-            return l6ms;
+            return G_l6ms;
         }
 
         function cc() {
@@ -73,7 +73,7 @@
         }
 
         function fns62(tx6, set3 = 160) {
-            let test = l6ms;
+            let test = G_l6ms;
             let vx = 0;
             let contA = 0;
             let contB = 0;
@@ -246,12 +246,12 @@
             }, 500);
         }
 
-        var fadr = [];
         function roolclock() {
             let rolldata = master();
             let tb = document.getElementsByTagName('tbody')[0];
             let trs = tb.getElementsByTagName('tr');
             let iid = 0;
+            var fadr = [];
             for (let i = 0; i < trs.length; i++) {
                 trs[i].firstElementChild.addEventListener('click', function () {
                     let temp = [];
@@ -262,7 +262,7 @@
                         fns6(fadr);
                         return;
                     }
-                    fnsarray = [];
+                    G_fnsa6 = [];
                     fns6(rolldata[rolldata.length - this.innerText - 1]);
                 });
 
@@ -275,23 +275,23 @@
                         fns6(fadr);
                         return;
                     }
-                    fnsarray = [];
+                    G_fnsa6 = [];
                     fns6(rolldata[rolldata.length - this.innerText - 1], 1, 0, 1, rolldata.length - this.innerText);
                 });
             }
 
-            var fnsarray = new Array();
+            G_fnsa6 = new Array();
             let ns = document.getElementsByClassName('n');
             for (let i = 0; i < ns.length; i++) {
                 ns[i].addEventListener('click', function () {
                     let xx = parseInt(this.innerText);
-                    if (fnsarray.indexOf(xx) == -1 && !isNaN(xx)) {
-                        fnsarray.push(parseInt(this.innerText));
+                    if (G_fnsa6.indexOf(xx) == -1 && !isNaN(xx)) {
+                        G_fnsa6.push(parseInt(this.innerText));
                     } else {
-                        let v = fnsarray.indexOf(parseInt(this.innerText));
-                        fnsarray.splice(v, 1);
+                        let v = G_fnsa6.indexOf(parseInt(this.innerText));
+                        G_fnsa6.splice(v, 1);
                     }
-                    fns7(fnsarray, 0, 0, 0);
+                    fns7(G_fnsa6, 0, 0, 0);
                 });
             }
         }
@@ -317,12 +317,10 @@
 
         window.addEventListener('DOMContentLoaded', function () {
             console.log('window.DOMContentLoaded');
-
         });
 
         document.addEventListener('DOMContentLoaded', function () {
             console.log('document.DOMContentLoaded');
-
         });
 
     </script>

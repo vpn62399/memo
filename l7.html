@@ -48,21 +48,21 @@
 
         function master() {
             // すべての抽選数字をarrayに取得
-            l7ms = [];
+            G_l7ms = [];
             let li = 0;
             let tb = document.getElementsByTagName('tbody')[0];
             let fc = tb.firstElementChild;
             do {
-                l7ms[li] = [];
+                G_l7ms[li] = [];
                 let da = fc.getElementsByTagName('td');
                 if (da.length > 7) {
                     for (let i = 2; i < 11; i++) {
-                        l7ms[li].push(parseInt(da[i].innerText));
+                        G_l7ms[li].push(parseInt(da[i].innerText));
                     }
                     li++;
                 }
             } while (fc = fc.nextElementSibling);
-            return l7ms;
+            return G_l7ms;
         }
 
         function cc() {
@@ -74,7 +74,7 @@
 
         function fns72(tx7, set3 = 150) {
             // テーブルのアレと比較
-            let test = l7ms;
+            let test = G_l7ms;
             let vx = 0;
             let contA = 0;
             let contB = 0;
@@ -136,7 +136,6 @@
                                 temp.push(tx7[j]);
                             }
                         }
-
                     }
                 }
 
@@ -248,8 +247,8 @@
             }, 500);
         }
 
-        var fadr = [];
         function roolclock() {
+            var fadr = [];
             let rolldata = master();
             let tb = document.getElementsByTagName('tbody')[0];
             let trs = tb.getElementsByTagName('tr');
@@ -263,7 +262,7 @@
                         fns7(fadr);
                         return;
                     }
-                    fnsarray = [];
+                    G_fnsa7 = [];
                     fns7(rolldata[rolldata.length - this.innerText - 1], 0, 0, 1);
                 });
 
@@ -276,23 +275,23 @@
                         fns7(fadr);
                         return;
                     }
-                    fnsarray = [];
+                    G_fnsa7 = [];
                     fns7(rolldata[rolldata.length - this.innerText - 1], 1, 0, 1, rolldata.length - this.innerText);
                 });
             }
 
-            var fnsarray = new Array();
+            G_fnsa7 = new Array();
             let ns = document.getElementsByClassName('n');
             for (let i = 0; i < ns.length; i++) {
                 ns[i].addEventListener('click', function () {
                     let xx = parseInt(this.innerText);
-                    if (fnsarray.indexOf(xx) == -1 && !isNaN(xx)) {
-                        fnsarray.push(parseInt(this.innerText));
+                    if (G_fnsa7.indexOf(xx) == -1 && !isNaN(xx)) {
+                        G_fnsa7.push(parseInt(this.innerText));
                     } else {
-                        let v = fnsarray.indexOf(parseInt(this.innerText));
-                        fnsarray.splice(v, 1);
+                        let v = G_fnsa7.indexOf(parseInt(this.innerText));
+                        G_fnsa7.splice(v, 1);
                     }
-                    fns7(fnsarray, 0, 0, 0);
+                    fns7(G_fnsa7, 0, 0, 0);
                 });
             }
         }
@@ -313,17 +312,14 @@
                 console.log("roolclock");
                 roolclock();
             }, 1000);
-
         });
 
         window.addEventListener('DOMContentLoaded', function () {
             console.log('window.DOMContentLoaded');
-
         });
 
         document.addEventListener('DOMContentLoaded', function () {
             console.log('document.DOMContentLoaded');
-
         });
 
     </script>
