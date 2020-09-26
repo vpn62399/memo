@@ -94,7 +94,7 @@
             }
         }
 
-        function fns7(tx7, set1 = 0, set2 = 0, set3 = 150) {
+        function fns7(tx7, set1 = 0, set2 = 0, set3 = 150, set5 = 0) {
             // HTML Table と比較
             set4 = 1;
             let colors = {
@@ -103,6 +103,7 @@
             let tb = document.getElementsByTagName('tbody')[0];
             let fc = tb.firstElementChild;
             let xca = 0;
+            let temp = [];
             cc();
 
             do {
@@ -110,27 +111,32 @@
                 if (trs.length < 3) {
                     break;
                 }
+                set5--;
+                if (set5 >= 0) {
+                    continue;
+                };
                 let xc = 0;
                 for (let i = 2; i < 11; i++) {
                     for (let j = 0; j < tx7.length; j++) {
                         if (trs[i].innerText == tx7[j]) {
-                            switch (set4) {
-                                case 1:
-                                    trs[i].style.backgroundColor = colors[tx7[j]];
-                                    break;
-                                case 2:
-                                    let rrgb = 'RGBA(0,0,255,' + (tx7[j] / 100 + 0.3) + ')';
-                                    trs[i].style.backgroundColor = rrgb;
-                                    break;
+                            if (temp.indexOf(tx7[j]) == -1) {
+                                switch (set4) {
+                                    case 1:
+                                        trs[i].style.backgroundColor = colors[tx7[j]];
+                                        break;
+                                    case 2:
+                                        let rrgb = 'RGBA(0,0,255,' + (tx7[j] / 100 + 0.3) + ')';
+                                        trs[i].style.backgroundColor = rrgb;
+                                        break;
+                                }
                             }
-
                             trs[i].setAttribute('class', 'setColor');
                             xc++;
                             if (set1 == 1) {
-                                tx7.splice(j, 1);
-                                master();
+                                temp.push(tx7[j]);
                             }
                         }
+
                     }
                 }
 
@@ -251,7 +257,7 @@
                 trs[i].firstElementChild.addEventListener('click', function () {
                     let temp = [];
                     if (isNaN(this.innerText)) {
-                        for (let i = 0; i <= 43; i++) {
+                        for (let i = 0; i <= 37; i++) {
                             temp.push(i);
                         }
                         fns7(temp);
@@ -260,7 +266,21 @@
                     fnsarray = [];
                     fns7(rolldata[rolldata.length - this.innerText - 1], 0, 0, 1);
                 });
+
+                trs[i].firstElementChild.addEventListener('dblclick', function () {
+                    let temp = [];
+                    if (isNaN(this.innerText)) {
+                        for (let i = 0; i <= 37; i++) {
+                            temp.push(i);
+                        }
+                        fns7(temp);
+                        return;
+                    }
+                    fnsarray = [];
+                    fns7(rolldata[rolldata.length - this.innerText - 1], 1, 0, 1, rolldata.length - this.innerText);
+                });
             }
+
             var fnsarray = new Array();
             let ns = document.getElementsByClassName('n');
             for (let i = 0; i < ns.length; i++) {

@@ -93,41 +93,47 @@
             }
         }
 
-        function fns6(tx6, set1 = 0, set2 = 0, set3 = 100) {
+        function fns6(tx6, set1 = 0, set2 = 0, set3 = 100, set5 = 0) {
             // HTML Table と比較
-            set4 = 1;
+            set4 = 1;   // 色の付けモード
             let colors = {
                 1: '#66FFCC', 2: '#FFCCCC', 3: '#FFCC99', 4: '#FFCC66', 5: '#FFCC33', 6: '#FFCC00', 7: '#FF99FF', 8: '#FF99CC', 9: '#FF9999', 10: '#FF9966', 11: '#FF9933', 12: '#FF9900', 13: '#FF66FF', 14: '#FF66CC', 15: '#FF6699', 16: '#FF6666', 17: '#FF6633', 18: '#FF6600', 19: '#FF33FF', 20: '#FF33CC', 21: '#FF3399', 22: '#FF3366', 23: '#FF3333', 24: '#66FF00', 25: '#FF00FF', 26: '#FF00CC', 27: '#FF0099', 28: '#FF0066', 29: '#FF0033', 30: '#FF0000', 31: '#CC33FF', 32: '#CC33CC', 33: '#CC3399', 34: '#CC3366', 35: '#CC3333', 36: '#CC3300', 37: '#CC00FF', 38: '#CC00CC', 39: '#CC0099', 40: '#CC0066', 41: '#CC0033', 42: '#CC0000', 43: '#9900FF', 44: '#9900CC'
             }
             let tb = document.getElementsByTagName('tbody')[0];
             let fc = tb.firstElementChild;
             let xca = 0;
+            let send2 = 0;
+            let temp = [];
             cc();
-
             do {
                 let trs = fc.getElementsByTagName('td');
                 if (trs.length < 3) {
                     break;
+                }
+                set5--;
+                if (set5 >= 0) {
+                    continue;
                 }
                 let xc = 0;
 
                 for (let i = 2; i < 9; i++) {
                     for (let j = 0; j < tx6.length; j++) {
                         if (trs[i].innerText == tx6[j]) {
-                            switch (set4) {
-                                case 1:
-                                    trs[i].style.backgroundColor = colors[tx6[j]];
-                                    break;
-                                case 2:
-                                    let rrgb = 'RGBA(0,0,255,' + (tx6[j] / 100 + 0.3) + ')';
-                                    trs[i].style.backgroundColor = rrgb;
-                                    break;
+                            if (temp.indexOf(tx6[j]) == -1) {
+                                switch (set4) {
+                                    case 1:
+                                        trs[i].style.backgroundColor = colors[tx6[j]];
+                                        break;
+                                    case 2:
+                                        let rrgb = 'RGBA(0,0,255,' + (tx6[j] / 100 + 0.3) + ')';
+                                        trs[i].style.backgroundColor = rrgb;
+                                        break;
+                                }
                             }
                             trs[i].setAttribute('class', 'setColor');
                             xc++;
                             if (set1 == 1) {
-                                tx6.splice(j, 1);
-                                master();
+                                temp.push(tx6[j]);
                             }
                         }
                     }
@@ -258,6 +264,19 @@
                     fnsarray = [];
                     fns6(rolldata[rolldata.length - this.innerText - 1]);
                 });
+
+                trs[i].firstElementChild.addEventListener('dblclick', function () {
+                    let temp = [];
+                    if (isNaN(this.innerText)) {
+                        for (let i = 0; i <= 43; i++) {
+                            temp.push(i);
+                        }
+                        fns6(temp);
+                        return;
+                    }
+                    fnsarray = [];
+                    fns6(rolldata[rolldata.length - this.innerText - 1], 1, 0, 1, rolldata.length - this.innerText);
+                });
             }
 
             var fnsarray = new Array();
@@ -271,7 +290,7 @@
                         let v = fnsarray.indexOf(parseInt(this.innerText));
                         fnsarray.splice(v, 1);
                     }
-                    fns6(fnsarray);
+                    fns6(fnsarray, 0, 0, 0);
                 });
             }
 
