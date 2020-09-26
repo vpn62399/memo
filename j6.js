@@ -240,8 +240,6 @@ function roolclock() {
 }
 roolclock();
 
-
-
 var hiro6_list = [];
 function hiro6() {
     // ==t[] までのランダムデータをファイル作成
