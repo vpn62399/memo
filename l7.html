@@ -248,6 +248,7 @@
             }, 500);
         }
 
+        var fadr = [];
         function roolclock() {
             let rolldata = master();
             let tb = document.getElementsByTagName('tbody')[0];
@@ -255,12 +256,11 @@
             let iid = 0;
             for (let i = 0; i < trs.length; i++) {
                 trs[i].firstElementChild.addEventListener('click', function () {
-                    let temp = [];
                     if (isNaN(this.innerText)) {
                         for (let i = 0; i <= 37; i++) {
-                            temp.push(i);
+                            fadr.push(i);
                         }
-                        fns7(temp);
+                        fns7(fadr);
                         return;
                     }
                     fnsarray = [];
@@ -268,12 +268,12 @@
                 });
 
                 trs[i].firstElementChild.addEventListener('dblclick', function () {
-                    let temp = [];
+                    let fadr = [];
                     if (isNaN(this.innerText)) {
                         for (let i = 0; i <= 37; i++) {
-                            temp.push(i);
+                            fadr.push(i);
                         }
-                        fns7(temp);
+                        fns7(fadr);
                         return;
                     }
                     fnsarray = [];

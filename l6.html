@@ -246,6 +246,7 @@
             }, 500);
         }
 
+        var fadr = [];
         function roolclock() {
             let rolldata = master();
             let tb = document.getElementsByTagName('tbody')[0];
@@ -256,9 +257,9 @@
                     let temp = [];
                     if (isNaN(this.innerText)) {
                         for (let i = 0; i <= 43; i++) {
-                            temp.push(i);
+                            fadr.push(i);
                         }
-                        fns6(temp);
+                        fns6(fadr);
                         return;
                     }
                     fnsarray = [];
@@ -266,12 +267,12 @@
                 });
 
                 trs[i].firstElementChild.addEventListener('dblclick', function () {
-                    let temp = [];
+                    let fadr = [];
                     if (isNaN(this.innerText)) {
                         for (let i = 0; i <= 43; i++) {
-                            temp.push(i);
+                            fadr.push(i);
                         }
-                        fns6(temp);
+                        fns6(fadr);
                         return;
                     }
                     fnsarray = [];
@@ -284,17 +285,15 @@
             for (let i = 0; i < ns.length; i++) {
                 ns[i].addEventListener('click', function () {
                     let xx = parseInt(this.innerText);
-                    if (fnsarray.indexOf(xx) == -1) {
+                    if (fnsarray.indexOf(xx) == -1 && !isNaN(xx)) {
                         fnsarray.push(parseInt(this.innerText));
                     } else {
                         let v = fnsarray.indexOf(parseInt(this.innerText));
                         fnsarray.splice(v, 1);
                     }
-                    fns6(fnsarray, 0, 0, 0);
+                    fns7(fnsarray, 0, 0, 0);
                 });
             }
-
-
         }
 
         window.addEventListener('beforeunload', function () {
