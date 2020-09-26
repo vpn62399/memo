@@ -62,7 +62,7 @@
                     li++;
                 }
             } while (fc = fc.nextElementSibling);
-            return G_l6ms;
+            return G_l6ms.reverse();
         }
 
         function cc() {
@@ -73,7 +73,7 @@
         }
 
         function fns62(tx6, set3 = 160) {
-            let test = G_l6ms;
+            let test = G_l6ms.concat();
             let vx = 0;
             let contA = 0;
             let contB = 0;
@@ -93,7 +93,7 @@
             }
         }
 
-        function fns6(tx6, set1 = 0, set2 = 0, set3 = 100, set5 = 0) {
+        function fns6(tx6, set1 = 0, set2 = 0, set3 = 30, set5 = 0) {
             // HTML Table と比較
             set4 = 1;   // 色の付けモード
             let colors = {
@@ -160,6 +160,7 @@
 
             if (xca >= set3) {
                 console.log('fns6(  [' + tx6 + ']  )' + "  d3c = " + xca);
+                console.log('fns6(  [' + tx6.concat().sort((a, b) => a - b) + ']  )' + "  d3c = " + xca + ' sort');
             }
         }
 
@@ -263,7 +264,7 @@
                         return;
                     }
                     G_fnsa6 = [];
-                    fns6(rolldata[rolldata.length - this.innerText - 1]);
+                    fns6(rolldata[this.innerText]);
                 });
 
                 trs[i].firstElementChild.addEventListener('dblclick', function () {
@@ -276,7 +277,7 @@
                         return;
                     }
                     G_fnsa6 = [];
-                    fns6(rolldata[rolldata.length - this.innerText - 1], 1, 0, 1, rolldata.length - this.innerText);
+                    fns6(rolldata[this.innerText], 1, 0, 1, rolldata.length - this.innerText);
                 });
             }
 
@@ -291,7 +292,7 @@
                         let v = G_fnsa6.indexOf(parseInt(this.innerText));
                         G_fnsa6.splice(v, 1);
                     }
-                    fns7(G_fnsa6, 0, 0, 0);
+                    fns6(G_fnsa6, 0, 0, 0);
                 });
             }
         }

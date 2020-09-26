@@ -62,7 +62,7 @@
                     li++;
                 }
             } while (fc = fc.nextElementSibling);
-            return G_l7ms;
+            return G_l7ms.reverse();
         }
 
         function cc() {
@@ -74,7 +74,7 @@
 
         function fns72(tx7, set3 = 150) {
             // テーブルのアレと比較
-            let test = G_l7ms;
+            let test = G_l7ms.concat();
             let vx = 0;
             let contA = 0;
             let contB = 0;
@@ -94,7 +94,7 @@
             }
         }
 
-        function fns7(tx7, set1 = 0, set2 = 0, set3 = 150, set5 = 0) {
+        function fns7(tx7, set1 = 0, set2 = 0, set3 = 50, set5 = 0) {
             // HTML Table と比較
             set4 = 1;
             let colors = {
@@ -159,7 +159,8 @@
             } while (fc = fc.nextElementSibling);
 
             if (xca >= set3) {
-                console.log('fns7(  [' + tx7 + ']  )' + "  d3c = " + xca);
+                console.log('fns7(  [' + tx7 + ']  )' + '  d3c = ' + xca);
+                console.log('fns7(  [' + tx7.concat().sort((a, b) => a - b) + ']  )' + '  d3c = ' + xca + ' sort');
             }
         }
 
@@ -263,7 +264,8 @@
                         return;
                     }
                     G_fnsa7 = [];
-                    fns7(rolldata[rolldata.length - this.innerText - 1], 0, 0, 1);
+                    console.log('length -> ' + i);
+                    fns7(rolldata[this.innerText], 0, 0, 1);
                 });
 
                 trs[i].firstElementChild.addEventListener('dblclick', function () {
@@ -276,7 +278,8 @@
                         return;
                     }
                     G_fnsa7 = [];
-                    fns7(rolldata[rolldata.length - this.innerText - 1], 1, 0, 1, rolldata.length - this.innerText);
+                    console.log('length -> ' + i);
+                    fns7(rolldata[this.innerText], 1, 0, 1, rolldata.length - this.innerText);
                 });
             }
 
