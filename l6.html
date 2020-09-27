@@ -95,7 +95,6 @@
 
         function fns6(tx6, set1 = 0, set2 = 0, set3 = 30, set5 = 0) {
             // HTML Table と比較
-            set4 = 2;   // 色の付けモード
             // http://www.htmq.com/color/websafe216.shtml
             let colors1 = {
                 1: '#66FFCC', 2: '#FFCCCC', 3: '#FFCC99', 4: '#FFCC66', 5: '#FFCC33',
@@ -122,18 +121,18 @@
             }
 
             let colors = {};
+            set4 = 2;   // 色の付けモード
             switch (set4) {
                 case 1:
                     colors = colors1;
                     break;
                 case 2:
-                    break;
                     colors = colors2;
+                    break;
                 case 3:
                     for (let i = 0; i <= 50; i++) {
                         colors[i] = 'RGBA(0,0,255,' + (i / 100 + 0.3) + ')';
                     }
-                    colors;
                     break;
             }
 
@@ -153,7 +152,6 @@
                     continue;
                 }
                 let xc = 0;
-
                 for (let i = 2; i < 9; i++) {
                     for (let j = 0; j < tx6.length; j++) {
                         if (trs[i].innerText == tx6[j]) {
@@ -169,22 +167,22 @@
                     }
                 }
 
-                if (xc == 3) {
-                    trs[0].style.backgroundColor = colors[0];
-                    trs[0].setAttribute('class', 'setColor');
-                    xca++;
-                }
-
-                if (xc == 4) {
-                    trs[0].style.backgroundColor = colors[1];
-                    trs[0].setAttribute('class', 'setColor');
-                    xca++;
-                }
-
-                if (xc == 5) {
-                    trs[0].style.backgroundColor = colors[2];
-                    trs[0].setAttribute('class', 'setColor');
-                    xca++;
+                switch (xc) {
+                    case 3:
+                        trs[0].style.backgroundColor = colors[44];
+                        trs[0].setAttribute('class', 'setColor');
+                        xca++;
+                        break;
+                    case 4:
+                        trs[0].style.backgroundColor = colors[45];
+                        trs[0].setAttribute('class', 'setColor');
+                        xca++;
+                        break;
+                    case 5:
+                        trs[0].style.backgroundColor = colors[46];
+                        trs[0].setAttribute('class', 'setColor');
+                        xca++;
+                        break;
                 }
             } while (fc = fc.nextElementSibling);
 
@@ -294,7 +292,8 @@
                         return;
                     }
                     G_fnsa6 = [];
-                    fns6(rolldata[this.innerText], 0, 0, 1);
+                    // fns6(rolldata[this.innerText], 0, 0, 1);
+                    fns6(rolldata[this.innerText]);
                 });
 
                 trs[i].firstElementChild.addEventListener('dblclick', function () {
