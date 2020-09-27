@@ -95,16 +95,54 @@
 
         function fns6(tx6, set1 = 0, set2 = 0, set3 = 30, set5 = 0) {
             // HTML Table と比較
-            set4 = 1;   // 色の付けモード
-            let colors = {
-                1: '#66FFCC', 2: '#FFCCCC', 3: '#FFCC99', 4: '#FFCC66', 5: '#FFCC33', 6: '#FFCC00', 7: '#FF99FF', 8: '#FF99CC', 9: '#FF9999', 10: '#FF9966', 11: '#FF9933', 12: '#FF9900', 13: '#FF66FF', 14: '#FF66CC', 15: '#FF6699', 16: '#FF6666', 17: '#FF6633', 18: '#FF6600', 19: '#FF33FF', 20: '#FF33CC', 21: '#FF3399', 22: '#FF3366', 23: '#FF3333', 24: '#66FF00', 25: '#FF00FF', 26: '#FF00CC', 27: '#FF0099', 28: '#FF0066', 29: '#FF0033', 30: '#FF0000', 31: '#CC33FF', 32: '#CC33CC', 33: '#CC3399', 34: '#CC3366', 35: '#CC3333', 36: '#CC3300', 37: '#CC00FF', 38: '#CC00CC', 39: '#CC0099', 40: '#CC0066', 41: '#CC0033', 42: '#CC0000', 43: '#9900FF', 44: '#9900CC'
+            set4 = 2;   // 色の付けモード
+            // http://www.htmq.com/color/websafe216.shtml
+            let colors1 = {
+                1: '#66FFCC', 2: '#FFCCCC', 3: '#FFCC99', 4: '#FFCC66', 5: '#FFCC33',
+                6: '#FFCC00', 7: '#FF99FF', 8: '#FF99CC', 9: '#FF9999', 10: '#FF9966',
+                11: '#FF9933', 12: '#FF9900', 13: '#FF66FF', 14: '#FF66CC', 15: '#FF6699',
+                16: '#FF6666', 17: '#FF6633', 18: '#FF6600', 19: '#FF33FF', 20: '#FF33CC',
+                21: '#FF3399', 22: '#FF3366', 23: '#FF3333', 24: '#66FF00', 25: '#FF00FF',
+                26: '#FF00CC', 27: '#FF0099', 28: '#FF0066', 29: '#FF0033', 30: '#FF0000',
+                31: '#CC33FF', 32: '#CC33CC', 33: '#CC3399', 34: '#CC3366', 35: '#CC3333',
+                36: '#CC3300', 37: '#CC00FF', 38: '#CC00CC', 39: '#CC0099', 40: '#CC0066',
+                41: '#CC0033', 42: '#CC0000', 43: '#9900FF', 44: '#9900CC',
             }
+            let colors2 = {
+                1: '#ffff75', 2: '#ffff70', 3: '#ffff6b', 4: '#ffff5b', 5: '#ffff4c',
+                6: '#ffff3d', 7: '#ffff2d', 8: '#ffff1e', 9: '#ffff0f', 10: '#ffff00',
+                11: '#75ff75', 12: '#70ff70', 13: '#6bff6b', 14: '#5bff5b', 15: '#4cff4c',
+                16: '#3dff3d', 17: '#2dff2d', 18: '#1eff1e', 19: '#0fff0f', 20: '#00ff00',
+                21: '#75baff', 22: '#70b7ff', 23: '#6bb5ff', 24: '#5badff', 25: '#4ca5ff',
+                26: '#3d9eff', 27: '#2d96ff', 28: '#1e8eff', 29: '#0f87ff', 30: '#007fff',
+                31: '#ba75ff', 32: '#b770ff', 33: '#b56bff', 34: '#ad5bff', 35: '#a54cff',
+                36: '#9e3dff', 37: '#962dff', 38: '#8e1eff', 39: '#870fff', 40: '#7f00ff',
+                41: '#ff7575', 42: '#ff7070', 43: '#ff6b6b', 44: '#ff5b5b', 45: '#ff4c4c',
+                46: '#ff3d3d', 47: '#ff2d2d', 48: '#ff1e1e', 49: '#ff0f0f', 50: '#ff0000',
+            }
+
+            let colors = {};
+            switch (set4) {
+                case 1:
+                    colors = colors1;
+                    break;
+                case 2:
+                    break;
+                    colors = colors2;
+                case 3:
+                    for (let i = 0; i <= 50; i++) {
+                        colors[i] = 'RGBA(0,0,255,' + (i / 100 + 0.3) + ')';
+                    }
+                    colors;
+                    break;
+            }
+
             let tb = document.getElementsByTagName('tbody')[0];
             let fc = tb.firstElementChild;
             let xca = 0;
-            let send2 = 0;
             let temp = [];
             cc();
+
             do {
                 let trs = fc.getElementsByTagName('td');
                 if (trs.length < 3) {
@@ -120,15 +158,7 @@
                     for (let j = 0; j < tx6.length; j++) {
                         if (trs[i].innerText == tx6[j]) {
                             if (temp.indexOf(tx6[j]) == -1) {
-                                switch (set4) {
-                                    case 1:
-                                        trs[i].style.backgroundColor = colors[tx6[j]];
-                                        break;
-                                    case 2:
-                                        let rrgb = 'RGBA(0,0,255,' + (tx6[j] / 100 + 0.3) + ')';
-                                        trs[i].style.backgroundColor = rrgb;
-                                        break;
-                                }
+                                trs[i].style.backgroundColor = colors[tx6[j]];
                             }
                             trs[i].setAttribute('class', 'setColor');
                             xc++;
@@ -240,8 +270,8 @@
                         console.log(startT);
                         console.log(new Date());
                         console.log('hiro6_item  ' + hiro6_item);
-                        console.log("Stop");
-                        alert("Stoped");
+                        console.log('Work_Stoped');
+                        alert("Work_Stoped");
                     }
                 }
             }, 500);
@@ -264,7 +294,7 @@
                         return;
                     }
                     G_fnsa6 = [];
-                    fns6(rolldata[this.innerText]);
+                    fns6(rolldata[this.innerText], 0, 0, 1);
                 });
 
                 trs[i].firstElementChild.addEventListener('dblclick', function () {
