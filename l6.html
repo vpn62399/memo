@@ -192,10 +192,57 @@
             }
         }
 
-        function ck62(tx6, set3 = 150) {
+        function T_ck63(tx6, view = 0) {
+            let orj = tx6;
+            let nums = [];
+            let nlist = [];
+            for (let i = 0; i < 43; i++) {
+                nums.push(parseInt(i) + 1);
+            }
+
+            for (let i = 0; i < orj.length; i++) {
+                nums.splice(nums.indexOf(parseInt(orj[i])), 1);
+            }
+            var flag = 0;
+            nlist.push(orj);
+            W_ck63 = setInterval(function () {
+                for (let j = 0; j < 1000; j++) {
+                    let tp = l6(6);
+                    if (view == 1) {
+                        console.log(tp);
+                    }
+                    for (let i = 0; i < tp.length; i++) {
+                        if (nums.indexOf(parseInt(tp[i])) === -1) {
+                            flag = 1;
+                        }
+                    }
+
+                    if (flag == 0) {
+                        nlist.push(tp);
+                        tp.forEach(function (e) {
+                            nums.splice(nums.indexOf(parseInt(e)), 1);
+                        })
+                    } else {
+                        flag = 0;
+                    }
+                    if (nums.length < tp.length) {
+                        clearInterval(W_ck63);
+                        nlist.push(nums);
+                        console.log(nlist);
+                        nlist.forEach(function (e) {
+                            console.log('fns6([' + e + '])');
+                        })
+                        console.log('W_ck63_stoped');
+                        break;
+                    }
+                }
+            }, 100)
+        }
+
+        function T_ck62(tx6, set3 = 150) {
             // fns6([6, 10, 20, 22, 27, 28, 33])  d3c = 162
             console.log(new Date());
-            ck62_work = setInterval(function () {
+            W_ck62 = setInterval(function () {
                 for (let i = 0; i < 1000; i++) {
                     if (tx6-- >= 0) {
                         let temp = l6(7);
@@ -203,23 +250,23 @@
                     }
                 }
                 if (tx6 <= 0) {
-                    clearInterval(ck62_work);
+                    clearInterval(W_ck62);
                     console.log(new Date());
-                    console.log('ck62_work_end');
+                    console.log('W_ck62_end');
                 }
             }, 1);
         }
 
-        function ck6(tx6, set3 = 150) {
-            ck6_work = setInterval(function () {
+        function T_ck6(tx6, set3 = 150) {
+            W_ck6 = setInterval(function () {
                 let temp = l6(7);
                 if (tx6 == 1) {
                     console.log('fns6( [' + temp + '] )');
                 }
                 fns6(temp, 0, 0, set3);
                 if (tx6-- == 0) {
-                    clearInterval(ck6_work);
-                    console.log('ck6_work_end');
+                    clearInterval(W_ck6);
+                    console.log('W_ck6_end');
                 }
             }, 1);
         }
@@ -257,19 +304,19 @@
             }
             var startT = new Date();
             console.log(startT);
-            hiro6_view_work = setInterval(() => {
+            W_hiro6_view = setInterval(() => {
                 for (let li = 0; li < 1000; li++) {
                     let x = l6x();
                     console.log(i++, x);
                     if (hiro6_item_string === x.toString()) {
-                        clearInterval(hiro6_view_work);
+                        clearInterval(W_hiro6_view);
                         let x = l6x();
                         console.log(i++, x);
                         console.log(startT);
                         console.log(new Date());
                         console.log('hiro6_item  ' + hiro6_item);
-                        console.log('Work_Stoped');
-                        alert("Work_Stoped");
+                        console.log('W_hiro6_view_Stoped');
+                        alert("W_hiro6_view_Stoped");
                     }
                 }
             }, 500);
@@ -324,6 +371,21 @@
                     fns6(G_fnsa6, 0, 0, 0);
                 });
             }
+        }
+
+        function T_f6(num) {
+            // 未選択の数字を割り出す
+            let tempar = num.concat();
+            let tt = [];
+            for (let i = 1; i <= 43; i++) {
+                tt.push(i);
+            }
+            let temp = tt.filter(function (ia) {
+                if (tempar.indexOf(ia) == -1) {
+                    return ia;
+                }
+            })
+            console.log('fns6([' + temp + '])  ngr');
         }
 
         window.addEventListener('beforeunload', function () {
