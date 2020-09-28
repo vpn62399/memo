@@ -194,11 +194,22 @@
         }
 
         function T_cpt(tx7 = [0, 0, 0, 0, 0, 0, 0, 0, 0]) {
-            let te1 = tx7.concat();
-            for (let i = 0; i < te1.length; i++) {
+            if (tx7.length > 9) {
+                return;
+            }
+            let tp1 = tx7.concat();
+            let tpd = [0, 0, 0, 0, 0, 0, 0, 0, 0];
+            if (tp1.length < 7) {
+                tp1.sort((a, b) => a - b);
+            }
+            for (let i = 0; i < tp1.length; i++) {
+                tpd[i] = tp1[i];
+            }
+            console.log(tpd);
+            for (let i = 0; i < tpd.length; i++) {
                 var b = document.getElementById('nx' + (i + 1));
-                if (te1) {
-                    b.innerText = te1[i];
+                if (tpd) {
+                    b.innerText = tpd[i];
                 }
             }
         }

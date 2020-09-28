@@ -190,10 +190,27 @@
                 console.log('fns6(  [' + tx6 + ']  )' + "  d3c = " + xca);
                 console.log('fns6(  [' + tx6.concat().sort((a, b) => a - b) + ']  )' + "  d3c = " + xca + ' sort');
             }
+
+            if (set1 != 1) {
+                T_cpt(tx6);
+            } else {
+                T_cpt();
+                fns7(tx6);
+            }
         }
 
         function T_cpt(tx6 = [0, 0, 0, 0, 0, 0, 0]) {
+            if (tx6.length > 7) {
+                return;
+            }
             let te1 = tx6.concat();
+            if (te1.length < 7) {
+                te1.sort((a, b) => a - b);
+            } else {
+                let temp = te1.pop();
+                te1.sort((a, b) => a - b);
+                te1.push(temp);
+            }
             for (let i = 0; i < te1.length; i++) {
                 var b = document.getElementById('nx' + (i + 1));
                 if (te1) {
