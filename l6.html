@@ -94,6 +94,9 @@
         }
 
         function fns6(tx6, set1 = 0, set2 = 0, set3 = 30, set5 = 0) {
+            if (!tx6) {
+                return;
+            }
             // HTML Table と比較
             // http://www.htmq.com/color/websafe216.shtml
             let colors1 = {
@@ -191,12 +194,12 @@
                 console.log('fns6(  [' + tx6.concat().sort((a, b) => a - b) + ']  )' + "  d3c = " + xca + ' sort');
             }
 
-            if (set1 != 1) {
-                T_cpt(tx6);
-            } else {
-                T_cpt();
-                fns7(tx6);
-            }
+            // if (set1 != 1) {
+            //     T_cpt(tx6);
+            // } else {
+            //     T_cpt();
+            //     fns6(tx6);
+            // }
         }
 
         function T_cpt(tx6 = [0, 0, 0, 0, 0, 0, 0]) {
@@ -256,6 +259,7 @@
                         clearInterval(W_ck63);
                         nlist.push(nums);
                         console.log(nlist);
+                        console.log(new Date());
                         nlist.forEach(function (e) {
                             console.log('fns6([' + e + '])');
                         })
