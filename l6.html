@@ -232,6 +232,7 @@
             let orj = tx6;
             let nums = [];
             let nlist = [];
+            let count = 0;
             for (let i = 0; i < 43; i++) {
                 nums.push(parseInt(i) + 1);
             }
@@ -245,7 +246,7 @@
                 for (let j = 0; j < 1000; j++) {
                     let tp = l6(6);
                     if (view == 1) {
-                        console.log(tp);
+                        console.log(count++ + '  ' + tp);
                     }
                     for (let i = 0; i < tp.length; i++) {
                         if (nums.indexOf(parseInt(tp[i])) === -1) {

@@ -231,6 +231,7 @@
             let orj = tx7;
             let nums = [];
             let nlist = [];
+            let count = 0;
             for (let i = 0; i < 37; i++) {
                 nums.push(parseInt(i) + 1);
             }
@@ -244,7 +245,7 @@
                 for (let j = 0; j < 1000; j++) {
                     let tp = l7(7);
                     if (view == 1) {
-                        console.log(tp);
+                        console.log(count++ + '  ' + tp);
                     }
                     for (let i = 0; i < tp.length; i++) {
                         if (nums.indexOf(parseInt(tp[i])) === -1) {
