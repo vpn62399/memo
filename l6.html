@@ -72,6 +72,19 @@
             }
         }
 
+        function hit_table() {
+            let tb = document.getElementById('hide');
+            tb.addEventListener('click', function () {
+                let tab = document.getElementsByTagName('table')[0];
+                if (tab.getAttribute('style') == 'display:none') {
+                    // tab.setAttribute('style', '');
+                    console.log("document.getElementsByTagName('table')[0].setAttribute('style','')");
+                } else {
+                    tab.setAttribute('style', 'display:none');
+                }
+            });
+        }
+
         function fns62(tx6, set3 = 160) {
             let test = G_l6ms.concat();
             let vx = 0;
@@ -423,12 +436,11 @@
         window.addEventListener('load', function () {
             console.log('window.onload');
             roolclock();
-
+            hit_table();
             setTimeout(function () {
                 console.log("roolclock");
                 roolclock();
             }, 1000);
-
         });
 
         window.addEventListener('DOMContentLoaded', function () {
@@ -440,7 +452,8 @@
         });
 
     </script>
-    <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333">
+    <Button id="hide">style</Button>
+    <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
         <tr align="right">
             <td>回別</td>
             <td>抽選日</td>
