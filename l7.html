@@ -242,10 +242,12 @@
             var flag = 0;
             nlist.push(orj);
             W_ck73 = setInterval(function () {
-                for (let j = 0; j < 1000; j++) {
+                for (let j = 0; j < 100; j++) {
                     let tp = l7(7);
                     if (view == 1) {
                         console.log(count++ + '  ' + tp);
+                    } else {
+                        count++;
                     }
                     for (let i = 0; i < tp.length; i++) {
                         if (nums.indexOf(parseInt(tp[i])) === -1) {
@@ -255,19 +257,26 @@
 
                     if (flag == 0) {
                         nlist.push(tp);
+                        console.log('nums', nums);
+                        console.log(count, tp);
                         tp.forEach(function (e) {
                             nums.splice(nums.indexOf(parseInt(e)), 1);
                         })
                     } else {
                         flag = 0;
                     }
-                    if (nums.length < tp.length) {
+                    if (nums.length <= tp.length) {
                         clearInterval(W_ck73);
+                        console.log('nums', nums);
                         nlist.push(nums);
+                        // console.log(nlist);
+                        console.log(new Date());
+                        console.log('count', count);
                         nlist.forEach(function (e) {
                             console.log('fns7([' + e + '])');
                         })
                         console.log('W_ck73_stoped');
+                        alert("W__ck73_stoped");
                         break;
                     }
                 }
