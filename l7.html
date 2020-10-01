@@ -28,7 +28,7 @@
             let tr = str.split('\n');
             let ttable = document.getElementsByTagName('tbody')[0];
             let ttfe = ttable.firstElementChild;
-            ttfe = ttfe.nextElementSibling.nextElementSibling;
+            ttfe = ttfe.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
             do {
                 let tr_data = tr.shift();
                 let td_data = tr_data.split(',');
@@ -55,7 +55,7 @@
             do {
                 G_l7ms[li] = [];
                 let da = fc.getElementsByTagName('td');
-                if (da.length > 7) {
+                if (da.length > 9) {
                     for (let i = 2; i < 11; i++) {
                         G_l7ms[li].push(parseInt(da[i].innerText));
                     }
@@ -108,6 +108,9 @@
         }
 
         function fns7(tx7, set1 = 0, set2 = 0, set3 = 50, set5 = 0) {
+            if (!tx6) {
+                return;
+            }
             // HTML Table と比較
             // http://www.htmq.com/color/websafe216.shtml
             let colors1 = {
@@ -172,7 +175,7 @@
                             if (temp.indexOf(tx7[j]) == -1) {
                                 trs[i].style.backgroundColor = colors[tx7[j]];
                             }
-                            trs[i].setAttribute('class', 'setColor');
+                            trs[i].setAttribute('class', 'n setColor');
                             xc++;
                             if (set1 == 1) {
                                 temp.push(tx7[j]);
@@ -206,7 +209,17 @@
             }
         }
 
+        function T_cpt2(tx7 = [0, 0, 0, 0, 0, 0, 0, 0, 0], nid = 5) {
+            let xnid = document.getElementById('nx' + nid);
+            let cxnid = xnid.getElementsByClassName('n');
+            for (let i = 0; i < cxnid.length; i++) {
+                cxnid[i].innerText = tx7[i];
+            }
+            roolclock();
+        }
+
         function T_cpt(tx7 = [0, 0, 0, 0, 0, 0, 0, 0, 0]) {
+            return;
             if (tx7.length > 9) {
                 return;
             }
@@ -381,7 +394,7 @@
                         fns7(fadr);
                         return;
                     }
-                    G_fnsa7 = [];
+                    G_fns7 = [];
                     fns7(rolldata[this.innerText], 0, 0, 1);
                 });
 
@@ -475,20 +488,84 @@
             <td>当選金額</td>
             <td>オーバー</td>
         </tr>
-        <tr align="right">
+        <tr id=nx1 align="right">
             <td>000</td>
             <td>2020/1/1</td>
-            <td id=nx1 class="n">0</td>
-            <td id=nx2 class="n">0</td>
-            <td id=nx3 class="n">0</td>
-            <td id=nx4 class="n">0</td>
-            <td id=nx5 class="n">0</td>
-            <td id=nx6 class="n">0</td>
-            <td id=nx7 class="n">0</td>
-            <td id=nx8 class="n">0</td>
-            <td id=nx9 class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
             <td>0</td>
-            <td>10</td>
+            <td>nx1</td>
+            <td>0</td>
+        </tr>
+        <tr id=nx2 align="right">
+            <td>000</td>
+            <td>2020/1/1</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td>0</td>
+            <td>nx2</td>
+            <td>0</td>
+        </tr>
+        <tr id=nx3 align="right">
+            <td>000</td>
+            <td>2020/1/1</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td>0</td>
+            <td>nx3</td>
+            <td>0</td>
+        </tr>
+        <tr id=nx4 align="right">
+            <td>000</td>
+            <td>2020/1/1</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td>0</td>
+            <td>nx4</td>
+            <td>0</td>
+        </tr>
+        <tr id=nx5 align="right">
+            <td>000</td>
+            <td>2020/1/1</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td class="n">0</td>
+            <td>0</td>
+            <td>nx5</td>
             <td>0</td>
         </tr>
         <tr align="right">

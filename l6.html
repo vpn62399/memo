@@ -378,11 +378,11 @@
         }
 
         function roolclock() {
+            var fadr = [];
             let rolldata = master();
             let tb = document.getElementsByTagName('tbody')[0];
             let trs = tb.getElementsByTagName('tr');
             let iid = 0;
-            var fadr = [];
             for (let i = 0; i < trs.length; i++) {
                 trs[i].firstElementChild.addEventListener('click', function () {
                     let temp = [];
