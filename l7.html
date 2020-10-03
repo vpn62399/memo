@@ -5,7 +5,7 @@
 <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta http-equiv="Content-Script-Type" content="text/javascript">
-    <title>l7.html</title>
+    <title>hello.html</title>
 </head>
 
 <body>
@@ -13,7 +13,6 @@
         function setCSV() {
             let req = new XMLHttpRequest();
             let url = '/loto7.csv?key=' + Math.floor(Math.random() * (1 - 100) + 100);
-            // let url = '/loto7.csv';
             req.onreadystatechange = function () {
                 if (req.readyState == 4 && req.status == 200) {
                     let ajaxText = req.responseText;
@@ -45,47 +44,47 @@
                         temp.push(parseInt(td_data[i]));
                     }
                 }
-                tr_place[14].innerText = fns72(temp, 0, 0);
+                tr_place[14].innerText = fns2(temp, 0, 0);
                 temp.pop();
                 temp.pop();
-                tr_place[15].innerText = fns72(temp, 0, 0);
+                tr_place[15].innerText = fns2(temp, 0, 0);
                 ttable.insertBefore(ircc, ttfe);
             } while (tr != '');
         }
 
-        var G_l7ms = [];
+        var G_lms = [];
         function master(str) {
             console.log('master');
             let tr = str.split('\n');
             let ttable = document.getElementsByTagName('tbody')[0];
             let ttfe = ttable.firstElementChild;
             for (let i = 0; i < tr.length; i++) {
-                G_l7ms[i] = [];
+                G_lms[i] = [];
                 let td = tr[i].split(',');
                 for (let j = 2; j < 11; j++) {
-                    G_l7ms[i].push(parseInt(td[j]));
+                    G_lms[i].push(parseInt(td[j]));
                 }
             }
-            return G_l7ms.reverse();
+            return G_lms.reverse();
         }
 
         function master2() {
             // すべての抽選数字をarrayに取得
-            G_l7ms = [];
+            G_lms = [];
             let li = 0;
             let tb = document.getElementsByTagName('tbody')[0];
             let fc = tb.firstElementChild;
             do {
-                G_l7ms[li] = [];
+                G_lms[li] = [];
                 let da = fc.getElementsByTagName('td');
                 if (da.length > 9) {
                     for (let i = 2; i < 11; i++) {
-                        G_l7ms[li].push(parseInt(da[i].innerText));
+                        G_lms[li].push(parseInt(da[i].innerText));
                     }
                     li++;
                 }
             } while (fc = fc.nextElementSibling);
-            return G_l7ms.reverse();
+            return G_lms.reverse();
         }
 
         function cc() {
@@ -108,16 +107,16 @@
             });
         }
 
-        function fns72(tx7, set3 = 150, view = 1) {
+        function fns2(tx, set3 = 150, view = 1) {
             // テーブルのアレと比較
-            let test = G_l7ms.concat();
+            let test = G_lms.concat();
             let vx = 0;
             let contA = 0;
             let contB = 0;
             for (let i = 0; i < test.length; i++) {
                 contA = 0;
-                for (let j = 0; j < tx7.length; j++) {
-                    if (test[i].indexOf(tx7[j]) != -1) {
+                for (let j = 0; j < tx.length; j++) {
+                    if (test[i].indexOf(tx[j]) != -1) {
                         contA++;
                     }
                 }
@@ -126,13 +125,13 @@
                 }
             }
             if (contB >= set3 && view == 1) {
-                console.log('fns7(  [' + tx7 + ']  )' + "  d3c = " + contB);
+                console.log('fns( [' + tx + '] )' + "  d3c = " + contB);
             }
             return contB;
         }
 
-        function fns7(tx7, set1 = 0, set2 = 0, set3 = 50, set5 = 0) {
-            if (!tx7) {
+        function fns(tx, set1 = 0, set2 = 0, set3 = 50, set5 = 0) {
+            if (!tx) {
                 return;
             }
             // HTML Table と比較
@@ -194,15 +193,15 @@
                 };
                 let xc = 0;
                 for (let i = 2; i < 11; i++) {
-                    for (let j = 0; j < tx7.length; j++) {
-                        if (trs[i].innerText == tx7[j]) {
-                            if (temp.indexOf(tx7[j]) == -1) {
-                                trs[i].style.backgroundColor = colors[tx7[j]];
+                    for (let j = 0; j < tx.length; j++) {
+                        if (trs[i].innerText == tx[j]) {
+                            if (temp.indexOf(tx[j]) == -1) {
+                                trs[i].style.backgroundColor = colors[tx[j]];
                             }
                             trs[i].setAttribute('class', 'n setColor');
                             xc++;
                             if (set1 == 1) {
-                                temp.push(tx7[j]);
+                                temp.push(tx[j]);
                             }
                         }
                     }
@@ -225,52 +224,29 @@
                         xca++;
                         break;
                     default:
-                        if (xc > 3) {
+                        if (xc > 5) {
                             xca++;
                         }
-
                 }
             } while (fc = fc.nextElementSibling);
 
             if (xca >= set3) {
-                console.log('fns7( [' + tx7 + '] )' + '  d3c = ' + xca);
-                console.log('fns7( [' + tx7.concat().sort((a, b) => a - b) + '] )' + '  d3c = ' + xca + ' sort');
+                console.log('fns( [' + tx + '] )' + '  d3c = ' + xca);
+                console.log('fns( [' + tx.concat().sort((a, b) => a - b) + '] )' + '  d3c = ' + xca + ' sort');
             }
         }
 
-        function T_cpt2(tx7 = [0, 0, 0, 0, 0, 0, 0, 0, 0], nid = 5) {
+        function T_cpt2(tx = [0, 0, 0, 0, 0, 0, 0, 0, 0], nid = 5) {
             let xnid = document.getElementById('nx' + nid);
             let cxnid = xnid.getElementsByClassName('n');
             for (let i = 0; i < cxnid.length; i++) {
-                cxnid[i].innerText = tx7[i];
+                cxnid[i].innerText = tx[i];
             }
-            roolclock();
+            // roolclock();
         }
 
-        function T_cpt(tx7 = [0, 0, 0, 0, 0, 0, 0, 0, 0]) {
-            return;
-            if (tx7.length > 9) {
-                return;
-            }
-            let tp1 = tx7.concat();
-            let tpd = [0, 0, 0, 0, 0, 0, 0, 0, 0];
-            if (tp1.length < 7) {
-                tp1.sort((a, b) => a - b);
-            }
-            for (let i = 0; i < tp1.length; i++) {
-                tpd[i] = tp1[i];
-            }
-            console.log(tpd);
-            for (let i = 0; i < tpd.length; i++) {
-                var b = document.getElementById('nx' + (i + 1));
-                if (tpd) {
-                    b.innerText = tpd[i];
-                }
-            }
-        }
-
-        function T_ck73(tx7, view = 0) {
-            let orj = tx7;
+        function T_ck3(tx, view = 0) {
+            let orj = tx;
             let nums = [];
             let nlist = [];
             let count = 0;
@@ -283,9 +259,9 @@
             }
             var flag = 0;
             nlist.push(orj);
-            W_ck73 = setInterval(function () {
+            W_ck3 = setInterval(function () {
                 for (let j = 0; j < 100; j++) {
-                    let tp = l7(7);
+                    let tp = ls(7);
                     if (view == 1) {
                         console.log(count++ + '  ' + tp);
                     } else {
@@ -308,58 +284,58 @@
                         flag = 0;
                     }
                     if (nums.length <= tp.length) {
-                        clearInterval(W_ck73);
+                        clearInterval(W_ck3);
                         console.log('nums', nums);
                         nlist.push(nums);
                         // console.log(nlist);
                         console.log(new Date());
                         console.log('count', count);
                         nlist.forEach(function (e) {
-                            console.log('fns7([' + e + '])');
+                            console.log('fns([' + e + '])');
                         })
-                        console.log('W_ck73_stoped');
-                        alert("W__ck73_stoped");
+                        console.log('W_ck3_stoped');
+                        alert("W__ck3_stoped");
                         break;
                     }
                 }
             }, 100)
         }
 
-        function T_ck72(tx7, set3 = 150) {
-            // fns7([6, 10, 20, 22, 27, 28, 33])  d3c = 162
+        function T_ck2(tx, set3 = 150) {
+            // fns([6, 10, 20, 22, 27, 28, 33])  d3c = 162
             console.log(new Date());
-            W_ck72 = setInterval(function () {
+            W_ck2 = setInterval(function () {
                 for (let i = 0; i < 1000; i++) {
-                    if (tx7-- >= 0) {
-                        let temp = l7(9);
-                        fns72(temp, set3);
+                    if (tx-- >= 0) {
+                        let temp = ls(9);
+                        fns2(temp, set3);
                     }
                 }
-                if (tx7 <= 0) {
-                    clearInterval(W_ck72);
+                if (tx <= 0) {
+                    clearInterval(W_ck2);
                     console.log(new Date());
-                    console.log('W_ck72_end');
+                    console.log('W_ck2_end');
                 }
             }, 1);
         }
 
-        function T_ck7(tx7, set3 = 150) {
-            W_ck7 = setInterval(function () {
-                let temp = l7(9);
-                if (tx7 == 1) {
-                    console.log('fns7( [' + temp + '] )');
+        function T_ck(tx, set3 = 150) {
+            W_ck = setInterval(function () {
+                let temp = ls(9);
+                if (tx == 1) {
+                    console.log('fns( [' + temp + '] )');
                 }
-                fns7(temp, 0, 0, set3);
-                if (tx7-- == 0) {
-                    clearInterval(W_ck7);
-                    console.log('W_ck7_end');
+                fns(temp, 0, 0, set3);
+                if (tx-- == 0) {
+                    clearInterval(W_ck);
+                    console.log('W_ck_end');
                 }
             }, 1);
         }
 
-        function l7(tx7 = 9) {
+        function ls(tx = 9) {
             // ランダムの数字を発生
-            // console.log('tx7 =  ' + tx7);
+            // console.log('tx =  ' + tx);
             let j = [];
             do {
                 let c = Math.floor(Math.random() * (1 - 66) + 66);
@@ -368,65 +344,62 @@
                         j.push(c);
                     }
                 }
-            } while (j.length < tx7);
+            } while (j.length < tx);
             return j.sort((a, b) => a - b);
         }
 
-        function hiro7_view(tx7) {
+        function hiro_view(tx) {
             // ==t[] までのランダムデータとまる
-            // hiro7_item = [9, 19, 22, 32, 35, 36, 37];  //第386回
-            hiro7_item = tx7;
-            let hiro7_item_string = hiro7_item.sort((a, b) => a - b).toString();
+            // hiro_item = [9, 19, 22, 32, 35, 36, 37];  //第386回
+            hiro_item = tx;
+            let hiro_item_string = hiro_item.sort((a, b) => a - b).toString();
             let i = 0;
-            function l7x() {
+            function lxx() {
                 let j = [];
                 do {
                     let c = Math.floor(Math.random() * (1 - 66) + 66);
                     if (c <= 37) {
                         j.indexOf(c) == -1 ? j.push(c) : '';
                     }
-                } while (j.length < hiro7_item.length);
+                } while (j.length < hiro_item.length);
                 return j.sort((a, b) => a - b);
             }
             let startT = new Date();
             console.log(startT);
-            W_hiro7_view = setInterval(() => {
+            W_hiro_view = setInterval(() => {
                 for (let li = 0; li < 1000; li++) {
-                    let x = l7x();
+                    let x = lxx();
                     console.log(i++, x);
-                    if (hiro7_item_string === x.toString()) {
-                        clearInterval(W_hiro7_view);
-                        let x = l7x();
+                    if (hiro_item_string === x.toString()) {
+                        clearInterval(W_hiro_view);
+                        let x = lxx();
                         console.log(i++, x);
                         console.log(startT);
                         console.log(new Date());
-                        console.log('hiro7_item  ' + hiro7_item);
-                        console.log('W_hiro7_view_Stoped');
-                        alert("W_hiro7_view_Stoped");
+                        console.log('hiro_item  ' + hiro_item);
+                        console.log('W_hiro_view_Stoped');
+                        alert("W_hiro_view_Stoped");
                     }
                 }
             }, 500);
         }
 
         function roolclock() {
-            console.log('roolclock');
             var fadr = [];
-            let rolldata = G_l7ms;
+            let rolldata = G_lms;
             let tb = document.getElementsByTagName('tbody')[0];
-            trs = tb.getElementsByTagName('tr');
+            let trs = tb.getElementsByTagName('tr');
             let iid = 0;
-
             let cl = function () {
                 if (isNaN(this.innerText)) {
                     for (let i = 0; i <= 37; i++) {
                         fadr.push(i);
                     }
-                    fns7(fadr);
+                    fns(fadr);
                     return;
                 }
-                G_fns7 = [];
-                console.log("dddddllllllllllll");
-                fns7(rolldata[this.innerText], 1, 0, 1);
+                G_fns = [];
+                fns(rolldata[this.innerText], 0, 0, 1);
             }
 
             let dl = function () {
@@ -434,11 +407,11 @@
                     for (let i = 0; i <= 37; i++) {
                         fadr.push(i);
                     }
-                    fns7(fadr);
+                    fns(fadr);
                     return;
                 }
-                G_fnsa7 = [];
-                fns7(rolldata[this.innerText], 1, 0, 1, rolldata.length - this.innerText + 6);
+                G_fnsa = [];
+                fns(rolldata[this.innerText], 1, 0, 1, rolldata.length - this.innerText + 6);
             }
 
             for (let i = 0; i < trs.length; i++) {
@@ -446,23 +419,23 @@
                 trs[i].firstElementChild.addEventListener('dblclick', dl, true);
             }
 
-            G_fnsa7 = new Array();
+            G_fnsa = new Array();
             let ns = document.getElementsByClassName('n');
             for (let i = 0; i < ns.length; i++) {
                 ns[i].addEventListener('click', function () {
                     let xx = parseInt(this.innerText);
-                    if (G_fnsa7.indexOf(xx) == -1 && !isNaN(xx)) {
-                        G_fnsa7.push(parseInt(this.innerText));
+                    if (G_fnsa.indexOf(xx) == -1 && !isNaN(xx)) {
+                        G_fnsa.push(parseInt(this.innerText));
                     } else {
-                        let v = G_fnsa7.indexOf(parseInt(this.innerText));
-                        G_fnsa7.splice(v, 1);
+                        let v = G_fnsa.indexOf(parseInt(this.innerText));
+                        G_fnsa.splice(v, 1);
                     }
-                    fns7(G_fnsa7, 0, 0, 0);
+                    fns(G_fnsa, 0, 0, 0);
                 });
             }
         }
 
-        function T_f7(num) {
+        function T_ff(num) {
             // 未選択の数字を割り出す
             let tempar = num.concat();
             let tt = [];
@@ -474,7 +447,7 @@
                     return ia;
                 }
             })
-            console.log('fns7([' + temp + '])  ngr');
+            console.log('fns([' + temp + '])  ngr');
         }
 
         window.addEventListener('beforeunload', function () {
@@ -492,7 +465,7 @@
             setTimeout(function () {
                 console.log("roolclock");
                 roolclock();
-            }, 3000);
+            }, 1000);
         });
 
         window.addEventListener('DOMContentLoaded', function () {
