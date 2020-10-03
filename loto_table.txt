@@ -111,3 +111,24 @@ CREATE TABLE n9k(
 .import 9_cklist.txt n9k
 .mode table
 
+ftp -s:xxx.txt
+close
+open loto6.pa.land.to
+loto6
+123456789
+put ./memo/l6.html
+put ./memo/l7.html
+put ./memo/loto6.csv
+put ./memo/loto7.csv
+close
+
+close
+open cdefgab.web.fc2.com
+loto6
+123456789
+put ./memo/l6.html
+put ./memo/l7.html
+put ./memo/loto6.csv
+put ./memo/loto7.csv
+close
+quit
