@@ -246,6 +246,7 @@
         }
 
         function T_ck3(tx, view = 0) {
+            // tx 以外の番号で番号を探し
             let orj = tx;
             let nums = [];
             let nlist = [];
@@ -333,6 +334,27 @@
             }, 1);
         }
 
+        G_addr = []
+        function T_addr(fns) {
+            // よく表示する数字を割り出す
+            G_addr = G_addr.concat(fns);
+            G_addr.sort((a, b) => a - b);
+            console.log('fns( [' + G_addr + '])');
+            let temp = [];
+            for (let j = 0; j <= 37; j++) {
+                temp[j] = 0;
+            }
+            G_addr.forEach(function (e) {
+                temp[e] = temp[e] + e + ',';
+            });
+            temp.forEach(function (e) {
+                if (e != 0) {
+                    console.log(e);
+                }
+            })
+            console.log('G_addr=[] reset');
+        }
+
         function ls(tx = 9) {
             // ランダムの数字を発生
             // console.log('tx =  ' + tx);
@@ -385,11 +407,11 @@
         }
 
         function roolclock() {
-            var fadr = [];
             let rolldata = G_lms;
             let tb = document.getElementsByTagName('tbody')[0];
             let trs = tb.getElementsByTagName('tr');
             let iid = 0;
+            let fadr = [];
             let cl = function () {
                 if (isNaN(this.innerText)) {
                     for (let i = 0; i <= 37; i++) {
@@ -403,22 +425,21 @@
             }
 
             let dl = function () {
-                if (isNaN(this.innerText)) {
-                    for (let i = 0; i <= 37; i++) {
-                        fadr.push(i);
-                    }
-                    fns(fadr);
-                    return;
-                }
                 G_fnsa = [];
                 fns(rolldata[this.innerText], 1, 0, 1, rolldata.length - this.innerText + 6);
+            }
+
+            let cl2 = function () {
+                T_addr(rolldata[this.previousElementSibling.innerText]);
             }
 
             for (let i = 0; i < trs.length; i++) {
                 trs[i].firstElementChild.addEventListener('click', cl, true);
                 trs[i].firstElementChild.addEventListener('dblclick', dl, true);
+                trs[i].firstElementChild.nextElementSibling.addEventListener('click', cl2, true);
             }
 
+            // 1-43 まで番号を押されたとき
             G_fnsa = new Array();
             let ns = document.getElementsByClassName('n');
             for (let i = 0; i < ns.length; i++) {
