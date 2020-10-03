@@ -112,7 +112,7 @@
             });
         }
 
-        function fns2(tx, set3 = 150, view = 1) {
+        function fns2(tx, set3 = 20, view = 1) {
             // テーブルのアレと比較
             let test = G_lms.concat();
             let vx = 0;
@@ -125,7 +125,7 @@
                         contA++;
                     }
                 }
-                if (contA >= 3) {
+                if (contA >= 4) {
                     contB++;
                 }
             }
@@ -135,7 +135,7 @@
             return contB;
         }
 
-        function fns(tx, set1 = 0, set2 = 0, set3 = 30, set5 = 0) {
+        function fns(tx, set1 = 0, set2 = 0, set3 = 10, set5 = 0) {
             if (!tx) {
                 return;
             }
@@ -213,31 +213,31 @@
                 }
 
                 switch (xc) {
-                    case 3:
+                    case 4:
                         trs[0].style.backgroundColor = colors[44];
                         trs[0].setAttribute('class', 'setColor');
                         xca++;
                         break;
-                    case 4:
+                    case 5:
                         trs[0].style.backgroundColor = colors[45];
                         trs[0].setAttribute('class', 'setColor');
                         xca++;
                         break;
-                    case 5:
+                    case 6:
                         trs[0].style.backgroundColor = colors[46];
                         trs[0].setAttribute('class', 'setColor');
                         xca++;
                         break;
                     default:
-                        if (xc > 5) {
+                        if (xc > 6) {
                             xca++;
                         }
                 }
             } while (fc = fc.nextElementSibling);
 
             if (xca >= set3) {
-                console.log('fns( [' + tx + '] )' + '  d3c = ' + xca);
                 console.log('fns( [' + tx.concat().sort((a, b) => a - b) + '] )' + '  d3c = ' + xca + ' sort');
+                console.log('fns( [' + tx + '] )' + '  d3c = ' + xca);
             }
         }
 
