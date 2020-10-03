@@ -10,9 +10,14 @@
 
 <body>
     <script type="text/javascript">
+        const PGtitle = 'l7.html'
+        const CSVFile = 'loto7.csv';
+        const LMax3743 = 37;
+        const LSize76 = 7;
+        const LBsize79 = 9;
         function setCSV() {
             let req = new XMLHttpRequest();
-            let url = '/loto7.csv?key=' + Math.floor(Math.random() * (1 - 100) + 100);
+            let url = '/' + CSVFile + '?key=' + Math.floor(Math.random() * (1 - 100) + 100);
             req.onreadystatechange = function () {
                 if (req.readyState == 4 && req.status == 200) {
                     let ajaxText = req.responseText;
@@ -77,7 +82,7 @@
             do {
                 G_lms[li] = [];
                 let da = fc.getElementsByTagName('td');
-                if (da.length > 9) {
+                if (da.length > LBsize79) {
                     for (let i = 2; i < 11; i++) {
                         G_lms[li].push(parseInt(da[i].innerText));
                     }
@@ -130,7 +135,7 @@
             return contB;
         }
 
-        function fns(tx, set1 = 0, set2 = 0, set3 = 50, set5 = 0) {
+        function fns(tx, set1 = 0, set2 = 0, set3 = 30, set5 = 0) {
             if (!tx) {
                 return;
             }
@@ -237,6 +242,7 @@
         }
 
         function T_cpt2(tx = [0, 0, 0, 0, 0, 0, 0, 0, 0], nid = 5) {
+            // T_cpt2() 先頭に予想番号を追加
             let xnid = document.getElementById('nx' + nid);
             let cxnid = xnid.getElementsByClassName('n');
             for (let i = 0; i < cxnid.length; i++) {
@@ -246,12 +252,12 @@
         }
 
         function T_ck3(tx, view = 0) {
-            // tx 以外の番号で番号を探し
+            // T_ck3() 設定番号除外して予想番号を生成
             let orj = tx;
             let nums = [];
             let nlist = [];
             let count = 0;
-            for (let i = 0; i < 37; i++) {
+            for (let i = 0; i < LMax3743; i++) {
                 nums.push(parseInt(i) + 1);
             }
 
@@ -262,7 +268,7 @@
             nlist.push(orj);
             W_ck3 = setInterval(function () {
                 for (let j = 0; j < 100; j++) {
-                    let tp = ls(7);
+                    let tp = ls(LSize76);
                     if (view == 1) {
                         console.log(count++ + '  ' + tp);
                     } else {
@@ -303,12 +309,14 @@
         }
 
         function T_ck2(tx, set3 = 150) {
+            // T_ck2() 予想番号を生成,masterと参照
+            // ランダム番号を生成
             // fns([6, 10, 20, 22, 27, 28, 33])  d3c = 162
             console.log(new Date());
             W_ck2 = setInterval(function () {
                 for (let i = 0; i < 1000; i++) {
                     if (tx-- >= 0) {
-                        let temp = ls(9);
+                        let temp = ls(LBsize79);
                         fns2(temp, set3);
                     }
                 }
@@ -321,8 +329,9 @@
         }
 
         function T_ck(tx, set3 = 150) {
+            // T_ck() 予想番号を生成,htmlと参照
             W_ck = setInterval(function () {
-                let temp = ls(9);
+                let temp = ls(LBsize79);
                 if (tx == 1) {
                     console.log('fns( [' + temp + '] )');
                 }
@@ -336,12 +345,12 @@
 
         G_addr = []
         function T_addr(fns) {
+            // T_addr() []番号を追加,番号の出番を確認
             // よく表示する数字を割り出す
             G_addr = G_addr.concat(fns);
             G_addr.sort((a, b) => a - b);
-            console.log('fns( [' + G_addr + '])');
             let temp = [];
-            for (let j = 0; j <= 37; j++) {
+            for (let j = 0; j <= LMax3743; j++) {
                 temp[j] = 0;
             }
             G_addr.forEach(function (e) {
@@ -352,16 +361,17 @@
                     console.log(e);
                 }
             })
+            console.log('fns( [' + G_addr + '])');
             console.log('G_addr=[] reset');
         }
 
-        function ls(tx = 9) {
+        function ls(tx = LBsize79) {
             // ランダムの数字を発生
             // console.log('tx =  ' + tx);
             let j = [];
             do {
                 let c = Math.floor(Math.random() * (1 - 66) + 66);
-                if (c <= 37) {
+                if (c <= LMax3743) {
                     if (j.indexOf(c) == -1) {
                         j.push(c);
                     }
@@ -380,7 +390,7 @@
                 let j = [];
                 do {
                     let c = Math.floor(Math.random() * (1 - 66) + 66);
-                    if (c <= 37) {
+                    if (c <= LMax3743) {
                         j.indexOf(c) == -1 ? j.push(c) : '';
                     }
                 } while (j.length < hiro_item.length);
@@ -407,14 +417,14 @@
         }
 
         function roolclock() {
+            let fadr = [];
             let rolldata = G_lms;
             let tb = document.getElementsByTagName('tbody')[0];
             let trs = tb.getElementsByTagName('tr');
             let iid = 0;
-            let fadr = [];
             let cl = function () {
                 if (isNaN(this.innerText)) {
-                    for (let i = 0; i <= 37; i++) {
+                    for (let i = 0; i <= LMax3743; i++) {
                         fadr.push(i);
                     }
                     fns(fadr);
@@ -439,7 +449,6 @@
                 trs[i].firstElementChild.nextElementSibling.addEventListener('click', cl2, true);
             }
 
-            // 1-43 まで番号を押されたとき
             G_fnsa = new Array();
             let ns = document.getElementsByClassName('n');
             for (let i = 0; i < ns.length; i++) {
@@ -457,10 +466,10 @@
         }
 
         function T_ff(num) {
-            // 未選択の数字を割り出す
+            // T_ff() 予想番号を複数入力し,未使用番号を割り出す
             let tempar = num.concat();
             let tt = [];
-            for (let i = 1; i <= 37; i++) {
+            for (let i = 1; i <= LMax3743; i++) {
                 tt.push(i);
             }
             let temp = tt.filter(function (ia) {
@@ -468,7 +477,21 @@
                     return ia;
                 }
             })
-            console.log('fns([' + temp + '])  ngr');
+            console.log('fns([' + temp + '])  未選択番号');
+        }
+
+        function help() {
+            console.log('G_addr:', '選択番号複数');
+            console.log('G_fnsa:', '選択番号1個追加');
+            console.log('G_lms:', 'master');
+            console.log('fns():', 'htmlと参照');
+            console.log('fns2():', 'masterと参照');
+            console.log('T_addr():', '[]番号を追加,番号の出番を確認');
+            console.log('T_ck():', '予想番号を生成,htmlと参照');
+            console.log('T_ck2():', '予想番号を生成,masterと参照');
+            console.log('T_ck3():', '設定番号除外して予想番号を生成');
+            console.log('T_cpt2():', '先頭に予想番号を追加');
+            console.log('T_ff():', '予想番号を複数入力し,未使用番号を割り出す');
         }
 
         window.addEventListener('beforeunload', function () {
@@ -481,12 +504,13 @@
 
         window.addEventListener('load', function () {
             console.log('window.onload');
-            roolclock();
+            document.title = PGtitle;
             hit_table();
             setTimeout(function () {
-                console.log("roolclock");
+                console.log('roolclock');
                 roolclock();
             }, 1000);
+            help();
         });
 
         window.addEventListener('DOMContentLoaded', function () {
