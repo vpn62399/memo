@@ -113,8 +113,8 @@ CREATE TABLE n9k(
 
 ftp -s:xxx.txt
 close
-open loto6.pa.land.to
-loto6
+open cdefgab.web.fc2.com
+cdefgab
 123456789
 put ./memo/l6.html
 put ./memo/l7.html
@@ -122,8 +122,7 @@ put ./memo/loto6.csv
 put ./memo/loto7.csv
 close
 
-close
-open cdefgab.web.fc2.com
+open loto6.pa.land.to
 loto6
 123456789
 put ./memo/l6.html

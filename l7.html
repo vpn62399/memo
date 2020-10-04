@@ -404,6 +404,18 @@
             console.log(table);
         }
 
+        function T_rns(tx) {
+            // 番号を回転する。
+            let temp = [];
+            let ttx = tx.concat();
+            for (let i = 0; i <= 37; i++) {
+                if (tx[i]) {
+                    temp[i] = 38 - ttx[i];
+                }
+            }
+            console.log('fns( [' + temp + '] )');
+        }
+
         function hiro_view(tx) {
             // ==t[] までのランダムデータとまる
             // hiro_item = [9, 19, 22, 32, 35, 36, 37];  //第386回
