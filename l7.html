@@ -408,9 +408,9 @@
             // 番号を回転する。
             let temp = [];
             let ttx = tx.concat();
-            for (let i = 0; i <= 37; i++) {
+            for (let i = 0; i <= LMax3743; i++) {
                 if (tx[i]) {
-                    temp[i] = 38 - ttx[i];
+                    temp[i] = LMax3743 + 1 - ttx[i];
                 }
             }
             console.log('fns( [' + temp + '] )');
