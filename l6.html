@@ -185,6 +185,7 @@
             let fc = tb.firstElementChild;
             let xca = 0;
             let temp = [];
+            let temp2 = [];
             cc();
 
             do {
@@ -206,7 +207,13 @@
                             trs[i].setAttribute('class', 'n setColor');
                             xc++;
                             if (set1 == 1) {
-                                temp.push(tx[j]);
+                                if (temp2.indexOf(tx[j]) == -1) {
+                                    temp2.push(tx[j]);
+                                } else {
+                                    if (temp.indexOf(tx[j]) == -1) {
+                                        temp.push(tx[j]);
+                                    }
+                                }
                             }
                         }
                     }
