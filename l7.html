@@ -356,13 +356,15 @@
             G_addr.forEach(function (e) {
                 temp[e] = temp[e] + e + ',';
             });
-            temp.forEach(function (e) {
-                if (e != 0) {
-                    console.log(e);
-                }
-            })
-            console.log('fns( [' + G_addr + '])');
-            console.log('G_addr=[] reset');
+            if (G_addr.length < 200) {
+                temp.forEach(function (e) {
+                    if (e != 0) {
+                        console.log(e);
+                    }
+                })
+                console.log('fns( [' + G_addr + '])');
+                console.log('G_addr=[] reset');
+            }
         }
 
         function ls(tx = LBsize79) {
@@ -378,6 +380,28 @@
                 }
             } while (j.length < tx);
             return j.sort((a, b) => a - b);
+        }
+
+        function T_ncont() {
+            // すべての出番数字の合計
+            let table = [];
+            if (G_addr.length == 0) {
+                for (let i = 0; i < G_lms["length"]; i++) {
+                    T_addr(G_lms[i]);
+                }
+            }
+
+            for (var i = 1; i <= LMax3743; i++) {
+                var temp = 0;
+                G_addr.forEach(function (e) {
+                    if (e == i) {
+                        temp++;
+                    }
+                })
+                table[i] = temp;
+            }
+            console.table(table);
+            console.log(table);
         }
 
         function hiro_view(tx) {
@@ -492,6 +516,7 @@
             console.log('T_ck3():', '設定番号除外して予想番号を生成');
             console.log('T_cpt2():', '先頭に予想番号を追加');
             console.log('T_ff():', '予想番号を複数入力し,未使用番号を割り出す');
+            console.log('T_ncont():', 'すべての出番数字の合計');
         }
 
         window.addEventListener('beforeunload', function () {
