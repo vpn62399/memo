@@ -3,7 +3,8 @@
 <!-- https://hakuhin.jp/js/xmlhttprequest.html -->
 
 <head>
-    <script data-ad-client="ca-pub-0547405774182700" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <script data-ad-client="ca-pub-0547405774182700" async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta http-equiv="Content-Script-Type" content="text/javascript">
     <title>hello.html</title>
@@ -412,6 +413,29 @@
             }
             console.table(table);
             console.log(table);
+        }
+
+        function T_ncont2() {
+            // let table = new Array(new Array(), new Array());
+            let table = [];
+
+            for (let i = 0; i < 9; i++) {
+                table[i] = [[]];
+            }
+
+            let x = [1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 6, 7, 8, 8, 8];
+            let b = [2, 2, 2, 2, 3, 3, 3, 4, 5, 5, 5, 5, 6, 6, 7, 7, 8];
+
+            for (let i = 0; i < x.length; i++) {
+
+                
+
+                table[i][0] = table[i][0] + 1;
+            }
+            for (let i = 0; i < x.length; i++) {
+                table[i][1] = table[i][1] + 1;
+            }
+            console.table(table);
         }
 
         function T_rns(tx) {
