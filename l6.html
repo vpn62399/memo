@@ -3,14 +3,15 @@
 <!-- https://hakuhin.jp/js/xmlhttprequest.html -->
 
 <head>
-    <script data-ad-client="ca-pub-0547405774182700" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <!-- <script data-ad-client="ca-pub-0547405774182700" async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script> -->
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta http-equiv="Content-Script-Type" content="text/javascript">
     <title>hello.html</title>
 </head>
 
 <body>
-    
+
     <script type="text/javascript">
         const PGtitle = 'l6.html'
         const CSVFile = 'loto6.csv';
@@ -415,6 +416,59 @@
             console.log(table);
         }
 
+        function T_ncont2(tx = []) {
+            // 出番と購入の比較
+            if (tx.length > 0) {
+                T_addr(tx);
+            }
+
+            let table = [];
+            for (let i = 1; i <= LMax3743; i++) {
+                table[i] = [0, 0];
+            }
+
+            for (let i = 0; i < G_addr.length; i++) {
+                G_addr.forEach(function (e) {
+                    if (i == e) {
+                        table[i][0]++;
+                    }
+                })
+            }
+
+            G_addr = [];
+            if (G_addr.length == 0) {
+                for (let i = 0; i < G_lms["length"]; i++) {
+                    T_addr(G_lms[i]);
+                }
+            }
+
+            for (let j = 0; j < G_addr.length; j++) {
+                G_addr.forEach(function (e) {
+                    if (j == e) {
+                        table[j][1]++;
+                    }
+                })
+            }
+
+            console.table(table);
+            for (let i = 1; i <= LMax3743; i++) {
+                var a = '';
+                for (let t1 = 1; t1 < table[i][0]; t1++) {
+                    a = a + 'O';
+                }
+                console.log(i, a);
+
+                var b = '';
+                for (let t2 = 1; t2 < table[i][1] - 200; t2++) {
+                    b = b + '>';
+                }
+                console.log(i, '200+' + b);
+            }
+            for (let i = 1; i <= LMax3743; i++) {
+                console.log(i + ',' + table[i][0] + ',' + table[i][1]);
+            }
+        }
+
         function T_rns(tx) {
             // 番号を回転する。
             let temp = [];
@@ -563,6 +617,7 @@
             console.log('G_addr:', '選択番号複数');
             console.log('G_fnsa:', '選択番号1個追加');
             console.log('G_lms:', 'master');
+            console.log('T_ncont2()', '出番と購入の比較');
             console.log('fns():', 'htmlと参照');
             console.log('fns2():', 'masterと参照');
             console.log('T_addr():', '[]番号を追加,番号の出番を確認');
