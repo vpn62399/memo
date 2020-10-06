@@ -341,9 +341,11 @@
                 let temp = ls(LBsize79);
                 if (tx == 1) {
                     console.log('fns( [' + temp + '] )');
+                    T_cpt2(temp);
                 }
-                fns(temp, 0, 0, set3);
-                if (tx-- == 0) {
+                fns(temp,1);
+                // fns(temp, 0, 0, set3);
+                if (tx-- <= 1) {
                     clearInterval(W_ck);
                     console.log('W_ck_end');
                 }
