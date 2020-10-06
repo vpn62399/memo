@@ -343,7 +343,7 @@
                     console.log('fns( [' + temp + '] )');
                     T_cpt2(temp);
                 }
-                fns(temp,1);
+                fns(temp, 1);
                 // fns(temp, 0, 0, set3);
                 if (tx-- <= 1) {
                     clearInterval(W_ck);
@@ -488,10 +488,42 @@
                 T_addr(rolldata[this.previousElementSibling.innerText]);
             }
 
+            let cl3 = function () {
+                let tpn = this.nextElementSibling;
+                let index = 1;
+                for (let i = 0; i < 11; i++) {
+                    tpn = tpn.nextElementSibling;
+                }
+                switch (tpn.innerText) {
+                    case 'nx1':
+                        index = 1;
+                        break;
+                    case 'nx2':
+                        index = 2;
+                        break;
+                    case 'nx3':
+                        index = 3;
+                        break;
+                    case 'nx4':
+                        index = 4;
+                        break;
+                    case 'nx5':
+                        index = 5;
+                        break;
+                    default:
+                }
+                let tx = ls(9);
+                T_cpt2(tx, index);
+                fns(tx);
+            }
+
             for (let i = 0; i < trs.length; i++) {
                 trs[i].firstElementChild.addEventListener('click', cl, true);
                 trs[i].firstElementChild.addEventListener('dblclick', dl, true);
                 trs[i].firstElementChild.nextElementSibling.addEventListener('click', cl2, true);
+                if (trs[i].firstElementChild.innerText == '000') {
+                    trs[i].firstElementChild.addEventListener('click', cl3, true);
+                }
             }
 
             G_fnsa = new Array();
