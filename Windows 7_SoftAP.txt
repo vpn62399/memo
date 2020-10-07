@@ -1,7 +1,7 @@
 wifi-setup.cmd
 ------------------------------------------
 netsh wlan set hostednetwork mode=allow
-netsh wlan set hostednetwork ssid=Huawei_ALE
+netsh wlan set hostednetwork ssid="Wi-Fi GO!"
 netsh wlan set hostednetwork key=1234567890 
 netsh wlan start hostednetwork
 netsh wlan show hostednetwork
@@ -10,9 +10,12 @@ rem pause
 
 wifi-start.cmd
 -----------------------------------------
+timeout 180
+netsh wlan set hostednetwork mode=allow
 netsh wlan start hostednetwork
 netsh wlan show hostednetwork
 timeout /t 10
+start wifi-show.cmd
 rem pause
 
 Wifi-stop.cmd
