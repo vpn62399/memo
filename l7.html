@@ -11,6 +11,7 @@
 </head>
 
 <body>
+
     <script type="text/javascript">
         const PGtitle = 'l7.html'
         const CSVFile = 'loto7.csv';
@@ -24,7 +25,7 @@
                 if (req.readyState == 4 && req.status == 200) {
                     let ajaxText = req.responseText;
                     master(ajaxText);
-                    vvv(ajaxText);
+                    F_vvv(ajaxText);
                 }
             }
             req.open("GET", url, true);
@@ -32,7 +33,7 @@
         }
         setCSV();
 
-        function vvv(str) {
+        function F_vvv(str) {
             let tr = str.split('\n');
             let ttable = document.getElementsByTagName('tbody')[0];
             let ttfe = ttable.firstElementChild;
@@ -378,6 +379,26 @@
             }
         }
 
+        var G_lsloop = [];
+        function F_lsloop(tx = LBsize79) {
+            W_lsloop = setInterval(function () {
+                let j = [];
+                do {
+                    let c = Math.floor(Math.random() * (1 - 66) + 66);
+                    if (c <= LMax3743) {
+                        if (j.indexOf(c) == -1) {
+                            j.push(c);
+                        }
+                    }
+                } while (j.length < tx);
+                if (j.length == LBsize79) {
+                    G_lsloop = j.concat();
+                    G_lsloop.sort((a, b) => a - b);
+                }
+            }, 100)
+            console.log(G_lsloop);
+        }
+
         function ls(tx = LBsize79) {
             // ランダムの数字を発生
             // console.log('tx =  ' + tx);
@@ -450,7 +471,7 @@
             }
 
             console.table(table);
-            for (let i = 1; i <= 37; i++) {
+            for (let i = 1; i <= LMax3743; i++) {
                 var a = '';
                 for (let t1 = 1; t1 < table[i][0]; t1++) {
                     a = a + 'O';
@@ -567,7 +588,8 @@
                         break;
                     default:
                 }
-                let tx = ls(9);
+                let tx = G_lsloop;
+                console.log(tx);
                 T_cpt2(tx, index);
                 fns(tx, 1);
             }
@@ -641,6 +663,7 @@
             console.log('window.onload');
             document.title = PGtitle;
             hit_table();
+            F_lsloop();
             setTimeout(function () {
                 console.log('roolclock');
                 roolclock();
