@@ -24,7 +24,8 @@ CREATE TABLE loto6c(
   "x3" INTEGER,
   "x4" INTEGER,
   "x5" INTEGER,
-  "x6" INTEGER
+  "x6" INTEGER,
+  "WIN" INTEGER
 );
 
 CREATE TABLE loto7(
@@ -55,7 +56,8 @@ CREATE TABLE loto7c(
   "s4" INTEGER,
   "s5" INTEGER,
   "s6" INTEGER,
-  "s7" INTEGER
+  "s7" INTEGER,
+  "WIN" INTEGER
 );
 
 .mode csv
