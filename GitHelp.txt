@@ -1,0 +1,110 @@
+【Git】一覧
+https://qiita.com/sunstripe2011/items/0b611f6e8a480024dd33
+
+
+A
+    git add [ファイル名] - ステージングエリアにあげる
+    git add . - ステージングエリアにあげる
+
+B
+    git branch - ブランチの一覧表示
+    git branch [ブランチ名] - ブランチを作る
+    git branch -a - ローカル＆リモートブランチ一覧を表示する
+    git branch -d [ブランチ名] - ブランチを削除
+    git branch -r - リモートブランチ一覧を表示する
+
+C
+    git commit [コミット名] - "コミット名"にコミットする
+    git commit -m [コミット名] - コミットメッセージを１行以内に納める
+    git commit --amend -m "コミット名" - 一つ前のコミットと統合する
+    git checkout --[ファイル名] - 前の状態に戻る
+    git checkout [コミット名] "ファイル名" - git 修正したファイルの変更を取り消す事はできるけど、特定のバージョンに戻したい場合
+    git checkout [ブランチ名] - ブランチを切り替える
+    git checkout -b [ブランチ名] - 新規ブランチを作りそれをカレントブランチにする
+    git checkout -b [新ブランチ名] [コミットID] - 新ブランチを指定したコミットIDから作成する
+    git checkout -b [新ブランチ名] [古ブランチ名] - 新ブランチを元ブランチから作成する
+    git clone git@(アドレス名) - リポジトリの複製
+    git cherry-pick [コミットID] - cherry-pickをする(直接コミットを取り込みたいとき) ※ [コミットID]は、git logで確認する
+        cherry-pickをする(直接コミットを取り込みたいとき) ※ [コミットID]は、git logで確認する- 
+        git config --global user.name ”登録名" - 名前の登録
+    git config --global user.email "登録メールアドレス" - メールの登録
+    git config --global color.ui true - メッセージの色分け
+    git config -l - 設定一覧
+    git config --help - ヘルプを見る
+    git help - ヘルプを見る
+
+D
+    git diff - 何処を編集したのか知りたい場合
+    git diff --cached - ステージングエリアにあげた場合、コミットで変更されるファイルが分かる
+    git diff -r [コミットID名] - コミットした後の編集されたファイルが分かる
+E
+
+F
+    git fetch origin - ローカルリポジトリをリモートリポジトリに同期する
+    git filter-branch -f --index-filter 'git rm --ignore-unmatch filename' HEAD - git の履歴を削除する
+    git filter-branch -f --index-filter 'git rm -rf ※ -rfを付けるとディレクトリを削除
+                        --ignore-unmatch dirname' HEAD - git の履歴を削除する
+
+G
+H
+
+I
+    git init - 作業ディレクトリにGitを使う宣言
+J
+K
+
+L
+    git log - gitのログを確認する
+    git log --oneline - Gitのlogを簡潔にまとめて表示する
+    git log -p - Gitのlogを変更した場所を見たい
+    git log --stat - Gitのlogをより詳しく変更した場所を見たい場合
+    git log --all
+
+M
+    git merge origin/[ブランチ名] リモートブランチと同期したデータ、追跡ブランチをローカルリポジトリに取り込む
+    git merge [ブランチ名] - 他のブランチを現在のカレントブランチに取り込む。指定したブランチを現在のブランチにマージする
+    git merge [ブランチ名] –no-commit - 指定したブランチを現在のブランチにマージする。コミットはしない
+    git merge –no-ff [ブランチ名] - 指定したブランチを現在のブランチにマージする。(fast-forwardマージが可能であったとしても、新たにコミットを作成する)
+    git merge –squash [ブランチ名] - 指定したブランチの全コミットを、ひとつのコミットとしてまとめて現在のブランチにマージする
+N
+O
+
+P
+    git pull origin [ブランチ名] - mergeとfetchをまとめて行う
+    git push origin [ブランチ名] - ローカルブランチのデータをリモートブランチに送る（最新のもの）
+Q
+
+R
+    git reset HEAD - git addを取り消す
+    git reset HEAD [ファイル名] - git addを取り消す
+    git reset --hard HEAD - 直前に戻る
+    git reset --hard HEAD^ - １つ前に戻る
+    git reset --hard　"ID" - 指定されたlogに戻る
+    git reset --hard ORIG_HEAD - マージを始めた頃のブランチに戻る
+    git remote - リモートリポジトリへの接続一覧を表示する。
+    git remote add origin/[リモートリポジトリ名] git@(アドレス名) リモートリポジトリにPushする前に登録するコマンド
+    git remote rm origin - リモートリポジトリ削除
+    git rebase [ブランチ名] - rebaseをする(履歴を綺麗にする、まとめてコミットを取り込む)、現在のブランチを指定ブランチにリベースする
+    git rebase -i [ブランチ名] - 現在のブランチを指定ブランチにリベースする。(現在のブランチのコミット履歴を確認し、結合したりしてからリベースできる)
+    git rebase –abort - リベースを中断する。(リベースを開始する前の状態に戻る)
+    git rebase –continue - リベースを続ける。
+    git rebase -i HEAD~INT rebaseインタラクティブモード ※ INT にはなにか任意の数字を入れる
+
+S
+    git status - 現在の状態
+    git status -s - 現在の状態 短縮して表示
+    git status --short - 現在の状態 短縮して表示
+    git stash - 作業ディレクトリとインデックスの変更内容をスタック領域に隠す。
+    git stash list - stashを一覧表示する。
+    git stash apply - 最新stash内容を現在のブランチに戻す。(stashリストには内容は残る)
+    git stash drop stash@{[NUMBER]} - 指定した番号のstashをリストから削除する。
+    git stash pop - 最新stash内容を現在のブランチに戻す。(stashリストからも削除される)
+    git stash pop stash@{[NUMBER]} - 指定した番号のstashを現在のブランチに戻す。(stashリストからも削除される)
+    git stash clear - 全stashをリストから削除する。
+T
+U
+V
+W
+X
+Y
+Z
