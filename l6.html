@@ -381,6 +381,9 @@
 
         var G_lsloop = [];
         function F_lsloop(tx = LBsize79) {
+            let p1 = document.getElementById('p1');
+            let p2 = document.getElementById('p2');
+            let count = 0;
             W_lsloop = setInterval(function () {
                 let j = [];
                 do {
@@ -394,10 +397,10 @@
                 if (j.length == LBsize79) {
                     G_lsloop = j.concat();
                     G_lsloop.sort((a, b) => a - b);
-                    T_cpt2(G_lsloop, 1);
+                    p1.innerText = count++;
+                    p2.innerText = G_lsloop;
                 }
-            }, 100)
-            console.log(G_lsloop);
+            }, 10)
         }
 
         function ls(tx = LBsize79) {
@@ -682,6 +685,8 @@
 
     </script>
     <Button id="hide">style</Button>
+    <p id="p1"></p>
+    <p id="p2"></p>
     <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
         <tr align="right">
             <td>回別</td>
