@@ -18,7 +18,7 @@
         const LMax3743 = 37;
         const LSize76 = 7;
         const LBsize79 = 9;
-        const debug = true;
+        const debug = false;
         function setCSV() {
             let req = new XMLHttpRequest();
             let url = '/' + CSVFile + '?key=' + Math.floor(Math.random() * (1 - 100) + 100);
@@ -97,24 +97,26 @@
             return G_lms.reverse();
         }
 
-        function clearColor(intVal) {
+        function colorClear(intVal) {
+            //1 番号の色
+            //2 日付の色
+            let debug = false;
+            if (debug) console.log('colorClear()', intVal);
             switch (intVal) {
                 case 1:
                     let fincol = document.getElementsByClassName('setColor');
                     for (let i = 0; i < fincol.length; i++) {
-                        fincol[i].removeAttribute('style');
+                        fincol[i].removeAttribute("style");
                     }
                     break;
                 case 2:
                     let fda = document.getElementsByClassName('d');
                     for (let i = 0; i < fda.length; i++) {
-                        fda[i].removeAttribute('style');
+                        fda[i].removeAttribute("style");
                     }
                     break;
             }
         }
-
-
 
         function hit_table() {
             let tb = document.getElementById('hide');
@@ -216,8 +218,8 @@
             let xca = 0;
             let temp = [];
             let temp2 = [];
-            clearColor(1);
 
+            colorClear(1);
             do {
                 let trs = fc.getElementsByTagName('td');
                 if (trs.length < 3) {
@@ -280,7 +282,7 @@
 
         function T_cpt2(arrayVal = [0, 0, 0, 0, 0, 0, 0, 0, 0], nid = 5) {
             // T_cpt2() 先頭に予想番号を追加
-            let debug = true;
+            let debug = false;
             if (debug) console.log('T_cpt2', 'step1');
             let xnid = document.getElementById('nx' + nid);
             let cxnid = xnid.getElementsByClassName('n');
@@ -380,7 +382,7 @@
             }, 1);
         }
 
-        function T_ck(intVal, set3 = 150) {
+        function T_ck(intVal = 1, set3 = 150) {
             // T_ck() 予想番号を生成,htmlと参照
             W_ck = setInterval(function () {
                 let temp = ls(LBsize79);
@@ -447,7 +449,6 @@
 
         function ls(intVal = LBsize79) {
             // ランダムの数字を発生
-            // console.log('intVal =  ' + intVal);
             let j = [];
             do {
                 let c = Math.floor(Math.random() * (1 - 66) + 66);
@@ -585,7 +586,7 @@
 
         function roolclock() {
             //
-            let debug = true;
+            let debug = false;
             if (debug) console.log('roolclock');
             let fadr = [];
             let rolldata = G_lms;
@@ -602,7 +603,7 @@
                     return;
                 }
                 G_fns = [];
-                clearColor(2);
+                colorClear(2);
                 this.nextElementSibling.style.backgroundColor = Fcolor(2)[45];
                 if (debug) console.log(this);
                 fns(rolldata[this.innerText], 1, 0, 1, rolldata.length - this.innerText + 6);
@@ -624,7 +625,7 @@
             }
 
             let clock3 = function () {
-                let debug = true;
+                let debug = false;
                 if (debug) console.log('roolclock', 'clock3');
                 let tpn = this.nextElementSibling;
                 let index = 1;
@@ -649,10 +650,9 @@
                         break;
                     default:
                 }
-                let arrayVal = G_lsloop;
+                let arrayVal = G_lsloop.concat();
                 if (debug) console.log(arrayVal);
                 T_cpt2(arrayVal, index);
-                fns(arrayVal, 1);
             }
 
             let clock4 = function () {
@@ -671,7 +671,9 @@
 
             for (let i = 0; i < trs.length; i++) {
                 // 回別クリック
-                trs[i].firstElementChild.addEventListener('click', clock1, true);
+                if (trs[i].firstElementChild.innerText != '000') {
+                    trs[i].firstElementChild.addEventListener('click', clock1, true);
+                }
                 // 回別Wクリック
                 trs[i].firstElementChild.addEventListener('dblclick', dblclick1, true);
                 // 抽選日Wクリック
@@ -704,7 +706,7 @@
 
         function localStorage_tonx5() {
             //
-            let debug = true;
+            let debug = false;
             if (debug) console.log('localStorage_tonx5', this);
             let timeKey = this.previousElementSibling;
             for (let i = 0; i < 10; i++) {
@@ -712,13 +714,12 @@
             }
             if (debug) console.log('localStorage_tonx5', timeKey);
             let tempval = localStorage.getItem(timeKey.innerText).split(',');
-            fns(tempval, 1);
             T_cpt2(tempval, 5);
         }
 
         function localStorage_removeItem() {
             //
-            let debug = true;
+            let debug = false;
             if (debug) console.log(this);
             let timeKey = this.previousElementSibling;
             for (let i = 0; i < 0; i++) {
@@ -730,7 +731,7 @@
 
         function localStorage_pageload() {
             //
-            let debug = true;
+            let debug = false;
             if (debug) console.log('localStorage_pageload', 'step1');
             let req = new XMLHttpRequest();
             let url = '/' + CSVFile + '?key=' + Math.floor(Math.random() * (1 - 100) + 100);
@@ -753,7 +754,9 @@
                         }
                         tempitem.nextElementSibling.addEventListener('click', localStorage_tonx5, true);
                         tbclone.firstElementChild.nextElementSibling.addEventListener('click', localStorage_removeItem, true);
-                        tb2.appendChild(tbclone);
+                        if (temp.length == LBsize79) {
+                            tb2.appendChild(tbclone);
+                        }
                     }
                 } else {
                     return;
@@ -1025,17 +1028,18 @@
             </tr>
         </tbody>
     </table>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
+    <p></p>
 </body>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
-<p></p>
+
 
 </html>
