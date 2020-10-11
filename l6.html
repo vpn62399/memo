@@ -197,6 +197,8 @@
             if (!tx) {
                 return;
             }
+            let fnsw = document.getElementById('fnsw');
+            fnsw.innerText = tx;
 
             let colors = {};
             set4 = 2;   // 色の付けモード
@@ -668,6 +670,21 @@
                 localStorage_additem(temp);
             }
 
+            let clock5 = function () {
+                if (debug) console.info('roolclock', 'clock5');
+                console.assert(G_fnsa.length != LBsize79);
+                if (G_fnsa.length != LBsize79) {
+                    return;
+                }
+                let temp = [];
+                for (let i = 0; i < G_fnsa.length; i++) {
+                    temp.push(G_fnsa[i]);
+                }
+                console.log(temp);
+                localStorage_additem(G_fnsa);
+            }
+            document.getElementById('fnsw').addEventListener('click', clock5, true);
+
             for (let i = 0; i < trs.length; i++) {
                 // 回別クリック
                 if (trs[i].firstElementChild.innerText != '000') {
@@ -691,7 +708,9 @@
             let ns = document.getElementsByClassName('n');
             for (let i = 0; i < ns.length; i++) {
                 ns[i].addEventListener('click', function () {
+                    if (debug) console.log('roolclock', 'click');
                     let intVal = parseInt(this.innerText);
+                    if (intVal == 0) return;
                     if (G_fnsa.indexOf(intVal) == -1 && !isNaN(intVal)) {
                         G_fnsa.push(parseInt(this.innerText));
                     } else {
@@ -896,7 +915,9 @@
             </tr>
         </tbody>
     </table>
-    <p></p>
+    <p> </p>
+    <button id="fnsw">AddFns([])</button>
+    <p> </p>
     <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
         <tbody id="tb1">
             <tr align="right">
