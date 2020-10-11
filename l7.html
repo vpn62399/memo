@@ -115,6 +115,7 @@
                         fda[i].removeAttribute("style");
                     }
                     break;
+                default:
             }
         }
 
@@ -293,8 +294,6 @@
             for (let i = 0; i < 14; i++) {
                 temp = temp.nextElementSibling;
             }
-            if (debug) console.log(temp);
-            if (debug) console.log(arrayVal);
 
             let tempar = arrayVal.splice(',');
             let tempar1 = [];
@@ -745,17 +744,18 @@
                         tbclone.firstElementChild.nextElementSibling.innerText = (timeKey.getFullYear() + '/' + (timeKey.getMonth() + 1) + '/' + timeKey.getDate());
                         let tempitem = tbclone.firstElementChild.nextElementSibling;
                         let temp = localStorage.getItem(localStorage.key(i)).split(',');
-                        for (let j = 0; j < temp.length; j++) {
-                            if (temp.length == LBsize79) {
+                        if (temp.length == LBsize79) {
+                            for (let j = 0; j < temp.length; j++) {
                                 tempitem = tempitem.nextElementSibling;
                                 tempitem.innerText = temp[j];
                                 tempitem.style.backgroundColor = Fcolor(2)[temp[j]];
                             }
-                        }
-                        tempitem.nextElementSibling.addEventListener('click', localStorage_tonx5, true);
-                        tbclone.firstElementChild.nextElementSibling.addEventListener('click', localStorage_removeItem, true);
-                        if (temp.length == LBsize79) {
-                            tb2.appendChild(tbclone);
+                            tempitem.nextElementSibling.nextElementSibling.innerText = fns2(temp.map(Number));
+                            tempitem.nextElementSibling.addEventListener('click', localStorage_tonx5, true);
+                            tbclone.firstElementChild.nextElementSibling.addEventListener('click', localStorage_removeItem, true);
+                            if (temp.length == LBsize79) {
+                                tb2.appendChild(tbclone);
+                            }
                         }
                     }
                 } else {
@@ -770,6 +770,7 @@
             // localStorage_additem
             let debug = false;
             if (debug) console.log('localStorage_additem', 'setp1');
+            console.assert(arrayVal.length == LBsize79);
             let req = new XMLHttpRequest();
             let url = '/' + CSVFile + '?key=' + Math.floor(Math.random() * (1 - 100) + 100);
             req.onreadystatechange = function () {
@@ -805,7 +806,7 @@
                         tempitem.style.backgroundColor = Fcolor(2)[arrayVal[j]];
                     }
                 }
-                if (debug) console.log("localStorage_additem", tbclone.firstElementChild.nextElementSibling);
+                tempitem.nextElementSibling.nextElementSibling.innerText = fns2(arrayVal.map(Number));
                 tempitem.nextElementSibling.addEventListener('click', localStorage_tonx5, true);
                 tbclone.firstElementChild.nextElementSibling.addEventListener('click', localStorage_removeItem, true);
                 tb2.appendChild(tbclone);
