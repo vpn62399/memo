@@ -31,13 +31,15 @@ C
     git config --global color.ui true - メッセージの色分け
     git config -l - 設定一覧
     git config --help - ヘルプを見る
-    git help - ヘルプを見る
+    git git clean -n ファイルを削除する,これで対象外ファイルを確認する。
+    git clean -f PATH PATHのファイルを削除。
+    git clean -f カレントディレクトリのファイルを削除。
+    git clean -df ディレクトリも削除。
 
 D
     git diff - 何処を編集したのか知りたい場合
     git diff --cached - ステージングエリアにあげた場合、コミットで変更されるファイルが分かる
     git diff -r [コミットID名] - コミットした後の編集されたファイルが分かる
-E
 
 F
     git fetch origin - ローカルリポジトリをリモートリポジトリに同期する
@@ -45,13 +47,8 @@ F
     git filter-branch -f --index-filter 'git rm -rf ※ -rfを付けるとディレクトリを削除
                         --ignore-unmatch dirname' HEAD - git の履歴を削除する
 
-G
-H
-
 I
     git init - 作業ディレクトリにGitを使う宣言
-J
-K
 
 L
     git log - gitのログを確認する
@@ -66,13 +63,11 @@ M
     git merge [ブランチ名] –no-commit - 指定したブランチを現在のブランチにマージする。コミットはしない
     git merge –no-ff [ブランチ名] - 指定したブランチを現在のブランチにマージする。(fast-forwardマージが可能であったとしても、新たにコミットを作成する)
     git merge –squash [ブランチ名] - 指定したブランチの全コミットを、ひとつのコミットとしてまとめて現在のブランチにマージする
-N
-O
+    git mv ファイル名変更
 
 P
     git pull origin [ブランチ名] - mergeとfetchをまとめて行う
     git push origin [ブランチ名] - ローカルブランチのデータをリモートブランチに送る（最新のもの）
-Q
 
 R
     git reset HEAD - git addを取り消す
@@ -101,10 +96,3 @@ S
     git stash pop - 最新stash内容を現在のブランチに戻す。(stashリストからも削除される)
     git stash pop stash@{[NUMBER]} - 指定した番号のstashを現在のブランチに戻す。(stashリストからも削除される)
     git stash clear - 全stashをリストから削除する。
-T
-U
-V
-W
-X
-Y
-Z
