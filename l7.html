@@ -18,6 +18,7 @@
         const LMax3743 = 37;
         const LSize76 = 7;
         const LBsize79 = 9;
+        const debug = false;
         function setCSV() {
             let req = new XMLHttpRequest();
             let url = '/' + CSVFile + '?key=' + Math.floor(Math.random() * (1 - 100) + 100);
@@ -35,7 +36,7 @@
 
         function F_vvv(str) {
             let tr = str.split('\n');
-            let ttable = document.getElementsByTagName('tbody')[0];
+            let ttable = document.getElementById('tb1');
             let ttfe = ttable.firstElementChild;
             ttfe = ttfe.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling;
             do {
@@ -62,9 +63,10 @@
 
         var G_lms = [];
         function master(str) {
-            console.log('master');
+            let debug = false;
+            if (debug) console.log('master');
             let tr = str.split('\n');
-            let ttable = document.getElementsByTagName('tbody')[0];
+            let ttable = document.getElementById('tb1');
             let ttfe = ttable.firstElementChild;
             for (let i = 0; i < tr.length; i++) {
                 G_lms[i] = [];
@@ -80,7 +82,7 @@
             // すべての抽選数字をarrayに取得
             G_lms = [];
             let li = 0;
-            let tb = document.getElementsByTagName('tbody')[0];
+            let tb = document.getElementById('tb1');
             let fc = tb.firstElementChild;
             do {
                 G_lms[li] = [];
@@ -95,10 +97,25 @@
             return G_lms.reverse();
         }
 
-        function cc() {
-            let fincol = document.getElementsByClassName('setColor');
-            for (let i = 0; i < fincol.length; i++) {
-                fincol[i].removeAttribute('style');
+        function colorClear(intVal) {
+            //1 番号の色
+            //2 日付の色
+            let debug = false;
+            if (debug) console.log('colorClear()', intVal);
+            switch (intVal) {
+                case 1:
+                    let fincol = document.getElementsByClassName('setColor');
+                    for (let i = 0; i < fincol.length; i++) {
+                        fincol[i].removeAttribute("style");
+                    }
+                    break;
+                case 2:
+                    let fda = document.getElementsByClassName('d');
+                    for (let i = 0; i < fda.length; i++) {
+                        fda[i].removeAttribute("style");
+                    }
+                    break;
+                default:
             }
         }
 
@@ -133,15 +150,12 @@
                 }
             }
             if (contB >= set3 && view == 1) {
-                console.log('fns( [' + tx + '] )' + "  d3c = " + contB);
+                console.info('fns( [' + tx + '] )' + "  d3c = " + contB);
             }
             return contB;
         }
 
-        function fns(tx, set1 = 0, set2 = 0, set3 = 10, set5 = 0) {
-            if (!tx) {
-                return;
-            }
+        function Fcolor(intVal) {
             // HTML Table と比較
             // http://www.htmq.com/color/websafe216.shtml
             let colors1 = {
@@ -167,15 +181,33 @@
                 41: '#ff7575', 42: '#ff7070', 43: '#ff6b6b', 44: '#ff5b5b', 45: '#ff4c4c',
                 46: '#ff3d3d', 47: '#ff2d2d', 48: '#ff1e1e', 49: '#ff0f0f', 50: '#ff0000',
             }
+            switch (intVal) {
+                case 1:
+                    return colors1;
+                    break;
+                case 2:
+                    return colors2;
+                    break;
+            }
+            return colors2;
+        }
+
+        function fns(tx, set1 = 0, set2 = 0, set3 = 10, set5 = 0) {
+            //
+            if (!tx) {
+                return;
+            }
+            let fnsw = document.getElementById('fnsw');
+            fnsw.innerText = tx;
 
             let colors = {};
             set4 = 2;   // 色の付けモード
             switch (set4) {
                 case 1:
-                    colors = colors1;
+                    colors = Fcolor(1);
                     break;
                 case 2:
-                    colors = colors2;
+                    colors = Fcolor(2);
                     break;
                 case 3:
                     for (let i = 0; i <= 50; i++) {
@@ -184,13 +216,13 @@
                     break;
             }
 
-            let tb = document.getElementsByTagName('tbody')[0];
-            let fc = tb.firstElementChild;
+            let tb1 = document.getElementById('tb1');
+            let fc = tb1.firstElementChild;
             let xca = 0;
             let temp = [];
             let temp2 = [];
-            cc();
 
+            colorClear(1);
             do {
                 let trs = fc.getElementsByTagName('td');
                 if (trs.length < 3) {
@@ -246,24 +278,37 @@
             } while (fc = fc.nextElementSibling);
 
             if (xca >= set3) {
-                console.log('fns( [' + tx.concat().sort((a, b) => a - b) + '] )' + '  d3c = ' + xca + ' sort');
-                console.log('fns( [' + tx + '] )' + '  d3c = ' + xca);
+                console.info('fns( [' + tx.concat().sort((a, b) => a - b) + '] )' + '  d3c = ' + xca + ' sort');
+                console.info('fns( [' + tx + '] )' + '  d3c = ' + xca);
             }
         }
 
-        function T_cpt2(tx = [0, 0, 0, 0, 0, 0, 0, 0, 0], nid = 5) {
+        function T_cpt2(arrayVal = [0, 0, 0, 0, 0, 0, 0, 0, 0], nid = 5) {
             // T_cpt2() 先頭に予想番号を追加
+            let debug = false;
+            if (debug) console.log('T_cpt2', 'step1');
             let xnid = document.getElementById('nx' + nid);
             let cxnid = xnid.getElementsByClassName('n');
             for (let i = 0; i < cxnid.length; i++) {
-                cxnid[i].innerText = tx[i];
+                cxnid[i].innerText = arrayVal[i];
             }
-            // roolclock();
+            let temp = xnid.firstElementChild;
+            for (let i = 0; i < 14; i++) {
+                temp = temp.nextElementSibling;
+            }
+
+            let tempar = arrayVal.splice(',');
+            let tempar1 = [];
+            tempar.forEach(function (e) {
+                tempar1.push(parseInt(e));
+            });
+            temp.innerText = fns2(tempar1);
+            fns(tempar1, 1);
         }
 
-        function T_ck3(tx, view = 0) {
+        function T_ck3(arrayVal, view = 0) {
             // T_ck3() 設定番号除外して予想番号を生成
-            let orj = tx;
+            let orj = arrayVal;
             let nums = [];
             let nlist = [];
             let count = 0;
@@ -318,48 +363,48 @@
             }, 100)
         }
 
-        function T_ck2(tx, set3 = 150) {
+        function T_ck2(intVal, set3 = 150) {
             // T_ck2() 予想番号を生成,masterと参照
             // ランダム番号を生成
             // fns([6, 10, 20, 22, 27, 28, 33])  d3c = 162
-            console.log(new Date());
+            console.info(new Date());
             W_ck2 = setInterval(function () {
                 for (let i = 0; i < 1000; i++) {
-                    if (tx-- >= 0) {
+                    if (intVal-- >= 0) {
                         let temp = ls(LBsize79);
                         fns2(temp, set3);
                     }
                 }
-                if (tx <= 0) {
+                if (intVal <= 0) {
                     clearInterval(W_ck2);
-                    console.log(new Date());
-                    console.log('W_ck2_end');
+                    console.info(new Date());
+                    console.info('W_ck2_end');
                 }
             }, 1);
         }
 
-        function T_ck(tx, set3 = 150) {
+        function T_ck(intVal = 1, set3 = 150) {
             // T_ck() 予想番号を生成,htmlと参照
             W_ck = setInterval(function () {
                 let temp = ls(LBsize79);
-                if (tx == 1) {
-                    console.log('fns( [' + temp + '] )');
+                if (intVal == 1) {
+                    console.info('fns( [' + temp + '] )');
                     T_cpt2(temp);
                 }
                 fns(temp, 1);
                 // fns(temp, 0, 0, set3);
-                if (tx-- <= 1) {
+                if (intVal-- <= 1) {
                     clearInterval(W_ck);
-                    console.log('W_ck_end');
+                    console.info('W_ck_end');
                 }
             }, 1);
         }
 
         G_addr = []
-        function T_addr(fns) {
+        function T_addr(arrayVal) {
             // T_addr() []番号を追加,番号の出番を確認
             // よく表示する数字を割り出す
-            G_addr = G_addr.concat(fns);
+            G_addr = G_addr.concat(arrayVal);
             G_addr.sort((a, b) => a - b);
             let temp = [];
             for (let j = 0; j <= LMax3743; j++) {
@@ -371,16 +416,16 @@
             if (G_addr.length < 200) {
                 temp.forEach(function (e) {
                     if (e != 0) {
-                        console.log(e);
+                        console.info(e);
                     }
                 })
-                console.log('fns( [' + G_addr + '])');
-                console.log('G_addr=[] reset');
+                console.info('fns( [' + G_addr + '])');
+                console.info('G_addr=[] reset');
             }
         }
 
         var G_lsloop = [];
-        function F_lsloop(tx = LBsize79) {
+        function F_lsloop(intval = LBsize79) {
             let p1 = document.getElementById('p1');
             let p2 = document.getElementById('p2');
             let count = 0;
@@ -393,7 +438,7 @@
                             j.push(c);
                         }
                     }
-                } while (j.length < tx);
+                } while (j.length < intval);
                 if (j.length == LBsize79) {
                     G_lsloop = j.concat();
                     G_lsloop.sort((a, b) => a - b);
@@ -403,9 +448,8 @@
             }, 10)
         }
 
-        function ls(tx = LBsize79) {
+        function ls(intVal = LBsize79) {
             // ランダムの数字を発生
-            // console.log('tx =  ' + tx);
             let j = [];
             do {
                 let c = Math.floor(Math.random() * (1 - 66) + 66);
@@ -414,7 +458,7 @@
                         j.push(c);
                     }
                 }
-            } while (j.length < tx);
+            } while (j.length < intVal);
             return j.sort((a, b) => a - b);
         }
 
@@ -437,13 +481,13 @@
                 table[i] = temp;
             }
             console.table(table);
-            console.log(table);
+            console.info(table);
         }
 
-        function T_ncont2(tx = []) {
+        function T_ncont2(arrayVal = []) {
             // 出番と購入の比較
-            if (tx.length > 0) {
-                T_addr(tx);
+            if (arrayVal.length > 0) {
+                T_addr(arrayVal);
             }
 
             let table = [];
@@ -480,35 +524,35 @@
                 for (let t1 = 1; t1 < table[i][0]; t1++) {
                     a = a + 'O';
                 }
-                console.log(i, a);
+                console.info(i, a);
 
                 var b = '';
                 for (let t2 = 1; t2 < table[i][1] - 60; t2++) {
                     b = b + '>';
                 }
-                console.log(i, '60+' + b);
+                console.info(i, '60+' + b);
             }
             for (let i = 1; i <= LMax3743; i++) {
-                console.log(i + ',' + table[i][0] + ',' + table[i][1]);
+                console.info(i + ',' + table[i][0] + ',' + table[i][1]);
             }
         }
 
-        function T_rns(tx) {
+        function T_rns(arrayVal) {
             // 番号を回転する。
             let temp = [];
-            let ttx = tx.concat();
+            let ttx = arrayVal.concat();
             for (let i = 0; i <= LMax3743; i++) {
-                if (tx[i]) {
+                if (arrayVal[i]) {
                     temp[i] = LMax3743 + 1 - ttx[i];
                 }
             }
-            console.log('fns( [' + temp + '] )');
+            console.info('fns( [' + temp + '] )');
         }
 
-        function hiro_view(tx) {
+        function hiro_view(arrayVal) {
             // ==t[] までのランダムデータとまる
             // hiro_item = [9, 19, 22, 32, 35, 36, 37];  //第386回
-            hiro_item = tx;
+            hiro_item = arrayVal;
             let hiro_item_string = hiro_item.sort((a, b) => a - b).toString();
             let i = 0;
             function lxx() {
@@ -522,19 +566,19 @@
                 return j.sort((a, b) => a - b);
             }
             let startT = new Date();
-            console.log(startT);
+            console.info(startT);
             W_hiro_view = setInterval(() => {
                 for (let li = 0; li < 1000; li++) {
                     let x = lxx();
-                    console.log(i++, x);
+                    console.info(i++, x);
                     if (hiro_item_string === x.toString()) {
                         clearInterval(W_hiro_view);
                         let x = lxx();
-                        console.log(i++, x);
-                        console.log(startT);
-                        console.log(new Date());
-                        console.log('hiro_item  ' + hiro_item);
-                        console.log('W_hiro_view_Stoped');
+                        console.info(i++, x);
+                        console.info(startT);
+                        console.info(new Date());
+                        console.info('hiro_item  ' + hiro_item);
+                        console.info('W_hiro_view_Stoped');
                         alert("W_hiro_view_Stoped");
                     }
                 }
@@ -542,12 +586,16 @@
         }
 
         function roolclock() {
+            //
+            let debug = true;
+            if (debug) console.log('roolclock');
             let fadr = [];
             let rolldata = G_lms;
-            let tb = document.getElementsByTagName('tbody')[0];
+            let tb = document.getElementById('tb1');
             let trs = tb.getElementsByTagName('tr');
             let iid = 0;
-            let cl = function () {
+            let clock1 = function () {
+                if (debug) console.log('roolclock', 'clock1');
                 if (isNaN(this.innerText)) {
                     for (let i = 0; i <= LMax3743; i++) {
                         fadr.push(i);
@@ -556,19 +604,30 @@
                     return;
                 }
                 G_fns = [];
-                fns(rolldata[this.innerText], 0, 0, 1);
-            }
-
-            let dl = function () {
-                G_fnsa = [];
+                colorClear(2);
+                this.nextElementSibling.style.backgroundColor = Fcolor(2)[45];
+                if (debug) console.log(this);
                 fns(rolldata[this.innerText], 1, 0, 1, rolldata.length - this.innerText + 6);
+                // fns(rolldata[this.innerText], 0, 0, 1);
             }
 
-            let cl2 = function () {
-                T_addr(rolldata[this.previousElementSibling.innerText]);
+            let dblclick1 = function () {
+                if (debug) console.log('roolclock', 'dblclick1');
+                G_fnsa = [];
+                fns(rolldata[this.innerText], 0, 0, 1);
+                // fns(rolldata[this.innerText], 1, 0, 1, rolldata.length - this.innerText + 6);
             }
 
-            let cl3 = function () {
+            let clock2 = function () {
+                if (debug) console.log('roolclock', 'clock2');
+                if (rolldata[this.previousElementSibling.innerText != '000']) {
+                    T_addr(rolldata[this.previousElementSibling.innerText]);
+                }
+            }
+
+            let clock3 = function () {
+                let debug = false;
+                if (debug) console.log('roolclock', 'clock3');
                 let tpn = this.nextElementSibling;
                 let index = 1;
                 for (let i = 0; i < 11; i++) {
@@ -592,18 +651,56 @@
                         break;
                     default:
                 }
-                let tx = G_lsloop;
-                console.log(tx);
-                T_cpt2(tx, index);
-                fns(tx, 1);
+                let arrayVal = G_lsloop.concat();
+                if (debug) console.log(arrayVal);
+                T_cpt2(arrayVal, index);
             }
 
+            let clock4 = function () {
+                // localStorage_additem event
+                if (debug) console.info('roolclock', 'clock4');
+                let tbrd = this.parentElement.getElementsByClassName('n');
+                let temp = []
+                if (this.nextElementSibling.nextElementSibling.nextElementSibling.innerText == '0') {
+                    return;
+                }
+                for (let i = 0; i < tbrd.length; i++) {
+                    temp.push(parseInt(tbrd[i].innerText));
+                }
+                localStorage_additem(temp);
+            }
+
+            let clock5 = function () {
+                if (debug) console.info('roolclock', 'clock5');
+                console.assert(G_fnsa.length != LBsize79);
+                if (G_fnsa.length != LBsize79) {
+                    return;
+                }
+                let temp = [];
+                for (let i = 0; i < G_fnsa.length; i++) {
+                    temp.push(G_fnsa[i]);
+                }
+                console.log(temp);
+                localStorage_additem(G_fnsa);
+            }
+            document.getElementById('fnsw').addEventListener('click', clock5, true);
+
             for (let i = 0; i < trs.length; i++) {
-                trs[i].firstElementChild.addEventListener('click', cl, true);
-                trs[i].firstElementChild.addEventListener('dblclick', dl, true);
-                trs[i].firstElementChild.nextElementSibling.addEventListener('click', cl2, true);
+                // 回別クリック
+                if (trs[i].firstElementChild.innerText != '000') {
+                    trs[i].firstElementChild.addEventListener('click', clock1, true);
+                }
+                // 回別Wクリック
+                trs[i].firstElementChild.addEventListener('dblclick', dblclick1, true);
+                // 抽選日Wクリック
+                trs[i].firstElementChild.nextElementSibling.addEventListener('click', clock2, true);
                 if (trs[i].firstElementChild.innerText == '000') {
-                    trs[i].firstElementChild.addEventListener('click', cl3, true);
+                    // 回別000クリック
+                    trs[i].firstElementChild.addEventListener('click', clock3, true);
+                }
+                if (trs[i].firstElementChild.nextElementSibling.innerText == '2020/1/1') {
+                    // 抽選日クリック
+                    trs[i].firstElementChild.nextElementSibling.addEventListener('click', clock4, true);
                 }
             }
 
@@ -611,8 +708,10 @@
             let ns = document.getElementsByClassName('n');
             for (let i = 0; i < ns.length; i++) {
                 ns[i].addEventListener('click', function () {
-                    let xx = parseInt(this.innerText);
-                    if (G_fnsa.indexOf(xx) == -1 && !isNaN(xx)) {
+                    if (debug) console.log('roolclock', 'click');
+                    let intVal = parseInt(this.innerText);
+                    if (intVal == 0) return;
+                    if (G_fnsa.indexOf(intVal) == -1 && !isNaN(intVal)) {
                         G_fnsa.push(parseInt(this.innerText));
                     } else {
                         let v = G_fnsa.indexOf(parseInt(this.innerText));
@@ -623,9 +722,119 @@
             }
         }
 
-        function T_ff(num) {
+        function localStorage_tonx5() {
+            //
+            let debug = false;
+            if (debug) console.log('localStorage_tonx5', this);
+            let timeKey = this.previousElementSibling;
+            for (let i = 0; i < 10; i++) {
+                timeKey = timeKey.previousElementSibling;
+            }
+            if (debug) console.log('localStorage_tonx5', timeKey);
+            let tempval = localStorage.getItem(timeKey.innerText).split(',');
+            T_cpt2(tempval, 5);
+        }
+
+        function localStorage_removeItem() {
+            //
+            let debug = false;
+            if (debug) console.log(this);
+            let timeKey = this.previousElementSibling;
+            for (let i = 0; i < 0; i++) {
+                timeKey = timeKey.previousElementSibling;
+            }
+            localStorage.removeItem(timeKey.innerText);
+            this.parentElement.parentElement.removeChild(this.parentElement);
+        }
+
+        function localStorage_pageload() {
+            //
+            let debug = false;
+            if (debug) console.log('localStorage_pageload', 'step1');
+            let req = new XMLHttpRequest();
+            let url = '/' + CSVFile + '?key=' + Math.floor(Math.random() * (1 - 100) + 100);
+            req.onreadystatechange = function () {
+                if (req.readyState == 4 && req.status == 200) {
+                    let tb2 = document.getElementById('tb2');
+                    for (let i = 0; i < localStorage.length; i++) {
+                        let tbclone = tb2.firstElementChild.cloneNode(true);
+                        let timeKey = new Date(parseInt(localStorage.key(i)));
+                        tbclone.firstElementChild.innerText = localStorage.key(i);
+                        tbclone.firstElementChild.nextElementSibling.innerText = (timeKey.getFullYear() + '/' + (timeKey.getMonth() + 1) + '/' + timeKey.getDate());
+                        let tempitem = tbclone.firstElementChild.nextElementSibling;
+                        let temp = localStorage.getItem(localStorage.key(i)).split(',');
+                        if (temp.length == LBsize79) {
+                            for (let j = 0; j < temp.length; j++) {
+                                tempitem = tempitem.nextElementSibling;
+                                tempitem.innerText = temp[j];
+                                tempitem.style.backgroundColor = Fcolor(2)[temp[j]];
+                            }
+                            tempitem.nextElementSibling.nextElementSibling.innerText = fns2(temp.map(Number));
+                            tempitem.nextElementSibling.addEventListener('click', localStorage_tonx5, true);
+                            tbclone.firstElementChild.nextElementSibling.addEventListener('click', localStorage_removeItem, true);
+                            if (temp.length == LBsize79) {
+                                tb2.appendChild(tbclone);
+                            }
+                        }
+                    }
+                } else {
+                    return;
+                }
+            }
+            req.open("GET", url, true);
+            req.send(null);
+        }
+
+        function localStorage_additem(arrayVal) {
+            // localStorage_additem
+            let debug = false;
+            if (debug) console.log('localStorage_additem', 'setp1');
+            console.assert(arrayVal.length == LBsize79);
+            let req = new XMLHttpRequest();
+            let url = '/' + CSVFile + '?key=' + Math.floor(Math.random() * (1 - 100) + 100);
+            req.onreadystatechange = function () {
+                if (req.readyState == 4 && req.status == 200) {
+                    add(arrayVal);
+                    if (debug) console.log('localStorage_additem', 'setp2');
+                } else {
+                    return;
+                }
+            }
+            req.open("GET", url, true);
+            req.send(null);
+
+            function add(arrayVal) {
+                if (debug) console.info('localStorage_additem', 'step3');
+                for (let i = 0; i < localStorage.length; i++) {
+                    if (localStorage.getItem(localStorage.key(i)) == arrayVal.toString()) {
+                        return;
+                    }
+                }
+                let timeKey = new Date();
+                if (debug) console.info('localStorage_additem', 'step4');
+                localStorage.setItem(timeKey.getTime(), arrayVal.toString());
+                let tb2 = document.getElementById('tb2');
+                let tbclone = tb2.firstElementChild.cloneNode(true);
+                tbclone.firstElementChild.innerText = timeKey.getTime();
+                tbclone.firstElementChild.nextElementSibling.innerText = (timeKey.getFullYear() + '/' + (timeKey.getMonth() + 1) + '/' + timeKey.getDate());
+                let tempitem = tbclone.firstElementChild.nextElementSibling;
+                for (let j = 0; j < arrayVal.length; j++) {
+                    if (arrayVal.length == LBsize79) {
+                        tempitem = tempitem.nextElementSibling;
+                        tempitem.innerText = arrayVal[j];
+                        tempitem.style.backgroundColor = Fcolor(2)[arrayVal[j]];
+                    }
+                }
+                tempitem.nextElementSibling.nextElementSibling.innerText = fns2(arrayVal.map(Number));
+                tempitem.nextElementSibling.addEventListener('click', localStorage_tonx5, true);
+                tbclone.firstElementChild.nextElementSibling.addEventListener('click', localStorage_removeItem, true);
+                tb2.appendChild(tbclone);
+            }
+        }
+
+        function T_ff(arrayVal) {
             // T_ff() 予想番号を複数入力し,未使用番号を割り出す
-            let tempar = num.concat();
+            let tempar = arrayVal.concat();
             let tt = [];
             for (let i = 1; i <= LMax3743; i++) {
                 tt.push(i);
@@ -635,24 +844,24 @@
                     return ia;
                 }
             })
-            console.log('fns([' + temp + '])  未選択番号');
+            console.info('fns([' + temp + '])  未選択番号');
         }
 
         function help() {
-            console.log('G_addr:', '選択番号複数');
-            console.log('G_fnsa:', '選択番号1個追加');
-            console.log('G_lms:', 'master');
-            console.log('T_ncont2()', '出番と購入の比較');
-            console.log('fns():', 'htmlと参照');
-            console.log('fns2():', 'masterと参照');
-            console.log('T_addr():', '[]番号を追加,番号の出番を確認');
-            console.log('T_ck():', '予想番号を生成,htmlと参照');
-            console.log('T_ck2():', '予想番号を生成,masterと参照');
-            console.log('T_ck3():', '設定番号除外して予想番号を生成');
-            console.log('T_cpt2():', '先頭に予想番号を追加');
-            console.log('T_ff():', '予想番号を複数入力し,未使用番号を割り出す');
-            console.log('T_ncont():', 'すべての出番数字の合計');
-            console.log('hiro_view():', '指定番号までのランダムデータとまる');
+            console.info('G_addr:', '選択番号複数');
+            console.info('G_fnsa:', '選択番号1個追加');
+            console.info('G_lms:', 'master');
+            console.info('T_ncont2()', '出番と購入の比較');
+            console.info('fns():', 'htmlと参照');
+            console.info('fns2():', 'masterと参照');
+            console.info('T_addr():', '[]番号を追加,番号の出番を確認');
+            console.info('T_ck():', '予想番号を生成,htmlと参照');
+            console.info('T_ck2():', '予想番号を生成,masterと参照');
+            console.info('T_ck3():', '設定番号除外して予想番号を生成');
+            console.info('T_cpt2():', '先頭に予想番号を追加');
+            console.info('T_ff():', '予想番号を複数入力し,未使用番号を割り出す');
+            console.info('T_ncont():', 'すべての出番数字の合計');
+            console.info('hiro_view():', '指定番号までのランダムデータとまる');
         }
 
         window.addEventListener('beforeunload', function () {
@@ -671,6 +880,7 @@
             setTimeout(function () {
                 console.log('roolclock');
                 roolclock();
+                localStorage_pageload();
             }, 1000);
             help();
         });
@@ -687,140 +897,171 @@
     <Button id="hide">style</Button>
     <p id="p1"></p>
     <p id="p2"></p>
+    <p id="txd"></p>
     <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
-        <tr align="right">
-            <td>回別</td>
-            <td>抽選日</td>
-            <td class="n">(x1)</td>
-            <td class="n">(x2)</td>
-            <td class="n">(x3)</td>
-            <td class="n">(x4)</td>
-            <td class="n">(x5)</td>
-            <td class="n">(x6)</td>
-            <td class="n">(x7)</td>
-            <td class="n">ボ1</td>
-            <td class="n">ボ2</td>
-            <td>口数</td>
-            <td>当選金額</td>
-            <td>オバ</td>
-            <td>レ9</td>
-            <td>レ7</td>
-            <td< /td>
-        </tr>
-        <tr id=nx1 align="right">
-            <td>000</td>
-            <td>2020/1/1</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td>0</td>
-            <td>nx1</td>
-            <td>0</td>
-            <td>レ9</td>
-            <td>レ7</td>
-            <td< /td>
-        </tr>
-        <tr id=nx2 align="right">
-            <td>000</td>
-            <td>2020/1/1</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td>0</td>
-            <td>nx2</td>
-            <td>0</td>
-            <td>レ9</td>
-            <td>レ7</td>
-            <td< /td>
-        </tr>
-        <tr id=nx3 align="right">
-            <td>000</td>
-            <td>2020/1/1</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td>0</td>
-            <td>nx3</td>
-            <td>0</td>
-            <td>レ9</td>
-            <td>レ7</td>
-            <td< /td>
-        </tr>
-        <tr id=nx4 align="right">
-            <td>000</td>
-            <td>2020/1/1</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td>0</td>
-            <td>nx4</td>
-            <td>0</td>
-            <td>レ9</td>
-            <td>レ7</td>
-            <td< /td>
-        </tr>
-        <tr id=nx5 align="right">
-            <td>000</td>
-            <td>2020/1/1</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td class="n">0</td>
-            <td>0</td>
-            <td>nx5</td>
-            <td>0</td>
-            <td>レ9</td>
-            <td>レ7</td>
-            <td< /td>
-        </tr>
-        <tr align="right">
-            <td>回別</td>
-            <td>抽選日</td>
-            <td class="n">(x1)</td>
-            <td class="n">(x2)</td>
-            <td class="n">(x3)</td>
-            <td class="n">(x4)</td>
-            <td class="n">(x5)</td>
-            <td class="n">(x6)</td>
-            <td class="n">(x7)</td>
-            <td class="n">ボ1</td>
-            <td class="n">ボ2</td>
-            <td>口数</td>
-            <td>当選金額</td>
-            <td>オバ</td>
-            <td>レ9</td>
-            <td>レ7</td>
-        </tr>
+        <tbody id="tb2">
+            <tr align="right">
+                <td style="display:none">getItem</td>
+                <td>DEL date</td>
+                <td class="n">(x1)</td>
+                <td class="n">(x2)</td>
+                <td class="n">(x3)</td>
+                <td class="n">(x4)</td>
+                <td class="n">(x5)</td>
+                <td class="n">(x6)</td>
+                <td class="n">(x7)</td>
+                <td class="n">(x8)</td>
+                <td class="n">(x9)</td>
+                <td>SetItem(5)</td>
+                <td>レ9</td>
+            </tr>
+        </tbody>
     </table>
+    <p> </p>
+    <button id="fnsw">AddFns([])</button>
+    <p> </p>
+    <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
+        <tbody id="tb1">
+            <tr align="right">
+                <td>回別</td>
+                <td class="d">抽選日</td>
+                <td class="n">(x1)</td>
+                <td class="n">(x2)</td>
+                <td class="n">(x3)</td>
+                <td class="n">(x4)</td>
+                <td class="n">(x5)</td>
+                <td class="n">(x6)</td>
+                <td class="n">(x7)</td>
+                <td class="n">ボ1</td>
+                <td class="n">ボ2</td>
+                <td>口数</td>
+                <td>選金</td>
+                <td>オバ</td>
+                <td>レ9</td>
+                <td>レ7</td>
+            </tr>
+            <tr id=nx1 align="right">
+                <td>000</td>
+                <td class="d">2020/1/1</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td>0</td>
+                <td>nx1</td>
+                <td>0</td>
+                <td>レ9</td>
+                <td>レ7</td>
+            </tr>
+            <tr id=nx2 align="right">
+                <td>000</td>
+                <td class="d">2020/1/1</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td>0</td>
+                <td>nx2</td>
+                <td>0</td>
+                <td>レ9</td>
+                <td>レ7</td>
+            </tr>
+            <tr id=nx3 align="right">
+                <td>000</td>
+                <td class="d">2020/1/1</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td>0</td>
+                <td>nx3</td>
+                <td>0</td>
+                <td>レ9</td>
+                <td>レ7</td>
+            </tr>
+            <tr id=nx4 align="right">
+                <td>000</td>
+                <td class="d">2020/1/1</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td>0</td>
+                <td>nx4</td>
+                <td>0</td>
+                <td>レ9</td>
+                <td>レ7</td>
+            </tr>
+            <tr id=nx5 align="right">
+                <td>000</td>
+                <td class="d">2020/1/1</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td class="n">0</td>
+                <td>0</td>
+                <td>nx5</td>
+                <td>0</td>
+                <td>レ9</td>
+                <td>レ7</td>
+            </tr>
+            <tr align="right">
+                <td>回別</td>
+                <td class="d">抽選日</td>
+                <td class="n">(x1)</td>
+                <td class="n">(x2)</td>
+                <td class="n">(x3)</td>
+                <td class="n">(x4)</td>
+                <td class="n">(x5)</td>
+                <td class="n">(x6)</td>
+                <td class="n">(x7)</td>
+                <td class="n">ボ1</td>
+                <td class="n">ボ2</td>
+                <td>口数</td>
+                <td>選金</td>
+                <td>オバ</td>
+                <td>レ9</td>
+                <td>レ7</td>
+            </tr>
+        </tbody>
+    </table>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
 </body>
+
 
 </html>
