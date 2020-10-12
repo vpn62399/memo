@@ -60,6 +60,7 @@ CREATE TABLE loto7c(
   "WIN" INTEGER
 );
 
+////////////////////////////////////////////////////////////////////////
 .mode csv
 delete from loto6;
 delete from loto7;
@@ -75,6 +76,7 @@ delete from loto6c;
 .mode table
 
 
+////////////////////////////////////////////////////////////////////////
 // memo2
 CREATE TABLE n7k(
   "s1" INTEGER,
@@ -113,6 +115,8 @@ CREATE TABLE n9k(
 .import 9_cklist.txt n9k
 .mode table
 
+
+////////////////////////////////////////////////////////////////////////
 ftp -s:xxx.txt
 close
 open cdefgab.web.fc2.com
@@ -133,3 +137,10 @@ put ./memo/loto6.csv
 put ./memo/loto7.csv
 close
 quit
+
+// https://windows.command-ref.com/cmd-ftp.html
+// !dir	ローカルディレクトリの内容を表示する
+// !cd	ローカルの作業ディレクトリ（カレントディレクトリ）を表示する
+// lcd	ローカルの作業ディレクトリを変更する （例）カレントをC:¥workに移動する ⇒ lcd C:¥work
+// pwd	リモートマシン上の作業ディレクトリ（カレントディレクトリ）を表示する
+// status	現在の状況を表示する
