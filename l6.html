@@ -704,12 +704,15 @@
                     trs[i].firstElementChild.nextElementSibling.addEventListener('click', clock4, true);
                 }
             }
+            num_click();
+        }
 
-            G_fnsa = new Array();
+        var G_fnsa = new Array();
+        function num_click() {
             let ns = document.getElementsByClassName('n');
             for (let i = 0; i < ns.length; i++) {
                 ns[i].addEventListener('click', function () {
-                    if (debug) console.log('roolclock', 'click');
+                    if (debug) console.log('roolclock', 'Num click');
                     let intVal = parseInt(this.innerText);
                     if (intVal == 0) return;
                     if (G_fnsa.indexOf(intVal) == -1 && !isNaN(intVal)) {
