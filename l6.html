@@ -850,8 +850,8 @@
                     G_Lmaster.push(parseInt(num[i].innerText));
                 }
             }
-            document.getElementById('xxx').innerText = G_Lmaster.sort((a, b) => a - b);
-            document.getElementById('yyy').innerText = T_ff(G_Lmaster);
+            document.getElementById('Selected').innerText = G_Lmaster.sort((a, b) => a - b);
+            document.getElementById('noselected').innerText = T_ff(G_Lmaster);
         }
 
         function T_ff(arrayVal) {
@@ -938,12 +938,15 @@
             </tr>
         </tbody>
     </table>
-    <p>選択</p>
-    <p id="xxx">xxxx</p>
-    <p>未選択</p>
-    <p id="yyy">yyy</p>
-    <button id="fnsw">AddFns([])</button>
     <p> </p>
+    <div>Select Number</div>
+    <div id="Selected">Select Number</div>
+    <p> </p>
+    <div>noselected</div>
+    <div id="noselected">noselected</div>
+    <p> </p>
+    <button id="fnsw">AddFns([])</button>
+    <div> </div>
     <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
         <tbody id="tb1">
             <tr align="right">
