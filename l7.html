@@ -749,6 +749,7 @@
             }
             localStorage.removeItem(timeKey.innerText);
             this.parentElement.parentElement.removeChild(this.parentElement);
+            localStorage_master();
         }
 
         function localStorage_pageload() {
@@ -781,6 +782,7 @@
                             }
                         }
                     }
+                    localStorage_master();
                 } else {
                     return;
                 }
@@ -798,8 +800,9 @@
             let url = '/' + CSVFile + '?key=' + Math.floor(Math.random() * (1 - 100) + 100);
             req.onreadystatechange = function () {
                 if (req.readyState == 4 && req.status == 200) {
-                    add(arrayVal);
                     if (debug) console.log('localStorage_additem', 'setp2');
+                    add(arrayVal);
+                    localStorage_master();
                 } else {
                     return;
                 }
@@ -836,6 +839,21 @@
             }
         }
 
+        function localStorage_master() {
+            let debug = false;
+            G_Lmaster = [];
+            let tb2 = document.getElementById('tb2');
+            let num = tb2.getElementsByClassName('n');
+            if (debug) console.log(num);
+            for (let i = 1; i < num.length; i++) {
+                if (!isNaN(num[i].innerText)) {
+                    G_Lmaster.push(parseInt(num[i].innerText));
+                }
+            }
+            document.getElementById('xxx').innerText = G_Lmaster.sort((a, b) => a - b);
+            document.getElementById('yyy').innerText = T_ff(G_Lmaster);
+        }
+
         function T_ff(arrayVal) {
             // T_ff() 予想番号を複数入力し,未使用番号を割り出す
             let tempar = arrayVal.concat();
@@ -849,6 +867,7 @@
                 }
             })
             console.info('fns([' + temp + '])  未選択番号');
+            return temp;
         }
 
         function help() {
@@ -921,7 +940,10 @@
             </tr>
         </tbody>
     </table>
-    <p> </p>
+    <p>選択</p>
+    <p id="xxx">xxxx</p>
+    <p>未選択</p>
+    <p id="yyy">yyy</p>
     <button id="fnsw">AddFns([])</button>
     <p> </p>
     <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
