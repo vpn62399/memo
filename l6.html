@@ -801,7 +801,7 @@
             req.onreadystatechange = function () {
                 if (req.readyState == 4 && req.status == 200) {
                     if (debug) console.log('localStorage_additem', 'setp2');
-                    add(arrayVal);
+                    localStorage_additem_add(arrayVal);
                     localStorage_master();
                 } else {
                     return;
@@ -810,7 +810,7 @@
             req.open("GET", url, true);
             req.send(null);
 
-            function add(arrayVal) {
+            function localStorage_additem_add(arrayVal) {
                 if (debug) console.info('localStorage_additem', 'step3');
                 for (let i = 0; i < localStorage.length; i++) {
                     if (localStorage.getItem(localStorage.key(i)) == arrayVal.toString()) {
@@ -921,23 +921,25 @@
     <p id="p1"></p>
     <p id="p2"></p>
     <p id="txd"></p>
-    <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
-        <tbody id="tb2">
-            <tr align="right">
-                <td style="display:none">getItem</td>
-                <td>DEL date</td>
-                <td class="n">(x1)</td>
-                <td class="n">(x2)</td>
-                <td class="n">(x3)</td>
-                <td class="n">(x4)</td>
-                <td class="n">(x5)</td>
-                <td class="n">(x6)</td>
-                <td class="n">(x7)</td>
-                <td>SetItem(5)</td>
-                <td>レ7</td>
-            </tr>
-        </tbody>
-    </table>
+    <div class="tableaera">
+        <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
+            <tbody id="tb2">
+                <tr align="right">
+                    <td style="display:none">getItem</td>
+                    <td>DEL date</td>
+                    <td class="n">(x1)</td>
+                    <td class="n">(x2)</td>
+                    <td class="n">(x3)</td>
+                    <td class="n">(x4)</td>
+                    <td class="n">(x5)</td>
+                    <td class="n">(x6)</td>
+                    <td class="n">(x7)</td>
+                    <td>SetItem(5)</td>
+                    <td>レ7</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <p> </p>
     <div>Select Number</div>
     <div id="Selected">Select Number</div>
@@ -946,123 +948,125 @@
     <div id="noselected">noselected</div>
     <p> </p>
     <button id="fnsw">AddFns([])</button>
-    <div> </div>
-    <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
-        <tbody id="tb1">
-            <tr align="right">
-                <td>回別</td>
-                <td class="d">抽選日</td>
-                <td class="n">(x1)</td>
-                <td class="n">(x2)</td>
-                <td class="n">(x3)</td>
-                <td class="n">(x4)</td>
-                <td class="n">(x5)</td>
-                <td class="n">(x6)</td>
-                <td class="n">ボナ</td>
-                <td>口数</td>
-                <td>当選金額</td>
-                <td>オバ</td>
-                <td>レ7</td>
-                <td>レ6</td>
-            </tr>
-            <tr id=nx1 align="right">
-                <td>000</td>
-                <td class="d">2020/1/1</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td>0</td>
-                <td>nx1</td>
-                <td>0</td>
-                <td>レ7</td>
-                <td>レ6</td>
-            </tr>
-            <tr id=nx2 align="right">
-                <td>000</td>
-                <td class="d">2020/1/1</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td>0</td>
-                <td>nx2</td>
-                <td>0</td>
-                <td>レ7</td>
-                <td>レ6</td>
-            </tr>
-            <tr id=nx3 align="right">
-                <td>000</td>
-                <td class="d">2020/1/1</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td>0</td>
-                <td>nx3</td>
-                <td>0</td>
-                <td>レ7</td>
-                <td>レ6</td>
-            </tr>
-            <tr id=nx4 align="right">
-                <td>000</td>
-                <td class="d">2020/1/1</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td>0</td>
-                <td>nx4</td>
-                <td>0</td>
-                <td>レ7</td>
-                <td>レ6</td>
-            </tr>
-            <tr id=nx5 align="right">
-                <td>000</td>
-                <td class="d">2020/1/1</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td class="n">0</td>
-                <td>0</td>
-                <td>nx5</td>
-                <td>0</td>
-                <td>レ7</td>
-                <td>レ6</td>
-            </tr>
-            <tr align="right">
-                <td>回別</td>
-                <td class="d">抽選日</td>
-                <td class="n">(x1)</td>
-                <td class="n">(x2)</td>
-                <td class="n">(x3)</td>
-                <td class="n">(x4)</td>
-                <td class="n">(x5)</td>
-                <td class="n">(x6)</td>
-                <td class="n">ボナ</td>
-                <td>口数</td>
-                <td>当選金額</td>
-                <td>オバ</td>
-                <td>レ7</td>
-                <td>レ6</td>
-            </tr>
-        </tbody>
-    </table>
+    <P> </P>
+    <div class="tableaera">
+        <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
+            <tbody id="tb1">
+                <tr align="right">
+                    <td>回別</td>
+                    <td class="d">抽選日</td>
+                    <td class="n">(x1)</td>
+                    <td class="n">(x2)</td>
+                    <td class="n">(x3)</td>
+                    <td class="n">(x4)</td>
+                    <td class="n">(x5)</td>
+                    <td class="n">(x6)</td>
+                    <td class="n">ボナ</td>
+                    <td>口数</td>
+                    <td>当選金額</td>
+                    <td>オバ</td>
+                    <td>レ7</td>
+                    <td>レ6</td>
+                </tr>
+                <tr id=nx1 align="right">
+                    <td>000</td>
+                    <td class="d">2020/1/1</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td>0</td>
+                    <td>nx1</td>
+                    <td>0</td>
+                    <td>レ7</td>
+                    <td>レ6</td>
+                </tr>
+                <tr id=nx2 align="right">
+                    <td>000</td>
+                    <td class="d">2020/1/1</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td>0</td>
+                    <td>nx2</td>
+                    <td>0</td>
+                    <td>レ7</td>
+                    <td>レ6</td>
+                </tr>
+                <tr id=nx3 align="right">
+                    <td>000</td>
+                    <td class="d">2020/1/1</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td>0</td>
+                    <td>nx3</td>
+                    <td>0</td>
+                    <td>レ7</td>
+                    <td>レ6</td>
+                </tr>
+                <tr id=nx4 align="right">
+                    <td>000</td>
+                    <td class="d">2020/1/1</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td>0</td>
+                    <td>nx4</td>
+                    <td>0</td>
+                    <td>レ7</td>
+                    <td>レ6</td>
+                </tr>
+                <tr id=nx5 align="right">
+                    <td>000</td>
+                    <td class="d">2020/1/1</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td class="n">0</td>
+                    <td>0</td>
+                    <td>nx5</td>
+                    <td>0</td>
+                    <td>レ7</td>
+                    <td>レ6</td>
+                </tr>
+                <tr align="right">
+                    <td>回別</td>
+                    <td class="d">抽選日</td>
+                    <td class="n">(x1)</td>
+                    <td class="n">(x2)</td>
+                    <td class="n">(x3)</td>
+                    <td class="n">(x4)</td>
+                    <td class="n">(x5)</td>
+                    <td class="n">(x6)</td>
+                    <td class="n">ボナ</td>
+                    <td>口数</td>
+                    <td>当選金額</td>
+                    <td>オバ</td>
+                    <td>レ7</td>
+                    <td>レ6</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
     <p> </p>
     <p> </p>
     <p> </p>
