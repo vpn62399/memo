@@ -1,20 +1,45 @@
-var db;
-var request = indexedDB.open("MyTestDatabase", 5);
+var mIDBDatabase;
+const mIDBOpenDBRequest = indexedDB.open("MyTestDatabase", 5);
 
-request.onerror = function () {
+mIDBOpenDBRequest.onerror = function () {
     console.log('onerror')
 }
 
-request.onsuccess = function (event) {
+mIDBOpenDBRequest.onsuccess = function (event) {
     console.log('onsuccess');
-    // db = event.target.result;
+    mIDBDatabase = event.target.result;
+    mIDBTransaction = mIDBDatabase.transaction("t1", "readwrite");
+    mIDBObjectStore = mIDBTransaction.objectStore("t1");
+    add(mIDBObjectStore);
+
+    mIDBTransaction.oncomplete = function (e) {
+        console.log("mIDBTransaction.oncomplete");
+    }
+
+    mIDBTransaction.onerror = function (e) {
+        console.log("mIDBTransaction.onerror");
+    }
 }
 
-request.onupgradeneeded = function () {
+function add(mIDBObjectStore) {
+    console.log("add(mIDBObjectStore)");
+    customerData.forEach(function (e) {
+        console.log(e);
+        mIDBObjectStore.add(e);
+    })
+}
+
+mIDBOpenDBRequest.onupgradeneeded = function (event) {
     console.log('onupgradeneeded');
-    // var objectStore = db.createObjectStore("name", { keyPath: "myKey" });
-}
+    mIDBDatabase = event.target.result;
+    mIDBObjectStore = mIDBDatabase.createObjectStore("t1", { keyPath: "ssn" });
+    mIDBObjectStore.createIndex("name", "name", { unique: false });
+    mIDBObjectStore.createIndex("email", "email", { unique: false });
 
+    mIDBObjectStore.transaction.oncomplete = function (event) {
+        console.log("oncomplete");
+    }
+}
 
 
 const customerData = [
@@ -22,32 +47,7 @@ const customerData = [
     { ssn: "555-55-5555", name: "Donna", age: 32, email: "donna@home.org" }
 ];
 
+window.onclose = function (e) {
+    alert("close");
+}
 
-
-
-
-
-
-
-
-
-request.onerror = function (event) {
-    console.log('onerror')
-    alert("Why didn't you allow my web app to use IndexedDB?!");
-};
-
-request.onsuccess = function (event) {
-    console.log('onsuccess');
-    db = event.target.result;
-};
-
-request.onupgradeneeded = function (event) {
-    console.log('onupgradeneeded');
-    // 保存 IDBDataBase 接口
-    var db = event.target.result;
-    db.onversionchange = function (e) {
-        console.log('onversionchange');
-    }
-    // 为该数据库创建一个对象仓库
-    var objectStore = db.createObjectStore("name", { keyPath: "myKey5" });
-};
