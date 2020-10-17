@@ -448,7 +448,10 @@
         }
 
         var G_lsloop = [];
+        var G_num_filter = [];   //番号フィルタ
+        //l7.html:294 fns( [2,16,25,12,33,5,20,29,31,4] )  d3c = 55
         function F_lsloop(intval = LBsize79) {
+            //循環にランダム番号を生成
             let p1 = document.getElementById('p1');
             let p2 = document.getElementById('p2');
             let count = 0;
@@ -457,7 +460,7 @@
                 do {
                     let c = Math.floor(Math.random() * (1 - 66) + 66);
                     if (c <= LMax3743) {
-                        if (j.indexOf(c) == -1) {
+                        if (j.indexOf(c) == -1 && G_num_filter.indexOf(c) == -1) {
                             j.push(c);
                         }
                     }
@@ -505,11 +508,12 @@
                 })
                 table[i] = temp;
             }
-            console.table(table);
             console.info(TAG, table);
+            console.table(table);
         }
 
         function T_topNum(intVal = 1) {
+            // 番号の出番順位を割り出す
             let debug = false;
             let TAG = 'log_T_topNum';
             let table = [];
@@ -799,13 +803,21 @@
             let tb3 = document.getElementById('tb3');
             let tbrs = tb3.getElementsByClassName('n');
             let topNums = T_topNum(2);
-            for (let i = 0; i < 14; i++) {
+            for (let i = 0; i < 19; i++) {
                 tbrs[i].innerText = topNums[i][0];
             }
             topNums = T_topNum(1);
-            for (let i = 0; i < 14; i++) {
-                tbrs[i + 14].innerText = topNums[i][0];
+            for (let i = 0; i < 19; i++) {
+                tbrs[i + 19].innerText = topNums[i][0];
             }
+
+            function G_m_f() {
+                if (G_fnsa) {
+                    G_num_filter = G_fnsa.concat();
+                    this.firstElementChild.innerText = G_num_filter;
+                }
+            }
+            document.getElementById('G_num_filter').addEventListener('click', G_m_f, true);
         }
 
         function T_show_topColor(arrayVal) {
@@ -947,6 +959,7 @@
         }
 
         function localStorage_master() {
+            // 選択番号と選択番号
             let debug = false;
             let TAG = 'log_localStorage_master()';
             G_Lmaster = [];
@@ -958,8 +971,21 @@
                     G_Lmaster.push(parseInt(num[i].innerText));
                 }
             }
-            document.getElementById('Selected').innerText = G_Lmaster.sort((a, b) => a - b);
+            document.getElementById('Selected').innerText = 'G_Lmaster[] ' + G_Lmaster.sort((a, b) => a - b);
             document.getElementById('noselected').innerText = T_ff(G_Lmaster);
+            let test = G_Lmaster.concat().sort((a, b) => a - b);
+            let temp = '';
+            let iv = 0;
+            for (let i = 0; i < G_Lmaster.length; i++) {
+                if (G_Lmaster[i] == iv) {
+                    temp = temp + ',' + G_Lmaster[i];
+                } else {
+                    iv = G_Lmaster[i];
+                    temp = temp + '<br>' + G_Lmaster[i];
+                }
+            }
+            console.log(temp);
+            document.getElementById('Selected').innerHTML = temp;
         }
 
         function T_ff(arrayVal) {
@@ -980,8 +1006,9 @@
 
         function help() {
             console.info('G_addr:', '選択番号複数');
+            console.info('G_Lmaster:', '選択した番号マスター');
             console.info('G_fnsa:', '選択番号1個追加');
-            console.info('G_lms:', 'master');
+            console.info('G_lms:', '抽選番号マスター');
             console.info('T_ncont2()', '出番と購入の比較');
             console.info('fns():', 'htmlと参照');
             console.info('fns2():', 'masterと参照');
@@ -1033,6 +1060,9 @@
     <p id="p1"></p>
     <p id="p2"></p>
     <p id="txd"></p>
+    <div>fns( [8,9,13,14,22,24,35] ) d3c = 26 sort</div>
+    <div>fns( [3,6,7,23,24,31,32] ) d3c = 21 sort xxx</div>
+    <div>fns( [4,9,11,23,24,34,35] ) d3c = 23 sort </div>
     <div class="tableaera">
         <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
             <tbody id="tb2">
@@ -1054,15 +1084,16 @@
             </tbody>
         </table>
     </div>
-    <div>fns( [8,9,13,14,22,24,35] ) d3c = 26 sort</div>
-    <div>fns( [3,6,7,23,24,31,32] ) d3c = 21 sort xxx</div>
-    <div>fns( [4,9,11,23,24,34,35] ) d3c = 23 sort </div>
     <div>Select Number</div>
     <div id="Selected">Select Number</div>
-    <p> </p>
+    <br>
     <div>noselected</div>
     <div id="noselected">noselected</div>
-    <p> </p>
+    <br>
+    <div id="G_num_filter">G_num_filter=[]
+        <div>G_num_filter</div>
+    </div>
+    <br>
     <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
         <tbody id="tb3">
             <tr>
@@ -1076,6 +1107,11 @@
                 <td>(x7)</td>
                 <td>(x8)</td>
                 <td>(x9)</td>
+                <td>(xA)</td>
+                <td>(xB)</td>
+                <td>(xC)</td>
+                <td>(xD)</td>
+                <td>(xE)</td>
                 <td>(xA)</td>
                 <td>(xB)</td>
                 <td>(xC)</td>
@@ -1098,6 +1134,11 @@
                 <td class="n">(xD)</td>
                 <td class="n">(xD)</td>
                 <td class="n">(xE)</td>
+                <td class="n">(xA)</td>
+                <td class="n">(xB)</td>
+                <td class="n">(xD)</td>
+                <td class="n">(xD)</td>
+                <td class="n">(xE)</td>
             </tr>
             <tr>
                 <td class="table">down</td>
@@ -1110,6 +1151,11 @@
                 <td class="n">(x7)</td>
                 <td class="n">(x8)</td>
                 <td class="n">(x9)</td>
+                <td class="n">(xA)</td>
+                <td class="n">(xB)</td>
+                <td class="n">(xD)</td>
+                <td class="n">(xD)</td>
+                <td class="n">(xE)</td>
                 <td class="n">(xA)</td>
                 <td class="n">(xB)</td>
                 <td class="n">(xD)</td>
@@ -1265,6 +1311,5 @@
     <p> </p>
     <p> </p>
 </body>
-
 
 </html>
