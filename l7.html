@@ -35,6 +35,8 @@
         setCSV();
 
         function F_vvv(str) {
+            let debug = false;
+            let TAG = 'log_F_vvv(str)';
             let tr = str.split('\n');
             let ttable = document.getElementById('tb1');
             let ttfe = ttable.firstElementChild;
@@ -64,7 +66,8 @@
         var G_lms = [];
         function master(str) {
             let debug = false;
-            if (debug) console.log('master');
+            let TAG = 'log_master(str)';
+            if (debug) console.log(TAG, 'master');
             let tr = str.split('\n');
             let ttable = document.getElementById('tb1');
             let ttfe = ttable.firstElementChild;
@@ -80,6 +83,9 @@
 
         function master2() {
             // すべての抽選数字をarrayに取得
+            let debug = false;
+            let TAG = 'log_master2()';
+            if (debug) console.log(TAG, 'master2()');
             G_lms = [];
             let li = 0;
             let tb = document.getElementById('tb1');
@@ -101,7 +107,8 @@
             //1 番号の色
             //2 日付の色
             let debug = false;
-            if (debug) console.log('colorClear()', intVal);
+            let TAG = 'log_colorClear(intVal)';
+            if (debug) console.log(TAG, intVal);
             switch (intVal) {
                 case 1:
                     let fincol = document.getElementsByClassName('setColor');
@@ -117,42 +124,6 @@
                     break;
                 default:
             }
-        }
-
-        function hit_table() {
-            let tb = document.getElementById('hide');
-            tb.addEventListener('click', function () {
-                let tab = document.getElementsByTagName('table')[0];
-                if (tab.getAttribute('style') == 'display:none') {
-                    // tab.setAttribute('style', '');
-                    console.log("document.getElementsByTagName('table')[0].setAttribute('style','')");
-                } else {
-                    tab.setAttribute('style', 'display:none');
-                }
-            });
-        }
-
-        function fns2(tx, set3 = 20, view = 1) {
-            // テーブルのアレと比較
-            let test = G_lms.concat();
-            let vx = 0;
-            let contA = 0;
-            let contB = 0;
-            for (let i = 0; i < test.length; i++) {
-                contA = 0;
-                for (let j = 0; j < tx.length; j++) {
-                    if (test[i].indexOf(tx[j]) != -1) {
-                        contA++;
-                    }
-                }
-                if (contA >= 4) {
-                    contB++;
-                }
-            }
-            if (contB >= set3 && view == 1) {
-                console.info('fns( [' + tx + '] )' + "  d3c = " + contB);
-            }
-            return contB;
         }
 
         function Fcolor(intVal) {
@@ -192,13 +163,54 @@
             return colors2;
         }
 
+        function hit_table() {
+            let tb = document.getElementById('hide');
+            tb.addEventListener('click', function () {
+                let tab = document.getElementsByTagName('table')[0];
+                if (tab.getAttribute('style') == 'display:none') {
+                    // tab.setAttribute('style', '');
+                    console.log("document.getElementsByTagName('table')[0].setAttribute('style','')");
+                } else {
+                    tab.setAttribute('style', 'display:none');
+                }
+            });
+        }
+
+        function fns2(tx, set3 = 20, view = 1) {
+            // テーブルのアレと比較
+            let debug = true;
+            let TAG = 'log_fns2';
+            let test = G_lms.concat();
+            let vx = 0;
+            let contA = 0;
+            let contB = 0;
+            for (let i = 0; i < test.length; i++) {
+                contA = 0;
+                for (let j = 0; j < tx.length; j++) {
+                    if (test[i].indexOf(tx[j]) != -1) {
+                        contA++;
+                    }
+                }
+                if (contA >= 4) {
+                    contB++;
+                }
+            }
+            if (contB >= set3 && view == 1) {
+                console.info('fns( [' + tx + '] )' + "  d3c = " + contB);
+            }
+            return contB;
+        }
+
         function fns(arrayVal, set1 = 0, set2 = 0, set3 = 10, set5 = 0) {
             //
+            let debug = true;
+            let TAG = 'log_fns()';
             if (!arrayVal) {
                 return;
             }
             let fnsw = document.getElementById('fnsw');
             fnsw.innerText = arrayVal;
+            T_show_topColor(arrayVal);
 
             let colors = {};
             set4 = 2;   // 色の付けモード
@@ -286,7 +298,8 @@
         function T_cpt2(arrayVal = [0, 0, 0, 0, 0, 0, 0, 0, 0], nid = 5) {
             // T_cpt2() 先頭に予想番号を追加
             let debug = false;
-            if (debug) console.log('T_cpt2', 'step1');
+            let TAG = 'log_T_cpt2'
+            if (debug) console.log(TAG, 'step1');
             let xnid = document.getElementById('nx' + nid);
             let cxnid = xnid.getElementsByClassName('n');
             for (let i = 0; i < cxnid.length; i++) {
@@ -308,6 +321,9 @@
 
         function T_ck3(arrayVal, view = 0) {
             // T_ck3() 設定番号除外して予想番号を生成
+            let debug = false;
+            let TAG = 'log_T_ck3()'
+            if (debug) console.log(TAG, 'T_ck3');
             let orj = arrayVal;
             let nums = [];
             let nlist = [];
@@ -325,7 +341,7 @@
                 for (let j = 0; j < 100; j++) {
                     let tp = ls(LSize76);
                     if (view == 1) {
-                        console.log(count++ + '  ' + tp);
+                        console.log(TAG, count++ + '  ' + tp);
                     } else {
                         count++;
                     }
@@ -337,7 +353,7 @@
 
                     if (flag == 0) {
                         nlist.push(tp);
-                        console.log('nums', nums);
+                        console.log(TAG, nums);
                         console.log(count, tp);
                         tp.forEach(function (e) {
                             nums.splice(nums.indexOf(parseInt(e)), 1);
@@ -347,15 +363,15 @@
                     }
                     if (nums.length <= tp.length) {
                         clearInterval(W_ck3);
-                        console.log('nums', nums);
+                        console.log(TAG, nums);
                         nlist.push(nums);
                         // console.log(nlist);
-                        console.log(new Date());
-                        console.log('count', count);
+                        console.log(TAG, new Date());
+                        console.log(TAG, 'count ' + count);
                         nlist.forEach(function (e) {
-                            console.log('fns([' + e + '])');
+                            console.log(TAG, 'fns([' + e + '])');
                         })
-                        console.log('W_ck3_stoped');
+                        console.log(TAG, 'W_ck3_stoped');
                         alert("W__ck3_stoped");
                         break;
                     }
@@ -366,7 +382,8 @@
         function T_ck2(intVal, set3 = 150) {
             // T_ck2() 予想番号を生成,masterと参照
             // ランダム番号を生成
-            // fns([6, 10, 20, 22, 27, 28, 33])  d3c = 162
+            let debug = false;
+            let TAG = 'log_T_ck2';
             console.info(new Date());
             W_ck2 = setInterval(function () {
                 for (let i = 0; i < 1000; i++) {
@@ -377,33 +394,37 @@
                 }
                 if (intVal <= 0) {
                     clearInterval(W_ck2);
-                    console.info(new Date());
-                    console.info('W_ck2_end');
+                    console.info(TAG, new Date());
+                    console.info(TAG, 'W_ck2_end');
                 }
             }, 1);
         }
 
         function T_ck(intVal = 1, set3 = 150) {
             // T_ck() 予想番号を生成,htmlと参照
+            let debug = false;
+            let TAG = 'log_T_ck';
             W_ck = setInterval(function () {
                 let temp = ls(LBsize79);
                 if (intVal == 1) {
-                    console.info('fns( [' + temp + '] )');
+                    console.info(TAG, 'fns( [' + temp + '] )');
                     T_cpt2(temp);
                 }
                 fns(temp, 1);
                 // fns(temp, 0, 0, set3);
                 if (intVal-- <= 1) {
                     clearInterval(W_ck);
-                    console.info('W_ck_end');
+                    console.info(TAG, 'W_ck_end');
                 }
             }, 1);
         }
 
         G_addr = []
-        function T_addr(arrayVal) {
+        function T_addr(arrayVal, show = 0) {
             // T_addr() []番号を追加,番号の出番を確認
             // よく表示する数字を割り出す
+            let debug = false;
+            let TAG = 'log_T_addr';
             G_addr = G_addr.concat(arrayVal);
             G_addr.sort((a, b) => a - b);
             let temp = [];
@@ -413,14 +434,16 @@
             G_addr.forEach(function (e) {
                 temp[e] = temp[e] + e + ',';
             });
-            if (G_addr.length < 200) {
-                temp.forEach(function (e) {
-                    if (e != 0) {
-                        console.info(e);
-                    }
-                })
-                console.info('fns( [' + G_addr + '])');
-                console.info('G_addr=[] reset');
+            if (show == 1) {
+                if (G_addr.length < 200) {
+                    temp.forEach(function (e) {
+                        if (e != 0) {
+                            console.info(e);
+                        }
+                    })
+                    console.info(TAG, 'fns( [' + G_addr + '])');
+                    console.info(TAG, 'G_addr=[] reset');
+                }
             }
         }
 
@@ -464,6 +487,8 @@
 
         function T_ncont() {
             // すべての出番数字の合計
+            let debug = false;
+            let TAG = 'log_T_ncont()';
             let table = [];
             if (G_addr.length == 0) {
                 for (let i = 0; i < G_lms["length"]; i++) {
@@ -481,11 +506,12 @@
                 table[i] = temp;
             }
             console.table(table);
-            console.info(table);
+            console.info(TAG, table);
         }
 
         function T_topNum(intVal = 1) {
-            let debug = true;
+            let debug = false;
+            let TAG = 'log_T_topNum';
             let table = [];
             if (G_addr.length == 0) {
                 for (let i = 0; i < G_lms["length"]; i++) {
@@ -516,6 +542,8 @@
 
         function T_ncont2(arrayVal = []) {
             // 出番と購入の比較
+            let debug = false;
+            let TAG = 'log_T_ncont2';
             if (arrayVal.length > 0) {
                 T_addr(arrayVal);
             }
@@ -569,6 +597,8 @@
 
         function T_rns(arrayVal) {
             // 番号を回転する。
+            let debug = false;
+            let TAG = 'log_T_rns';
             let temp = [];
             let ttx = arrayVal.concat();
             for (let i = 0; i <= LMax3743; i++) {
@@ -581,7 +611,8 @@
 
         function hiro_view(arrayVal) {
             // ==t[] までのランダムデータとまる
-            // hiro_item = [9, 19, 22, 32, 35, 36, 37];  //第386回
+            let debug = false;
+            let TAG = 'log_hiro_view';
             hiro_item = arrayVal;
             let hiro_item_string = hiro_item.sort((a, b) => a - b).toString();
             let i = 0;
@@ -596,19 +627,19 @@
                 return j.sort((a, b) => a - b);
             }
             let startT = new Date();
-            console.info(startT);
+            console.info(TAG, startT);
             W_hiro_view = setInterval(() => {
                 for (let li = 0; li < 1000; li++) {
                     let x = lxx();
-                    console.info(i++, x);
+                    console.info(TAG, i++ + ' ' + x);
                     if (hiro_item_string === x.toString()) {
                         clearInterval(W_hiro_view);
                         let x = lxx();
-                        console.info(i++, x);
-                        console.info(startT);
-                        console.info(new Date());
-                        console.info('hiro_item  ' + hiro_item);
-                        console.info('W_hiro_view_Stoped');
+                        console.info(TAG, i++ + ' ' + x);
+                        console.info(TAG, startT);
+                        console.info(TAG, new Date());
+                        console.info(TAG, 'hiro_item  ' + hiro_item);
+                        console.info(TAG, 'W_hiro_view_Stoped');
                         alert("W_hiro_view_Stoped");
                     }
                 }
@@ -618,14 +649,15 @@
         function roolclock() {
             //
             let debug = false;
-            if (debug) console.log('roolclock');
+            let TAG = 'log_roolclock'
+            if (debug) console.log(TAG, 'roolclock');
             let fadr = [];
             let rolldata = G_lms;
             let tb = document.getElementById('tb1');
             let trs = tb.getElementsByTagName('tr');
             let iid = 0;
             let clock1 = function () {
-                if (debug) console.log('roolclock', 'clock1');
+                if (debug) console.log(TAG, 'clock1');
                 fadr = [];
                 if (isNaN(this.innerText)) {
                     for (let i = 0; i <= LMax3743; i++) {
@@ -637,20 +669,20 @@
                 G_fns = [];
                 colorClear(2);
                 this.nextElementSibling.style.backgroundColor = Fcolor(2)[45];
-                if (debug) console.log(this);
+                if (debug) console.log(TAG, this);
                 fns(rolldata[this.innerText], 1, 0, 1, rolldata.length - this.innerText + 6);
                 // fns(rolldata[this.innerText], 0, 0, 1);
             }
 
             let dblclick1 = function () {
-                if (debug) console.log('roolclock', 'dblclick1');
+                if (debug) console.log(TAG, 'dblclick1');
                 G_fnsa = [];
                 fns(rolldata[this.innerText], 0, 0, 1);
                 // fns(rolldata[this.innerText], 1, 0, 1, rolldata.length - this.innerText + 6);
             }
 
             let clock2 = function () {
-                if (debug) console.log('roolclock', 'clock2');
+                if (debug) console.log(TAG, 'clock2');
                 if (rolldata[this.previousElementSibling.innerText != '000']) {
                     T_addr(rolldata[this.previousElementSibling.innerText]);
                 }
@@ -658,7 +690,8 @@
 
             let clock3 = function () {
                 let debug = false;
-                if (debug) console.log('roolclock', 'clock3');
+                let TAG = 'log_let clock3 = function';
+                if (debug) console.log(TAG, 'clock3');
                 let tpn = this.nextElementSibling;
                 let index = 1;
                 for (let i = 0; i < 11; i++) {
@@ -683,13 +716,14 @@
                     default:
                 }
                 let arrayVal = G_lsloop.concat();
-                if (debug) console.log(arrayVal);
+                if (debug) console.log(TAG, arrayVal);
                 T_cpt2(arrayVal, index);
             }
 
             let clock4 = function () {
                 // localStorage_additem event
-                if (debug) console.info('roolclock', 'clock4');
+                let TAG = 'log_let clock4 = function'
+                if (debug) console.info(TAG, 'clock4');
                 let tbrd = this.parentElement.getElementsByClassName('n');
                 let temp = []
                 if (this.nextElementSibling.nextElementSibling.nextElementSibling.innerText == '0') {
@@ -702,7 +736,8 @@
             }
 
             let clock5 = function () {
-                if (debug) console.info('roolclock', 'clock5');
+                let TAG = 'log_let clock5 = function';
+                if (debug) console.info(TAG, 'clock5');
                 console.assert(G_fnsa.length != LBsize79);
                 if (G_fnsa.length != LBsize79) {
                     return;
@@ -739,10 +774,12 @@
 
         var G_fnsa = new Array();
         function num_click() {
+            let debug = false;
+            let TAG = 'log_num_click()';
             let ns = document.getElementsByClassName('n');
             for (let i = 0; i < ns.length; i++) {
                 ns[i].addEventListener('click', function () {
-                    if (debug) console.log('roolclock', 'Num click');
+                    if (debug) console.log(TAG, 'Num click');
                     let intVal = parseInt(this.innerText);
                     if (intVal == 0) return;
                     if (G_fnsa.indexOf(intVal) == -1 && !isNaN(intVal)) {
@@ -757,27 +794,51 @@
         }
 
         function T_show_topNums() {
+            let debug = false;
+            let TAG = 'log_T_show_topNums()';
             let tb3 = document.getElementById('tb3');
             let tbrs = tb3.getElementsByClassName('n');
             let topNums = T_topNum(2);
-            for (let i = 0; i < LBsize79; i++) {
+            for (let i = 0; i < 14; i++) {
                 tbrs[i].innerText = topNums[i][0];
             }
             topNums = T_topNum(1);
-            for (let i = 0; i < LBsize79; i++) {
-                tbrs[i + LBsize79].innerText = topNums[i][0];
+            for (let i = 0; i < 14; i++) {
+                tbrs[i + 14].innerText = topNums[i][0];
+            }
+        }
+
+        function T_show_topColor(arrayVal) {
+            let debug = false;
+            let TAG = 'log_T_show_topColor(arrayVal)';
+            let colors = Fcolor(2);
+            let tb3 = document.getElementById('tb3');
+            let nums = tb3.getElementsByClassName('n');
+            for (let i = 0; i < nums.length; i++) {
+                nums[i].style.backgroundColor = '';
+            }
+
+            tb3 = document.getElementById('tb3');
+            nums = tb3.getElementsByClassName('n');
+            for (let i = 0; i < nums.length; i++) {
+                arrayVal.forEach(function (e) {
+                    if (e == nums[i].innerText) {
+                        nums[i].style.backgroundColor = colors[e];
+                    }
+                })
             }
         }
 
         function localStorage_tonx5() {
             //
             let debug = false;
-            if (debug) console.log('localStorage_tonx5', this);
+            let TAG = 'log_localStorage_tonx5()';
+            if (debug) console.log(TAG, this);
             let timeKey = this.previousElementSibling;
             for (let i = 0; i < 10; i++) {
                 timeKey = timeKey.previousElementSibling;
             }
-            if (debug) console.log('localStorage_tonx5', timeKey);
+            if (debug) console.log(TAG, timeKey);
             let tempval = localStorage.getItem(timeKey.innerText).split(',');
             T_cpt2(tempval, 5);
         }
@@ -785,7 +846,8 @@
         function localStorage_removeItem() {
             //
             let debug = false;
-            if (debug) console.log(this);
+            let TAG = 'log_localStorage_removeItem()';
+            if (debug) console.log(TAG, this);
             let timeKey = this.previousElementSibling;
             for (let i = 0; i < 0; i++) {
                 timeKey = timeKey.previousElementSibling;
@@ -798,7 +860,8 @@
         function localStorage_pageload() {
             //
             let debug = false;
-            if (debug) console.log('localStorage_pageload', 'step1');
+            let TAG = 'log_localStorage_pageload()';
+            if (debug) console.log(TAG, 'step1');
             let req = new XMLHttpRequest();
             let url = '/' + CSVFile + '?key=' + Math.floor(Math.random() * (1 - 100) + 100);
             req.onreadystatechange = function () {
@@ -837,13 +900,14 @@
         function localStorage_additem(arrayVal) {
             // localStorage_additem
             let debug = false;
-            if (debug) console.log('localStorage_additem', 'setp1');
+            let TAG = 'log_localStorage_additem(arrayVal)';
+            if (debug) console.log(TAG, 'setp1');
             console.assert(arrayVal.length == LBsize79);
             let req = new XMLHttpRequest();
             let url = '/' + CSVFile + '?key=' + Math.floor(Math.random() * (1 - 100) + 100);
             req.onreadystatechange = function () {
                 if (req.readyState == 4 && req.status == 200) {
-                    if (debug) console.log('localStorage_additem', 'setp2');
+                    if (debug) console.log(TAG, 'setp2');
                     localStorage_additem_add(arrayVal);
                     localStorage_master();
                 } else {
@@ -854,14 +918,14 @@
             req.send(null);
 
             function localStorage_additem_add(arrayVal) {
-                if (debug) console.info('localStorage_additem', 'step3');
+                if (debug) console.info(TAG, 'step3');
                 for (let i = 0; i < localStorage.length; i++) {
                     if (localStorage.getItem(localStorage.key(i)) == arrayVal.toString()) {
                         return;
                     }
                 }
                 let timeKey = new Date();
-                if (debug) console.info('localStorage_additem', 'step4');
+                if (debug) console.info(TAG, 'step4');
                 localStorage.setItem(timeKey.getTime(), arrayVal.toString());
                 let tb2 = document.getElementById('tb2');
                 let tbclone = tb2.firstElementChild.cloneNode(true);
@@ -884,10 +948,11 @@
 
         function localStorage_master() {
             let debug = false;
+            let TAG = 'log_localStorage_master()';
             G_Lmaster = [];
             let tb2 = document.getElementById('tb2');
             let num = tb2.getElementsByClassName('n');
-            if (debug) console.log(num);
+            if (debug) console.log(TAG, num);
             for (let i = 1; i < num.length; i++) {
                 if (!isNaN(num[i].innerText)) {
                     G_Lmaster.push(parseInt(num[i].innerText));
@@ -931,20 +996,23 @@
         }
 
         window.addEventListener('beforeunload', function () {
+            let TAG = 'log_window.addEventListener';
             // console.log('beforeunload');
             // return '本当に離れますか？';
-            console.log(this);
+            console.log(TAG, this);
             event.preventDefault();
             event.returnValue = '';
         });
 
         window.addEventListener('load', function () {
-            console.log('window.onload');
+            let debug = false;
+            let TAG = 'log_window.addEventListener';
+            if (debug) console.log(TAG, 'window.onload');
             document.title = PGtitle;
             hit_table();
             F_lsloop();
             setTimeout(function () {
-                console.log('roolclock');
+                console.log(TAG, 'roolclock');
                 roolclock();
                 localStorage_pageload();
                 T_show_topNums();
@@ -986,8 +1054,6 @@
             </tbody>
         </table>
     </div>
-    <div>fns( [15,9,23,30,34,35,11,26,4] ) d3c = 70</div>
-    <div>fns( [2,16,22,37,12,33,5,25,17] ) d3c = 30</div>
     <div>fns( [8,9,13,14,22,24,35] ) d3c = 26 sort</div>
     <div>fns( [3,6,7,23,24,31,32] ) d3c = 21 sort xxx</div>
     <div>fns( [4,9,11,23,24,34,35] ) d3c = 23 sort </div>
@@ -1010,6 +1076,11 @@
                 <td>(x7)</td>
                 <td>(x8)</td>
                 <td>(x9)</td>
+                <td>(xA)</td>
+                <td>(xB)</td>
+                <td>(xC)</td>
+                <td>(xD)</td>
+                <td>(xE)</td>
             </tr>
             <tr>
                 <td class="table">top</td>
@@ -1022,6 +1093,11 @@
                 <td class="n">(x7)</td>
                 <td class="n">(x8)</td>
                 <td class="n">(x9)</td>
+                <td class="n">(xA)</td>
+                <td class="n">(xB)</td>
+                <td class="n">(xD)</td>
+                <td class="n">(xD)</td>
+                <td class="n">(xE)</td>
             </tr>
             <tr>
                 <td class="table">down</td>
@@ -1034,10 +1110,14 @@
                 <td class="n">(x7)</td>
                 <td class="n">(x8)</td>
                 <td class="n">(x9)</td>
+                <td class="n">(xA)</td>
+                <td class="n">(xB)</td>
+                <td class="n">(xD)</td>
+                <td class="n">(xD)</td>
+                <td class="n">(xE)</td>
             </tr>
         </tbody>
     </table>
-
     <p> </p>
     <button id="fnsw">AddFns([])</button>
     <P> </P>
