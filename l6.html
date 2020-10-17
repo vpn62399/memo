@@ -192,13 +192,13 @@
             return colors2;
         }
 
-        function fns(tx, set1 = 0, set2 = 0, set3 = 30, set5 = 0) {
+        function fns(arrayVal, set1 = 0, set2 = 0, set3 = 30, set5 = 0) {
             //
-            if (!tx) {
+            if (!arrayVal) {
                 return;
             }
             let fnsw = document.getElementById('fnsw');
-            fnsw.innerText = tx;
+            fnsw.innerText = arrayVal;
 
             let colors = {};
             set4 = 2;   // 色の付けモード
@@ -234,19 +234,19 @@
                 };
                 let xc = 0;
                 for (let i = 2; i < 9; i++) {
-                    for (let j = 0; j < tx.length; j++) {
-                        if (trs[i].innerText == tx[j]) {
-                            if (temp.indexOf(tx[j]) == -1) {
-                                trs[i].style.backgroundColor = colors[tx[j]];
+                    for (let j = 0; j < arrayVal.length; j++) {
+                        if (trs[i].innerText == arrayVal[j]) {
+                            if (temp.indexOf(arrayVal[j]) == -1) {
+                                trs[i].style.backgroundColor = colors[arrayVal[j]];
                             }
                             trs[i].setAttribute('class', 'n setColor');
                             xc++;
                             if (set1 == 1) {
-                                if (temp2.indexOf(tx[j]) == -1) {
-                                    temp2.push(tx[j]);
+                                if (temp2.indexOf(arrayVal[j]) == -1) {
+                                    temp2.push(arrayVal[j]);
                                 } else {
-                                    if (temp.indexOf(tx[j]) == -1) {
-                                        temp.push(tx[j]);
+                                    if (temp.indexOf(arrayVal[j]) == -1) {
+                                        temp.push(arrayVal[j]);
                                     }
                                 }
                             }
@@ -278,8 +278,8 @@
             } while (fc = fc.nextElementSibling);
 
             if (xca >= set3) {
-                console.info('fns( [' + tx.concat().sort((a, b) => a - b) + '] )' + '  d3c = ' + xca + ' sort');
-                console.info('fns( [' + tx + '] )' + '  d3c = ' + xca);
+                console.info('fns( [' + arrayVal.concat().sort((a, b) => a - b) + '] )' + '  d3c = ' + xca + ' sort');
+                console.info('fns( [' + arrayVal + '] )' + '  d3c = ' + xca);
             }
         }
 
@@ -482,6 +482,36 @@
             }
             console.table(table);
             console.info(table);
+        }
+
+        function T_topNum(intVal = 1) {
+            let debug = true;
+            let table = [];
+            if (G_addr.length == 0) {
+                for (let i = 0; i < G_lms["length"]; i++) {
+                    T_addr(G_lms[i]);
+                }
+            }
+
+            for (var i = 1; i <= LMax3743; i++) {
+                var temp = 0;
+                G_addr.forEach(function (e) {
+                    if (e == i) {
+                        temp++;
+                    }
+                })
+                table[i] = [i, temp];
+            }
+            if (debug) console.table(table);
+            switch (intVal) {
+                case 1:
+                    table.sort((a, b) => a[1] - b[1]);
+                    break;
+                case 2:
+                    table.sort((b, a) => a[1] - b[1]);
+                    break;
+            }
+            return table;
         }
 
         function T_ncont2(arrayVal = []) {
@@ -726,6 +756,19 @@
             }
         }
 
+        function T_show_topNums() {
+            let tb3 = document.getElementById('tb3');
+            let tbrs = tb3.getElementsByClassName('n');
+            let topNums = T_topNum(2);
+            for (let i = 0; i < LBsize79; i++) {
+                tbrs[i].innerText = topNums[i][0];
+            }
+            topNums = T_topNum(1);
+            for (let i = 0; i < LBsize79; i++) {
+                tbrs[i + LBsize79].innerText = topNums[i][0];
+            }
+        }
+
         function localStorage_tonx5() {
             //
             let debug = false;
@@ -904,6 +947,7 @@
                 console.log('roolclock');
                 roolclock();
                 localStorage_pageload();
+                T_show_topNums();
             }, 1000);
             help();
         });
@@ -947,6 +991,41 @@
     <p> </p>
     <div>noselected</div>
     <div id="noselected">noselected</div>
+    <p> </p>
+    <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
+        <tbody id="tb3">
+            <tr>
+                <td class="table">Tops</td>
+                <td>(x1)</td>
+                <td>(x2)</td>
+                <td>(x3)</td>
+                <td>(x4)</td>
+                <td>(x5)</td>
+                <td>(x6)</td>
+                <td>(x7)</td>
+            </tr>
+            <tr>
+                <td class="table">top</td>
+                <td class="n">(x1)</td>
+                <td class="n">(x2)</td>
+                <td class="n">(x3)</td>
+                <td class="n">(x4)</td>
+                <td class="n">(x5)</td>
+                <td class="n">(x6)</td>
+                <td class="n">(x7)</td>
+            </tr>
+            <tr>
+                <td class="table">down</td>
+                <td class="n">(x1)</td>
+                <td class="n">(x2)</td>
+                <td class="n">(x3)</td>
+                <td class="n">(x4)</td>
+                <td class="n">(x5)</td>
+                <td class="n">(x6)</td>
+                <td class="n">(x7)</td>
+            </tr>
+        </tbody>
+    </table>
     <p> </p>
     <button id="fnsw">AddFns([])</button>
     <P> </P>
