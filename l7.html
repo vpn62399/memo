@@ -452,10 +452,46 @@
         var G_num_filter = [];   //番号フィルタ
         //l7.html:294 fns( [2,16,25,12,33,5,20,29,31,4] )  d3c = 55
         function F_lsloop(intval = LBsize79) {
+            let debug = true;
+            let TAG = 'F_lsloop';
+            let p1 = document.getElementById('p1');
+            let p2 = document.getElementById('p2');
+            let count = 0;
+            base = [];
+            for (let i = 1; i < G_lms.length; i++) {
+                for (let j = 1; j < G_lms[i].length; j++) {
+                    base.push(G_lms[i][j]);
+                }
+            }
+            console.log(base);
+            if (base.length = 0) {
+                F_lsloop();
+            }
+            W_lsloop = setInterval(function () {
+                let j = [];
+                do {
+                    let x_axis = Math.floor(Math.random() * (1 - base.length) + base.length);
+                    let c = base[x_axis];
+                    if (c <= LMax3743) {
+                        if (j.indexOf(c) == -1 && G_num_filter.indexOf(c) == -1) {
+                            j.push(c);
+                        }
+                    }
+                } while (j.length < intval);
+                if (j.length == LBsize79) {
+                    G_lsloop = j.concat();
+                    G_lsloop.sort((a, b) => a - b);
+                    p1.innerText = count++;
+                    p2.innerText = G_lsloop;
+                }
+            }, 10)
+        }
+
+        function F_lsloop_old2(intval = LBsize79) {
             //循環にランダム番号を生成,抽選番号マスターと参照する．
             //
             let debug = false;
-            let TAG = 'F_lsloop()';
+            let TAG = 'F_lsloop_old2';
             let p1 = document.getElementById('p1');
             let p2 = document.getElementById('p2');
             let count = 0;
@@ -507,7 +543,7 @@
             }
         }
 
-        function F_lsloop_old(intval = LBsize79) {
+        function F_lsloop_old1(intval = LBsize79) {
             //循環にランダム番号を生成
             let p1 = document.getElementById('p1');
             let p2 = document.getElementById('p2');
@@ -1095,12 +1131,12 @@
             if (debug) console.log(TAG, 'window.onload');
             document.title = PGtitle;
             hit_table();
-            F_lsloop();
             setTimeout(function () {
                 console.log(TAG, 'roolclock');
                 roolclock();
                 localStorage_pageload();
                 T_show_topNums();
+                F_lsloop();
             }, 1000);
             help();
         });
