@@ -84,6 +84,7 @@
 
         function F_create_master2() {
             // すべての抽選数字をarrayに取得
+            // OLD
             let debug = false;
             let TAG = 'log_F_create_master2->';
             if (debug) console.log(TAG, 'master2()');
@@ -452,6 +453,56 @@
         var G_num_filter = [];   //番号フィルタ
         //l7.html:294 fns( [2,16,25,12,33,5,20,29,31,4] )  d3c = 55
         function F_lsloop(intval = LBsize79) {
+            let debut = true;
+            let TAG = 'log_F_lsloop->';
+            let p1 = document.getElementById('p1');
+            let p2 = document.getElementById('p2');
+            let count = 0;
+            base_nums2 = [];
+            for (let i = 0; i < LBsize79; i++) {
+                base_nums2[i] = [];
+                for (let j = 0; j < G_lms.length; j++) {
+                    if (!isNaN(parseInt(G_lms[j][i]))) {
+                        base_nums2[i].push(G_lms[j][i]);
+                    }
+                }
+            }
+
+            W_lsloop = setInterval(function () {
+                let bnum = [];
+                let bindex = 0;
+                let btemp = 0;
+                do {
+                    bindex = Math.floor(Math.random() * (1 - base_nums2[0].length) + base_nums2[0].length);
+                    if (bnum.length == 0) {
+                        btemp = base_nums2[bnum.length][bindex];
+                        if (G_num_filter.indexOf(btemp) == -1) {
+                            bnum.push(btemp);
+                        }
+                    } else {
+                        btemp = base_nums2[bnum.length][bindex];
+                        if (bnum.indexOf(btemp) == -1 && btemp > bnum[bnum.length - 1] && G_num_filter.indexOf(btemp) == -1) {
+                            bnum.push(btemp);
+                        }
+                    }
+                } while (bnum.length < LBsize79 - 1);
+
+                do {
+                    bindex = Math.floor(Math.random() * (1 - base_nums2[0].length) + base_nums2[0].length);
+                    btemp = base_nums2[bnum.length][bindex];
+                    if (bnum.indexOf(btemp) == -1 && G_num_filter.indexOf(btemp) == -1) {
+                        bnum.push(btemp);
+                    }
+                } while (bnum.length < LBsize79)
+                if (bnum.length == LBsize79) {
+                    G_lsloop = bnum.concat();
+                    p1.innerText = count++;
+                    p2.innerText = G_lsloop;
+                }
+            }, 10)
+        }
+
+        function F_lsloop2(intval = LBsize79) {
             // 循環にランダム番号を生成する、抽選番号マスターアレーを1次元配列と参照する．
             let debug = true;
             let TAG = 'log_F_lsloop->';
@@ -1186,7 +1237,9 @@
     <div id="noselected">noselected</div>
     <br>
     <div id="G_num_filter">G_num_filter=[]
-        <div><<2,5,10,12,14,18,23,26,29,31,37>></div>
+        <div>
+            <<2,5,10,12,14,18,23,26,29,31,37>>
+        </div>
         <!-- <div>10,12,14,18,23,26,29,31,37</div> -->
     </div>
     <br>
