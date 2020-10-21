@@ -84,6 +84,7 @@
 
         function F_create_master2() {
             // すべての抽選数字をarrayに取得
+            // OLD
             let debug = false;
             let TAG = 'log_F_create_master2->';
             if (debug) console.log(TAG, 'master2()');
@@ -298,7 +299,7 @@
 
         function T_cpt2(arrayVal = [0, 0, 0, 0, 0, 0, 0, 0, 0], nid = 5) {
             // T_cpt2() 先頭に予想番号を追加
-            let debug = false;
+            let debug = true;
             let TAG = 'log_T_cpt2->';
             if (debug) console.log(TAG, 'step1');
             let xnid = document.getElementById('nx' + nid);
@@ -318,6 +319,9 @@
             });
             temp.innerText = fns2(tempar1);
             fns(tempar1, 1);
+            tempar1.pop();
+            tempar1.pop();
+            temp.nextElementSibling.innerText = fns2(tempar1);
         }
 
         function T_ck3(arrayVal, view = 0) {
@@ -864,7 +868,7 @@
 
             let clock3 = function () {
                 let debug = false;
-                let TAG = 'log_let clock3 = function';
+                let TAG = 'log_let clock3->';
                 if (debug) console.log(TAG, 'clock3');
                 let tpn = this.nextElementSibling;
                 let index = 1;
