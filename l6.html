@@ -694,14 +694,24 @@
             console.table(table);
         }
 
-        function T_topNum(intVal = 1) {
+        function T_topNum(intVal = 1, top10 = 0) {
             // 番号の出番順位を割り出す
+            // intVal=1 高い順 =2 低い順
             let debug = false;
-            let TAG = 'log_T_topNum';
+            let TAG = 'log_T_topNum->';
             let table = [];
             if (G_addr.length == 0) {
-                for (let i = 0; i < G_lms["length"]; i++) {
-                    T_addr(G_lms[i]);
+                if (top10 == 0) {
+                    for (let i = 0; i < G_lms["length"]; i++) {
+                        T_addr(G_lms[i]);
+                    }
+                }
+                if (top10 == 1) {
+                    if (debug) console.log(TAG, G_lms["length"] - 1);
+                    if (debug) console.log(TAG, G_lms["length"] - 11);
+                    for (let i = G_lms["length"] - 1; i > G_lms["length"] - 11; i--) {
+                        T_addr(G_lms[i]);
+                    }
                 }
             }
 
@@ -714,6 +724,8 @@
                 })
                 table[i] = [i, temp];
             }
+            if (debug) console.log(TAG, G_addr);
+            G_addr = [];
             if (debug) console.table(table);
             switch (intVal) {
                 case 1:
@@ -995,6 +1007,31 @@
             document.getElementById('G_num_filter').addEventListener('click', G_m_f, true);
         }
 
+        function T_show_top10Nums() {
+            //
+            let debug = false;
+            let TAG = 'log_T_show_top10Nums->';
+            let tb4 = document.getElementById('tb4');
+            let tbrs = tb4.getElementsByClassName('n');
+            let topNums = T_topNum(2, 1);
+            for (let i = 0; i < 21; i++) {
+                tbrs[i].innerText = topNums[i][0];
+            }
+            topNums = T_topNum(1, 1);
+            for (let i = 0; i < 21; i++) {
+                tbrs[i + 21].innerText = topNums[i][0];
+            }
+
+            function G_m_f() {
+                if (G_fnsa) {
+                    G_num_filter = G_fnsa.concat();
+                    this.firstElementChild.innerText = G_num_filter.sort((a, b) => a - b);
+                    console.info(TAG, this.firstElementChild.innerText);
+                }
+            }
+            document.getElementById('G_num_filter').addEventListener('click', G_m_f, true);
+        }
+
         function T_show_topColor(arrayVal) {
             let debug = false;
             let TAG = 'log_T_show_topColor->';
@@ -1007,6 +1044,21 @@
 
             tb3 = document.getElementById('tb3');
             nums = tb3.getElementsByClassName('n');
+            for (let i = 0; i < nums.length; i++) {
+                arrayVal.forEach(function (e) {
+                    if (e == nums[i].innerText) {
+                        nums[i].style.backgroundColor = colors[e];
+                    }
+                })
+            }
+
+            nums = tb4.getElementsByClassName('n');
+            for (let i = 0; i < nums.length; i++) {
+                nums[i].style.backgroundColor = '';
+            }
+
+            tb4 = document.getElementById('tb4');
+            nums = tb4.getElementsByClassName('n');
             for (let i = 0; i < nums.length; i++) {
                 arrayVal.forEach(function (e) {
                     if (e == nums[i].innerText) {
@@ -1218,6 +1270,7 @@
                 roolclock();
                 localStorage_pageload();
                 T_show_topNums();
+                T_show_top10Nums();
                 F_lsloop();
             }, 1000);
             help();
@@ -1346,6 +1399,84 @@
             </tr>
         </tbody>
     </table>
+    <br>
+    <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
+        <tbody id="tb4">
+            <tr>
+                <td class="table">Tops</td>
+                <td>(x1)</td>
+                <td>(x2)</td>
+                <td>(x3)</td>
+                <td>(x4)</td>
+                <td>(x5)</td>
+                <td>(x6)</td>
+                <td>(x7)</td>
+                <td>(x8)</td>
+                <td>(x9)</td>
+                <td>(xA)</td>
+                <td>(xB)</td>
+                <td>(xC)</td>
+                <td>(xD)</td>
+                <td>(xE)</td>
+                <td>(xE)</td>
+                <td>(xE)</td>
+                <td>(xE)</td>
+                <td>(xE)</td>
+                <td>(xE)</td>
+                <td>(xE)</td>
+                <td>(xE)</td>
+            </tr>
+            <tr>
+                <td class="table">top</td>
+                <td class="n">(x1)</td>
+                <td class="n">(x2)</td>
+                <td class="n">(x3)</td>
+                <td class="n">(x4)</td>
+                <td class="n">(x5)</td>
+                <td class="n">(x6)</td>
+                <td class="n">(x7)</td>
+                <td class="n">(x8)</td>
+                <td class="n">(x9)</td>
+                <td class="n">(xA)</td>
+                <td class="n">(xB)</td>
+                <td class="n">(xD)</td>
+                <td class="n">(xD)</td>
+                <td class="n">(xE)</td>
+                <td class="n">(xE)</td>
+                <td class="n">(xE)</td>
+                <td class="n">(xE)</td>
+                <td class="n">(xE)</td>
+                <td class="n">(xE)</td>
+                <td class="n">(xE)</td>
+                <td class="n">(xE)</td>
+            </tr>
+            <tr>
+                <td class="table">down</td>
+                <td class="n">(x1)</td>
+                <td class="n">(x2)</td>
+                <td class="n">(x3)</td>
+                <td class="n">(x4)</td>
+                <td class="n">(x5)</td>
+                <td class="n">(x6)</td>
+                <td class="n">(x7)</td>
+                <td class="n">(x8)</td>
+                <td class="n">(x9)</td>
+                <td class="n">(xA)</td>
+                <td class="n">(xB)</td>
+                <td class="n">(xD)</td>
+                <td class="n">(xD)</td>
+                <td class="n">(xE)</td>
+                <td class="n">(xE)</td>
+                <td class="n">(xE)</td>
+                <td class="n">(xE)</td>
+                <td class="n">(xE)</td>
+                <td class="n">(xE)</td>
+                <td class="n">(xE)</td>
+                <td class="n">(xE)</td>
+            </tr>
+        </tbody>
+    </table>
+
     <p> </p>
     <button id="fnsw">AddFns([])</button>
     <P> </P>
