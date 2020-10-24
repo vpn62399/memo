@@ -1295,6 +1295,7 @@
             }
             if (debug) console.log(TAG, temp);
             document.getElementById('Selected').innerHTML = temp;
+            document.getElementById('noselected').innerText = T_Excluded_number(temp);
         }
 
         function T_Excluded_number(arrayVal) {
