@@ -807,17 +807,26 @@
             console.info('fns( [' + temp + '] )');
         }
 
-        function T_TopSearch(intVal) {
+        function T_TopSearch(arrayVal) {
             // 
-            let debug = true;
+            let debug = false;
             let TAG = 'log_T_TopSearch->';
             let temp = [];
-            let work = setInterval(function () {
+            let cont = 0;
+            T_TopSearchSwork = setInterval(function () {
+                cont = 0;
                 temp = G_lsloop.concat();
                 console.info(TAG, temp);
-                if (temp[0] == intVal) {
-                    fns(temp);
-                    clearInterval(work);
+                for (let i = 0; i < arrayVal.length; i++) {
+                    if (temp[i] == arrayVal[i]) {
+                        if (debug) console.log('temp[i]', temp[i]);
+                        if (debug) console.log('arrayVal[i]', arrayVal[i]);
+                        cont++;
+                    }
+                }
+                if (cont == arrayVal.length) {
+                    console.info(TAG, temp);
+                    clearInterval(T_TopSearchSwork);
                 }
             }, 200)
         }
