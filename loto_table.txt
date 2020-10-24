@@ -119,6 +119,8 @@ CREATE TABLE n9k(
 ////////////////////////////////////////////////////////////////////////
 ftp -s:xxx.txt
 close
+?
+lcd
 open cdefgab.web.fc2.com
 cdefgab
 123456789

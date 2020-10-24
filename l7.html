@@ -1046,15 +1046,6 @@
             for (let i = 0; i < 19; i++) {
                 tbrs[i + 19].innerText = topNums[i][0];
             }
-
-            function G_m_f() {
-                if (G_fnsa) {
-                    G_num_filter = G_fnsa.concat();
-                    this.firstElementChild.innerText = G_num_filter.sort((a, b) => a - b);
-                    console.info(TAG, this.firstElementChild.innerText);
-                }
-            }
-            document.getElementById('G_num_filter').addEventListener('click', G_m_f, true);
         }
 
         function T_show_topColor(arrayVal) {
@@ -1118,7 +1109,7 @@
             }
             localStorage.removeItem(timeKey.innerText);
             this.parentElement.parentElement.removeChild(this.parentElement);
-            localStorage_master();
+            F_selectNums();
         }
 
         function localStorage_pageload() {
@@ -1152,7 +1143,7 @@
                             }
                         }
                     }
-                    localStorage_master();
+                    F_selectNums();
                 } else {
                     return;
                 }
@@ -1173,7 +1164,7 @@
                 if (req.readyState == 4 && req.status == 200) {
                     if (debug) console.log(TAG, 'setp2');
                     localStorage_additem_add(arrayVal);
-                    localStorage_master();
+                    F_selectNums();
                 } else {
                     return;
                 }
@@ -1210,7 +1201,7 @@
             }
         }
 
-        function localStorage_master() {
+        function localStorage_master2() {
             // 選択番号と選択番号
             let debug = false;
             let TAG = 'log_localStorage_master->';
@@ -1225,7 +1216,6 @@
             }
             document.getElementById('Selected').innerText = 'G_Lmaster[] ' + G_Lmaster.sort((a, b) => a - b);
             document.getElementById('noselected').innerText = T_Excluded_number(G_Lmaster);
-            let test = G_Lmaster.concat().sort((a, b) => a - b);
             let temp = '';
             let iv = 0;
             for (let i = 0; i < G_Lmaster.length; i++) {
@@ -1234,6 +1224,49 @@
                 } else {
                     iv = G_Lmaster[i];
                     temp = temp + '<br>' + G_Lmaster[i];
+                }
+            }
+            if (debug) console.log(TAG, temp);
+            document.getElementById('Selected').innerHTML = temp;
+        }
+
+        function localStorage_master() {
+            let debug = false;
+            let TAG = 'log_localStorage_master->';
+            let G_LocalMaster = [];
+            let master_temp = [];
+            for (let i = 0; i < localStorage.length; i++) {
+                let master_temp = [];
+                localStorage.getItem(localStorage.key(i)).split(',').forEach(function (e) {
+                    master_temp.push(parseInt(e));
+                })
+                if (master_temp.length == LBsize79) {
+                    G_LocalMaster[G_LocalMaster.length] = master_temp;
+                }
+            }
+            if (debug) console.log(TAG, G_LocalMaster);
+            return G_LocalMaster;
+        }
+
+        function F_selectNums() {
+            let debug = false;
+            let TAG = 'log_F_selectNums->';
+            let tx = localStorage_master();
+            temp2 = [];
+            let temp = '';
+            let iv = 0;
+            tx.forEach(function (e) {
+                for (let i = 0; i < LBsize79 - 2; i++) {
+                    temp2.push(e[i]);
+                }
+            })
+            temp2.sort((a, b) => a - b);
+            for (let i = 0; i < temp2.length; i++) {
+                if (temp2[i] == iv) {
+                    temp = temp + ',' + temp2[i];
+                } else {
+                    iv = temp2[i];
+                    temp = temp + '<br>' + temp2[i];
                 }
             }
             if (debug) console.log(TAG, temp);
@@ -1292,11 +1325,12 @@
             hit_table();
             setTimeout(function () {
                 console.log(TAG, 'roolclock');
-                roolclock();
                 localStorage_pageload();
-                T_show_topNums();
-                T_show_top10Nums();
+                roolclock();
                 F_lsloop();
+                T_show_top10Nums();
+                T_show_topNums();
+                F_selectNums();
             }, 1000);
             help();
         });
@@ -1314,9 +1348,6 @@
     <p id="p1"></p>
     <p id="p2"></p>
     <p id="txd"></p>
-    <div>fns( [8,9,13,14,22,24,35] ) d3c = 26 sort</div>
-    <div>fns( [3,6,7,23,24,31,32] ) d3c = 21 sort xxx</div>
-    <div>fns( [4,9,11,23,24,34,35] ) d3c = 23 sort </div>
     <div class="tableaera">
         <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
             <tbody id="tb2">
@@ -1345,7 +1376,7 @@
     <div id="noselected">noselected</div>
     <br>
     <div id="G_num_filter">G_num_filter=[]
-        <div>2,4,5,12,16,20,25,29,31,33</div>
+        <div>xx,xx,xx,xx,xx,xx,xx</div>
     </div>
     <br>
     <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
