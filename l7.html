@@ -474,30 +474,42 @@
 
             W_lsloop = setInterval(function () {
                 let bnum = [];
-                let bindex = 0;
-                let btemp = 0;
+                let randomIndex = 0;
+                let numTemp = 0;
+                let errorCount = 0;
                 do {
-                    bindex = Math.floor(Math.random() * (1 - G_base_nums2[0].length) + G_base_nums2[0].length);
+                    // 本番数字
+                    randomIndex = Math.floor(Math.random() * (1 - G_base_nums2[0].length) + G_base_nums2[0].length);
                     if (bnum.length == 0) {
-                        btemp = G_base_nums2[bnum.length][bindex];
-                        if (G_num_filter.indexOf(btemp) == -1) {
-                            bnum.push(btemp);
+                        numTemp = G_base_nums2[bnum.length][randomIndex];
+                        if (G_num_filter.indexOf(numTemp) == -1) {
+                            bnum.push(numTemp);
                         }
                     } else {
-                        btemp = G_base_nums2[bnum.length][bindex];
-                        if (bnum.indexOf(btemp) == -1 && btemp > bnum[bnum.length - 1] && G_num_filter.indexOf(btemp) == -1) {
-                            bnum.push(btemp);
+                        numTemp = G_base_nums2[bnum.length][randomIndex];
+                        if (bnum.indexOf(numTemp) == -1 && numTemp > bnum[bnum.length - 1] && G_num_filter.indexOf(numTemp) == -1) {
+                            bnum.push(numTemp);
                         }
                     }
+                    if (errorCount++ > 9000) {
+                        break;
+                    }
                 } while (bnum.length < LBsize79 - 2);
+                errorCount = 0;
 
                 do {
-                    bindex = Math.floor(Math.random() * (1 - G_base_nums2[0].length) + G_base_nums2[0].length);
-                    btemp = G_base_nums2[bnum.length][bindex];
-                    if (bnum.indexOf(btemp) == -1 && G_num_filter.indexOf(btemp) == -1) {
-                        bnum.push(btemp);
+                    // ボーナス数字
+                    randomIndex = Math.floor(Math.random() * (1 - G_base_nums2[0].length) + G_base_nums2[0].length);
+                    numTemp = G_base_nums2[bnum.length][randomIndex];
+                    if (bnum.indexOf(numTemp) == -1 && G_num_filter.indexOf(numTemp) == -1) {
+                        bnum.push(numTemp);
+                    }
+                    if (errorCount++ > 9000) {
+                        break;
                     }
                 } while (bnum.length < LBsize79)
+                errorCount = 0;
+
                 if (bnum.length == LBsize79) {
                     G_lsloop = bnum.concat();
                     p1.innerText = count++;
@@ -627,34 +639,45 @@
         function ls(intVal = LBsize79) {
             // G_base_nums2と参照する。
             let bnum = [];
-            let bindex = 0;
-            let btemp = 0;
-            do {
-                bindex = Math.floor(Math.random() * (1 - G_base_nums2[0].length) + G_base_nums2[0].length);
-                if (bnum.length == 0) {
-                    btemp = G_base_nums2[bnum.length][bindex];
-                    if (G_num_filter.indexOf(btemp) == -1) {
-                        bnum.push(btemp);
-                    }
-                } else {
-                    btemp = G_base_nums2[bnum.length][bindex];
-                    if (bnum.indexOf(btemp) == -1 && btemp > bnum[bnum.length - 1] && G_num_filter.indexOf(btemp) == -1) {
-                        bnum.push(btemp);
-                    }
-                }
-            } while (bnum.length < LBsize79 - 2);
+            let randomIndex = 0;
+            let numTemp = 0;
+            let errorCount = 0;
 
             do {
-                bindex = Math.floor(Math.random() * (1 - G_base_nums2[0].length) + G_base_nums2[0].length);
-                btemp = G_base_nums2[bnum.length][bindex];
-                if (bnum.indexOf(btemp) == -1 && G_num_filter.indexOf(btemp) == -1) {
-                    bnum.push(btemp);
+                // 本番数字
+                randomIndex = Math.floor(Math.random() * (1 - G_base_nums2[0].length) + G_base_nums2[0].length);
+                if (bnum.length == 0) {
+                    numTemp = G_base_nums2[bnum.length][randomIndex];
+                    if (G_num_filter.indexOf(numTemp) == -1) {
+                        bnum.push(numTemp);
+                    }
+                } else {
+                    numTemp = G_base_nums2[bnum.length][randomIndex];
+                    if (bnum.indexOf(numTemp) == -1 && numTemp > bnum[bnum.length - 1] && G_num_filter.indexOf(numTemp) == -1) {
+                        bnum.push(numTemp);
+                    }
+                }
+                if (errorCount++ > 9000) {
+                    break;
+                }
+            } while (bnum.length < LBsize79 - 2);
+            errorCount = 0;
+
+            do {
+                // ボーナス数字
+                randomIndex = Math.floor(Math.random() * (1 - G_base_nums2[0].length) + G_base_nums2[0].length);
+                numTemp = G_base_nums2[bnum.length][randomIndex];
+                if (bnum.indexOf(numTemp) == -1 && G_num_filter.indexOf(numTemp) == -1) {
+                    bnum.push(numTemp);
+                }
+                if (errorCount++ > 9000) {
+                    break;
                 }
             } while (bnum.length < LBsize79)
+            errorCount = 0;
             if (bnum.length == LBsize79) {
-                G_lsloop = bnum.concat();
+                return bnum;
             }
-            return bnum;
         }
 
         function ls2(intVal = LBsize79) {
