@@ -892,6 +892,7 @@
             let tb = document.getElementById('tb1');
             let trs = tb.getElementsByTagName('tr');
             let iid = 0;
+
             let clock1 = function () {
                 if (debug) console.log(TAG, 'clock1');
                 fadr = [];
@@ -906,14 +907,14 @@
                 F_colorClear(2);
                 this.nextElementSibling.style.backgroundColor = F_color(2)[45];
                 if (debug) console.log(TAG, this);
-                fns(rolldata[this.innerText], 1, 0, 1, rolldata.length - this.innerText + 6);
+                fns(rolldata[this.innerText - 1], 1, 0, 1, rolldata.length - this.innerText + 6);
                 // fns(rolldata[this.innerText], 0, 0, 1);
             }
 
             let dblclick1 = function () {
                 if (debug) console.log(TAG, 'dblclick1');
                 G_fnsa = [];
-                fns(rolldata[this.innerText], 0, 0, 1);
+                fns(rolldata[this.innerText - 1], 0, 0, 1);
                 // fns(rolldata[this.innerText], 1, 0, 1, rolldata.length - this.innerText + 6);
             }
 
