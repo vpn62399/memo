@@ -166,12 +166,13 @@
         }
 
         function hit_table() {
+            //
             let tb = document.getElementById('hide');
             tb.addEventListener('click', function () {
-                let tab = document.getElementsByTagName('table')[0];
+                let tab = document.getElementById('heid');
                 if (tab.getAttribute('style') == 'display:none') {
                     // tab.setAttribute('style', '');
-                    console.log("document.getElementsByTagName('table')[0].setAttribute('style','')");
+                    console.info("document.getElementsByTagName('table')[0].setAttribute('style','')");
                 } else {
                     tab.setAttribute('style', 'display:none');
                 }
@@ -457,6 +458,7 @@
         var G_base_nums2 = [];
         //l7.html:294 fns( [2,16,25,12,33,5,20,29,31,4] )  d3c = 55
         function F_lsloop(intval = LBsize79) {
+            // 循環にランダム番号を生成する、抽選番号マスターアレーを2次元配列と参照する．
             let debut = true;
             let TAG = 'log_F_lsloop->';
             let p1 = document.getElementById('p1');
@@ -759,6 +761,7 @@
                     table.sort((b, a) => a[1] - b[1]);
                     break;
             }
+            console.table(table);
             return table;
         }
 
@@ -837,10 +840,11 @@
             let TAG = 'log_T_TopSearch->';
             let temp = [];
             let cont = 0;
-            T_TopSearchSwork = setInterval(function () {
+            let contc = 0;
+            W_TopSearchSwork = setInterval(function () {
                 cont = 0;
                 temp = G_lsloop.concat();
-                console.info(TAG, temp);
+                console.info(TAG + contc++, temp);
                 for (let i = 0; i < arrayVal.length; i++) {
                     if (temp[i] == arrayVal[i]) {
                         if (debug) console.log('temp[i]', temp[i]);
@@ -849,8 +853,8 @@
                     }
                 }
                 if (cont == arrayVal.length) {
-                    console.info(TAG, temp);
-                    clearInterval(T_TopSearchSwork);
+                    console.info(TAG + contc, temp);
+                    clearInterval(W_TopSearchSwork);
                 }
             }, 200)
         }
@@ -1321,6 +1325,7 @@
             console.info('G_fnsa:', '選択番号1個追加');
             console.info('G_lms:', '抽選番号マスター');
             console.info('T_ncont2()', '出番と購入の比較');
+            console.info('T_TopSearch()', '指定番号まで確認');
             console.info('fns():', 'htmlと参照');
             console.info('fns2():', 'masterと参照');
             console.info('T_addr():', '[]番号を追加,番号の出番を確認');
@@ -1370,15 +1375,67 @@
 
     </script>
     <Button id="hide">style</Button>
-    <p id="p1"></p>
-    <p id="p2"></p>
-    <p id="txd"></p>
-    <div class="tableaera">
+    <div id="heid">
+        <p id="p1"></p>
+        <p id="p2"></p>
+        <p id="txd"></p>
+        <div class="tableaera">
+            <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
+                <tbody id="tb2">
+                    <tr align="right">
+                        <td style="display:none">getItem</td>
+                        <td>DEL date</td>
+                        <td class="n">(x1)</td>
+                        <td class="n">(x2)</td>
+                        <td class="n">(x3)</td>
+                        <td class="n">(x4)</td>
+                        <td class="n">(x5)</td>
+                        <td class="n">(x6)</td>
+                        <td class="n">(x7)</td>
+                        <td class="n">(x8)</td>
+                        <td class="n">(x9)</td>
+                        <td>SetItem(5)</td>
+                        <td>レ9</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <div>Select Number</div>
+        <div id="Selected">Select Number</div>
+        <br>
+        <div>noselected</div>
+        <div id="noselected">noselected</div>
+        <br>
+        <div id="G_num_filter">G_num_filter=[]
+            <div>xx,xx,xx,xx,xx,xx,xx</div>
+        </div>
+        <br>
         <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
-            <tbody id="tb2">
-                <tr align="right">
-                    <td style="display:none">getItem</td>
-                    <td>DEL date</td>
+            <tbody id="tb3">
+                <tr>
+                    <td class="table">Tops</td>
+                    <td>(x1)</td>
+                    <td>(x2)</td>
+                    <td>(x3)</td>
+                    <td>(x4)</td>
+                    <td>(x5)</td>
+                    <td>(x6)</td>
+                    <td>(x7)</td>
+                    <td>(x8)</td>
+                    <td>(x9)</td>
+                    <td>(xA)</td>
+                    <td>(xB)</td>
+                    <td>(xC)</td>
+                    <td>(xD)</td>
+                    <td>(xE)</td>
+                    <td>(xA)</td>
+                    <td>(xB)</td>
+                    <td>(xC)</td>
+                    <td>(xD)</td>
+                    <td>(xE)</td>
+                </tr>
+                <tr>
+                    <td class="table">top</td>
                     <td class="n">(x1)</td>
                     <td class="n">(x2)</td>
                     <td class="n">(x3)</td>
@@ -1388,172 +1445,68 @@
                     <td class="n">(x7)</td>
                     <td class="n">(x8)</td>
                     <td class="n">(x9)</td>
-                    <td>SetItem(5)</td>
-                    <td>レ9</td>
+                    <td class="n">(xA)</td>
+                    <td class="n">(xB)</td>
+                    <td class="n">(xD)</td>
+                    <td class="n">(xD)</td>
+                    <td class="n">(xE)</td>
+                    <td class="n">(xA)</td>
+                    <td class="n">(xB)</td>
+                    <td class="n">(xD)</td>
+                    <td class="n">(xD)</td>
+                    <td class="n">(xE)</td>
+                </tr>
+                <tr>
+                    <td class="table">down</td>
+                    <td class="n">(x1)</td>
+                    <td class="n">(x2)</td>
+                    <td class="n">(x3)</td>
+                    <td class="n">(x4)</td>
+                    <td class="n">(x5)</td>
+                    <td class="n">(x6)</td>
+                    <td class="n">(x7)</td>
+                    <td class="n">(x8)</td>
+                    <td class="n">(x9)</td>
+                    <td class="n">(xA)</td>
+                    <td class="n">(xB)</td>
+                    <td class="n">(xD)</td>
+                    <td class="n">(xD)</td>
+                    <td class="n">(xE)</td>
+                    <td class="n">(xA)</td>
+                    <td class="n">(xB)</td>
+                    <td class="n">(xD)</td>
+                    <td class="n">(xD)</td>
+                    <td class="n">(xE)</td>
                 </tr>
             </tbody>
         </table>
-    </div>
-    <div>Select Number</div>
-    <div id="Selected">Select Number</div>
-    <br>
-    <div>noselected</div>
-    <div id="noselected">noselected</div>
-    <br>
-    <div id="G_num_filter">G_num_filter=[]
-        <div>xx,xx,xx,xx,xx,xx,xx</div>
-    </div>
-    <br>
-    <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
-        <tbody id="tb3">
-            <tr>
-                <td class="table">Tops</td>
-                <td>(x1)</td>
-                <td>(x2)</td>
-                <td>(x3)</td>
-                <td>(x4)</td>
-                <td>(x5)</td>
-                <td>(x6)</td>
-                <td>(x7)</td>
-                <td>(x8)</td>
-                <td>(x9)</td>
-                <td>(xA)</td>
-                <td>(xB)</td>
-                <td>(xC)</td>
-                <td>(xD)</td>
-                <td>(xE)</td>
-                <td>(xA)</td>
-                <td>(xB)</td>
-                <td>(xC)</td>
-                <td>(xD)</td>
-                <td>(xE)</td>
-            </tr>
-            <tr>
-                <td class="table">top</td>
-                <td class="n">(x1)</td>
-                <td class="n">(x2)</td>
-                <td class="n">(x3)</td>
-                <td class="n">(x4)</td>
-                <td class="n">(x5)</td>
-                <td class="n">(x6)</td>
-                <td class="n">(x7)</td>
-                <td class="n">(x8)</td>
-                <td class="n">(x9)</td>
-                <td class="n">(xA)</td>
-                <td class="n">(xB)</td>
-                <td class="n">(xD)</td>
-                <td class="n">(xD)</td>
-                <td class="n">(xE)</td>
-                <td class="n">(xA)</td>
-                <td class="n">(xB)</td>
-                <td class="n">(xD)</td>
-                <td class="n">(xD)</td>
-                <td class="n">(xE)</td>
-            </tr>
-            <tr>
-                <td class="table">down</td>
-                <td class="n">(x1)</td>
-                <td class="n">(x2)</td>
-                <td class="n">(x3)</td>
-                <td class="n">(x4)</td>
-                <td class="n">(x5)</td>
-                <td class="n">(x6)</td>
-                <td class="n">(x7)</td>
-                <td class="n">(x8)</td>
-                <td class="n">(x9)</td>
-                <td class="n">(xA)</td>
-                <td class="n">(xB)</td>
-                <td class="n">(xD)</td>
-                <td class="n">(xD)</td>
-                <td class="n">(xE)</td>
-                <td class="n">(xA)</td>
-                <td class="n">(xB)</td>
-                <td class="n">(xD)</td>
-                <td class="n">(xD)</td>
-                <td class="n">(xE)</td>
-            </tr>
-        </tbody>
-    </table>
-    <br>
-    <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
-        <tbody id="tb4">
-            <tr>
-                <td class="table">Tops</td>
-                <td>(x1)</td>
-                <td>(x2)</td>
-                <td>(x3)</td>
-                <td>(x4)</td>
-                <td>(x5)</td>
-                <td>(x6)</td>
-                <td>(x7)</td>
-                <td>(x8)</td>
-                <td>(x9)</td>
-                <td>(xA)</td>
-                <td>(xB)</td>
-                <td>(xC)</td>
-                <td>(xD)</td>
-                <td>(xE)</td>
-                <td>(xA)</td>
-                <td>(xB)</td>
-                <td>(xC)</td>
-                <td>(xD)</td>
-                <td>(xE)</td>
-            </tr>
-            <tr>
-                <td class="table">top</td>
-                <td class="n">(x1)</td>
-                <td class="n">(x2)</td>
-                <td class="n">(x3)</td>
-                <td class="n">(x4)</td>
-                <td class="n">(x5)</td>
-                <td class="n">(x6)</td>
-                <td class="n">(x7)</td>
-                <td class="n">(x8)</td>
-                <td class="n">(x9)</td>
-                <td class="n">(xA)</td>
-                <td class="n">(xB)</td>
-                <td class="n">(xD)</td>
-                <td class="n">(xD)</td>
-                <td class="n">(xE)</td>
-                <td class="n">(xA)</td>
-                <td class="n">(xB)</td>
-                <td class="n">(xD)</td>
-                <td class="n">(xD)</td>
-                <td class="n">(xE)</td>
-            </tr>
-            <tr>
-                <td class="table">down</td>
-                <td class="n">(x1)</td>
-                <td class="n">(x2)</td>
-                <td class="n">(x3)</td>
-                <td class="n">(x4)</td>
-                <td class="n">(x5)</td>
-                <td class="n">(x6)</td>
-                <td class="n">(x7)</td>
-                <td class="n">(x8)</td>
-                <td class="n">(x9)</td>
-                <td class="n">(xA)</td>
-                <td class="n">(xB)</td>
-                <td class="n">(xD)</td>
-                <td class="n">(xD)</td>
-                <td class="n">(xE)</td>
-                <td class="n">(xA)</td>
-                <td class="n">(xB)</td>
-                <td class="n">(xD)</td>
-                <td class="n">(xD)</td>
-                <td class="n">(xE)</td>
-            </tr>
-        </tbody>
-    </table>
-    <p> </p>
-    <button id="fnsw">AddFns([])</button>
-    <P> </P>
-    <div class="tableaera">
+        <br>
         <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
-            <tbody id="tb1">
-                <tr align="right">
-                    <td>回別</td>
-                    <td class="d">抽選日</td>
+            <tbody id="tb4">
+                <tr>
+                    <td class="table">Tops</td>
+                    <td>(x1)</td>
+                    <td>(x2)</td>
+                    <td>(x3)</td>
+                    <td>(x4)</td>
+                    <td>(x5)</td>
+                    <td>(x6)</td>
+                    <td>(x7)</td>
+                    <td>(x8)</td>
+                    <td>(x9)</td>
+                    <td>(xA)</td>
+                    <td>(xB)</td>
+                    <td>(xC)</td>
+                    <td>(xD)</td>
+                    <td>(xE)</td>
+                    <td>(xA)</td>
+                    <td>(xB)</td>
+                    <td>(xC)</td>
+                    <td>(xD)</td>
+                    <td>(xE)</td>
+                </tr>
+                <tr>
+                    <td class="table">top</td>
                     <td class="n">(x1)</td>
                     <td class="n">(x2)</td>
                     <td class="n">(x3)</td>
@@ -1561,107 +1514,21 @@
                     <td class="n">(x5)</td>
                     <td class="n">(x6)</td>
                     <td class="n">(x7)</td>
-                    <td class="n">ボ1</td>
-                    <td class="n">ボ2</td>
-                    <td>口数</td>
-                    <td>選金</td>
-                    <td>オバ</td>
-                    <td>レ9</td>
-                    <td>レ7</td>
+                    <td class="n">(x8)</td>
+                    <td class="n">(x9)</td>
+                    <td class="n">(xA)</td>
+                    <td class="n">(xB)</td>
+                    <td class="n">(xD)</td>
+                    <td class="n">(xD)</td>
+                    <td class="n">(xE)</td>
+                    <td class="n">(xA)</td>
+                    <td class="n">(xB)</td>
+                    <td class="n">(xD)</td>
+                    <td class="n">(xD)</td>
+                    <td class="n">(xE)</td>
                 </tr>
-                <tr id=nx1 align="right">
-                    <td>000</td>
-                    <td class="d">2020/1/1</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td>0</td>
-                    <td>nx1</td>
-                    <td>0</td>
-                    <td>レ9</td>
-                    <td>レ7</td>
-                </tr>
-                <tr id=nx2 align="right">
-                    <td>000</td>
-                    <td class="d">2020/1/1</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td>0</td>
-                    <td>nx2</td>
-                    <td>0</td>
-                    <td>レ9</td>
-                    <td>レ7</td>
-                </tr>
-                <tr id=nx3 align="right">
-                    <td>000</td>
-                    <td class="d">2020/1/1</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td>0</td>
-                    <td>nx3</td>
-                    <td>0</td>
-                    <td>レ9</td>
-                    <td>レ7</td>
-                </tr>
-                <tr id=nx4 align="right">
-                    <td>000</td>
-                    <td class="d">2020/1/1</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td>0</td>
-                    <td>nx4</td>
-                    <td>0</td>
-                    <td>レ9</td>
-                    <td>レ7</td>
-                </tr>
-                <tr id=nx5 align="right">
-                    <td>000</td>
-                    <td class="d">2020/1/1</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td class="n">0</td>
-                    <td>0</td>
-                    <td>nx5</td>
-                    <td>0</td>
-                    <td>レ9</td>
-                    <td>レ7</td>
-                </tr>
-                <tr align="right">
-                    <td>回別</td>
-                    <td class="d">抽選日</td>
+                <tr>
+                    <td class="table">down</td>
                     <td class="n">(x1)</td>
                     <td class="n">(x2)</td>
                     <td class="n">(x3)</td>
@@ -1669,16 +1536,156 @@
                     <td class="n">(x5)</td>
                     <td class="n">(x6)</td>
                     <td class="n">(x7)</td>
-                    <td class="n">ボ1</td>
-                    <td class="n">ボ2</td>
-                    <td>口数</td>
-                    <td>選金</td>
-                    <td>オバ</td>
-                    <td>レ9</td>
-                    <td>レ7</td>
+                    <td class="n">(x8)</td>
+                    <td class="n">(x9)</td>
+                    <td class="n">(xA)</td>
+                    <td class="n">(xB)</td>
+                    <td class="n">(xD)</td>
+                    <td class="n">(xD)</td>
+                    <td class="n">(xE)</td>
+                    <td class="n">(xA)</td>
+                    <td class="n">(xB)</td>
+                    <td class="n">(xD)</td>
+                    <td class="n">(xD)</td>
+                    <td class="n">(xE)</td>
                 </tr>
             </tbody>
         </table>
+        <p> </p>
+        <button id="fnsw">AddFns([])</button>
+        <P> </P>
+        <div class="tableaera">
+            <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
+                <tbody id="tb1">
+                    <tr align="right">
+                        <td>回別</td>
+                        <td class="d">抽選日</td>
+                        <td class="n">(x1)</td>
+                        <td class="n">(x2)</td>
+                        <td class="n">(x3)</td>
+                        <td class="n">(x4)</td>
+                        <td class="n">(x5)</td>
+                        <td class="n">(x6)</td>
+                        <td class="n">(x7)</td>
+                        <td class="n">ボ1</td>
+                        <td class="n">ボ2</td>
+                        <td>口数</td>
+                        <td>選金</td>
+                        <td>オバ</td>
+                        <td>レ9</td>
+                        <td>レ7</td>
+                    </tr>
+                    <tr id=nx1 align="right">
+                        <td>000</td>
+                        <td class="d">2020/1/1</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td>0</td>
+                        <td>nx1</td>
+                        <td>0</td>
+                        <td>レ9</td>
+                        <td>レ7</td>
+                    </tr>
+                    <tr id=nx2 align="right">
+                        <td>000</td>
+                        <td class="d">2020/1/1</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td>0</td>
+                        <td>nx2</td>
+                        <td>0</td>
+                        <td>レ9</td>
+                        <td>レ7</td>
+                    </tr>
+                    <tr id=nx3 align="right">
+                        <td>000</td>
+                        <td class="d">2020/1/1</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td>0</td>
+                        <td>nx3</td>
+                        <td>0</td>
+                        <td>レ9</td>
+                        <td>レ7</td>
+                    </tr>
+                    <tr id=nx4 align="right">
+                        <td>000</td>
+                        <td class="d">2020/1/1</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td>0</td>
+                        <td>nx4</td>
+                        <td>0</td>
+                        <td>レ9</td>
+                        <td>レ7</td>
+                    </tr>
+                    <tr id=nx5 align="right">
+                        <td>000</td>
+                        <td class="d">2020/1/1</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td>0</td>
+                        <td>nx5</td>
+                        <td>0</td>
+                        <td>レ9</td>
+                        <td>レ7</td>
+                    </tr>
+                    <tr align="right">
+                        <td>回別</td>
+                        <td class="d">抽選日</td>
+                        <td class="n">(x1)</td>
+                        <td class="n">(x2)</td>
+                        <td class="n">(x3)</td>
+                        <td class="n">(x4)</td>
+                        <td class="n">(x5)</td>
+                        <td class="n">(x6)</td>
+                        <td class="n">(x7)</td>
+                        <td class="n">ボ1</td>
+                        <td class="n">ボ2</td>
+                        <td>口数</td>
+                        <td>選金</td>
+                        <td>オバ</td>
+                        <td>レ9</td>
+                        <td>レ7</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
     <p> </p>
     <p> </p>
