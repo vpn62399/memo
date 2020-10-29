@@ -517,6 +517,21 @@
                     p2.innerText = G_lsloop;
                 }
             }, 10)
+
+            function check(intVal, intVal2) {
+                // ランダムの発生状況を確認のため
+                let temp = [];
+                let count = 0;
+                w_test = setInterval(function () {
+                    temp.push(G_lsloop[intVal]);
+                    count++;
+                    if (count == intVal2) {
+                        clearInterval(w_test);
+                        console.log(temp.sort((a, b) => a - b));
+                    }
+                }, 20)
+                return temp;
+            }
         }
 
         function F_lsloop2(intval = LBsize79) {
