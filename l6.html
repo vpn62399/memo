@@ -547,6 +547,15 @@
                     base_nums.push(G_lms[i][j]);
                 }
             }
+            G_base_nums2 = [];
+            for (let i = 0; i < LBsize79; i++) {
+                G_base_nums2[i] = [];
+                for (let j = 0; j < G_lms.length; j++) {
+                    if (!isNaN(parseInt(G_lms[j][i]))) {
+                        G_base_nums2[i].push(G_lms[j][i]);
+                    }
+                }
+            }
             console.info(TAG + 'base_nums = ', base_nums);
             if (base_nums.length == 0) {
                 F_lsloop(LBsize79);
