@@ -539,17 +539,18 @@
                 return temp;
             }
 
-            function T_baseReport() {
+            function T_baseReport(arrayVal) {
                 let base = [];
-                for(let j=0; j<LSize76; i++)
-                for (let i = 0; i < LMax3743; i++) {
+                let aVal = arrayVal.concat();
+                for (let i = 0; i < LSize76; i++) {
+                    console.log(aVal[i]);
                     base[i] = [];
-
+                    for (let j = 0; j < LMax3743; j++) {
+                        let temp = aVal[i].filter(x => x == j);
+                        console.log(j + '-' + i, temp.length);
+                    }
                 }
             }
-
-
-
         }
 
         function F_lsloop2(intval = LBsize79) {
