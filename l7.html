@@ -18,6 +18,7 @@
         const LMax3743 = 37;
         const LSize76 = 7;
         const LBsize79 = 9;
+        const TAGLine = '---------------------------------------';
         const debug = false;
         function F_httprequest() {
             let req = new XMLHttpRequest();
@@ -63,7 +64,7 @@
             } while (tr != '');
         }
 
-        var G_lms = [];
+        var G_base_numsX = [];
         function F_create_master(str) {
             // すべての抽選数字をarrayに取得
             let debug = false;
@@ -73,13 +74,13 @@
             let ttable = document.getElementById('tb1');
             let ttfe = ttable.firstElementChild;
             for (let i = 0; i < tr.length; i++) {
-                G_lms[i] = [];
+                G_base_numsX[i] = [];
                 let td = tr[i].split(',');
                 for (let j = 2; j < 11; j++) {
-                    G_lms[i].push(parseInt(td[j]));
+                    G_base_numsX[i].push(parseInt(td[j]));
                 }
             }
-            return G_lms.reverse();
+            return G_base_numsX.reverse();
         }
 
         function F_create_master2() {
@@ -88,21 +89,21 @@
             let debug = false;
             let TAG = 'log_F_create_master2->';
             if (debug) console.log(TAG, 'master2()');
-            G_lms = [];
+            G_base_numsX = [];
             let li = 0;
             let tb = document.getElementById('tb1');
             let fc = tb.firstElementChild;
             do {
-                G_lms[li] = [];
+                G_base_numsX[li] = [];
                 let da = fc.getElementsByTagName('td');
                 if (da.length > LBsize79) {
                     for (let i = 2; i < 11; i++) {
-                        G_lms[li].push(parseInt(da[i].innerText));
+                        G_base_numsX[li].push(parseInt(da[i].innerText));
                     }
                     li++;
                 }
             } while (fc = fc.nextElementSibling);
-            return G_lms.reverse();
+            return G_base_numsX.reverse();
         }
 
         function F_colorClear(intVal) {
@@ -183,7 +184,7 @@
             // テーブルのアレと比較
             let debug = true;
             let TAG = 'log_fns2->';
-            let test = G_lms.concat();
+            let test = G_base_numsX.concat();
             let vx = 0;
             let contA = 0;
             let contB = 0;
@@ -455,7 +456,7 @@
 
         var G_lsloop = [];
         var G_num_filter = [];   //番号フィルタ
-        var G_base_nums2 = [];
+        var G_base_numsY = [];
         //l7.html:294 fns( [2,16,25,12,33,5,20,29,31,4] )  d3c = 55
         function F_lsloop(intval = LBsize79) {
             // 循環にランダム番号を生成する、抽選番号マスターアレーを2次元配列と参照する．
@@ -464,12 +465,12 @@
             let p1 = document.getElementById('p1');
             let p2 = document.getElementById('p2');
             let count = 0;
-            G_base_nums2 = [];
+            G_base_numsY = [];
             for (let i = 0; i < LBsize79; i++) {
-                G_base_nums2[i] = [];
-                for (let j = 0; j < G_lms.length; j++) {
-                    if (!isNaN(parseInt(G_lms[j][i]))) {
-                        G_base_nums2[i].push(G_lms[j][i]);
+                G_base_numsY[i] = [];
+                for (let j = 0; j < G_base_numsX.length; j++) {
+                    if (!isNaN(parseInt(G_base_numsX[j][i]))) {
+                        G_base_numsY[i].push(G_base_numsX[j][i]);
                     }
                 }
             }
@@ -481,14 +482,14 @@
                 let errorCount = 0;
                 do {
                     // 本番数字
-                    randomIndex = Math.floor(Math.random() * (1 - G_base_nums2[0].length) + G_base_nums2[0].length);
+                    randomIndex = Math.floor(Math.random() * (1 - G_base_numsY[0].length) + G_base_numsY[0].length);
                     if (bnum.length == 0) {
-                        numTemp = G_base_nums2[bnum.length][randomIndex];
+                        numTemp = G_base_numsY[bnum.length][randomIndex];
                         if (G_num_filter.indexOf(numTemp) == -1) {
                             bnum.push(numTemp);
                         }
                     } else {
-                        numTemp = G_base_nums2[bnum.length][randomIndex];
+                        numTemp = G_base_numsY[bnum.length][randomIndex];
                         if (bnum.indexOf(numTemp) == -1 && numTemp > bnum[bnum.length - 1] && G_num_filter.indexOf(numTemp) == -1) {
                             bnum.push(numTemp);
                         }
@@ -501,8 +502,8 @@
 
                 do {
                     // ボーナス数字
-                    randomIndex = Math.floor(Math.random() * (1 - G_base_nums2[0].length) + G_base_nums2[0].length);
-                    numTemp = G_base_nums2[bnum.length][randomIndex];
+                    randomIndex = Math.floor(Math.random() * (1 - G_base_numsY[0].length) + G_base_numsY[0].length);
+                    numTemp = G_base_numsY[bnum.length][randomIndex];
                     if (bnum.indexOf(numTemp) == -1 && G_num_filter.indexOf(numTemp) == -1) {
                         bnum.push(numTemp);
                     }
@@ -520,7 +521,7 @@
             }, 10)
 
             function check(intVal, intVal2) {
-                // ランダムの発生状況を確認のため
+                // Y列のランダムの発生状況を確認のため
                 let temp = [];
                 let count = 0;
                 let base = [];
@@ -538,19 +539,57 @@
                 }, 20)
                 return temp;
             }
+        }
 
-            function T_baseReport(arrayVal) {
-                let base = [];
-                let aVal = arrayVal.concat();
-                for (let i = 0; i < LSize76; i++) {
-                    console.log(aVal[i]);
-                    base[i] = [];
-                    for (let j = 0; j < LMax3743; j++) {
-                        let temp = aVal[i].filter(x => x == j);
-                        console.log(j + '-' + i, temp.length);
-                    }
+        function T_baseReport(arrayVal, intVal = 0) {
+            // arrayVal 統計するアレー,Y軸
+            // intVal アレーの長さ
+            let debug = false;
+            let TAG = 'log_T_baseReport->';
+            let aVal = JSON.parse(JSON.stringify(arrayVal));
+            G_base = [];
+
+            if (intVal != 0) {
+                for (let i = 0; i < LSize76 + 2; i++) {
+                    aVal[i] = aVal[i].reverse().slice(0, intVal);
                 }
             }
+
+            if (debug) console.log(TAG, aVal);
+            if (debug) console.log(arrayVal);
+            for (let i = 1; i < LMax3743 + 1; i++) {
+                G_base[i] = [];
+                for (let j = 0; j < LSize76 + 2; j++) {
+                    let temp = aVal[j].filter(x => x == i);
+                    G_base[i][j] = temp.length;
+                }
+            }
+            T_toTable(G_base);
+            console.info(TAG, TAGLine);
+            console.table(G_base);
+            console.info(TAG, aVal);
+            console.info(TAG, TAGLine);
+        }
+
+        function T_toTable(arrayVal) {
+            let tabera = document.getElementById('x6');
+            let temp = '';
+            for (let i = 1; i < LMax3743 + 1; i++) {
+                temp = temp + '<tr>';
+                temp = temp + '<td width="100">' + i + '</td>';
+                for (let j = 0; j < LSize76 + 2; j++) {
+                    xx = arrayVal[i][j];
+                    if (xx == 0) {
+                        temp = temp + '<td width="100">' + xx + '</td>';
+                    } else {
+                        temp = temp + '<td width="100" style="background-color: rgb(162 245 204)">' + xx + '</td>';
+                    }
+                }
+                temp = temp + '</tr>';
+            }
+
+            tabera.innerHTML = '<table table border="1" cellspacing="3"  cellpadding="0" bordercolor="#333333" style="display:"" ' + temp + '</table>';
+
         }
 
         function F_lsloop2(intval = LBsize79) {
@@ -561,17 +600,17 @@
             let p2 = document.getElementById('p2');
             let count = 0;
             let base_nums = [];
-            for (let i = 1; i < G_lms.length; i++) {
-                for (let j = 1; j < G_lms[i].length; j++) {
-                    base_nums.push(G_lms[i][j]);
+            for (let i = 1; i < G_base_numsX.length; i++) {
+                for (let j = 1; j < G_base_numsX[i].length; j++) {
+                    base_nums.push(G_base_numsX[i][j]);
                 }
             }
-            G_base_nums2 = [];
+            G_base_numsY = [];
             for (let i = 0; i < LBsize79; i++) {
-                G_base_nums2[i] = [];
-                for (let j = 0; j < G_lms.length; j++) {
-                    if (!isNaN(parseInt(G_lms[j][i]))) {
-                        G_base_nums2[i].push(G_lms[j][i]);
+                G_base_numsY[i] = [];
+                for (let j = 0; j < G_base_numsX.length; j++) {
+                    if (!isNaN(parseInt(G_base_numsX[j][i]))) {
+                        G_base_numsY[i].push(G_base_numsX[j][i]);
                     }
                 }
             }
@@ -611,9 +650,9 @@
             W_lsloop = setInterval(function () {
                 let j = [];
                 do {
-                    let x1 = Math.floor(Math.random() * (1 - G_lms.length) + G_lms.length);
+                    let x1 = Math.floor(Math.random() * (1 - G_base_numsX.length) + G_base_numsX.length);
                     let x2 = Math.floor(Math.random() * (1 - LBsize79) + LBsize79);
-                    let c = G_lms[x1][x2];
+                    let c = G_base_numsX[x1][x2];
                     if (debug) console.log(TAG, x1 + '   ' + x2 + '   ' + c);
                     if (c <= LMax3743) {
                         if (j.indexOf(c) == -1 && G_num_filter.indexOf(c) == -1) {
@@ -631,10 +670,10 @@
 
             //テストコード
             while (false) {
-                x_axis = Math.floor(Math.random() * (1 - G_lms.length) + G_lms.length);
+                x_axis = Math.floor(Math.random() * (1 - G_base_numsX.length) + G_base_numsX.length);
                 y_axis = Math.floor(Math.random() * (1 - LBsize79) + LBsize79);
-                console.log(G_lms[x_axis][y_axis]);
-                if (G_lms[c][d] == 37) {
+                console.log(G_base_numsX[x_axis][y_axis]);
+                if (G_base_numsX[c][d] == 37) {
                     break;
                 }
             }
@@ -681,7 +720,7 @@
         }
 
         function ls(intVal = LBsize79) {
-            // G_base_nums2と参照する。
+            // G_base_numsYと参照する。
             let bnum = [];
             let randomIndex = 0;
             let numTemp = 0;
@@ -689,14 +728,14 @@
 
             do {
                 // 本番数字
-                randomIndex = Math.floor(Math.random() * (1 - G_base_nums2[0].length) + G_base_nums2[0].length);
+                randomIndex = Math.floor(Math.random() * (1 - G_base_numsY[0].length) + G_base_numsY[0].length);
                 if (bnum.length == 0) {
-                    numTemp = G_base_nums2[bnum.length][randomIndex];
+                    numTemp = G_base_numsY[bnum.length][randomIndex];
                     if (G_num_filter.indexOf(numTemp) == -1) {
                         bnum.push(numTemp);
                     }
                 } else {
-                    numTemp = G_base_nums2[bnum.length][randomIndex];
+                    numTemp = G_base_numsY[bnum.length][randomIndex];
                     if (bnum.indexOf(numTemp) == -1 && numTemp > bnum[bnum.length - 1] && G_num_filter.indexOf(numTemp) == -1) {
                         bnum.push(numTemp);
                     }
@@ -709,8 +748,8 @@
 
             do {
                 // ボーナス数字
-                randomIndex = Math.floor(Math.random() * (1 - G_base_nums2[0].length) + G_base_nums2[0].length);
-                numTemp = G_base_nums2[bnum.length][randomIndex];
+                randomIndex = Math.floor(Math.random() * (1 - G_base_numsY[0].length) + G_base_numsY[0].length);
+                numTemp = G_base_numsY[bnum.length][randomIndex];
                 if (bnum.indexOf(numTemp) == -1 && G_num_filter.indexOf(numTemp) == -1) {
                     bnum.push(numTemp);
                 }
@@ -744,8 +783,8 @@
             let TAG = 'log_T_ncont->';
             let table = [];
             if (G_addr.length == 0) {
-                for (let i = 0; i < G_lms["length"]; i++) {
-                    T_addr(G_lms[i]);
+                for (let i = 0; i < G_base_numsX["length"]; i++) {
+                    T_addr(G_base_numsX[i]);
                 }
             }
 
@@ -758,8 +797,10 @@
                 })
                 table[i] = temp;
             }
+            console.info(TAG, TAGLine);
             console.info(TAG, table);
             console.table(table);
+            console.info(TAG, TAGLine);
         }
 
         function T_topNum(intVal = 1, top10 = 0) {
@@ -770,15 +811,15 @@
             let table = [];
             if (G_addr.length == 0) {
                 if (top10 == 0) {
-                    for (let i = 0; i < G_lms["length"]; i++) {
-                        T_addr(G_lms[i]);
+                    for (let i = 0; i < G_base_numsX["length"]; i++) {
+                        T_addr(G_base_numsX[i]);
                     }
                 }
                 if (top10 == 1) {
-                    if (debug) console.log(TAG, G_lms["length"] - 1);
-                    if (debug) console.log(TAG, G_lms["length"] - 11);
-                    for (let i = G_lms["length"] - 1; i > G_lms["length"] - 11; i--) {
-                        T_addr(G_lms[i]);
+                    if (debug) console.log(TAG, G_base_numsX["length"] - 1);
+                    if (debug) console.log(TAG, G_base_numsX["length"] - 11);
+                    for (let i = G_base_numsX["length"] - 1; i > G_base_numsX["length"] - 11; i--) {
+                        T_addr(G_base_numsX[i]);
                     }
                 }
             }
@@ -803,7 +844,6 @@
                     table.sort((b, a) => a[1] - b[1]);
                     break;
             }
-            console.table(table);
             return table;
         }
 
@@ -830,8 +870,8 @@
 
             G_addr = [];
             if (G_addr.length == 0) {
-                for (let i = 0; i < G_lms["length"]; i++) {
-                    T_addr(G_lms[i]);
+                for (let i = 0; i < G_base_numsX["length"]; i++) {
+                    T_addr(G_base_numsX[i]);
                 }
             }
 
@@ -843,7 +883,9 @@
                 })
             }
 
+            console.info(TAG, TAGLine);
             console.table(table);
+            console.info(TAG, TAGLine);
             for (let i = 1; i <= LMax3743; i++) {
                 var a = '';
                 for (let t1 = 1; t1 < table[i][0]; t1++) {
@@ -935,7 +977,7 @@
             let TAG = 'log_roolclock'
             if (debug) console.log(TAG, 'roolclock');
             let fadr = [];
-            let rolldata = G_lms;
+            let rolldata = G_base_numsX;
             let tb = document.getElementById('tb1');
             let trs = tb.getElementsByTagName('tr');
             let iid = 0;
@@ -1078,7 +1120,8 @@
         }
 
         function T_show_topNums() {
-            //
+            // index の順番は数字の出番の順番になり。
+            // index（順番), 0(抽選番号), 1(番号の出回数)
             let debug = false;
             let TAG = 'log_T_show_topNums->';
             let tb3 = document.getElementById('tb3');
@@ -1088,6 +1131,10 @@
                 tbrs[i].innerText = topNums[i][0];
             }
             topNums = T_topNum(1);
+            console.info(TAG, TAGLine);
+            console.info(TAG, 'index（順番), 0(抽選番号), 1(番号の出回数)');
+            console.table(topNums);
+            console.info(TAG, TAGLine);
             for (let i = 0; i < 19; i++) {
                 tbrs[i + 19].innerText = topNums[i][0];
             }
@@ -1103,7 +1150,8 @@
         }
 
         function T_show_top10Nums() {
-            //
+            // index の順番は数字の出番の順番になり。
+            // index（順番), 0(抽選番号), 1(番号の出回数)
             let debug = false;
             let TAG = 'log_T_show_top10Nums->';
             let tb4 = document.getElementById('tb4');
@@ -1113,6 +1161,10 @@
                 tbrs[i].innerText = topNums[i][0];
             }
             topNums = T_topNum(1, 1);
+            console.info(TAG, TAGLine);
+            console.info(TAG, 'index（順番), 0(抽選番号), 1(番号の出回数)');
+            console.table(topNums);
+            console.info(TAG, TAGLine);
             for (let i = 0; i < 19; i++) {
                 tbrs[i + 19].innerText = topNums[i][0];
             }
@@ -1271,29 +1323,29 @@
             }
         }
 
-        function localStorage_master2() {
+        function localStorage_master2_old() {
             // 選択番号と選択番号
             let debug = false;
-            let TAG = 'log_localStorage_master->';
-            G_Lmaster = [];
+            let TAG = 'log_localStorage_master2->';
+            G_LocalMaster = [];
             let tb2 = document.getElementById('tb2');
             let num = tb2.getElementsByClassName('n');
             if (debug) console.log(TAG, num);
             for (let i = 1; i < num.length; i++) {
                 if (!isNaN(num[i].innerText)) {
-                    G_Lmaster.push(parseInt(num[i].innerText));
+                    G_LocalMaster.push(parseInt(num[i].innerText));
                 }
             }
-            document.getElementById('Selected').innerText = 'G_Lmaster[] ' + G_Lmaster.sort((a, b) => a - b);
-            document.getElementById('noselected').innerText = T_Excluded_number(G_Lmaster);
+            document.getElementById('Selected').innerText = 'G_LocalMaster[] ' + G_LocalMaster.sort((a, b) => a - b);
+            document.getElementById('noselected').innerText = T_Excluded_number(G_LocalMaster);
             let temp = '';
             let iv = 0;
-            for (let i = 0; i < G_Lmaster.length; i++) {
-                if (G_Lmaster[i] == iv) {
-                    temp = temp + ',' + G_Lmaster[i];
+            for (let i = 0; i < G_LocalMaster.length; i++) {
+                if (G_LocalMaster[i] == iv) {
+                    temp = temp + ',' + G_LocalMaster[i];
                 } else {
-                    iv = G_Lmaster[i];
-                    temp = temp + '<br>' + G_Lmaster[i];
+                    iv = G_LocalMaster[i];
+                    temp = temp + '<br>' + G_LocalMaster[i];
                 }
             }
             if (debug) console.log(TAG, temp);
@@ -1303,7 +1355,7 @@
         function localStorage_master() {
             let debug = false;
             let TAG = 'log_localStorage_master->';
-            let G_LocalMaster = [];
+            G_LocalMaster = [];
             let master_temp = [];
             for (let i = 0; i < localStorage.length; i++) {
                 let master_temp = [];
@@ -1363,13 +1415,15 @@
 
         function help() {
             console.info('G_addr:', '選択番号複数');
-            console.info('G_Lmaster:', '選択した番号マスター');
+            console.info('G_LocalMaster:', '選択した番号マスター');
             console.info('G_fnsa:', '選択番号1個追加');
-            console.info('G_lms:', '抽選番号マスター');
+            console.info('G_base_numsX:', '抽選番号マスター,X軸');
+            console.info('G_base_numsY:', '抽選番号マスター,Y軸, T_baseReport(G_base_numsY),T_baseReport(G_base_numsY,10)');
             console.info('fns():', 'htmlと参照');
-            console.info('fns2():', 'masterと参照');
+            console.info('fns2():', 'G_base_numsXと参照');
             console.info('T_ncont2()', '出番と購入の比較');
             console.info('T_TopSearch()', '指定番号まで確認');
+            console.info('T_baseReport()', '抽選番号レポート');
             console.info('T_addr():', '[]番号を追加,番号の出番を確認');
             console.info('T_ck():', '予想番号を生成,htmlと参照');
             console.info('T_ck2():', '予想番号を生成,masterと参照');
@@ -1400,8 +1454,8 @@
                 localStorage_pageload();
                 roolclock();
                 F_lsloop();
-                T_show_top10Nums();
                 T_show_topNums();
+                T_show_top10Nums();
                 F_selectNums();
             }, 1000);
             help();
@@ -1416,6 +1470,7 @@
         });
 
     </script>
+    <div id="x6"></div>
     <Button id="hide">style</Button>
     <div id="heid">
         <p id="p1"></p>
