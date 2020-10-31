@@ -72,7 +72,6 @@
             if (debug) console.log(TAG, 'master');
             let tr = str.split('\n');
             let ttable = document.getElementById('tb1');
-            let ttfe = ttable.firstElementChild;
             for (let i = 0; i < tr.length; i++) {
                 G_base_numsX[i] = [];
                 let td = tr[i].split(',');
@@ -83,7 +82,7 @@
             return G_base_numsX.reverse();
         }
 
-        function F_create_master2() {
+        function F_create_master_old() {
             // すべての抽選数字をarrayに取得
             // OLD
             let debug = false;
@@ -519,39 +518,34 @@
                     p2.innerText = G_lsloop;
                 }
             }, 10)
-
-            function check(intVal, intVal2) {
-                // Y列のランダムの発生状況を確認のため
-                let temp = [];
-                let count = 0;
-                let base = [];
-                for (let i = 0; i < LMax3743; i++) {
-                    base[i] = i;
-                }
-
-                w_test = setInterval(function () {
-                    temp.push(G_lsloop[intVal]);
-                    count++;
-                    if (count == intVal2) {
-                        clearInterval(w_test);
-                        console.log(temp.sort((a, b) => a - b));
-                    }
-                }, 20)
-                return temp;
-            }
         }
 
-        function T_baseReport(arrayVal, intVal = 0) {
+        function T_toYaxis(arrayVal) {
+            // T_baseReport(new T_toYaxis(G_LocalMaster).value,1,1);
+            let temp = [];
+            for (let i = 0; i < arrayVal[arrayVal.length - 1].length; i++) {
+                temp[i] = [];
+                for (let j = 0; j < arrayVal.length; j++) {
+                    temp[i].push(arrayVal[j][i]);
+                }
+            }
+            this.value = temp;
+        }
+
+        function T_baseReport(arrayVal, start = 0, end = 0) {
             // arrayVal 統計するアレー,Y軸
-            // intVal アレーの長さ
+            // start ,end  アレーの長さ
+            // T_baseReport(new T_toYaxis(G_LocalMaster).value,1,1);
             let debug = false;
             let TAG = 'log_T_baseReport->';
             let aVal = JSON.parse(JSON.stringify(arrayVal));
-            G_base = [];
-
-            if (intVal != 0) {
+            let G_base = [];
+            let G_base2 = [];
+            if (start != 0) {
                 for (let i = 0; i < LSize76 + 2; i++) {
-                    aVal[i] = aVal[i].reverse().slice(0, intVal);
+                    let st = aVal[i].length - start;
+                    let en = st + end;
+                    aVal[i] = aVal[i].reverse().slice(st, en);
                 }
             }
 
@@ -559,37 +553,43 @@
             if (debug) console.log(arrayVal);
             for (let i = 1; i < LMax3743 + 1; i++) {
                 G_base[i] = [];
-                for (let j = 0; j < LSize76 + 2; j++) {
+                G_base2[i] = [];
+                for (let j = 0; j < aVal.length; j++) {
                     let temp = aVal[j].filter(x => x == i);
-                    G_base[i][j] = temp.length;
+                    let temp2 = G_base_numsY[j].filter(x => x == i);
+                    G_base[i][j] = temp.length + '  (' + temp2.length + ')';
+                    G_base2[i][j] = temp.length;
                 }
             }
             T_toTable(G_base);
             console.info(TAG, TAGLine);
-            console.table(G_base);
+            console.table(G_base2);
             console.info(TAG, aVal);
             console.info(TAG, TAGLine);
         }
 
         function T_toTable(arrayVal) {
+            // T_baseReport to htmltable
             let tabera = document.getElementById('x6');
             let temp = '';
-            for (let i = 1; i < LMax3743 + 1; i++) {
+            for (let i = 1; i < arrayVal.length; i++) {
                 temp = temp + '<tr>';
                 temp = temp + '<td width="100">' + i + '</td>';
-                for (let j = 0; j < LSize76 + 2; j++) {
+                for (let j = 0; j < arrayVal[arrayVal.length - 1].length; j++) {
                     xx = arrayVal[i][j];
-                    if (xx == 0) {
-                        temp = temp + '<td width="100">' + xx + '</td>';
+                    if (xx == '0  (0)') {
+                        temp = temp + '<td width="100">' + ' ' + '</td>';
                     } else {
-                        temp = temp + '<td width="100" style="background-color: rgb(162 245 204)">' + xx + '</td>';
+                        if (xx.slice(0, 1) == 0) {
+                            temp = temp + '<td width="100">' + xx + '</td>';
+                        } else {
+                            temp = temp + '<td width="100" style="background-color: rgb(162 245 204)">' + xx + '</td>';
+                        }
                     }
                 }
                 temp = temp + '</tr>';
             }
-
             tabera.innerHTML = '<table table border="1" cellspacing="3"  cellpadding="0" bordercolor="#333333" style="display:"" ' + temp + '</table>';
-
         }
 
         function F_lsloop2(intval = LBsize79) {
@@ -1374,7 +1374,7 @@
             let debug = false;
             let TAG = 'log_F_selectNums->';
             let tx = localStorage_master();
-            temp2 = [];
+            let temp2 = [];
             let temp = '';
             let iv = 0;
             tx.forEach(function (e) {
@@ -1418,12 +1418,12 @@
             console.info('G_LocalMaster:', '選択した番号マスター');
             console.info('G_fnsa:', '選択番号1個追加');
             console.info('G_base_numsX:', '抽選番号マスター,X軸');
-            console.info('G_base_numsY:', '抽選番号マスター,Y軸, T_baseReport(G_base_numsY),T_baseReport(G_base_numsY,10)');
+            console.info('G_base_numsY:', '抽選番号マスター,Y軸, T_baseReport(G_base_numsY),T_baseReport(G_base_numsY,1530,10)');
             console.info('fns():', 'htmlと参照');
             console.info('fns2():', 'G_base_numsXと参照');
             console.info('T_ncont2()', '出番と購入の比較');
             console.info('T_TopSearch()', '指定番号まで確認');
-            console.info('T_baseReport()', '抽選番号レポート');
+            console.info('T_baseReport()', '抽選番号レポート T_baseReport(new T_toYaxis(G_LocalMaster).value, 1, 1)');
             console.info('T_addr():', '[]番号を追加,番号の出番を確認');
             console.info('T_ck():', '予想番号を生成,htmlと参照');
             console.info('T_ck2():', '予想番号を生成,masterと参照');
@@ -1457,7 +1457,7 @@
                 T_show_topNums();
                 T_show_top10Nums();
                 F_selectNums();
-            }, 1000);
+            }, 3000);
             help();
         });
 
