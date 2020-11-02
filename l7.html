@@ -474,6 +474,21 @@
                 }
             }
 
+            function GetnextNums(intVal, intIndex) {
+                let testkey = intVal;
+                let index = intIndex;
+                let numsArray = [];
+                if (intVal == 0) {
+                    return G_base_numsY[index];
+                }
+                for (let i = 0; i < G_base_numsY[index].length; i++) {
+                    if (G_base_numsY[index][i] == testkey) {
+                        numsArray.push(G_base_numsY[index + 1][i]);
+                    }
+                }
+                return numsArray;
+            }
+
             W_lsloop = setInterval(function () {
                 let bnum = [];
                 let randomIndex = 0;
@@ -481,14 +496,15 @@
                 let errorCount = 0;
                 do {
                     // 本番数字
-                    randomIndex = Math.floor(Math.random() * (1 - G_base_numsY[0].length) + G_base_numsY[0].length);
+                    let nums = GetnextNums(numTemp, bnum.length);
+                    randomIndex = Math.floor(Math.random() * (0 - nums.length) + nums.length);
                     if (bnum.length == 0) {
-                        numTemp = G_base_numsY[bnum.length][randomIndex];
+                        numTemp = nums[randomIndex];
                         if (G_num_filter.indexOf(numTemp) == -1) {
                             bnum.push(numTemp);
                         }
                     } else {
-                        numTemp = G_base_numsY[bnum.length][randomIndex];
+                        numTemp = nums[randomIndex];
                         if (bnum.indexOf(numTemp) == -1 && numTemp > bnum[bnum.length - 1] && G_num_filter.indexOf(numTemp) == -1) {
                             bnum.push(numTemp);
                         }
@@ -518,6 +534,18 @@
                     p2.innerText = G_lsloop;
                 }
             }, 10)
+
+            function tfn(intVal) {
+                // T_baseReport(new T_toYaxis(temp).value);
+                // T_baseReport(G_base_numsY);
+                temp = [];
+                let work = setInterval(function () {
+                    temp[temp.length] = G_lsloop;
+                    if (temp.length == intVal) {
+                        clearInterval(work);
+                    }
+                }, 100)
+            }
         }
 
         function T_toYaxis(arrayVal) {
@@ -1457,6 +1485,7 @@
                 T_show_topNums();
                 T_show_top10Nums();
                 F_selectNums();
+                T_baseReport(G_base_numsY, G_base_numsY[0].length, 10);
             }, 3000);
             help();
         });
