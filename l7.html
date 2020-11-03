@@ -456,10 +456,27 @@
         var G_lsloop = [];
         var G_num_filter = [];   //番号フィルタ
         var G_base_numsY = [];
+
+        function T_GetnextNums(intVal, intIndex) {
+            let testkey = intVal;
+            let index = intIndex;
+            let numsArray = [];
+            if (testkey == 0 || index == (LBsize79 - 1)) {
+                numsArray = G_base_numsY[index];
+            } else {
+                for (let i = 0; i < G_base_numsY[index].length; i++) {
+                    if (G_base_numsY[index - 1][i] == testkey) {
+                        numsArray.push(G_base_numsY[index][i]);
+                    }
+                }
+            }
+            return numsArray;
+        }
+
         //l7.html:294 fns( [2,16,25,12,33,5,20,29,31,4] )  d3c = 55
         function F_lsloop(intval = LBsize79) {
             // 循環にランダム番号を生成する、抽選番号マスターアレーを2次元配列と参照する．
-            let debut = true;
+            let debug = true;
             let TAG = 'log_F_lsloop->';
             let p1 = document.getElementById('p1');
             let p2 = document.getElementById('p2');
@@ -474,41 +491,32 @@
                 }
             }
 
-            function GetnextNums(intVal, intIndex) {
-                let testkey = intVal;
-                let index = intIndex;
-                let numsArray = [];
-                if (intVal == 0) {
-                    return G_base_numsY[index];
-                }
-                for (let i = 0; i < G_base_numsY[index].length; i++) {
-                    if (G_base_numsY[index][i] == testkey) {
-                        numsArray.push(G_base_numsY[index + 1][i]);
-                    }
-                }
-                return numsArray;
-            }
-
             W_lsloop = setInterval(function () {
+                // clearInterval(W_lsloop);
                 let bnum = [];
-                let randomIndex = 0;
                 let numTemp = 0;
                 let errorCount = 0;
+                let randomIndex = 0;
                 do {
                     // 本番数字
-                    let nums = GetnextNums(numTemp, bnum.length);
+                    let nums = T_GetnextNums(numTemp, bnum.length);
                     randomIndex = Math.floor(Math.random() * (0 - nums.length) + nums.length);
                     if (bnum.length == 0) {
-                        numTemp = nums[randomIndex];
-                        if (G_num_filter.indexOf(numTemp) == -1) {
-                            bnum.push(numTemp);
+                        let tempnumTemp = nums[randomIndex];
+                        if (G_num_filter.indexOf(tempnumTemp) == -1) {
+                            bnum.push(tempnumTemp);
+                            numTemp = tempnumTemp;
                         }
                     } else {
-                        numTemp = nums[randomIndex];
-                        if (bnum.indexOf(numTemp) == -1 && numTemp > bnum[bnum.length - 1] && G_num_filter.indexOf(numTemp) == -1) {
-                            bnum.push(numTemp);
+                        let tempnumTemp = nums[randomIndex];
+                        if (tempnumTemp > bnum[bnum.length - 1]) {
+                            if (G_num_filter.indexOf(tempnumTemp) == -1) {
+                                bnum.push(tempnumTemp);
+                                numTemp = tempnumTemp;
+                            }
                         }
                     }
+
                     if (errorCount++ > 9000) {
                         break;
                     }
@@ -517,14 +525,17 @@
 
                 do {
                     // ボーナス数字
-                    randomIndex = Math.floor(Math.random() * (1 - G_base_numsY[0].length) + G_base_numsY[0].length);
-                    numTemp = G_base_numsY[bnum.length][randomIndex];
-                    if (bnum.indexOf(numTemp) == -1 && G_num_filter.indexOf(numTemp) == -1) {
-                        bnum.push(numTemp);
+                    let nums = T_GetnextNums(numTemp, bnum.length);
+                    randomIndex = Math.floor(Math.random() * (0 - nums.length) + nums.length);
+                    let tempnumTemp = nums[randomIndex];
+                    if (bnum.indexOf(tempnumTemp) == -1 && G_num_filter.indexOf(tempnumTemp) == -1) {
+                        bnum.push(tempnumTemp);
+                        numTemp = tempnumTemp;
                     }
                     if (errorCount++ > 9000) {
                         break;
                     }
+                    numTemp = 0;
                 } while (bnum.length < LBsize79)
                 errorCount = 0;
 
