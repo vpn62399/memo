@@ -966,6 +966,7 @@
             W_TopSearchSwork = setInterval(function () {
                 cont = 0;
                 temp = G_lsloop.concat();
+                // temp = ls(LBsize79);
                 console.info(TAG + contc++, temp);
                 for (let i = 0; i < arrayVal.length; i++) {
                     if (temp[i] == arrayVal[i]) {
@@ -979,34 +980,6 @@
                     clearInterval(W_TopSearchSwork);
                 }
             }, 200)
-        }
-
-        function hiro_view(arrayVal) {
-            // ==t[] までのランダムデータとまる
-            let debug = false;
-            let TAG = 'log_hiro_view';
-            hiro_item = arrayVal;
-            let hiro_item_string = hiro_item.sort((a, b) => a - b).toString();
-            let i = 0;
-
-            let startT = new Date();
-            console.info(TAG, startT);
-            W_hiro_view = setInterval(() => {
-                for (let li = 0; li < 1000; li++) {
-                    let x = ls(LBsize79);
-                    console.info(TAG, i++ + ' ' + x);
-                    if (hiro_item_string === x.toString()) {
-                        clearInterval(W_hiro_view);
-                        x = ls(LBsize79);
-                        console.info(TAG, i++ + ' ' + x);
-                        console.info(TAG, startT);
-                        console.info(TAG, new Date());
-                        console.info(TAG, 'hiro_item  ' + hiro_item);
-                        console.info(TAG, 'W_hiro_view_Stoped');
-                        alert("W_hiro_view_Stoped");
-                    }
-                }
-            }, 500);
         }
 
         function roolclock() {
@@ -1453,8 +1426,10 @@
 
         function help() {
             console.info('G_addr:', '選択番号複数');
-            console.info('G_LocalMaster:', '選択した番号マスター');
             console.info('G_fnsa:', '選択番号1個追加');
+            console.info('G_lsloop:', 'ランダム番号連続発生');
+            console.info('G_LocalMaster:', '選択した番号マスター');
+            console.info('G_num_filter:', '除外番号フィルタ');
             console.info('G_base_numsX:', '抽選番号マスター,X軸');
             console.info('G_base_numsY:', '抽選番号マスター,Y軸, T_baseReport(G_base_numsY),T_baseReport(G_base_numsY,1530,10)');
             console.info('fns():', 'htmlと参照');
@@ -1462,6 +1437,7 @@
             console.info('T_ncont2()', '出番と購入の比較');
             console.info('T_TopSearch()', '指定番号まで確認');
             console.info('T_baseReport()', '抽選番号レポート T_baseReport(new T_toYaxis(G_LocalMaster).value, 1, 1)');
+            console.info('T_GetnextNums(,):', '1個番号とよく出る次の列の番号アレーを割り出す T_GetnextNums(1,1)');
             console.info('T_addr():', '[]番号を追加,番号の出番を確認');
             console.info('T_ck():', '予想番号を生成,htmlと参照');
             console.info('T_ck2():', '予想番号を生成,masterと参照');
@@ -1469,7 +1445,6 @@
             console.info('T_cpt2():', '先頭に予想番号を追加');
             console.info('T_Excluded_number():', '予想番号を複数入力し,未使用番号を割り出す');
             console.info('T_ncont():', 'すべての出番数字の合計');
-            console.info('hiro_view():', '指定番号までのランダムデータとまる');
         }
 
         window.addEventListener('beforeunload', function () {
