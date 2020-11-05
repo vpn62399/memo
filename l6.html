@@ -553,6 +553,7 @@
             }, 10)
 
             function tfn(intVal) {
+                // 指定回数の番号を発生する。
                 // T_baseReport(new T_toYaxis(temp).value);
                 // T_baseReport(G_base_numsY);
                 temp = [];
@@ -562,6 +563,21 @@
                         clearInterval(work);
                     }
                 }, 100)
+            }
+
+            function tfn2() {
+                // 番号の間違い探し
+                let work = setInterval(() => {
+                    let temp = G_lsloop;
+                    console.log(temp);
+                    for (let i = 0; i < G_lsloop.length - 2; i++) {
+                        console.log(temp[i], temp[i + 1]);
+                        if (temp[i] > temp[i + 1]) {
+                            console.log('TAG---',);
+                            clearInterval(work);
+                        }
+                    }
+                }, 500);
             }
         }
 
