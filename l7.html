@@ -755,30 +755,6 @@
             }
         }
 
-        function F_lsloop_old1(intval = LBsize79) {
-            //循環にランダム番号を生成
-            let p1 = document.getElementById('p1');
-            let p2 = document.getElementById('p2');
-            let count = 0;
-            W_lsloop = setInterval(function () {
-                let j = [];
-                do {
-                    let c = Math.floor(Math.random() * (1 - 66) + 66);
-                    if (c <= LMax3743) {
-                        if (j.indexOf(c) == -1 && G_num_filter.indexOf(c) == -1) {
-                            j.push(c);
-                        }
-                    }
-                } while (j.length < intval);
-                if (j.length == LBsize79) {
-                    G_lsloop = j.concat();
-                    G_lsloop.sort((a, b) => a - b);
-                    p1.innerText = count++;
-                    p2.innerText = G_lsloop;
-                }
-            }, 10)
-        }
-
         function ls(intVal = LBsize79) {
             // G_base_numsYと参照する。
             let bnum = [];
@@ -823,22 +799,8 @@
             }
         }
 
-        function ls2(intVal = LBsize79) {
-            // ランダムの数字を発生
-            let j = [];
-            do {
-                let c = Math.floor(Math.random() * (1 - 66) + 66);
-                if (c <= LMax3743) {
-                    if (j.indexOf(c) == -1) {
-                        j.push(c);
-                    }
-                }
-            } while (j.length < intVal);
-            return j.sort((a, b) => a - b);
-        }
-
         function T_ncont() {
-            // すべての出番数字の合計
+            // すべての出番数字の合計,コンソールにテーブル表示
             let debug = false;
             let TAG = 'log_T_ncont->';
             let table = [];
@@ -1357,34 +1319,34 @@
             }
         }
 
-        function localStorage_master2_old() {
-            // 選択番号と選択番号
-            let debug = false;
-            let TAG = 'log_localStorage_master2->';
-            G_LocalMaster = [];
-            let tb2 = document.getElementById('tb2');
-            let num = tb2.getElementsByClassName('n');
-            if (debug) console.log(TAG, num);
-            for (let i = 1; i < num.length; i++) {
-                if (!isNaN(num[i].innerText)) {
-                    G_LocalMaster.push(parseInt(num[i].innerText));
-                }
-            }
-            document.getElementById('Selected').innerText = 'G_LocalMaster[] ' + G_LocalMaster.sort((a, b) => a - b);
-            document.getElementById('noselected').innerText = T_Excluded_number(G_LocalMaster);
-            let temp = '';
-            let iv = 0;
-            for (let i = 0; i < G_LocalMaster.length; i++) {
-                if (G_LocalMaster[i] == iv) {
-                    temp = temp + ',' + G_LocalMaster[i];
-                } else {
-                    iv = G_LocalMaster[i];
-                    temp = temp + '<br>' + G_LocalMaster[i];
-                }
-            }
-            if (debug) console.log(TAG, temp);
-            document.getElementById('Selected').innerHTML = temp;
-        }
+        // function localStorage_master2_old() {
+        //     // 選択番号と選択番号
+        //     let debug = false;
+        //     let TAG = 'log_localStorage_master2->';
+        //     G_LocalMaster = [];
+        //     let tb2 = document.getElementById('tb2');
+        //     let num = tb2.getElementsByClassName('n');
+        //     if (debug) console.log(TAG, num);
+        //     for (let i = 1; i < num.length; i++) {
+        //         if (!isNaN(num[i].innerText)) {
+        //             G_LocalMaster.push(parseInt(num[i].innerText));
+        //         }
+        //     }
+        //     document.getElementById('Selected').innerText = 'G_LocalMaster[] ' + G_LocalMaster.sort((a, b) => a - b);
+        //     document.getElementById('noselected').innerText = T_Excluded_number(G_LocalMaster);
+        //     let temp = '';
+        //     let iv = 0;
+        //     for (let i = 0; i < G_LocalMaster.length; i++) {
+        //         if (G_LocalMaster[i] == iv) {
+        //             temp = temp + ',' + G_LocalMaster[i];
+        //         } else {
+        //             iv = G_LocalMaster[i];
+        //             temp = temp + '<br>' + G_LocalMaster[i];
+        //         }
+        //     }
+        //     if (debug) console.log(TAG, temp);
+        //     document.getElementById('Selected').innerHTML = temp;
+        // }
 
         function localStorage_master() {
             let debug = false;
