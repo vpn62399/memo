@@ -652,6 +652,48 @@
             tabera.innerHTML = '<table table border="1" cellspacing="3"  cellpadding="0" bordercolor="#333333" style="display:"" ' + temp + '</table>';
         }
 
+        function T_NUMunionReport(intVal, intVal2) {
+            // T_NUMunionReport
+            // intVal; 確認する数字
+            // intVal2; 確認する数字の位置(0,8),9位置と関係しない
+            // numtag と よく一緒に出る数字を探し
+            let TAG = 'T_NUMunionReport->';
+            let numtag = intVal;
+            let temp = G_base_numsX.concat();
+            let tcon = [];
+            for (let i = 1; i <= LMax3743; i++) {
+                tcon[i] = [];
+                for (let j = 0; j < LSize76 + 3; j++) {
+                    tcon[i][j] = 0;
+                }
+            }
+            temp.forEach(function (e) {
+                if (intVal2 == 9) {
+                    if (e.indexOf(numtag) >= 0) {
+                        for (let i = 0; i < LSize76 + 2; i++) {
+                            tcon[e[i]][i] = tcon[e[i]][i] + 1;
+                        }
+                    }
+                } else {
+                    if (e.indexOf(numtag) == intVal2) {
+                        for (let i = 0; i < LSize76 + 2; i++) {
+                            tcon[e[i]][i] = tcon[e[i]][i] + 1;
+                        }
+                    }
+                }
+            })
+
+            tcon.forEach(function (e) {
+                let xcont = 0;
+                for (let i = 0; i < e.length; i++) {
+                    xcont = xcont + e[i];
+                }
+                e[e.length - 1] = xcont;
+            })
+            console.info(TAG, numtag);
+            console.table(tcon);
+        }
+
         function F_lsloop2(intval = LBsize79) {
             // 循環にランダム番号を生成する、抽選番号マスターアレーを1次元配列と参照する．
             let debug = true;
