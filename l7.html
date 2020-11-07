@@ -82,28 +82,6 @@
             return G_base_numsX.reverse();
         }
 
-        function F_create_master_old() {
-            // すべての抽選数字をarrayに取得
-            // OLD
-            let debug = false;
-            let TAG = 'log_F_create_master2->';
-            if (debug) console.log(TAG, 'master2()');
-            G_base_numsX = [];
-            let li = 0;
-            let tb = document.getElementById('tb1');
-            let fc = tb.firstElementChild;
-            do {
-                G_base_numsX[li] = [];
-                let da = fc.getElementsByTagName('td');
-                if (da.length > LBsize79) {
-                    for (let i = 2; i < 11; i++) {
-                        G_base_numsX[li].push(parseInt(da[i].innerText));
-                    }
-                    li++;
-                }
-            } while (fc = fc.nextElementSibling);
-            return G_base_numsX.reverse();
-        }
 
         function F_colorClear(intVal) {
             //1 番号の色
@@ -128,7 +106,7 @@
             }
         }
 
-        function F_color(intVal) {
+        function F_colorpool(intVal) {
             // HTML Table と比較
             // http://www.htmq.com/color/websafe216.shtml
             let colors1 = {
@@ -165,7 +143,7 @@
             return colors2;
         }
 
-        function hit_table() {
+        function F_hit_table() {
             //
             let tb = document.getElementById('hide');
             tb.addEventListener('click', function () {
@@ -219,10 +197,10 @@
             set4 = 2;   // 色の付けモード
             switch (set4) {
                 case 1:
-                    colors = F_color(1);
+                    colors = F_colorpool(1);
                     break;
                 case 2:
-                    colors = F_color(2);
+                    colors = F_colorpool(2);
                     break;
                 case 3:
                     for (let i = 0; i <= 50; i++) {
@@ -392,9 +370,10 @@
             let TAG = 'log_T_ck2->';
             console.info(new Date());
             W_ck2 = setInterval(function () {
-                for (let i = 0; i < 1000; i++) {
+                for (let i = 0; i < 1; i++) {
                     if (intVal-- >= 0) {
-                        let temp = ls(LBsize79);
+                        // let temp = ls(LBsize79);
+                        let temp = G_lsloop.concat();
                         fns2(temp, set3);
                     }
                 }
@@ -403,7 +382,7 @@
                     console.info(TAG, new Date());
                     console.info(TAG, 'W_ck2_end');
                 }
-            }, 1);
+            }, 2000);
         }
 
         function T_ck(intVal = 1, set3 = 150) {
@@ -411,7 +390,8 @@
             let debug = false;
             let TAG = 'log_T_ck->';
             W_ck = setInterval(function () {
-                let temp = ls(LBsize79);
+                // let temp = ls(LBsize79);
+                let temp = G_lsloop.concat();
                 if (intVal == 1) {
                     console.info(TAG, 'fns( [' + temp + '] )');
                     T_cpt2(temp);
@@ -580,6 +560,24 @@
                     }
                 }, 500);
             }
+
+            function tfn3() {
+                // Loto6 の場合e.length - 2
+                // Loto7 の場合e.length - 3
+                // 番号マスターの間違い探し
+                let temp = G_base_numsX.concat();
+                temp.forEach(function (e) {
+                    for (let i = 0; i < e.length - 3; i++) {
+                        if (e[i] >= e[i + 1]) {
+                            console.log('TAG---',);
+                            console.log(e[i], e[i + 1]);
+                            console.log(e);
+                        }
+                    }
+                })
+                console.log("tfn3,end");
+            }
+
         }
 
         function T_toYaxis(arrayVal) {
@@ -636,16 +634,16 @@
             let temp = '';
             for (let i = 1; i < arrayVal.length; i++) {
                 temp = temp + '<tr>';
-                temp = temp + '<td width="100">' + i + '</td>';
+                temp = temp + '<td width="88">' + i + '</td>';
                 for (let j = 0; j < arrayVal[arrayVal.length - 1].length; j++) {
                     xx = arrayVal[i][j];
                     if (xx == '0  (0)') {
-                        temp = temp + '<td width="100">' + ' ' + '</td>';
+                        temp = temp + '<td width="88">' + ' ' + '</td>';
                     } else {
                         if (xx.slice(0, 1) == 0) {
-                            temp = temp + '<td width="100">' + xx + '</td>';
+                            temp = temp + '<td width="88">' + xx + '</td>';
                         } else {
-                            temp = temp + '<td width="100" style="background-color: rgb(162 245 204)">' + xx + '</td>';
+                            temp = temp + '<td width="88" style="background-color: rgb(162 245 204)">' + xx + '</td>';
                         }
                     }
                 }
@@ -868,6 +866,7 @@
         function T_topNum(intVal = 1, top10 = 0) {
             // 番号の出番順位を割り出す
             // intVal=1 高い順 =2 低い順
+            // top10 統計の回数
             let debug = false;
             let TAG = 'log_T_topNum->';
             let table = [];
@@ -877,10 +876,10 @@
                         T_addr(G_base_numsX[i]);
                     }
                 }
-                if (top10 == 1) {
+                if (top10 > 0) {
                     if (debug) console.log(TAG, G_base_numsX["length"] - 1);
-                    if (debug) console.log(TAG, G_base_numsX["length"] - 11);
-                    for (let i = G_base_numsX["length"] - 1; i > G_base_numsX["length"] - 11; i--) {
+                    if (debug) console.log(TAG, G_base_numsX["length"] - top10);
+                    for (let i = G_base_numsX["length"] - 1; i > G_base_numsX["length"] - top10; i--) {
                         T_addr(G_base_numsX[i]);
                     }
                 }
@@ -1029,7 +1028,7 @@
                 }
                 G_fns = [];
                 F_colorClear(2);
-                this.nextElementSibling.style.backgroundColor = F_color(2)[45];
+                this.nextElementSibling.style.backgroundColor = F_colorpool(2)[45];
                 if (debug) console.log(TAG, this);
                 fns(rolldata[this.innerText - 1], 1, 0, 1, rolldata.length - this.innerText + 6);
                 // fns(rolldata[this.innerText], 0, 0, 1);
@@ -1191,11 +1190,11 @@
             let TAG = 'log_T_show_top10Nums->';
             let tb4 = document.getElementById('tb4');
             let tbrs = tb4.getElementsByClassName('n');
-            let topNums = T_topNum(2, 1);
+            let topNums = T_topNum(2, 11);
             for (let i = 0; i < 19; i++) {
                 tbrs[i].innerText = topNums[i][0];
             }
-            topNums = T_topNum(1, 1);
+            topNums = T_topNum(1, 11);
             console.info(TAG, TAGLine);
             console.info(TAG, 'index（順番), 0(抽選番号), 1(番号の出回数)');
             console.table(topNums);
@@ -1208,7 +1207,7 @@
         function T_show_topColor(arrayVal) {
             let debug = false;
             let TAG = 'log_T_show_topColor->';
-            let colors = F_color(2);
+            let colors = F_colorpool(2);
             let tb3 = document.getElementById('tb3');
             let nums = tb3.getElementsByClassName('n');
             for (let i = 0; i < nums.length; i++) {
@@ -1290,7 +1289,7 @@
                             for (let j = 0; j < temp.length; j++) {
                                 tempitem = tempitem.nextElementSibling;
                                 tempitem.innerText = temp[j];
-                                tempitem.style.backgroundColor = F_color(2)[temp[j]];
+                                tempitem.style.backgroundColor = F_colorpool(2)[temp[j]];
                             }
                             tempitem.nextElementSibling.nextElementSibling.innerText = fns2(temp.map(Number));
                             tempitem.nextElementSibling.addEventListener('click', localStorage_tonx5, true);
@@ -1348,7 +1347,7 @@
                     if (arrayVal.length == LBsize79) {
                         tempitem = tempitem.nextElementSibling;
                         tempitem.innerText = arrayVal[j];
-                        tempitem.style.backgroundColor = F_color(2)[arrayVal[j]];
+                        tempitem.style.backgroundColor = F_colorpool(2)[arrayVal[j]];
                     }
                 }
                 tempitem.nextElementSibling.nextElementSibling.innerText = fns2(arrayVal.map(Number));
@@ -1485,7 +1484,7 @@
             let TAG = 'log_window.addEventListener->';
             if (debug) console.log(TAG, 'window.onload');
             document.title = PGtitle;
-            hit_table();
+            F_hit_table();
             setTimeout(function () {
                 console.log(TAG, 'roolclock');
                 localStorage_pageload();
