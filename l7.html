@@ -1003,6 +1003,7 @@
                     }
                 }
                 if (cont == arrayVal.length) {
+                    T_cpt2(temp, 5);
                     console.info(TAG + contc, temp);
                     clearInterval(W_TopSearchSwork);
                 }
@@ -1361,35 +1362,6 @@
             }
         }
 
-        // function localStorage_master2_old() {
-        //     // 選択番号と選択番号
-        //     let debug = false;
-        //     let TAG = 'log_localStorage_master2->';
-        //     G_LocalMaster = [];
-        //     let tb2 = document.getElementById('tb2');
-        //     let num = tb2.getElementsByClassName('n');
-        //     if (debug) console.log(TAG, num);
-        //     for (let i = 1; i < num.length; i++) {
-        //         if (!isNaN(num[i].innerText)) {
-        //             G_LocalMaster.push(parseInt(num[i].innerText));
-        //         }
-        //     }
-        //     document.getElementById('Selected').innerText = 'G_LocalMaster[] ' + G_LocalMaster.sort((a, b) => a - b);
-        //     document.getElementById('noselected').innerText = T_Excluded_number(G_LocalMaster);
-        //     let temp = '';
-        //     let iv = 0;
-        //     for (let i = 0; i < G_LocalMaster.length; i++) {
-        //         if (G_LocalMaster[i] == iv) {
-        //             temp = temp + ',' + G_LocalMaster[i];
-        //         } else {
-        //             iv = G_LocalMaster[i];
-        //             temp = temp + '<br>' + G_LocalMaster[i];
-        //         }
-        //     }
-        //     if (debug) console.log(TAG, temp);
-        //     document.getElementById('Selected').innerHTML = temp;
-        // }
-
         function localStorage_master() {
             let debug = false;
             let TAG = 'log_localStorage_master->';
@@ -1464,6 +1436,7 @@
             console.info('T_ncont2()', '出番と購入の比較');
             console.info('T_TopSearch()', '指定番号まで確認');
             console.info('T_baseReport()', '抽選番号レポート T_baseReport(new T_toYaxis(G_LocalMaster).value, 1, 1)');
+            console.info('T_NUMunionReport(intVal, intVal2)', '番号,位置');
             console.info('T_GetnextNums(,):', '1個番号とよく出る次の列の番号アレーを割り出す T_GetnextNums(1,1)');
             console.info('T_addr():', '[]番号を追加,番号の出番を確認');
             console.info('T_ck():', '予想番号を生成,htmlと参照');
