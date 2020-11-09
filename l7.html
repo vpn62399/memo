@@ -693,6 +693,26 @@
             console.table(tcon);
         }
 
+        function T_nextLoto(arrayVal) {
+            // 回連続出番号,前回と同じ列同じ番号出る率
+            // T_nextLoto(G_base_numsY[2])
+            let tagArray = arrayVal.concat();
+            let numTemp = [];
+            for (let i = 1; i <= LMax3743; i++) {
+                let tagNum = i;
+                let count = 0;
+                for (let j = 0; j < tagArray.length; j++) {
+                    if (tagArray[j] == tagNum && tagArray[j + 1] == tagNum) {
+                        count++;
+                    }
+                }
+                if (count != 0) {
+                    numTemp[i] = count;
+                }
+            }
+            console.table(numTemp);
+        }
+
         function F_lsloop2(intval = LBsize79) {
             // 循環にランダム番号を生成する、抽選番号マスターアレーを1次元配列と参照する．
             let debug = true;
@@ -1432,6 +1452,7 @@
             console.info('G_base_numsY:', '抽選番号マスター,Y軸, T_baseReport(G_base_numsY),T_baseReport(G_base_numsY,1530,10)');
             console.info('fns():', 'htmlと参照');
             console.info('fns2():', 'G_base_numsXと参照');
+            console.info('T_nextLoto(arrayVal):', 'T_nextLoto(G_base_numsY[0])');
             console.info('T_ncont2()', '出番と購入の比較');
             console.info('T_TopSearch()', '指定番号まで確認');
             console.info('T_baseReport()', '抽選番号レポート T_baseReport(new T_toYaxis(G_LocalMaster).value, 1, 1)');
