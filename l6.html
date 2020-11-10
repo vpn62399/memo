@@ -713,7 +713,7 @@
             console.table(numTemp);
         }
 
-        function T_nextLoto2(arrayVal, intVal) {
+        function T_nextLotoUp(arrayVal, intVal) {
             // 同じ列の番号の次に出る番号の率
             // arrayVal　列,番号番号
             // T_nextLoto(G_base_numsY[0],1)
@@ -726,6 +726,31 @@
                 if (intVal == tagArray[i]) {
                     console.info(intVal, tagArray[i - 1]);
                     numTemp[tagArray[i - 1]] = numTemp[tagArray[i - 1]] + 1;
+                }
+            }
+
+            do {
+                numTemp.pop();
+            } while (numTemp[numTemp.length - 1] == 0);
+            console.table(numTemp);
+            console.log(numTemp);
+        }
+
+        function T_nextLotoDown(arrayVal, intVal) {
+            // 同じ列の番号の次に出る番号の率
+            // arrayVal　列,番号番号
+            // T_nextLoto(G_base_numsY[0],1)
+            let tagArray = arrayVal.concat().reverse();
+            let numTemp = [];
+            for (let i = 1; i <= LMax3743; i++) {
+                numTemp[i] = 0;
+            }
+            for (let i = 1; i < tagArray.length; i++) {
+                if (intVal == tagArray[i]) {
+                    if (!isNaN(tagArray[i + 1])) {
+                        console.info(intVal, tagArray[i + 1]);
+                        numTemp[tagArray[i + 1]] = numTemp[tagArray[i + 1]] + 1;
+                    }
                 }
             }
 
