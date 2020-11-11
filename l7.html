@@ -577,6 +577,24 @@
                 })
                 console.log("tfn3,end");
             }
+
+            function tfn4() {
+                // 発生番号は抽選できる番号は出るか
+                // 発生した番号はすべてのマスターと比較する
+                // clearInterval(tfn4_work)
+                const TAG = 'tfn4->';
+                let temp = G_base_numsX.concat();
+                let cont = 0;
+                tfn4_work = setInterval(function () {
+                    let temp2 = G_lsloop.concat();
+                    console.info(TAG + cont++, temp2);
+                    temp.forEach(function (e) {
+                        if (e.toString() == temp2.toString()) {
+                            clearInterval(tfn4_work);
+                        }
+                    })
+                }, 100)
+            }
         }
 
         function T_toYaxis(arrayVal) {
