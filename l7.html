@@ -37,7 +37,7 @@
 
         function F_read_ajax(str) {
             let debug = false;
-            let TAG = 'log_F_read_ajax->';
+            const TAG = 'log_F_read_ajax->';
             let tr = str.split('\n');
             let ttable = document.getElementById('tb1');
             let ttfe = ttable.firstElementChild;
@@ -68,7 +68,7 @@
         function F_create_master(str) {
             // すべての抽選数字をarrayに取得
             let debug = false;
-            let TAG = 'log_F_create_master->';
+            const TAG = 'log_F_create_master->';
             if (debug) console.log(TAG, 'master');
             let tr = str.split('\n');
             let ttable = document.getElementById('tb1');
@@ -87,7 +87,7 @@
             //1 番号の色
             //2 日付の色
             let debug = false;
-            let TAG = 'log_F_colorClear->';
+            const TAG = 'log_F_colorClear->';
             if (debug) console.log(TAG, intVal);
             switch (intVal) {
                 case 1:
@@ -160,7 +160,7 @@
         function fns2(tx, set3 = 20, view = 1) {
             // テーブルのアレと比較
             let debug = true;
-            let TAG = 'log_fns2->';
+            const TAG = 'log_fns2->';
             let test = G_base_numsX.concat();
             let vx = 0;
             let contA = 0;
@@ -185,7 +185,7 @@
         function fns(arrayVal, set1 = 0, set2 = 0, set3 = 10, set5 = 0) {
             //
             let debug = false;
-            let TAG = 'log_fns->';
+            const TAG = 'log_fns->';
             if (!arrayVal) {
                 return;
             }
@@ -279,7 +279,7 @@
         function T_cpt2(arrayVal = [0, 0, 0, 0, 0, 0, 0, 0, 0], nid = 5) {
             // T_cpt2() 先頭に予想番号を追加
             let debug = true;
-            let TAG = 'log_T_cpt2->';
+            const TAG = 'log_T_cpt2->';
             if (debug) console.log(TAG, 'step1');
             let xnid = document.getElementById('nx' + nid);
             let cxnid = xnid.getElementsByClassName('n');
@@ -306,7 +306,7 @@
         function T_ck3(arrayVal, view = 0) {
             // T_ck3() 設定番号除外して予想番号を生成
             let debug = false;
-            let TAG = 'log_T_ck3->'
+            const TAG = 'log_T_ck3->'
             if (debug) console.log(TAG, 'T_ck3');
             let orj = arrayVal;
             let nums = [];
@@ -367,7 +367,7 @@
             // T_ck2() 予想番号を生成,masterと参照
             // ランダム番号を生成
             let debug = false;
-            let TAG = 'log_T_ck2->';
+            const TAG = 'log_T_ck2->';
             console.info(new Date());
             W_ck2 = setInterval(function () {
                 for (let i = 0; i < 1; i++) {
@@ -388,7 +388,7 @@
         function T_ck(intVal = 1, set3 = 150) {
             // T_ck() 予想番号を生成,htmlと参照
             let debug = false;
-            let TAG = 'log_T_ck->';
+            const TAG = 'log_T_ck->';
             W_ck = setInterval(function () {
                 // let temp = ls(LBsize79);
                 let temp = G_lsloop.concat();
@@ -410,7 +410,7 @@
             // T_addr() []番号を追加,番号の出番を確認
             // よく表示する数字を割り出す
             let debug = false;
-            let TAG = 'log_T_addr->';
+            const TAG = 'log_T_addr->';
             G_addr = G_addr.concat(arrayVal);
             G_addr.sort((a, b) => a - b);
             let temp = [];
@@ -457,7 +457,7 @@
         function F_lsloop(intval = LBsize79) {
             // 循環にランダム番号を生成する、抽選番号マスターアレーを2次元配列と参照する．
             let debug = true;
-            let TAG = 'log_F_lsloop->';
+            const TAG = 'log_F_lsloop->';
             let p1 = document.getElementById('p1');
             let p2 = document.getElementById('p2');
             let count = 0;
@@ -596,7 +596,7 @@
             // start ,end  アレーの長さ
             // T_baseReport(new T_toYaxis(G_LocalMaster).value,1,1);
             let debug = false;
-            let TAG = 'log_T_baseReport->';
+            const TAG = 'log_T_baseReport->';
             let aVal = JSON.parse(JSON.stringify(arrayVal));
             let G_base = [];
             let G_base2 = [];
@@ -656,7 +656,7 @@
             // intVal; 確認する数字
             // intVal2; 確認する数字の位置(0,8),9位置と関係しない
             // numtag と よく一緒に出る数字を探し
-            let TAG = 'T_NUMunionReport->';
+            const TAG = 'T_NUMunionReport->';
             let numtag = intVal;
             let temp = G_base_numsX.concat();
             let tcon = [];
@@ -689,13 +689,14 @@
                 }
                 e[e.length - 1] = xcont;
             })
-            console.info(TAG, numtag);
+            console.info(TAG, numtag + '番号とよく一緒に出る数字を探し');
             console.table(tcon);
         }
 
         function T_nextLoto(arrayVal) {
             // 回連続出番号,前回と同じ列同じ番号出る率
             // T_nextLoto(G_base_numsY[2])
+            const TAG = 'T_nextLoto->';
             let tagArray = arrayVal.concat();
             let numTemp = [];
             for (let i = 1; i <= LMax3743; i++) {
@@ -710,6 +711,7 @@
                     numTemp[i] = count;
                 }
             }
+            console.info(TAG, '回連続出番号,前回と同じ列同じ番号出る率');
             console.table(numTemp);
         }
 
@@ -717,6 +719,7 @@
             // 同じ列の番号の次に出る番号の率
             // arrayVal　列,番号番号
             // T_nextLoto(G_base_numsY[0],1)
+            const TAG = 'T_nextLotoUp->';
             let tagArray = arrayVal.concat().reverse();
             let numTemp = [];
             for (let i = 1; i <= LMax3743; i++) {
@@ -732,8 +735,9 @@
             do {
                 numTemp.pop();
             } while (numTemp[numTemp.length - 1] == 0);
+            console.log(TAG, '同じ列の番号の次に出る番号の率');
             console.table(numTemp);
-            console.log(numTemp);
+            console.info(numTemp);
         }
 
         function T_nextLotoDown(arrayVal, intVal) {
@@ -764,7 +768,7 @@
         function F_lsloop2(intval = LBsize79) {
             // 循環にランダム番号を生成する、抽選番号マスターアレーを1次元配列と参照する．
             let debug = true;
-            let TAG = 'log_F_lsloop->';
+            const TAG = 'log_F_lsloop->';
             let p1 = document.getElementById('p1');
             let p2 = document.getElementById('p2');
             let count = 0;
@@ -812,7 +816,7 @@
             //循環にランダム番号を生成,抽選番号マスターアレーと参照する．
             //
             let debug = false;
-            let TAG = 'log_F_lsloop_old2->';
+            const TAG = 'log_F_lsloop_old2->';
             let p1 = document.getElementById('p1');
             let p2 = document.getElementById('p2');
             let count = 0;
@@ -911,7 +915,7 @@
         function T_ncont() {
             // すべての出番数字の合計,コンソールにテーブル表示
             let debug = false;
-            let TAG = 'log_T_ncont->';
+            const TAG = 'log_T_ncont->';
             let table = [];
             if (G_addr.length == 0) {
                 for (let i = 0; i < G_base_numsX["length"]; i++) {
@@ -939,7 +943,7 @@
             // intVal=1 高い順 =2 低い順
             // top10 統計の回数
             let debug = false;
-            let TAG = 'log_T_topNum->';
+            const TAG = 'log_T_topNum->';
             let table = [];
             if (G_addr.length == 0) {
                 if (top10 == 0) {
@@ -982,7 +986,7 @@
         function T_ncont2(arrayVal = []) {
             // 出番と購入の比較
             let debug = false;
-            let TAG = 'log_T_ncont2';
+            const TAG = 'log_T_ncont2';
             if (arrayVal.length > 0) {
                 T_addr(arrayVal);
             }
@@ -1039,7 +1043,7 @@
         function T_rns(arrayVal) {
             // 番号を回転する。
             let debug = false;
-            let TAG = 'log_T_rns->';
+            const TAG = 'log_T_rns->';
             let temp = [];
             let ttx = arrayVal.concat();
             for (let i = 0; i <= LMax3743; i++) {
@@ -1053,7 +1057,7 @@
         function T_TopSearch(arrayVal) {
             // clearInterval(W_TopSearchSwork);
             let debug = false;
-            let TAG = 'log_T_TopSearch->';
+            const TAG = 'log_T_TopSearch->';
             let temp = [];
             let cont = 0;
             let contc = 0;
@@ -1080,7 +1084,7 @@
         function roolclock() {
             //
             let debug = false;
-            let TAG = 'log_roolclock'
+            const TAG = 'log_roolclock'
             if (debug) console.log(TAG, 'roolclock');
             let fadr = [];
             let rolldata = G_base_numsX;
@@ -1122,7 +1126,7 @@
 
             let clock3 = function () {
                 let debug = false;
-                let TAG = 'log_let clock3->';
+                const TAG = 'log_let clock3->';
                 if (debug) console.log(TAG, 'clock3');
                 let tpn = this.nextElementSibling;
                 let index = 1;
@@ -1154,7 +1158,7 @@
 
             let clock4 = function () {
                 // localStorage_additem event
-                let TAG = 'log_let clock4 = function'
+                const TAG = 'log_let clock4 = function'
                 if (debug) console.info(TAG, 'clock4');
                 let tbrd = this.parentElement.getElementsByClassName('n');
                 let temp = []
@@ -1168,7 +1172,7 @@
             }
 
             let clock5 = function () {
-                let TAG = 'log_let clock5 = function';
+                const TAG = 'log_let clock5 = function';
                 if (debug) console.info(TAG, 'clock5');
                 console.assert(G_fnsa.length != LBsize79);
                 if (G_fnsa.length != LBsize79) {
@@ -1207,7 +1211,7 @@
         var G_fnsa = new Array();
         function num_click() {
             let debug = false;
-            let TAG = 'log_num_click()';
+            const TAG = 'log_num_click()';
             let ns = document.getElementsByClassName('n');
             for (let i = 0; i < ns.length; i++) {
                 ns[i].addEventListener('click', function () {
@@ -1229,7 +1233,7 @@
             // index の順番は数字の出番の順番になり。
             // index（順番), 0(抽選番号), 1(番号の出回数)
             let debug = false;
-            let TAG = 'log_T_show_topNums->';
+            const TAG = 'log_T_show_topNums->';
             let tb3 = document.getElementById('tb3');
             let tbrs = tb3.getElementsByClassName('n');
             let topNums = T_topNum(2);
@@ -1259,7 +1263,7 @@
             // index の順番は数字の出番の順番になり。
             // index（順番), 0(抽選番号), 1(番号の出回数)
             let debug = false;
-            let TAG = 'log_T_show_top10Nums->';
+            const TAG = 'log_T_show_top10Nums->';
             let tb4 = document.getElementById('tb4');
             let tbrs = tb4.getElementsByClassName('n');
             let topNums = T_topNum(2, 11);
@@ -1278,7 +1282,7 @@
 
         function T_show_topColor(arrayVal) {
             let debug = false;
-            let TAG = 'log_T_show_topColor->';
+            const TAG = 'log_T_show_topColor->';
             let colors = F_colorpool(2);
             let tb3 = document.getElementById('tb3');
             let nums = tb3.getElementsByClassName('n');
@@ -1315,7 +1319,7 @@
         function localStorage_tonx5() {
             //
             let debug = false;
-            let TAG = 'log_localStorage_tonx5->';
+            const TAG = 'log_localStorage_tonx5->';
             if (debug) console.log(TAG, this);
             let timeKey = this.previousElementSibling;
             for (let i = 0; i < 10; i++) {
@@ -1329,7 +1333,7 @@
         function localStorage_removeItem() {
             //
             let debug = false;
-            let TAG = 'log_localStorage_removeItem->';
+            const TAG = 'log_localStorage_removeItem->';
             if (debug) console.log(TAG, this);
             let timeKey = this.previousElementSibling;
             for (let i = 0; i < 0; i++) {
@@ -1343,7 +1347,7 @@
         function localStorage_pageload() {
             //
             let debug = false;
-            let TAG = 'log_localStorage_pageload->';
+            const TAG = 'log_localStorage_pageload->';
             if (debug) console.log(TAG, 'step1');
             let req = new XMLHttpRequest();
             let url = '/' + CSVFile + '?key=' + Math.floor(Math.random() * (1 - 100) + 100);
@@ -1383,7 +1387,7 @@
         function localStorage_additem(arrayVal) {
             // localStorage_additem
             let debug = false;
-            let TAG = 'log_localStorage_additem->';
+            const TAG = 'log_localStorage_additem->';
             if (debug) console.log(TAG, 'setp1');
             console.assert(arrayVal.length == LBsize79);
             let req = new XMLHttpRequest();
@@ -1431,7 +1435,7 @@
 
         function localStorage_master() {
             let debug = false;
-            let TAG = 'log_localStorage_master->';
+            const TAG = 'log_localStorage_master->';
             G_LocalMaster = [];
             let master_temp = [];
             for (let i = 0; i < localStorage.length; i++) {
@@ -1449,7 +1453,7 @@
 
         function F_selectNums() {
             let debug = false;
-            let TAG = 'log_F_selectNums->';
+            const TAG = 'log_F_selectNums->';
             let tx = localStorage_master();
             let temp2 = [];
             let temp = '';
@@ -1475,7 +1479,7 @@
 
         function T_Excluded_number(arrayVal) {
             // T_Excluded_number() 予想番号を複数入力し,未使用番号を割り出す
-            let TAG = 'log_T_Excluded_number->';
+            const TAG = 'log_T_Excluded_number->';
             let tempar = arrayVal.concat();
             let tt = [];
             for (let i = 1; i <= LMax3743; i++) {
@@ -1517,7 +1521,7 @@
         }
 
         window.addEventListener('beforeunload', function () {
-            let TAG = 'log_window.addEventListener->';
+            const TAG = 'log_window.addEventListener->';
             // console.log('beforeunload');
             // return '本当に離れますか？';
             console.log(TAG, this);
@@ -1527,7 +1531,7 @@
 
         window.addEventListener('load', function () {
             let debug = false;
-            let TAG = 'log_window.addEventListener->';
+            const TAG = 'log_window.addEventListener->';
             if (debug) console.log(TAG, 'window.onload');
             document.title = PGtitle;
             F_hit_table();
