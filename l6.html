@@ -584,15 +584,21 @@
                 // clearInterval(tfn4_work)
                 const TAG = 'tfn4->';
                 let temp = G_base_numsX.concat();
+                let tempArray = [];
                 let cont = 0;
                 tfn4_work = setInterval(function () {
                     let temp2 = G_lsloop.concat();
-                    console.info(TAG + cont++, temp2);
+                    // let temp2 = ls(LBsize79);  // 旧方法
+                    console.info(TAG + cont++ + '->' + tempArray.length, temp2);
                     temp.forEach(function (e) {
                         if (e.toString() == temp2.toString()) {
-                            clearInterval(tfn4_work);
+                            tempArray.push(temp2);
                         }
                     })
+                    if (tempArray.length == 3) {
+                        clearInterval(tfn4_work);
+                        console.log(tempArray);
+                    }
                 }, 100)
             }
         }
