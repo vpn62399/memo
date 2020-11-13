@@ -587,9 +587,10 @@
                 let tempArray = [];
                 let cont = 0;
                 tfn4_work = setInterval(function () {
+                    cont++;
                     let temp2 = G_lsloop.concat();
                     // let temp2 = ls(LBsize79);  // 旧方法
-                    console.info(TAG + cont++ + '->' + tempArray.length, temp2);
+                    // console.info(TAG + cont + '->' + tempArray.length, temp2);
                     temp.forEach(function (e) {
                         if (e.toString() == temp2.toString()) {
                             tempArray.push(temp2);
@@ -597,7 +598,8 @@
                     })
                     if (tempArray.length == 3) {
                         clearInterval(tfn4_work);
-                        console.log(tempArray);
+                        console.info(TAG, tempArray);
+                        console.info(TAG, cont);
                     }
                 }, 100)
             }
