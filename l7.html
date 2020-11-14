@@ -584,22 +584,22 @@
                 // clearInterval(tfn4_work)
                 const TAG = 'tfn4->';
                 let temp = G_base_numsX.concat();
-                tempArray = [];
-                cont = 0;
-                tfn4_work = setInterval(function () {
-                    cont++;
-                    let temp2 = G_lsloop.concat();
-                    // let temp2 = ls(LBsize79);  // 旧方法
+                tfn4_tempArray = [];
+                tfn4_cont = 0;
+                tfn4_tfn4_work = setInterval(function () {
+                    tfn4_cont++;
+                    tfn4_temp2 = G_lsloop.concat().toString();
+                    // tfn4_temp2 = ls(LBsize79);  // 旧方法
                     // console.info(TAG + cont + '->' + tempArray.length, temp2);
                     temp.forEach(function (e) {
-                        if (e.toString() == temp2.toString()) {
-                            tempArray.push(temp2);
+                        if (e.toString() == tfn4_temp2) {
+                            tfn4_tempArray.push(tfn4_temp2);
                         }
                     })
-                    if (tempArray.length == 3) {
-                        clearInterval(tfn4_work);
-                        console.info(TAG, tempArray);
-                        console.info(TAG, cont);
+                    if (tfn4_tempArray.length == 3) {
+                        clearInterval(tfn4_tfn4_work);
+                        console.info(TAG, tfn4_tempArray);
+                        console.info(TAG, tfn4_cont);
                     }
                 }, 100)
             }
