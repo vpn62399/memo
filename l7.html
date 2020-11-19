@@ -65,6 +65,7 @@
         }
 
         var G_base_numsX = [];
+        var G_base_numsY = [];
         function F_create_master(str) {
             // すべての抽選数字をarrayに取得
             let debug = false;
@@ -79,7 +80,18 @@
                     G_base_numsX[i].push(parseInt(td[j]));
                 }
             }
-            return G_base_numsX.reverse();
+            G_base_numsX.reverse();
+
+            for (let i = 0; i < LBsize79; i++) {
+                G_base_numsY[i] = [];
+                for (let j = 0; j < G_base_numsX.length; j++) {
+                    if (!isNaN(parseInt(G_base_numsX[j][i]))) {
+                        G_base_numsY[i].push(G_base_numsX[j][i]);
+                    }
+                }
+            }
+            if (debug) console.log(G_base_numsX);
+            if (debug) console.log(G_base_numsY);
         }
 
 
@@ -804,15 +816,7 @@
                     base_nums.push(G_base_numsX[i][j]);
                 }
             }
-            G_base_numsY = [];
-            for (let i = 0; i < LBsize79; i++) {
-                G_base_numsY[i] = [];
-                for (let j = 0; j < G_base_numsX.length; j++) {
-                    if (!isNaN(parseInt(G_base_numsX[j][i]))) {
-                        G_base_numsY[i].push(G_base_numsX[j][i]);
-                    }
-                }
-            }
+
             console.info(TAG + 'base_nums = ', base_nums);
             if (base_nums.length == 0) {
                 F_lsloop(LBsize79);
