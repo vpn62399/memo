@@ -613,7 +613,7 @@
                         console.info(TAG, tfn4_tempArray);
                         console.info(TAG, tfn4_cont);
                     }
-                }, 100)
+                }, 30)
             }
         }
 
@@ -1082,6 +1082,27 @@
                 }
             }
             console.info('fns( [' + temp + '] )');
+        }
+
+        function T_numFix(intVal, indexInt) {
+            // 行の番号を固定し、一緒に出る場号でランダムで番号を作成できる
+            // JSON.parse(JSON.stringify(arrayVal));
+            let debug = true;
+            const TAG = 'T_TopSearch_num->';
+            let tnum = JSON.parse(JSON.stringify(G_base_numsX));
+            let bbx = [];
+            let bby = [];
+            tnum.filter(function (e) {
+                if (intVal != 0) {
+                    if (e[indexInt] == intVal) {
+                        bbx.push(e);
+                    }
+                } else {
+                    bbx.push(e);
+                }
+            });
+            bby = new T_toYaxis(bbx);
+            G_base_numsY = bby.value;
         }
 
         function T_TopSearch(arrayVal) {
