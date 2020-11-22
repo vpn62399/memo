@@ -285,7 +285,26 @@
             if (xca >= set3) {
                 console.info('fns( [' + arrayVal.concat().sort((a, b) => a - b) + '] )' + '  d3c = ' + xca + ' sort');
                 console.info('fns( [' + arrayVal + '] )' + '  d3c = ' + xca);
+                console.info(T_toRegExp(arrayVal));
             }
+        }
+
+        function T_toRegExp(arrayVal) {
+            // T_toRegExp-> (01)|(06)|(11)|(20)|(21)|(29)|(33)|(25)|(31) に出力
+            let temp = [];
+            const TAG = 'T_toRegExp->'
+            arrayVal.forEach(function (e) {
+                let nums = '';
+                if (e < 9) {
+                    nums = '(0' + e + ')';
+                } else {
+                    nums = '(' + e + ')';
+                }
+                temp.push(nums);
+            })
+            // console.log(TAG, temp.toString().replaceAll(',', '|'));
+            // 正規表現
+            console.log(TAG, temp.toString().replace(/,/g, '|'));
         }
 
         function T_cpt2(arrayVal = [0, 0, 0, 0, 0, 0, 0], nid = 5) {
