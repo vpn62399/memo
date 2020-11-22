@@ -291,20 +291,27 @@
 
         function T_toRegExp(arrayVal) {
             // T_toRegExp-> (01)|(06)|(11)|(20)|(21)|(29)|(33)|(25)|(31) に出力
+            // T_toRegExp-> ( 1  )|( 4  )|( 6  )|( 15 )|( 20 )|( 22 )|( 26 ) に出力
             let temp = [];
+            let temp2 = [];
             const TAG = 'T_toRegExp->'
             arrayVal.forEach(function (e) {
                 let nums = '';
+                let nums2 = '';
                 if (e < 9) {
                     nums = '(0' + e + ')';
+                    nums2 = '( ' + e + '  )'
                 } else {
                     nums = '(' + e + ')';
+                    nums2 = '( ' + e + ' )'
                 }
                 temp.push(nums);
+                temp2.push(nums2);
             })
             // console.log(TAG, temp.toString().replaceAll(',', '|'));
             // 正規表現
             console.log(TAG, temp.toString().replace(/,/g, '|'));
+            console.log(TAG, temp2.toString().replace(/,/g, '|'));
         }
 
         function T_cpt2(arrayVal = [0, 0, 0, 0, 0, 0, 0, 0, 0], nid = 5) {
