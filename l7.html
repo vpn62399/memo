@@ -1131,6 +1131,32 @@
             G_base_numsY = bby.value;
         }
 
+        function T_NumMask(intVal, indexInt) {
+            // invVal, indexInt
+            // partemp.setAttribute('style', 'display:none');
+            // console.info("document.getElementById('heid').setAttribute('style','')");
+            let tb1 = document.getElementById('tb1');
+            let tb1f = tb1.firstElementChild;
+            do {
+                let temp = tb1f.firstElementChild;
+                let partemp = temp.parentElement;
+                if (parseInt(partemp.firstElementChild.innerText) > 0) {
+                    if (intVal > 0) {
+                        // reset
+                        partemp.setAttribute('style', 'display:none');
+                    } else {
+                        partemp.setAttribute('style', '');
+                    }
+                }
+                for (let i = 0; i < indexInt + 2; i++) {
+                    temp = temp.nextElementSibling
+                }
+                if (parseInt(temp.innerText) == intVal) {
+                    partemp.setAttribute('style', '');
+                }
+            } while (tb1f = tb1f.nextElementSibling);
+        }
+
         function T_TopSearch(arrayVal) {
             // clearInterval(W_TopSearchSwork);
             let debug = false;
