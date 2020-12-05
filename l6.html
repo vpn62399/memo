@@ -200,6 +200,7 @@
             //
             let debug = false;
             const TAG = 'log_fns->';
+            arrayVal = arrayVal.concat();
             if (!arrayVal) {
                 return;
             }
@@ -292,11 +293,11 @@
         }
 
         function T_toRegExp(arrayVal) {
-            // T_toRegExp-> (01)|(06)|(11)|(20)|(21)|(29)|(33)|(25)|(31) に出力
-            // T_toRegExp-> ( 1  )|( 4  )|( 6  )|( 15 )|( 20 )|( 22 )|( 26 ) に出力
+            // T_toRegExp-> (01)|(20)|(27)|(29)|(38)|(39)|(31)|(H) に出力
+            // T_toRegExp-> ( 1  )|( 20 )|( 27 )|( 29 )|( 38 )|( 39 )|( 31 )|( H ) に出力
             let temp = [];
             let temp2 = [];
-            const TAG = 'T_toRegExp->'
+            const TAG = 'T_toRegExp->';
             arrayVal.forEach(function (e) {
                 let nums = '';
                 let nums2 = '';
@@ -312,6 +313,7 @@
             })
             // console.log(TAG, temp.toString().replaceAll(',', '|'));
             // 正規表現
+            // /g 正規表現すべて選択
             console.log(TAG, temp.toString().replace(/,/g, '|'));
             console.log(TAG, temp2.toString().replace(/,/g, '|'));
         }
@@ -327,9 +329,10 @@
                 cxnid[i].innerText = arrayVal[i];
             }
             let temp = xnid.firstElementChild;
-            for (let i = 0; i < 12; i++) {
+            for (let i = 0; i < 13; i++) {
                 temp = temp.nextElementSibling;
             }
+            temp.previousElementSibling.innerText = G_base_numsY[G_base_numsY.length - 1][0];
 
             let tempar = arrayVal.splice(',');
             let tempar1 = [];
