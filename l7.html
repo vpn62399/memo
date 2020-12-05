@@ -48,7 +48,7 @@
                 let ircc = ttfe.cloneNode(true);
                 let tr_place = ircc.getElementsByTagName('td');
                 let temp = [];
-                for (let i = 0; i <= 13; ++i) {
+                for (let i = 0; i <= 14; ++i) {
                     if (i <= 1 || i >= 11) {
                         tr_place[i].innerText = td_data[i];
                     } else {
@@ -56,10 +56,10 @@
                         temp.push(parseInt(td_data[i]));
                     }
                 }
-                tr_place[14].innerText = fns2(temp, 0, 0);
-                temp.pop();
-                temp.pop();
                 tr_place[15].innerText = fns2(temp, 0, 0);
+                temp.pop();
+                temp.pop();
+                tr_place[16].innerText = fns2(temp, 0, 0);
                 ttable.insertBefore(ircc, ttfe);
             } while (tr != '');
         }
