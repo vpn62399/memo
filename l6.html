@@ -83,12 +83,13 @@
             }
             G_base_numsX.reverse();
 
-            for (let i = 0; i < LBsize79; i++) {
+            for (let i = 0; i <= LBsize79; i++) {
                 G_base_numsY[i] = [];
                 for (let j = 0; j < G_base_numsX.length; j++) {
-                    if (!isNaN(parseInt(G_base_numsX[j][i]))) {
-                        G_base_numsY[i].push(G_base_numsX[j][i]);
-                    }
+                    // if (!isNaN(parseInt(G_base_numsX[j][i]))) {
+                    //     G_base_numsY[i].push(G_base_numsX[j][i]);
+                    // }
+                    G_base_numsY[i].push(G_base_numsX[j][i]);
                 }
             }
             if (debug) console.log(G_base_numsX);
@@ -1843,7 +1844,6 @@
                 </tr>
             </tbody>
         </table>
-
         <p> </p>
         <button id="fnsw">AddFns([])</button>
         <P> </P>

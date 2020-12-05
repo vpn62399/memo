@@ -83,12 +83,13 @@
             }
             G_base_numsX.reverse();
 
-            for (let i = 0; i < LBsize79; i++) {
+            for (let i = 0; i <= LBsize79; i++) {
                 G_base_numsY[i] = [];
                 for (let j = 0; j < G_base_numsX.length; j++) {
-                    if (!isNaN(parseInt(G_base_numsX[j][i]))) {
-                        G_base_numsY[i].push(G_base_numsX[j][i]);
-                    }
+                    // if (!isNaN(parseInt(G_base_numsX[j][i]))) {
+                    //     G_base_numsY[i].push(G_base_numsX[j][i]);
+                    // }
+                    G_base_numsY[i].push(G_base_numsX[j][i]);
                 }
             }
             if (debug) console.log(G_base_numsX);
@@ -500,15 +501,6 @@
             let p1 = document.getElementById('p1');
             let p2 = document.getElementById('p2');
             let count = 0;
-            G_base_numsY = [];
-            for (let i = 0; i < LBsize79; i++) {
-                G_base_numsY[i] = [];
-                for (let j = 0; j < G_base_numsX.length; j++) {
-                    if (!isNaN(parseInt(G_base_numsX[j][i]))) {
-                        G_base_numsY[i].push(G_base_numsX[j][i]);
-                    }
-                }
-            }
 
             W_lsloop = setInterval(function () {
                 // clearInterval(W_lsloop);
