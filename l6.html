@@ -48,7 +48,7 @@
                 let ircc = ttfe.cloneNode(true);
                 let tr_place = ircc.getElementsByTagName('td');
                 let temp = [];
-                for (let i = 0; i <= 11; ++i) {
+                for (let i = 0; i <= 12; ++i) {
                     if (i <= 1 || i >= 9) {
                         tr_place[i].innerText = td_data[i];
                     } else {
@@ -56,10 +56,10 @@
                         temp.push(parseInt(td_data[i]));
                     }
                 }
-                tr_place[12].innerText = fns2(temp, 0, 0);
+                tr_place[13].innerText = fns2(temp, 0, 0);
                 temp.pop();
                 // temp.pop();
-                tr_place[13].innerText = fns2(temp, 0, 0);
+                tr_place[14].innerText = fns2(temp, 0, 0);
                 ttable.insertBefore(ircc, ttfe);
             } while (tr != '');
         }
@@ -79,6 +79,7 @@
                 for (let j = 2; j < 9; j++) {
                     G_base_numsX[i].push(parseInt(td[j]));
                 }
+                G_base_numsX[i].push(td[12]);
             }
             G_base_numsX.reverse();
 
@@ -1862,6 +1863,7 @@
                         <td>口数</td>
                         <td>選金</td>
                         <td>オバ</td>
+                        <td>BL</td>
                         <td>レ7</td>
                         <td>レ6</td>
                     </tr>
@@ -1878,6 +1880,7 @@
                         <td>0</td>
                         <td>nx1</td>
                         <td>0</td>
+                        <td>A</td>
                         <td>レ7</td>
                         <td>レ6</td>
                     </tr>
@@ -1894,6 +1897,7 @@
                         <td>0</td>
                         <td>nx2</td>
                         <td>0</td>
+                        <td>A</td>
                         <td>レ7</td>
                         <td>レ6</td>
                     </tr>
@@ -1910,6 +1914,7 @@
                         <td>0</td>
                         <td>nx3</td>
                         <td>0</td>
+                        <td>A</td>
                         <td>レ7</td>
                         <td>レ6</td>
                     </tr>
@@ -1926,6 +1931,7 @@
                         <td>0</td>
                         <td>nx4</td>
                         <td>0</td>
+                        <td>A</td>
                         <td>レ7</td>
                         <td>レ6</td>
                     </tr>
@@ -1942,6 +1948,7 @@
                         <td>0</td>
                         <td>nx5</td>
                         <td>0</td>
+                        <td>A</td>
                         <td>レ7</td>
                         <td>レ6</td>
                     </tr>
@@ -1958,6 +1965,7 @@
                         <td>口数</td>
                         <td>選金</td>
                         <td>オバ</td>
+                        <td>BL</td>
                         <td>レ7</td>
                         <td>レ6</td>
                     </tr>
