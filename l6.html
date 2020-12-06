@@ -1312,8 +1312,7 @@
             //ボールキーを押されたとき、色ををつける
             //ボールクリックしたとき、番号のアルファベットをアレー作成
             let ballskey = [];
-            let clock6 = function () {
-                console.log(this.innerText);
+            let click6 = function () {
                 if (ballskey.indexOf(this.innerText) == -1) {
                     ballskey.push(this.innerText);
                     // return;
@@ -1334,7 +1333,7 @@
 
             let ball = document.getElementsByClassName('bl');
             for (let i = 0; i < ball.length; i++) {
-                ball[i].addEventListener('click', clock6, true);
+                ball[i].addEventListener('click', click6, true);
             }
         }
 
