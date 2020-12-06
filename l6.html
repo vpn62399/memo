@@ -145,6 +145,9 @@
                 36: '#9e3dff', 37: '#962dff', 38: '#8e1eff', 39: '#870fff', 40: '#7f00ff',
                 41: '#ff7575', 42: '#ff7070', 43: '#ff6b6b', 44: '#ff5b5b', 45: '#ff4c4c',
                 46: '#ff3d3d', 47: '#ff2d2d', 48: '#ff1e1e', 49: '#ff0f0f', 50: '#ff0000',
+                'A': '#ff0000', 'B': '#ff007f', 'C': '#ff00ff', 'D': '#7f00ff', 'E': '#0000ff',
+                'F': '#007fff', 'G': '#00ffff', 'H': '#00ff7f', 'I': '#00ff00', 'J': '#7fff00',
+                'K': '#ffff00',
             }
             switch (intVal) {
                 case 1:
@@ -1305,10 +1308,39 @@
                 }
             }
             num_click();
+
+            //ボールキーを押されたとき、色ををつける
+            //ボールクリックしたとき、番号のアルファベットをアレー作成
+            let ballskey = [];
+            let clock6 = function () {
+                console.log(this.innerText);
+                if (ballskey.indexOf(this.innerText) == -1) {
+                    ballskey.push(this.innerText);
+                    // return;
+                } else {
+                    ballskey.splice(ballskey.indexOf(this.innerText), 1);
+                    // return;
+                }
+
+                let ball = document.getElementsByClassName('bl');
+                let colors = F_colorpool(2);
+                for (let i = 0; i < ball.length; i++) {
+                    ball[i].style.backgroundColor = '';
+                    if (ballskey.indexOf(ball[i].innerText) != -1) {
+                        ball[i].style.backgroundColor = colors[ball[i].innerText];
+                    }
+                }
+            }
+
+            let ball = document.getElementsByClassName('bl');
+            for (let i = 0; i < ball.length; i++) {
+                ball[i].addEventListener('click', clock6, true);
+            }
         }
 
         var G_fnsa = new Array();
         function num_click() {
+            // 抽選番号のクリック
             let debug = false;
             const TAG = 'log_num_click()';
             let ns = document.getElementsByClassName('n');
@@ -1883,7 +1915,7 @@
                         <td>0</td>
                         <td>nx1</td>
                         <td>0</td>
-                        <td>X</td>
+                        <td class="bl">X</td>
                         <td>レ7</td>
                         <td>レ6</td>
                     </tr>
@@ -1900,7 +1932,7 @@
                         <td>0</td>
                         <td>nx2</td>
                         <td>0</td>
-                        <td>X</td>
+                        <td class="bl">X</td>
                         <td>レ7</td>
                         <td>レ6</td>
                     </tr>
@@ -1917,7 +1949,7 @@
                         <td>0</td>
                         <td>nx3</td>
                         <td>0</td>
-                        <td>X</td>
+                        <td class="bl">X</td>
                         <td>レ7</td>
                         <td>レ6</td>
                     </tr>
@@ -1934,7 +1966,7 @@
                         <td>0</td>
                         <td>nx4</td>
                         <td>0</td>
-                        <td>X</td>
+                        <td class="bl">X</td>
                         <td>レ7</td>
                         <td>レ6</td>
                     </tr>
@@ -1951,7 +1983,7 @@
                         <td>0</td>
                         <td>nx5</td>
                         <td>0</td>
-                        <td>X</td>
+                        <td class="bl">X</td>
                         <td>レ7</td>
                         <td>レ6</td>
                     </tr>
@@ -1968,7 +2000,7 @@
                         <td>口数</td>
                         <td>選金</td>
                         <td>オバ</td>
-                        <td>BL</td>
+                        <td class="bl">BL</td>
                         <td>レ7</td>
                         <td>レ6</td>
                     </tr>
