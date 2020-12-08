@@ -1112,7 +1112,7 @@
             // 行の番号を固定し、一緒に出る場号でランダムで番号を作成できる
             // JSON.parse(JSON.stringify(arrayVal));
             let debug = true;
-            const TAG = 'T_TopSearch_num->';
+            const TAG = 'T_NumFix->';
             let tnum = JSON.parse(JSON.stringify(G_base_numsX));
             let bbx = [];
             let bby = [];
@@ -1128,6 +1128,27 @@
             bby = new T_toYaxis(bbx);
             G_base_numsY = bby.value;
             console.info(G_base_numsY);
+        }
+
+        function T_BallMask(intArray) {
+            // Ball ['A','B','C','D','E','F','G','H','I','J']
+            // ボール除外 /////////////////////////////
+            let tag = true;
+            const TAG = 'T_BallMask->';
+            // let mask = intArray;
+            let mask = ['A', 'B'];
+            let tnum = JSON.parse(JSON.stringify(G_base_numsX));
+            console.log(tnum);
+            // mask.forEach(function (e) {
+            //     console.log(e)
+            // });
+
+            tnum.forEach(function (e) {
+                if (e.indexOf('A') == -1) {
+                    console.log(e);
+                }
+            });
+            // console.log(tnum);
         }
 
         function T_NumMask(intVal, indexInt) {
