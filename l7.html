@@ -1130,13 +1130,13 @@
             console.info(G_base_numsY);
         }
 
-        function T_BallMask(intArray) {
+        function T_BallMask(charArray) {
             // Ball ['A','B','C','D','E','F','G','H','I','J']
             // 指定ボールの結果を除外する。 /////////////////////////////
             // let mask = ['A','B','C','D','E','F','H','I','J']
             let debug = true;
             const TAG = 'T_BallMask->';
-            let mask = intArray;
+            let mask = charArray;
             let temp = [];
             let bby = [];
             let tnum = JSON.parse(JSON.stringify(G_base_numsX));
