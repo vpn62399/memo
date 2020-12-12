@@ -1216,7 +1216,7 @@
 
         function T_Searchfom(arrayVal) {
             // arrayVal 指定した値が含まれるまで探し
-            //  clearInterval(W_T_Searchfom);
+            // clearInterval(W_T_Searchfom);
             let tempArr = arrayVal.concat();
             W_T_Searchfom = setInterval(function () {
                 let cont = 0;
@@ -1230,7 +1230,7 @@
                     clearInterval(W_T_Searchfom);
                     T_cpt2(G_lsloop);
                 }
-            }, 200)
+            }, 100)
         }
 
         function roolclock() {
@@ -1464,29 +1464,15 @@
             let debug = false;
             const TAG = 'log_T_show_topColor->';
             let colors = F_colorpool(2);
-            let tb3 = document.getElementById('tb3');
-            let nums = tb3.getElementsByClassName('n');
+
+            // Color クリア
+            let nums = document.getElementsByClassName('n');
             for (let i = 0; i < nums.length; i++) {
                 nums[i].style.backgroundColor = '';
             }
 
-            tb3 = document.getElementById('tb3');
-            nums = tb3.getElementsByClassName('n');
-            for (let i = 0; i < nums.length; i++) {
-                arrayVal.forEach(function (e) {
-                    if (e == nums[i].innerText) {
-                        nums[i].style.backgroundColor = colors[e];
-                    }
-                })
-            }
-
-            nums = tb4.getElementsByClassName('n');
-            for (let i = 0; i < nums.length; i++) {
-                nums[i].style.backgroundColor = '';
-            }
-
-            tb4 = document.getElementById('tb4');
-            nums = tb4.getElementsByClassName('n');
+            // Color 着ける
+            nums = document.getElementsByClassName('n');
             for (let i = 0; i < nums.length; i++) {
                 arrayVal.forEach(function (e) {
                     if (e == nums[i].innerText) {
@@ -1932,6 +1918,60 @@
         </table>
         <p> </p>
         <button id="fnsw">AddFns([])</button>
+        
+        <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
+            <tbody id="tb5">
+                <tr>
+                    <td width="34" class="n">1</td>
+                    <td width="34" class="n">2</td>
+                    <td width="34" class="n">3</td>
+                    <td width="34" class="n">4</td>
+                    <td width="34" class="n">5</td>
+                    <td width="34" class="n">6</td>
+                    <td width="34" class="n">7</td>
+                    <td width="34" class="n">8</td>
+                    <td width="34" class="n">9</td>
+                    <td width="34" class="n">10</td>
+                    <td width="34" class="n">11</td>
+                    <td width="34" class="n">12</td>
+                    <td width="34" class="n">13</td>
+                    <td width="34" class="n">14</td>
+                    <td width="34" class="n">15</td>
+                    <td width="34" class="n">16</td>
+                    <td width="34" class="n">17</td>
+                    <td width="34" class="n">18</td>
+                    <td width="34" class="n">19</td>
+                    <td width="34" class="n">20</td>
+                </tr>
+                <tr>
+                    <td class="n">21</td>
+                    <td class="n">22</td>
+                    <td class="n">23</td>
+                    <td class="n">24</td>
+                    <td class="n">25</td>
+                    <td class="n">26</td>
+                    <td class="n">27</td>
+                    <td class="n">28</td>
+                    <td class="n">29</td>
+                    <td class="n">30</td>
+                    <td class="n">31</td>
+                    <td class="n">32</td>
+                    <td class="n">33</td>
+                    <td class="n">34</td>
+                    <td class="n">35</td>
+                    <td class="n">36</td>
+                    <td class="n">37</td>
+                    <td class="n">38</td>
+                    <td class="n">39</td>
+                    <td class="n">40</td>
+                </tr>
+                <tr>
+                    <td class="n">41</td>
+                    <td class="n">42</td>
+                    <td class="n">43</td>
+                </tr>
+            </tbody>
+        </table>
         <P> </P>
         <div class="tableaera">
             <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
