@@ -203,6 +203,7 @@
             //
             let debug = false;
             const TAG = 'log_fns->';
+            arrayVal = arrayVal.concat();
             if (!arrayVal) {
                 return;
             }
@@ -499,9 +500,9 @@
         }
 
         //l7.html:294 fns( [2,16,25,12,33,5,20,29,31,4] )  d3c = 55
-        function F_lsloop(intval = LBsize79) {
+        function F_lsloop(intval = LBsize79, algorithm = 2) {
             // 循環にランダム番号を生成する、抽選番号マスターアレーを2次元配列と参照する．
-            let debug = true;
+            let debug = false;
             const TAG = 'log_F_lsloop->';
             let p1 = document.getElementById('p1');
             let p2 = document.getElementById('p2');
@@ -513,9 +514,21 @@
                 let numTemp = 0;
                 let errorCount = 0;
                 let randomIndex = 0;
+                let nums = [];
                 do {
-                    // 本番数字
-                    let nums = T_GetnextNums(numTemp, bnum.length);
+                    switch (algorithm) {
+                        case 1:
+                            // 出た番号と次の番号と組み合わせを参考する，
+                            // 20201212 から利用一時停止
+                            // nums = T_GetnextNums(numTemp, bnum.length);
+                            break;
+                        case 2:
+                            // 列を参考して番号を探し
+                            // 20201212 から再利用する．
+                            nums = G_base_numsY[bnum.length];
+                            break;
+                    }
+
                     randomIndex = Math.floor(Math.random() * (0 - nums.length) + nums.length);
                     if (bnum.length == 0) {
                         let tempnumTemp = nums[randomIndex];
