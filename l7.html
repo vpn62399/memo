@@ -349,43 +349,46 @@
             temp.nextElementSibling.innerText = fns2(tempar1);
         }
 
+        let G_L6ck4nums = [];
         function T_L6ck4() {
             // L6 向く
             let debug = false;
             let TAG = 'log_T_ck4->'
-            let nums3743 = [];
             let fnum = [];
+            G_L6ck4nums = [];
             for (let i = 0; i < LMax3743; i++) {
-                nums3743.push(parseInt(i) + 1);
+                G_L6ck4nums.push(parseInt(i) + 1);
             }
 
             WT_ck4 = setInterval(function () {
                 let tempnum = G_lsloop.concat();
                 tempnum.pop();
+                tempnum.pop();
                 let count = 0;
 
                 tempnum.forEach(function (e) {
-                    if (nums3743.indexOf(e) >= 0) {
+                    if (G_L6ck4nums.indexOf(e) >= 0) {
                         count++;
                     }
                 })
-                if (count == 6) {
+                if (count == 7) {
                     tempnum.forEach(function (e) {
-                        nums3743.splice(nums3743.indexOf(e), 1);
+                        G_L6ck4nums.splice(G_L6ck4nums.indexOf(e), 1);
                     });
                     console.log("STEP1", tempnum);
                     fnum.push(tempnum);
                     tempnum.push(0);
+                    tempnum.push(0);
                     localStorage_additem(tempnum);
-                    console.log("STEP2", nums3743);
+                    console.log("STEP2", G_L6ck4nums);
                 } else {
                     count = 0;
-                    console.log(TAG, 'clearInterval(WT_ck4)');
+                    console.log(TAG, '  clearInterval(WT_ck4)  ');
                 }
-                if (nums3743.length < 10) {
+                if (G_L6ck4nums.length < 7) {
                     clearInterval(WT_ck4);
                     console.log(TAG, fnum);
-                    console.infi(TAG, nums3743);
+                    console.infi(TAG, G_L6ck4nums);
                 }
             }, 100);
         }
