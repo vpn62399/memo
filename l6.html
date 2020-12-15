@@ -375,10 +375,12 @@
                     });
                     console.log("STEP1", tempnum);
                     fnum.push(tempnum);
+                    tempnum.push(0);
+                    localStorage_additem(tempnum);
                     console.log("STEP2", nums3743);
                 } else {
                     count = 0;
-                    console.log(TAG,'work');
+                    console.log(TAG, 'clearInterval(WT_ck4)');
                 }
                 if (nums3743.length < 10) {
                     clearInterval(WT_ck4);
@@ -1957,7 +1959,7 @@
         </table>
         <p> </p>
         <button id="fnsw">AddFns([])</button>
-        
+
         <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
             <tbody id="tb5">
                 <tr>
