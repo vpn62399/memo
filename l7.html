@@ -350,14 +350,24 @@
         }
 
         let G_L6ck4nums = [];
-        function T_L6ck4() {
+        function T_L6ck4(remNums = []) {
             // L6 向く
             let debug = false;
             let TAG = 'log_T_ck4->'
             let fnum = [];
             G_L6ck4nums = [];
+            if (typeof (WT_ck4) == 'number') {
+                clearInterval(WT_ck4);
+            }
+
             for (let i = 0; i < LMax3743; i++) {
                 G_L6ck4nums.push(parseInt(i) + 1);
+            }
+
+            if (remNums.length > 0) {
+                remNums.forEach(function (e) {
+                    G_L6ck4nums.splice(G_L6ck4nums.indexOf(e), 1);
+                })
             }
 
             WT_ck4 = setInterval(function () {
