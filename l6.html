@@ -655,7 +655,7 @@
                     for (let i = 0; i < G_lsloop.length - 2; i++) {
                         console.log(temp[i], temp[i + 1]);
                         if (temp[i] > temp[i + 1]) {
-                            console.log('TAG---',);
+                            console.log('TAG---');
                             clearInterval(work);
                         }
                     }
@@ -670,7 +670,7 @@
                 temp.forEach(function (e) {
                     for (let i = 0; i < e.length - 2; i++) {
                         if (e[i] >= e[i + 1]) {
-                            console.log('TAG---',);
+                            console.log('TAG---');
                             console.log(e[i], e[i + 1]);
                             console.log(e);
                         }
@@ -1269,6 +1269,7 @@
         function T_Searchfom(arrayVal) {
             // arrayVal 指定した値が含まれるまで探し
             // clearInterval(W_T_Searchfom);
+            const TAG = 'T_Searchfom->';
             let tempArr = arrayVal.concat();
             W_T_Searchfom = setInterval(function () {
                 let cont = 0;
@@ -1277,12 +1278,14 @@
                         cont++;
                     }
                 })
-                console.log(G_lsloop);
+                // console.log(G_lsloop);
+                console.info(TAG, ' clearInterval(W_T_Searchfom)  ' + arrayVal.toString());
                 if (cont == arrayVal.length) {
                     clearInterval(W_T_Searchfom);
                     T_cpt2(G_lsloop);
                 }
             }, 100)
+            return G_lsloop;
         }
 
         function roolclock() {
