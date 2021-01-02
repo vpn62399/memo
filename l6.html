@@ -1239,6 +1239,20 @@
             } while (tb1f = tb1f.nextElementSibling);
         }
 
+        function T_balanceSearch(nval, xval) {
+            let debug = false;
+            let TAG = 'T_balanceSearch-> ';
+            let temp = [];
+            W_T_balanceSearch = setInterval(() => {
+                temp = G_lsloop.concat();
+                if (temp[xval] <= nval) {
+                    clearInterval(W_T_balanceSearch);
+                    T_cpt2(temp, 5);
+                }
+                console.info(TAG, nval + ' ' + xval);
+            }, 200);
+        }
+
         function T_TopSearch(arrayVal) {
             // clearInterval(W_TopSearchSwork);
             let debug = false;
@@ -1730,6 +1744,7 @@
             console.info('T_ncont2()', '出番と購入の比較');
             console.info('T_TopSearch()', '指定番号まで確認');
             console.info('T_Searchfom()', '指定番号含まれるまで確認');
+            console.info('T_balanceSearch()', '指定番号以下,指定位置番号探し');
             console.info('T_baseReport()', '抽選番号レポート T_baseReport(new T_toYaxis(G_LocalMaster).value, 1, 1)');
             console.info('T_NUMunionReport(intVal, intVal2)', '番号,位置');
             console.info('T_NumFix(intVal, indexInt)', '番号,位置,番号固定');
