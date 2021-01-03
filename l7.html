@@ -96,7 +96,6 @@
             if (debug) console.log(G_base_numsY);
         }
 
-
         function F_colorClear(intVal) {
             //1 番号の色
             //2 日付の色
@@ -1241,17 +1240,21 @@
             } while (tb1f = tb1f.nextElementSibling);
         }
 
-        function T_balanceSearch(nval, xval) {
+        function T_balanceSearch(va0, va1, va2) {
+            //T_balanceSearch(va0[,], va2[,], va3[,]) 
             let debug = false;
             let TAG = 'T_balanceSearch-> ';
             let temp = [];
+            if (typeof (W_T_balanceSearch) == 'number') {
+                clearInterval(W_T_balanceSearch);
+            }
             W_T_balanceSearch = setInterval(() => {
                 temp = G_lsloop.concat();
-                if (temp[xval] <= nval) {
+                if (temp[va0[0]] >= va0[1] && temp[va1[0]] <= va1[1] && temp[va2[0]] <= va2[1]) {
                     clearInterval(W_T_balanceSearch);
                     T_cpt2(temp, 5);
                 }
-                console.info(TAG, nval + ' ' + xval);
+                console.info(TAG, va0[0] + '>=' + va0[1] + ', ' + va1[0] + '<=' + va1[1] + ', ' + va2[0] + '<=' + va2[1]);
             }, 200);
         }
 
