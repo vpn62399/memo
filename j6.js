@@ -94,7 +94,7 @@ function T_L6ck4(remNums = []) {
             count = 0;
             console.log(TAG, '  clearInterval(WT_ck4)  ');
         }
-        if (G_L6ck4nums.length < 7) {
+        if (G_L6ck4nums.length < 6) {
             clearInterval(WT_ck4);
             console.log(TAG, G_fnum);
             console.info(TAG, G_L6ck4nums);
