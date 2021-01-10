@@ -2,12 +2,12 @@
 CREATE TABLE loto6(
   "t1" INTEGER UNIQUE,
   "d1" TEXT UNIQUE,
-  "x1" INTEGER,
-  "x2" INTEGER,
-  "x3" INTEGER,
-  "x4" INTEGER,
-  "x5" INTEGER,
-  "x6" INTEGER,
+  "s1" INTEGER,
+  "s2" INTEGER,
+  "s3" INTEGER,
+  "s4" INTEGER,
+  "s5" INTEGER,
+  "s6" INTEGER,
   "b1" INTEGER,
   "n1" INTEGER,
   "n2" TEXT,
@@ -19,12 +19,12 @@ CREATE TABLE loto6(
 CREATE TABLE loto6c(
   "t1" INTEGER,
   "d1" TEXT,
-  "x1" INTEGER,
-  "x2" INTEGER,
-  "x3" INTEGER,
-  "x4" INTEGER,
-  "x5" INTEGER,
-  "x6" INTEGER,
+  "s1" INTEGER,
+  "s2" INTEGER,
+  "s3" INTEGER,
+  "s4" INTEGER,
+  "s5" INTEGER,
+  "s6" INTEGER,
   "WIN" INTEGER
 );
 
@@ -87,7 +87,7 @@ select * from loto7c;
 
 .mode table 
 .output xNum_l6.txt
-select t1,d1,z1,x1,x2,x3,x4,x5,x6,z2,z2,b1 from loto6 order by z1,x1,x2,x3,x4,x5,x6;
+select t1,d1,z1,s1,s2,s3,s4,s5,s6,z2,z2,b1 from loto6 order by z1,s1,s2,s3,s4,s5,s6;
 .output stdout
 
 .mode table

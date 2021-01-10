@@ -11,6 +11,7 @@ var xx = function () {
     var url = 'https://www.takarakuji-official.jp/ec/loto6/';
     if (location.href != url) {
         // window.open(url);
+        alert("URL Error");
         return;
     }
     item2 = document.getElementsByClassName('m_lotteryNumContainer_item2');
@@ -100,6 +101,52 @@ function T_L6ck4(remNums = []) {
             console.info(TAG, G_L6ck4nums);
         }
     }, 100)
+}
+
+function T_TopSearch(arrayVal) {
+    // clearInterval(W_TopSearchSwork);
+    let debug = false;
+    const TAG = 'log_T_TopSearch->';
+    let temp = [];
+    let cont = 0;
+    let contc = 0;
+    W_TopSearchSwork = setInterval(function () {
+        cont = 0;
+        but[0].click();
+        let temp = gnum();
+        for (let i = 0; i < arrayVal.length; i++) {
+            if (temp[i] == arrayVal[i]) {
+                cont++;
+            }
+        }
+        console.info(TAG, ' clearInterval(W_TopSearchSwork)  ' + arrayVal.toString());
+        if (cont == arrayVal.length) {
+            clearInterval(W_TopSearchSwork);
+            console.info(TAG, temp);
+        }
+    }, 200)
+}
+
+function T_Searchfom(arrayVal) {
+    // arrayVal 指定した値が含まれるまで探し
+    // clearInterval(W_T_Searchfom);
+    const TAG = 'T_Searchfom->';
+    let tempArr = arrayVal.concat();
+    W_T_Searchfom = setInterval(function () {
+        let cont = 0;
+        but[0].click();
+        var temp = gnum();
+        tempArr.forEach(function (e) {
+            if (temp.indexOf(e) >= 0) {
+                cont++;
+            }
+        })
+        console.info(TAG, ' clearInterval(W_T_Searchfom)  ' + arrayVal.toString());
+        if (cont == arrayVal.length) {
+            clearInterval(W_T_Searchfom);
+            console.info(TAG, temp);
+        }
+    }, 200)
 }
 
 window.onbeforeunload = function () {
