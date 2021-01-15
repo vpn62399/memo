@@ -68,7 +68,9 @@ function T_L6ck4(remNums = []) {
     for (let i = 0; i < LMax3743; i++) {
         G_L6ck4nums.push(parseInt(i) + 1);
     }
-
+    if (typeof (WT_ck4) == 'number') {
+        clearInterval(WT_ck4);
+    }
     if (remNums.length > 0) {
         remNums.forEach(function (e) {
             G_L6ck4nums.splice(G_L6ck4nums.indexOf(e), 1);
@@ -110,6 +112,9 @@ function T_TopSearch(arrayVal) {
     let temp = [];
     let cont = 0;
     let contc = 0;
+    if (typeof (W_TopSearchSwork) == 'number') {
+        clearInterval(W_TopSearchSwork);
+    }
     W_TopSearchSwork = setInterval(function () {
         cont = 0;
         but[0].click();
@@ -132,6 +137,9 @@ function T_Searchfom(arrayVal) {
     // clearInterval(W_T_Searchfom);
     const TAG = 'T_Searchfom->';
     let tempArr = arrayVal.concat();
+    if (typeof (W_T_Searchfom) == 'number') {
+        clearInterval(W_T_Searchfom);
+    }
     W_T_Searchfom = setInterval(function () {
         let cont = 0;
         but[0].click();

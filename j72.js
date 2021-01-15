@@ -116,6 +116,9 @@ function T_TopSearch(arrayVal) {
     let temp = [];
     let cont = 0;
     let contc = 0;
+    if (typeof (W_TopSearchSwork) == 'number') {
+        clearInterval(W_TopSearchSwork);
+    }
     W_TopSearchSwork = setInterval(function () {
         cont = 0;
         but[0].click();
@@ -138,6 +141,9 @@ function T_Searchfom(arrayVal) {
     // clearInterval(W_T_Searchfom);
     const TAG = 'T_Searchfom->';
     let tempArr = arrayVal.concat();
+    if (typeof (W_T_Searchfom) == 'number') {
+        clearInterval(W_T_Searchfom);
+    }
     W_T_Searchfom = setInterval(function () {
         let cont = 0;
         but[0].click();
