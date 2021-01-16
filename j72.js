@@ -98,6 +98,9 @@ function T_L6ck4(remNums = []) {
             G_fnum.push(tempnum);
             tempnum = [];
             console.info(TAG, G_fnum);
+            G_fnum.forEach(function (e) {
+                console.info(' T_cpt2([' + e + ',0,57])  ');
+            })
         } else {
             count = 0;
             console.log(TAG, '  clearInterval(WT_ck4)  ');

@@ -328,6 +328,11 @@
             if (debug) console.log(TAG, 'step1');
             let xnid = document.getElementById('nx' + nid);
             let cxnid = xnid.getElementsByClassName('n');
+            if (arrayVal.length < LBsize79) {
+                for (let i = arrayVal.length; i < LBsize79; i++) {
+                    arrayVal.push(0);
+                }
+            }
             for (let i = 0; i < cxnid.length; i++) {
                 cxnid[i].innerText = arrayVal[i];
             }
