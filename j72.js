@@ -99,7 +99,7 @@ function T_L6ck4(remNums = []) {
             tempnum = [];
             console.info(TAG, G_fnum);
             G_fnum.forEach(function (e) {
-                console.info(' T_cpt2([' + e + ',0,57])  ');
+                console.info(' T_cpt2([' + e + ',57,0])  ');
             })
         } else {
             count = 0;
