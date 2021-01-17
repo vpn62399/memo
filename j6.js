@@ -94,7 +94,7 @@ function T_L6ck4(remNums = []) {
             tempnum = [];
             console.info(TAG, G_fnum);
             G_fnum.forEach(function (e) {
-                console.info(' T_cpt2([' + e + ',56,0])  ');
+                console.info(TAG, ' T_cpt2([' + e + ',56,0])  ');
             })
         } else {
             count = 0;
@@ -130,7 +130,7 @@ function T_TopSearch(arrayVal) {
         console.info(TAG, ' clearInterval(W_TopSearchSwork)  ' + arrayVal.toString());
         if (cont == arrayVal.length) {
             clearInterval(W_TopSearchSwork);
-            console.info(TAG, temp);
+            console.info(TAG, ' T_cpt2([' + temp + ',56,0])  ');
         }
     }, 200)
 }
@@ -155,7 +155,7 @@ function T_Searchfom(arrayVal) {
         console.info(TAG, ' clearInterval(W_T_Searchfom)  ' + arrayVal.toString());
         if (cont == arrayVal.length) {
             clearInterval(W_T_Searchfom);
-            console.info(TAG, temp);
+            console.info(TAG, ' T_cpt2([' + temp + ',56,0])  ');
         }
     }, 200)
 }

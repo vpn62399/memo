@@ -135,6 +135,7 @@ function T_TopSearch(arrayVal) {
         if (cont == arrayVal.length) {
             clearInterval(W_TopSearchSwork);
             console.info(TAG, temp);
+            console.info(TAG, ' T_cpt2([' + temp + ',57,0])  ');
         }
     }, 200)
 }
@@ -160,6 +161,7 @@ function T_Searchfom(arrayVal) {
         if (cont == arrayVal.length) {
             clearInterval(W_T_Searchfom);
             console.info(TAG, temp);
+            console.info(TAG, ' T_cpt2([' + temp + ',57,0])  ');
         }
     }, 200)
 }
