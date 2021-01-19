@@ -1311,6 +1311,25 @@
             return G_lsloop;
         }
 
+        function KeySearch() {
+            let tabletag = document.getElementById('tb6');
+            let pluskey = tabletag.getElementsByClassName('k+');
+            let downkey = tabletag.getElementsByClassName('k-');
+            let num = tabletag.getElementsByClassName('n');
+
+            let logp = function (e) {
+                console.info('logp', e);
+            }
+            let logd = function (e) {
+                console.info('logd', e);
+            }
+
+            for (let i = 0; i < pluskey.length; i++) {
+                pluskey[i].addEventListener('click', logp, true);
+                downkey[i].addEventListener('click', logd, true);
+            }
+        }
+
         function roolclock() {
             //
             let debug = false;
@@ -2052,6 +2071,83 @@
                 </tr>
             </tbody>
         </table>
+        <P> </P>
+        //////////////////// Works ////////////////
+        <div class="tableaera">
+            <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
+                <tbody id="tb6">
+                    <tr align="right">
+                        <td>回別</td>
+                        <td class="d">抽選日</td>
+                        <td class="n">(x1)</td>
+                        <td class="n">(x2)</td>
+                        <td class="n">(x3)</td>
+                        <td class="n">(x4)</td>
+                        <td class="n">(x5)</td>
+                        <td class="n">(x6)</td>
+                        <td class="n">ボナ</td>
+                        <td>口数</td>
+                        <td>選金</td>
+                        <td>オバ</td>
+                        <td>BL</td>
+                        <td>レ7</td>
+                        <td>レ6</td>
+                    </tr>
+                    <tr id=nx1 align="right">
+                        <td>000</td>
+                        <td class="d">2021/1/19</td>
+                        <td class="k+">+</td>
+                        <td class="k+">+</td>
+                        <td class="k+">+</td>
+                        <td class="k+">+</td>
+                        <td class="k+">+</td>
+                        <td class="k+">+</td>
+                        <td class="k+">+</td>
+                        <td>0</td>
+                        <td>nx1</td>
+                        <td>0</td>
+                        <td class="bl">X</td>
+                        <td>レ7</td>
+                        <td>レ6</td>
+                    </tr>
+                    <tr id=nx1 align="right">
+                        <td>000</td>
+                        <td class="d">2021/1/19</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td>0</td>
+                        <td>nx1</td>
+                        <td>0</td>
+                        <td class="bl">X</td>
+                        <td>レ7</td>
+                        <td>レ6</td>
+                    </tr>
+                    <tr id=nx1 align="right">
+                        <td>000</td>
+                        <td class="d">2021/1/19</td>
+                        <td class="k-">-</td>
+                        <td class="k-">-</td>
+                        <td class="k-">-</td>
+                        <td class="k-">-</td>
+                        <td class="k-">-</td>
+                        <td class="k-">-</td>
+                        <td class="k-">-</td>
+                        <td>-</td>
+                        <td>nx1</td>
+                        <td>-</td>
+                        <td class="bl">X</td>
+                        <td>レ7</td>
+                        <td>レ6</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        //////////////////// Works ////////////////
         <P> </P>
         <div class="tableaera">
             <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
