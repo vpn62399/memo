@@ -323,7 +323,7 @@
 
         function T_cpt2(arrayVal = [0, 0, 0, 0, 0, 0, 0], nid = 5) {
             // T_cpt2() 先頭に予想番号を追加
-            let debug = true;
+            let debug = false;
             const TAG = 'log_T_cpt2->';
             if (debug) console.log(TAG, 'step1');
             let xnid = document.getElementById('nx' + nid);
@@ -1316,14 +1316,29 @@
             let pluskey = tabletag.getElementsByClassName('k+');
             let downkey = tabletag.getElementsByClassName('k-');
             let num = tabletag.getElementsByClassName('n');
-
-            let logp = function (e) {
-                console.info('logp', e);
+            let logp = function () {
+                console.info('log+', this.getAttribute('index'));
+                num[this.getAttribute('index')].innerText = parseInt(num[this.getAttribute('index')].innerText) + 1;
+                if (parseInt(num[this.getAttribute('index')].innerText) > LMax3743) {
+                    num[this.getAttribute('index')].innerText = 1;
+                }
+                findnum();
             }
             let logd = function (e) {
-                console.info('logd', e);
+                console.info('log-', this.getAttribute('index'));
+                num[this.getAttribute('index')].innerText = parseInt(num[this.getAttribute('index')].innerText) - 1;
+                if (parseInt(num[this.getAttribute('index')].innerText) < 0) {
+                    num[this.getAttribute('index')].innerText = LMax3743;
+                }
+                findnum();
             }
-
+            function findnum() {
+                let temp = [];
+                for (let i = 0; i < LBsize79; i++) {
+                    temp.push(parseInt(num[i].innerText));
+                }
+                T_cpt2(temp);
+            }
             for (let i = 0; i < pluskey.length; i++) {
                 pluskey[i].addEventListener('click', logp, true);
                 downkey[i].addEventListener('click', logd, true);
@@ -1812,6 +1827,7 @@
                 T_show_topNums();
                 T_show_top10Nums();
                 F_selectNums();
+                KeySearch();
                 T_baseReport(G_base_numsY, G_base_numsY[0].length, 10);
             }, 3000);
             help();
@@ -2078,18 +2094,35 @@
                 <tbody id="tb6">
                     <tr align="right">
                         <td>回別</td>
-                        <td class="d">抽選日</td>
-                        <td class="n">(x1)</td>
-                        <td class="n">(x2)</td>
-                        <td class="n">(x3)</td>
-                        <td class="n">(x4)</td>
-                        <td class="n">(x5)</td>
-                        <td class="n">(x6)</td>
-                        <td class="n">ボナ</td>
+                        <td>抽選日</td>
+                        <td>(x1)</td>
+                        <td>(x2)</td>
+                        <td>(x3)</td>
+                        <td>(x4)</td>
+                        <td>(x5)</td>
+                        <td>(x6)</td>
+                        <td>ボナ</td>
                         <td>口数</td>
                         <td>選金</td>
                         <td>オバ</td>
                         <td>BL</td>
+                        <td>レ7</td>
+                        <td>レ6</td>
+                    </tr>
+                    <tr id=nx1 align="right">
+                        <td>000</td>
+                        <td class="d">2021/1/19</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td class="n">0</td>
+                        <td>0</td>
+                        <td>nx1</td>
+                        <td>0</td>
+                        <td class="bl">X</td>
                         <td>レ7</td>
                         <td>レ6</td>
                     </tr>
@@ -2103,23 +2136,6 @@
                         <td class="k+" index="4">+</td>
                         <td class="k+" index="5">+</td>
                         <td class="k+" index="6">+</td>
-                        <td>0</td>
-                        <td>nx1</td>
-                        <td>0</td>
-                        <td class="bl">X</td>
-                        <td>レ7</td>
-                        <td>レ6</td>
-                    </tr>
-                    <tr id=nx1 align="right">
-                        <td>000</td>
-                        <td class="d">2021/1/19</td>
-                        <td class="n">0</td>
-                        <td class="n">0</td>
-                        <td class="n">0</td>
-                        <td class="n">0</td>
-                        <td class="n">0</td>
-                        <td class="n">0</td>
-                        <td class="n">0</td>
                         <td>0</td>
                         <td>nx1</td>
                         <td>0</td>
