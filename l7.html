@@ -1319,11 +1319,11 @@
             let downkey = tabletag.getElementsByClassName('k-');
             let num = tabletag.getElementsByClassName('n');
 
-            let logp = function (e) {
-                console.info('logp', e);
+            let logp = function () {
+                console.info('log+', this.getAttribute('index'));
             }
             let logd = function (e) {
-                console.info('logd', e);
+                console.info('log-', this.getAttribute('index'));
             }
 
             for (let i = 0; i < pluskey.length; i++) {
@@ -2090,15 +2090,15 @@
                     <tr id=nx1 align="right">
                         <td>000</td>
                         <td class="d">2021/1/19</td>
-                        <td class="k+">+</td>
-                        <td class="k+">+</td>
-                        <td class="k+">+</td>
-                        <td class="k+">+</td>
-                        <td class="k+">+</td>
-                        <td class="k+">+</td>
-                        <td class="k+">+</td>
-                        <td class="k+">+</td>
-                        <td class="k+">+</td>
+                        <td class="k+" index="0">+</td>
+                        <td class="k+" index="1">+</td>
+                        <td class="k+" index="2">+</td>
+                        <td class="k+" index="3">+</td>
+                        <td class="k+" index="4">+</td>
+                        <td class="k+" index="5">+</td>
+                        <td class="k+" index="6">+</td>
+                        <td class="k+" index="7">+</td>
+                        <td class="k+" index="8">+</td>
                         <td>0</td>
                         <td>nx1</td>
                         <td>0</td>
@@ -2128,15 +2128,15 @@
                     <tr id=nx1 align="right">
                         <td>000</td>
                         <td class="d">2021/1/19</td>
-                        <td class="k-">-</td>
-                        <td class="k-">-</td>
-                        <td class="k-">-</td>
-                        <td class="k-">-</td>
-                        <td class="k-">-</td>
-                        <td class="k-">-</td>
-                        <td class="k-">-</td>
-                        <td class="k-">-</td>
-                        <td class="k-">-</td>
+                        <td class="k-" index="0">-</td>
+                        <td class="k-" index="1">-</td>
+                        <td class="k-" index="2">-</td>
+                        <td class="k-" index="3">-</td>
+                        <td class="k-" index="4">-</td>
+                        <td class="k-" index="5">-</td>
+                        <td class="k-" index="6">-</td>
+                        <td class="k-" index="7">-</td>
+                        <td class="k-" index="8">-</td>
                         <td>-</td>
                         <td>nx1</td>
                         <td>-</td>
