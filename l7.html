@@ -352,6 +352,13 @@
             tempar1.pop();
             tempar1.pop();
             temp.nextElementSibling.innerText = fns2(tempar1);
+
+            // KeySearch() 表示用
+            let tabletag = document.getElementById('tb6');
+            let num = tabletag.getElementsByClassName('n');
+            for (let i = 0; i < tempar1.length; i++) {
+                num[i].innerText = tempar1[i];
+            }
         }
 
         let G_L6ck4nums = [];
@@ -1319,7 +1326,7 @@
             let downkey = tabletag.getElementsByClassName('k-');
             let num = tabletag.getElementsByClassName('n');
             let logp = function () {
-                console.info('log+', this.getAttribute('index'));
+                // console.info('log+', this.getAttribute('index'));
                 num[this.getAttribute('index')].innerText = parseInt(num[this.getAttribute('index')].innerText) + 1;
                 if (parseInt(num[this.getAttribute('index')].innerText) > LMax3743) {
                     num[this.getAttribute('index')].innerText = 1;
@@ -1327,7 +1334,7 @@
                 findnum();
             }
             let logd = function (e) {
-                console.info('log-', this.getAttribute('index'));
+                // console.info('log-', this.getAttribute('index'));
                 num[this.getAttribute('index')].innerText = parseInt(num[this.getAttribute('index')].innerText) - 1;
                 if (parseInt(num[this.getAttribute('index')].innerText) < 0) {
                     num[this.getAttribute('index')].innerText = LMax3743;

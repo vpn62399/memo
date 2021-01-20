@@ -352,6 +352,13 @@
             tempar1.pop();
             // tempar1.pop();
             temp.nextElementSibling.innerText = fns2(tempar1);
+
+            // KeySearch() 表示用
+            let tabletag = document.getElementById('tb6');
+            let num = tabletag.getElementsByClassName('n');
+            for (let i = 0; i < tempar1.length; i++) {
+                num[i].innerText = tempar1[i];
+            }
         }
 
         let G_L6ck4nums = [];
