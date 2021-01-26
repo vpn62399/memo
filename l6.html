@@ -584,12 +584,14 @@
                         case 1:
                             // 出た番号と次の番号と組み合わせを参考する，
                             // 20201212 から利用一時停止
-                            // nums = T_GetnextNums(numTemp, bnum.length);
+                            // 20210126 再開
+                            nums = T_GetnextNums(numTemp, bnum.length);
                             break;
                         case 2:
                             // 列を参考して番号を探し
                             // 20201212 から再利用する．
-                            nums = G_base_numsY[bnum.length];
+                            // 20210126 停止
+                            // nums = G_base_numsY[bnum.length];
                             break;
                     }
 
