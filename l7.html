@@ -45,6 +45,9 @@
             do {
                 let tr_data = tr.shift();
                 let td_data = tr_data.split(',');
+                while (td_data.length < 16) {
+                    td_data.push(0);
+                }
                 let ircc = ttfe.cloneNode(true);
                 let tr_place = ircc.getElementsByTagName('td');
                 let temp = [];
@@ -76,6 +79,9 @@
             for (let i = 0; i < tr.length; i++) {
                 G_base_numsX[i] = [];
                 let td = tr[i].split(',');
+                while (td.length < 16) {
+                    td.push(0);
+                }
                 for (let j = 2; j < 11; j++) {
                     G_base_numsX[i].push(parseInt(td[j]));
                 }
@@ -244,7 +250,8 @@
                     continue;
                 };
                 let xc = 0;
-                for (let i = 2; i < 11; i++) {
+                //  i < 11; ボーナス数字含む
+                for (let i = 2; i < 9; i++) {
                     for (let j = 0; j < arrayVal.length; j++) {
                         if (trs[i].innerText == arrayVal[j]) {
                             if (temp.indexOf(arrayVal[j]) == -1) {
@@ -1604,7 +1611,7 @@
         }
 
         function localStorage_tonx5() {
-            //
+            //	SetItem(5) クリック
             let debug = false;
             const TAG = 'log_localStorage_tonx5->';
             if (debug) console.log(TAG, this);
@@ -1615,6 +1622,20 @@
             if (debug) console.log(TAG, timeKey);
             let tempval = localStorage.getItem(timeKey.innerText).split(',');
             T_cpt2(tempval, 5);
+        }
+
+        function localStorage_tonx5_2() {
+            //	SetItem(5) Wクリック
+            let debug = false;
+            const TAG = 'log_localStorage_tonx5->';
+            if (debug) console.log(TAG, this);
+            let timeKey = this.previousElementSibling;
+            for (let i = 0; i < 10; i++) {
+                timeKey = timeKey.previousElementSibling;
+            }
+            if (debug) console.log(TAG, timeKey);
+            let tempval = localStorage.getItem(timeKey.innerText).split(',');
+            fns(tempval, 2);
         }
 
         function localStorage_removeItem() {
@@ -1656,6 +1677,7 @@
                             }
                             tempitem.nextElementSibling.nextElementSibling.innerText = fns2(temp.map(Number));
                             tempitem.nextElementSibling.addEventListener('click', localStorage_tonx5, true);
+                            tempitem.nextElementSibling.addEventListener('dblclick', localStorage_tonx5_2, true);
                             tbclone.firstElementChild.nextElementSibling.addEventListener('click', localStorage_removeItem, true);
                             if (temp.length == LBsize79) {
                                 tb2.appendChild(tbclone);
@@ -1715,6 +1737,7 @@
                 }
                 tempitem.nextElementSibling.nextElementSibling.innerText = fns2(arrayVal.map(Number));
                 tempitem.nextElementSibling.addEventListener('click', localStorage_tonx5, true);
+                tempitem.nextElementSibling.addEventListener('dblclick', localStorage_tonx5_2, true);
                 tbclone.firstElementChild.nextElementSibling.addEventListener('click', localStorage_removeItem, true);
                 tb2.appendChild(tbclone);
             }
