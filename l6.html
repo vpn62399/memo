@@ -612,7 +612,7 @@
                         }
                     } else {
                         let tempnumTemp = nums[randomIndex];
-                        if (tempnumTemp > bnum[bnum.length - 1]) {
+                        if (parseInt(tempnumTemp) > parseInt(bnum[bnum.length - 1])) {
                             if (G_num_filter.indexOf(tempnumTemp) == -1) {
                                 bnum.push(tempnumTemp);
                                 numTemp = tempnumTemp;
