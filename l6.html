@@ -567,12 +567,13 @@
                     }
                 }
             }
-            return numsArray.reverse();
-            // return numsArray;
+            let temp = numsArray.concat();
+            temp.reverse();
+            return temp;
         }
 
         //l7.html:294 fns( [2,16,25,12,33,5,20,29,31,4] )  d3c = 55
-        function F_lsloop(intval = LBsize79, algorithm = 1) {
+        function F_lsloop(intval = LBsize79, algorithm = 3) {
             // 循環にランダム番号を生成する、抽選番号マスターアレーを2次元配列と参照する．
             let debug = false;
             const TAG = 'log_F_lsloop->';
@@ -600,6 +601,12 @@
                             // 20201212 から再利用する．
                             // 20210126 停止
                             // nums = G_base_numsY[bnum.length];
+                            break;
+                        case 3:
+                            //最近の番号のみ参照
+                            // 20210209 作成
+                            nums = T_GetnextNums(0, bnum.length);
+                            nums = nums.slice(0, 20);
                             break;
                     }
 
@@ -654,7 +661,7 @@
                     p1.innerText = count++;
                     p2.innerText = G_lsloop;
                 }
-            }, 10)
+            }, 1000)
 
             function tfn(intVal) {
                 // 指定回数の番号を発生する。
