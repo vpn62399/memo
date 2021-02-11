@@ -573,7 +573,7 @@
         }
 
         //l7.html:294 fns( [2,16,25,12,33,5,20,29,31,4] )  d3c = 55
-        function F_lsloop(intval = LBsize79, algorithm = 3) {
+        function F_lsloop(intval = LBsize79, algorithm = 2) {
             // 循環にランダム番号を生成する、抽選番号マスターアレーを2次元配列と参照する．
             let debug = false;
             const TAG = 'log_F_lsloop->';
@@ -593,14 +593,11 @@
                         case 1:
                             // 出た番号と次の番号と組み合わせを参考する，
                             // 20201212 から利用一時停止
-                            // 20210126 再開
                             nums = T_GetnextNums(numTemp, bnum.length);
                             break;
                         case 2:
                             // 列を参考して番号を探し
-                            // 20201212 から再利用する．
-                            // 20210126 停止
-                            // nums = G_base_numsY[bnum.length];
+                            nums = G_base_numsY[bnum.length];
                             break;
                         case 3:
                             //最近の番号のみ参照
