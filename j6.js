@@ -160,6 +160,62 @@ function T_Searchfom(arrayVal) {
     }, 200)
 }
 
+function tx2() {
+    let tag = [
+        [12, 15, 26, 34, 35, 38],
+        [7, 19, 24, 32, 40, 42],
+        [4, 15, 17, 20, 26, 31],
+        [1, 12, 25, 27, 39, 42],
+        [5, 21, 22, 23, 26, 39],
+        [10, 19, 28, 30, 38, 42],
+        [2, 8, 17, 23, 24, 27],
+        [6, 14, 16, 27, 40, 42],
+        [7, 8, 16, 32, 41, 42],
+        [5, 9, 15, 30, 32, 39],
+        [3, 14, 18, 24, 38, 43]
+    ];
+    let index = 0;
+    let er = [];
+    let tw = setInterval(function () {
+        index++;
+        but[0].click()
+        er = gnum();
+        // er = G_lsloop.concat();
+        // er.pop();
+
+        for (let i = 0; i < tag.length; i++) {
+            if (er.toString() == tag[i].toString()) {
+                console.log(er);
+            } else {
+                console.log('work');
+                console.log(er);
+            }
+        }
+        if (index == 1000) {
+            clearInterval(tw);
+            console.log('work_end');
+        }
+    }, 50)
+}
+
+function tx1() {
+    let tag = [
+        [12, 15, 26, 34, 35, 38],
+        [7, 19, 24, 32, 40, 42],
+        [4, 15, 17, 20, 26, 31],
+        [1, 12, 25, 27, 39, 42]
+    ];
+    for (let i = 0; i < tag.length; i++) {
+        (function (i) {
+            this.print = function () {
+                console.log(tag[i]);
+                console.log(tag[i].length);
+            };
+            this.print();
+        }).call(tag[i], i);
+    }
+}
+
 window.onbeforeunload = function () {
     return "本当に離れますか？";
 }
