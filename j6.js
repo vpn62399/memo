@@ -160,7 +160,7 @@ function T_Searchfom(arrayVal) {
     }, 200)
 }
 
-function tx2() {
+function T_tx2() {
     let tag = [
         [12, 15, 26, 34, 35, 38],
         [7, 19, 24, 32, 40, 42],
@@ -176,35 +176,29 @@ function tx2() {
     ];
     let index = 0;
     let er = [];
-    let tw = setInterval(function () {
+    G_tx2list = [];
+    tx2_tw = setInterval(function () {
         index++;
         but[0].click()
         er = gnum();
-        // er = G_lsloop.concat();
-        // er.pop();
-
         for (let i = 0; i < tag.length; i++) {
             if (er.toString() == tag[i].toString()) {
                 console.log(er);
-            } else {
-                console.log('work');
-                console.log(er);
+                G_tx2list.push(er);
             }
         }
-        if (index == 1000) {
-            clearInterval(tw);
-            console.log('work_end');
+        console.log(' clearInterval(tx2_tw) ');
+        if (index == 10000) {
+            clearInterval(tx2_tw);
+            console.log(G_tx2list);
+            console.log('tx2_tw_work_end');
         }
-    }, 50)
+    }, 100)
 }
 
 function tx1() {
-    let tag = [
-        [12, 15, 26, 34, 35, 38],
-        [7, 19, 24, 32, 40, 42],
-        [4, 15, 17, 20, 26, 31],
-        [1, 12, 25, 27, 39, 42]
-    ];
+    // call 
+    let tag = [[12, 15, 26, 34, 35, 38], [7, 19, 24, 32, 40, 42], [4, 15, 17, 20, 26, 31], [1, 12, 25, 27, 39, 42]];
     for (let i = 0; i < tag.length; i++) {
         (function (i) {
             this.print = function () {
@@ -212,7 +206,7 @@ function tx1() {
                 console.log(tag[i].length);
             };
             this.print();
-        }).call(tag[i], i);
+        }).call(tag, i);
     }
 }
 

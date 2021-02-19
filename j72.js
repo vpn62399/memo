@@ -166,6 +166,42 @@ function T_Searchfom(arrayVal) {
     }, 200)
 }
 
+function T_tx2() {
+    let tag = [
+        [19, 21, 25, 26, 28, 30, 31],
+        [1, 2, 5, 16, 18, 21, 29],
+        [3, 10, 16, 17, 24, 32, 36],
+        [4, 8, 13, 16, 25, 30, 32],
+        [2, 6, 8, 12, 19, 20, 29],
+        [7, 9, 12, 17, 20, 26, 29],
+        [4, 5, 9, 14, 18, 30, 35],
+        [4, 17, 22, 28, 30, 31, 35],
+        [7, 15, 19, 20, 21, 33, 36],
+        [3, 4, 10, 17, 20, 22, 33],
+        [4, 12, 13, 15, 21, 28, 37]
+    ];
+    let index = 0;
+    let er = [];
+    G_tx2list = [];
+    tx2_tw = setInterval(function () {
+        index++;
+        but[0].click()
+        er = gnum();
+        for (let i = 0; i < tag.length; i++) {
+            if (er.toString() == tag[i].toString()) {
+                console.log(er);
+                G_tx2list.push(er);
+            }
+        }
+        console.log(' clearInterval(tx2_tw) ');
+        if (index == 10000) {
+            clearInterval(tx2_tw);
+            console.log(G_tx2list);
+            console.log('tx2_tw_work_end');
+        }
+    }, 100)
+}
+
 function hiro7_off() {
     // x と一致の番号を探す
     hiro_off_num = [9, 19, 22, 32, 35, 36, 37];  //第386回
