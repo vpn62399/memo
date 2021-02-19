@@ -87,18 +87,23 @@ select * from loto7c;
 
 .mode table 
 .output xNum_l6.txt
+select t1,d1,z1,s1,s2,s3,s4,s5,s6,z2,z2,b1 from loto6 order by s1,s2,s3,s4,s5,s6;
+.output stdout
+
+.mode table
+.output xNum_l7.txt
+select t1,d1,z1,s1,s2,s3,s4,s5,s6,s7,z2,z2,b1,b2 from loto7 order by s1,s2,s3,s4,s5,s6,s7;
+.output stdout
+
+////////////////////////////////////////////////////////////////////////
+.mode table 
+.output xNum_l6.txt
 select t1,d1,z1,s1,s2,s3,s4,s5,s6,z2,z2,b1 from loto6 order by z1,s1,s2,s3,s4,s5,s6;
 .output stdout
 
 .mode table
 .output xNum_l7.txt
 select t1,d1,z1,s1,s2,s3,s4,s5,s6,s7,z2,z2,b1,b2 from loto7 order by z1,s1,s2,s3,s4,s5,s6,s7;
-.output stdout
-
-////////////////////////////////////////////////////////////////////////
-.mode table
-.output xNum_l7.txt
-select t1,d1,z1,s1,s2,s3,s4,s5,s6,s7,z2,z2,b1,b2 from loto7 order by s1 ,s7;
 .output stdout
 
 ////////////////////////////////////////////////////////////////////////
