@@ -160,7 +160,7 @@ function T_Searchfom(arrayVal) {
     }, 200)
 }
 
-function T_tx2() {
+function T_tx2(lop = 10000) {
     let tag = [
         [12, 15, 26, 34, 35, 38],
         [7, 19, 24, 32, 40, 42],
@@ -188,7 +188,7 @@ function T_tx2() {
             }
         }
         console.log(' clearInterval(tx2_tw) ');
-        if (index == 10000) {
+        if (index == lop) {
             clearInterval(tx2_tw);
             console.log(G_tx2list);
             console.log('tx2_tw_work_end');
