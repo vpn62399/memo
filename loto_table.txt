@@ -80,12 +80,12 @@ delete from loto6c;
 
 .mode table 
 .output xNum_l6c.txt
-select * from loto6c;
+select rowid,* from loto6c;
 .output stdout
 
 .mode table 
 .output xNum_l7c.txt
-select * from loto7c;
+select rowid,* from loto7c;
 .output stdout
 
 .mode table 
