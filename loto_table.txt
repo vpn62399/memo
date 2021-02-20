@@ -25,6 +25,7 @@ CREATE TABLE loto6c(
   "s4" INTEGER,
   "s5" INTEGER,
   "s6" INTEGER,
+  "b1" INTEGER,
   "WIN" INTEGER
 );
 
@@ -57,6 +58,8 @@ CREATE TABLE loto7c(
   "s5" INTEGER,
   "s6" INTEGER,
   "s7" INTEGER,
+  "b1" INTEGER,
+  "b2" INTEGER,
   "WIN" INTEGER
 );
 
