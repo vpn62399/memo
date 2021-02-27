@@ -368,6 +368,37 @@
             }
         }
 
+        G_groupNum = [];
+        function T_L6ck5(valArr) {
+            //20210227
+            let TAG = 'log_T_L6ck5->';
+            G_groupNum = valArr;
+            let count = 0;
+            WT_ck5 = setInterval(function () {
+                let onecont = 0;
+                let tag = G_lsloop.concat();
+                tag.pop();
+                tag.forEach(function (e) {
+                    if (G_groupNum.indexOf(e) > -1) {
+                        onecont++;
+                    }
+                })
+                if (onecont == tag.length) {
+                    console.log(tag);
+                    count++;
+                    let temp = tag.concat();
+                    temp.push(66);
+                    localStorage_additem(temp);
+                } else {
+                    console.log(TAG);
+                }
+                if (count == 10) {
+                    clearInterval(WT_ck5);
+                    console.info('T_L6ck5 end');
+                }
+            }, 200);
+        }
+
         let G_L6ck4nums = [];
         function T_L6ck4(remNums = []) {
             // L6 向く
