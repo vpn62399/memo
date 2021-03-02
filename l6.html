@@ -33,7 +33,26 @@
             req.open("GET", url, true);
             req.send(null);
         }
-        F_httprequest();
+        // F_httprequest();
+
+        async function testFetch() {
+            let pim = fetch('/' + CSVFile + '?key=' + Math.floor(Math.random() * (1 - 100) + 100));
+            pim.then(function (msg) {
+                msg.text().then(function (ajaxText) {
+                    console.log(TAGLine, 'step1');
+                    F_create_master(ajaxText);
+                    F_read_ajax(ajaxText);
+                }).then(function () {
+                    console.log(TAGLine, 'step2');
+                }).catch(function () {
+                    console.log(TAGLine, 'catch');
+                })
+            }).catch(function (e) {
+                console.log(TAGLine, 'URLerror');
+                console.log(e);
+            })
+        }
+        testFetch();
 
         function F_read_ajax(str) {
             let debug = false;
