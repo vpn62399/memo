@@ -1,12 +1,5 @@
 <?php
-class opt
-{
-    public static $m = "mmmm";
-    public static $b = "bbbb";
-    public function getVar()
-    {
-        return $this->m;
-    }
-}
 
-echo $test->m;
+print_r(var_dump($_GET));
+
+phpinfo(9);
