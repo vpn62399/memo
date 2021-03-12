@@ -1,5 +1,18 @@
 <?php
-
 print_r(var_dump($_GET));
+// phpinfo();
+?>
 
-phpinfo(9);
+<html>
+<script type="text/javascript">
+</script>
+<head>
+    <meta>
+    <title>PHP test</title>
+</head>
+
+<body>
+    <p>abcdefg</p>
+</body>
+
+</html>
