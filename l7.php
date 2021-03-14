@@ -698,7 +698,7 @@
                     }
 
                     randomIndex = Math.floor(Math.random() * (0 - nums.length) + nums.length);
-                    if (bnum.length == 0) {
+                    if (bnum.length === 0) {
                         let tempnumTemp = nums[randomIndex];
                         if (G_num_filter.indexOf(tempnumTemp) === -1) {
                             bnum.push(tempnumTemp);

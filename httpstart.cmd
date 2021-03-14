@@ -1,4 +1,4 @@
-C:\Users\NUC\Desktop\php-8.0.2-Win32-vs16-x64\php -S 192.168.11.113:80 -t %HOMEPATH%\Desktop\memo
+%HOMEPATH%\Desktop\php-8.0.3-Win32-vs16-x64\php -S 192.168.11.113:80 -t %HOMEPATH%\Desktop\memo
 
 @REM SET pver=python-3.7.9-embed-win32
 @REM SET pver=python-3.9.0-embed-win32
