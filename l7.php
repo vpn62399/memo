@@ -647,7 +647,7 @@
             let testkey = intVal;
             let index = intIndex;
             let numsArray = [];
-            if (testkey == 0 || index == (LBsize79 - 1)) {
+            if (testkey === 0 || index === (LBsize79 - 1)) {
                 numsArray = G_base_numsY[index];
             } else {
                 for (let i = 0; i < G_base_numsY[index].length; i++) {
@@ -660,7 +660,7 @@
         }
 
         //l7.html:294 fns( [2,16,25,12,33,5,20,29,31,4] )  d3c = 55
-        function F_lsloop(intval = LBsize79, algorithm = 2) {
+        function F_lsloop(intval = LBsize79, algorithm = 4) {
             // 循環にランダム番号を生成する、抽選番号マスターアレーを2次元配列と参照する．
             let debug = false;
             const TAG = 'log_F_lsloop->';
@@ -693,7 +693,11 @@
                             nums = temp;
                             break;
                         case 4:
-                            mums = T_Excluded_number(G_num_filter);
+                            nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
+                                11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
+                                21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
+                                31, 32, 33, 34, 35, 36, 37
+                            ];
                             break;
                     }
 
@@ -706,16 +710,16 @@
                         }
                     } else {
                         let tempnumTemp = nums[randomIndex];
-                        if (parseInt(tempnumTemp) > parseInt(bnum[bnum.length - 1])) {
-                            if (G_num_filter.indexOf(tempnumTemp) === -1) {
+                        if (G_num_filter.indexOf(tempnumTemp) === -1) {
+                            if (parseInt(tempnumTemp) > parseInt(bnum[bnum.length - 1])) {
                                 bnum.push(tempnumTemp);
                                 numTemp = tempnumTemp;
+                            } else {
+                                bnum.pop();
+                                if (debug) console.log(TAG + 'bnum.length', bnum.length);
+                                if (debug) console.log(TAG, bnum[bnum.length - 1] + '<<<' + tempnumTemp);
+                                if (debug) console.log(TAG, 'T_GetnextNums([' + bnum[bnum.length - 1] + ',' + bnum.length + '])');
                             }
-                        } else {
-                            bnum.pop();
-                            if (debug) console.log(TAG + 'bnum.length', bnum.length);
-                            if (debug) console.log(TAG, bnum[bnum.length - 1] + '<<<' + tempnumTemp);
-                            if (debug) console.log(TAG, 'T_GetnextNums([' + bnum[bnum.length - 1] + ',' + bnum.length + '])');
                         }
                     }
 
@@ -725,13 +729,12 @@
                 } while (bnum.length < LBsize79 - 2);
                 errorCount = 0;
 
-
                 do {
                     // ボーナス数字
                     let nums = T_GetnextNums(numTemp, bnum.length);
                     randomIndex = Math.floor(Math.random() * (0 - nums.length) + nums.length);
                     let tempnumTemp = nums[randomIndex];
-                    if (bnum.indexOf(tempnumTemp) == -1 && G_num_filter.indexOf(tempnumTemp) == -1) {
+                    if (bnum.indexOf(tempnumTemp) === -1 && G_num_filter.indexOf(tempnumTemp) === -1) {
                         bnum.push(tempnumTemp);
                         numTemp = tempnumTemp;
                     }
