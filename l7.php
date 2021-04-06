@@ -24,7 +24,7 @@
         function F_httprequest() {
             let req = new XMLHttpRequest();
             let url = '/' + CSVFile + '?key=' + Math.floor(Math.random() * (1 - 100) + 100);
-            req.onreadystatechange = function() {
+            req.onreadystatechange = function () {
                 if (req.readyState == 4 && req.status == 200) {
                     let ajaxText = req.responseText;
                     F_create_master(ajaxText);
@@ -253,7 +253,7 @@
         function F_hit_table() {
             //
             let tb = document.getElementById('hide');
-            tb.addEventListener('click', function() {
+            tb.addEventListener('click', function () {
                 let tab = document.getElementById('heid');
                 if (tab.getAttribute('style') == 'display:none') {
                     // tab.setAttribute('style', '');
@@ -299,7 +299,11 @@
                 return;
             }
             let fnsw = document.getElementById('fnsw');
-            fnsw.innerText = arrayVal;
+            if (arrayVal.length === 0) {
+                fnsw.innerText = 0;
+            } else {
+                fnsw.innerText = arrayVal.sort((a, b) => a - b);
+            }
             T_show_topColor(arrayVal);
 
             let colors = {};
@@ -393,7 +397,7 @@
             let temp = [];
             let temp2 = [];
             const TAG = 'T_toRegExp->';
-            arrayVal.forEach(function(e) {
+            arrayVal.forEach(function (e) {
                 let nums = '';
                 let nums2 = '';
                 if (e <= 9) {
@@ -436,7 +440,7 @@
 
             let tempar = arrayVal.splice(',');
             let tempar1 = [];
-            tempar.forEach(function(e) {
+            tempar.forEach(function (e) {
                 tempar1.push(parseInt(e));
             });
             temp.innerText = fns2(tempar1);
@@ -461,7 +465,7 @@
             let TAG = 'log_T_ck4->'
             let fnum = [];
             G_L6ck4nums = [];
-            if (typeof(WT_ck4) === 'number') {
+            if (typeof (WT_ck4) === 'number') {
                 clearInterval(WT_ck4);
             }
 
@@ -470,24 +474,24 @@
             }
 
             if (remNums.length > 0) {
-                remNums.forEach(function(e) {
+                remNums.forEach(function (e) {
                     G_L6ck4nums.splice(G_L6ck4nums.indexOf(e), 1);
                 })
             }
 
-            WT_ck4 = setInterval(function() {
+            WT_ck4 = setInterval(function () {
                 let tempnum = G_lsloop.concat();
                 tempnum.pop();
                 tempnum.pop();
                 let count = 0;
 
-                tempnum.forEach(function(e) {
+                tempnum.forEach(function (e) {
                     if (G_L6ck4nums.indexOf(e) >= 0) {
                         count++;
                     }
                 })
                 if (count === 7) {
-                    tempnum.forEach(function(e) {
+                    tempnum.forEach(function (e) {
                         G_L6ck4nums.splice(G_L6ck4nums.indexOf(e), 1);
                     });
                     console.log("STEP1", tempnum);
@@ -526,7 +530,7 @@
             }
             var flag = 0;
             nlist.push(orj);
-            W_ck3 = setInterval(function() {
+            W_ck3 = setInterval(function () {
                 for (let j = 0; j < 100; j++) {
                     let tp = ls(LSize76);
                     if (view == 1) {
@@ -544,7 +548,7 @@
                         nlist.push(tp);
                         console.log(TAG, nums);
                         console.log(count, tp);
-                        tp.forEach(function(e) {
+                        tp.forEach(function (e) {
                             nums.splice(nums.indexOf(parseInt(e)), 1);
                         })
                     } else {
@@ -557,7 +561,7 @@
                         // console.log(nlist);
                         console.log(TAG, new Date());
                         console.log(TAG, 'count ' + count);
-                        nlist.forEach(function(e) {
+                        nlist.forEach(function (e) {
                             console.log(TAG, 'fns([' + e + '])');
                         })
                         console.log(TAG, 'W_ck3_stoped');
@@ -574,7 +578,7 @@
             let debug = false;
             const TAG = 'log_T_ck2->';
             console.info(new Date());
-            W_ck2 = setInterval(function() {
+            W_ck2 = setInterval(function () {
                 for (let i = 0; i < 1; i++) {
                     if (intVal-- >= 0) {
                         // let temp = ls(LBsize79);
@@ -594,7 +598,7 @@
             // T_ck() 予想番号を生成,htmlと参照
             let debug = false;
             const TAG = 'log_T_ck->';
-            W_ck = setInterval(function() {
+            W_ck = setInterval(function () {
                 // let temp = ls(LBsize79);
                 let temp = G_lsloop.concat();
                 if (intVal == 1) {
@@ -623,12 +627,12 @@
             for (let j = 0; j <= LMax3743; j++) {
                 temp[j] = 0;
             }
-            G_addr.forEach(function(e) {
+            G_addr.forEach(function (e) {
                 temp[e] = temp[e] + e + ',';
             });
             if (show == 1) {
                 if (G_addr.length < 200) {
-                    temp.forEach(function(e) {
+                    temp.forEach(function (e) {
                         if (e != 0) {
                             console.info(e);
                         }
@@ -668,7 +672,7 @@
             let p2 = document.getElementById('p2');
             let count = 0;
 
-            W_lsloop = setInterval(function() {
+            W_lsloop = setInterval(function () {
                 // clearInterval(W_lsloop);
                 let bnum = [];
                 let numTemp = 0;
@@ -760,7 +764,7 @@
                 // T_baseReport(new T_toYaxis(temp).value);
                 // T_baseReport(G_base_numsY);
                 temp = [];
-                let work = setInterval(function() {
+                let work = setInterval(function () {
                     temp[temp.length] = G_lsloop;
                     if (temp.length == intVal) {
                         clearInterval(work);
@@ -788,7 +792,7 @@
                 // Loto7 の場合e.length - 3
                 // 番号マスターの間違い探し
                 let temp = G_base_numsX.concat();
-                temp.forEach(function(e) {
+                temp.forEach(function (e) {
                     for (let i = 0; i < e.length - 3; i++) {
                         if (e[i] >= e[i + 1]) {
                             console.log('TAG---');
@@ -808,12 +812,12 @@
                 let temp = G_base_numsX.concat();
                 tfn4_tempArray = [];
                 tfn4_cont = 0;
-                tfn4_tfn4_work = setInterval(function() {
+                tfn4_tfn4_work = setInterval(function () {
                     tfn4_cont++;
                     tfn4_temp2 = G_lsloop.concat().toString();
                     // tfn4_temp2 = ls(LBsize79);  // 旧方法
                     // console.info(TAG + cont + '->' + tempArray.length, temp2);
-                    temp.forEach(function(e) {
+                    temp.forEach(function (e) {
                         if (e.toString() == tfn4_temp2) {
                             tfn4_tempArray.push(tfn4_temp2);
                         }
@@ -914,7 +918,7 @@
                     tcon[i][j] = 0;
                 }
             }
-            temp.forEach(function(e) {
+            temp.forEach(function (e) {
                 if (intVal2 == 9) {
                     if (e.indexOf(numtag) >= 0) {
                         for (let i = 0; i < LSize76 + 2; i++) {
@@ -930,7 +934,7 @@
                 }
             })
 
-            tcon.forEach(function(e) {
+            tcon.forEach(function (e) {
                 let xcont = 0;
                 for (let i = 0; i < e.length; i++) {
                     xcont = xcont + e[i];
@@ -1032,7 +1036,7 @@
                 F_lsloop(LBsize79);
                 console.info(TAG, 'base_nums.length =  ' + base_nums.length);
             }
-            W_lsloop = setInterval(function() {
+            W_lsloop = setInterval(function () {
                 let j = [];
                 do {
                     let x_axis = Math.floor(Math.random() * (1 - base_nums.length) + base_nums.length);
@@ -1069,7 +1073,7 @@
             let index = 0;
             let er = [];
             G_tx2list = [];
-            tx2_tw = setInterval(function() {
+            tx2_tw = setInterval(function () {
                 index++;
                 er = G_lsloop.concat();
                 er.pop();
@@ -1098,7 +1102,7 @@
             let p1 = document.getElementById('p1');
             let p2 = document.getElementById('p2');
             let count = 0;
-            W_lsloop = setInterval(function() {
+            W_lsloop = setInterval(function () {
                 let j = [];
                 do {
                     let x1 = Math.floor(Math.random() * (1 - G_base_numsX.length) + G_base_numsX.length);
@@ -1132,7 +1136,7 @@
             //テストコード
             function t1() {
                 let ttx = [];
-                var tts = setInterval(function() {
+                var tts = setInterval(function () {
                     c = G_lsloop.concat();
                     for (let i = 0; i < c.length; i++) {
                         ttx.push(c[i]);
@@ -1203,7 +1207,7 @@
 
             for (var i = 1; i <= LMax3743; i++) {
                 var temp = 0;
-                G_addr.forEach(function(e) {
+                G_addr.forEach(function (e) {
                     if (e == i) {
                         temp++;
                     }
@@ -1240,7 +1244,7 @@
 
             for (var i = 1; i <= LMax3743; i++) {
                 var temp = 0;
-                G_addr.forEach(function(e) {
+                G_addr.forEach(function (e) {
                     if (e == i) {
                         temp++;
                     }
@@ -1275,7 +1279,7 @@
             }
 
             for (let i = 0; i < G_addr.length; i++) {
-                G_addr.forEach(function(e) {
+                G_addr.forEach(function (e) {
                     if (i == e) {
                         table[i][0]++;
                     }
@@ -1290,7 +1294,7 @@
             }
 
             for (let j = 0; j < G_addr.length; j++) {
-                G_addr.forEach(function(e) {
+                G_addr.forEach(function (e) {
                     if (j == e) {
                         table[j][1]++;
                     }
@@ -1340,7 +1344,7 @@
             let tnum = JSON.parse(JSON.stringify(G_base_numsX));
             let bbx = [];
             let bby = [];
-            tnum.filter(function(e) {
+            tnum.filter(function (e) {
                 if (intVal != 0) {
                     if (e[indexInt] == intVal) {
                         bbx.push(e);
@@ -1364,7 +1368,7 @@
             let temp = [];
             let bby = [];
             let tnum = JSON.parse(JSON.stringify(G_base_numsX));
-            temp.push(tnum.filter(function(e) {
+            temp.push(tnum.filter(function (e) {
                 return mask.indexOf(e[e.length - 1]) == -1;
             }));
             bby = new T_toYaxis(temp[0]);
@@ -1403,7 +1407,7 @@
             let debug = false;
             let TAG = 'T_balanceSearch-> ';
             let temp = [];
-            if (typeof(W_T_balanceSearch) == 'number') {
+            if (typeof (W_T_balanceSearch) == 'number') {
                 clearInterval(W_T_balanceSearch);
             }
             W_T_balanceSearch = setInterval(() => {
@@ -1423,7 +1427,7 @@
             let temp = [];
             let cont = 0;
             let contc = 0;
-            W_TopSearchSwork = setInterval(function() {
+            W_TopSearchSwork = setInterval(function () {
                 cont = 0;
                 temp = G_lsloop.concat();
                 // temp = ls(LBsize79);
@@ -1448,9 +1452,9 @@
             // clearInterval(W_T_Searchfom);
             const TAG = 'T_Searchfom->';
             let tempArr = arrayVal.concat();
-            W_T_Searchfom = setInterval(function() {
+            W_T_Searchfom = setInterval(function () {
                 let cont = 0;
-                tempArr.forEach(function(e) {
+                tempArr.forEach(function (e) {
                     if (G_lsloop.indexOf(e) >= 0) {
                         cont++;
                     }
@@ -1470,7 +1474,7 @@
             let pluskey = tabletag.getElementsByClassName('k+');
             let downkey = tabletag.getElementsByClassName('k-');
             let num = tabletag.getElementsByClassName('n');
-            let logp = function() {
+            let logp = function () {
                 // console.info('log+', this.getAttribute('index'));
                 num[this.getAttribute('index')].innerText = parseInt(num[this.getAttribute('index')].innerText) + 1;
                 if (parseInt(num[this.getAttribute('index')].innerText) > LMax3743) {
@@ -1478,7 +1482,7 @@
                 }
                 findnum();
             }
-            let logd = function(e) {
+            let logd = function (e) {
                 // console.info('log-', this.getAttribute('index'));
                 num[this.getAttribute('index')].innerText = parseInt(num[this.getAttribute('index')].innerText) - 1;
                 if (parseInt(num[this.getAttribute('index')].innerText) < 0) {
@@ -1511,7 +1515,7 @@
             let trs = tb.getElementsByTagName('tr');
             let iid = 0;
 
-            let clock1 = function() {
+            let clock1 = function () {
                 if (debug) console.log(TAG, 'clock1');
                 fadr = [];
                 if (isNaN(this.innerText)) {
@@ -1529,21 +1533,21 @@
                 // fns(rolldata[this.innerText], 0, 0, 1);
             }
 
-            let dblclick1 = function() {
+            let dblclick1 = function () {
                 if (debug) console.log(TAG, 'dblclick1');
                 G_fnsa = [];
                 fns(rolldata[this.innerText - 1], 0, 0, 1);
                 // fns(rolldata[this.innerText], 1, 0, 1, rolldata.length - this.innerText + 6);
             }
 
-            let clock2 = function() {
+            let clock2 = function () {
                 if (debug) console.log(TAG, 'clock2');
                 if (rolldata[this.previousElementSibling.innerText != '000']) {
                     T_addr(rolldata[this.previousElementSibling.innerText]);
                 }
             }
 
-            let clock3 = function() {
+            let clock3 = function () {
                 let debug = false;
                 const TAG = 'log_let clock3->';
                 if (debug) console.log(TAG, 'clock3');
@@ -1575,7 +1579,7 @@
                 T_cpt2(arrayVal, index);
             }
 
-            let clock4 = function() {
+            let clock4 = function () {
                 // localStorage_additem event
                 const TAG = 'log_let clock4 = function'
                 if (debug) console.info(TAG, 'clock4');
@@ -1590,7 +1594,7 @@
                 localStorage_additem(temp);
             }
 
-            let clock5 = function() {
+            let clock5 = function () {
                 const TAG = 'log_let clock5 = function';
                 if (debug) console.info(TAG, 'clock5');
                 console.assert(G_fnsa.length != LBsize79);
@@ -1629,7 +1633,7 @@
             //ボールキーを押されたとき、色ををつける
             //ボールクリックしたとき、番号のアルファベットをアレー作成
             let ballskey = [];
-            let click6 = function() {
+            let click6 = function () {
                 if (ballskey.indexOf(this.innerText) == -1) {
                     ballskey.push(this.innerText);
                     // return;
@@ -1662,7 +1666,7 @@
             const TAG = 'log_num_click()';
             let ns = document.getElementsByClassName('n');
             for (let i = 0; i < ns.length; i++) {
-                ns[i].addEventListener('click', function() {
+                ns[i].addEventListener('click', function () {
                     if (debug) console.log(TAG, 'Num click');
                     let intVal = parseInt(this.innerText);
                     if (intVal == 0) return;
@@ -1742,7 +1746,7 @@
             // Color 着ける
             nums = document.getElementsByClassName('n');
             for (let i = 0; i < nums.length; i++) {
-                arrayVal.forEach(function(e) {
+                arrayVal.forEach(function (e) {
                     if (e == nums[i].innerText) {
                         nums[i].style.backgroundColor = colors[e];
                     }
@@ -1799,7 +1803,7 @@
             if (debug) console.log(TAG, 'step1');
             let req = new XMLHttpRequest();
             let url = '/' + CSVFile + '?key=' + Math.floor(Math.random() * (1 - 100) + 100);
-            req.onreadystatechange = function() {
+            req.onreadystatechange = function () {
                 if (req.readyState == 4 && req.status == 200) {
                     let tb2 = document.getElementById('tb2');
                     for (let i = 0; i < localStorage.length; i++) {
@@ -1841,7 +1845,7 @@
             console.assert(arrayVal.length == LBsize79);
             let req = new XMLHttpRequest();
             let url = '/' + CSVFile + '?key=' + Math.floor(Math.random() * (1 - 100) + 100);
-            req.onreadystatechange = function() {
+            req.onreadystatechange = function () {
                 if (req.readyState == 4 && req.status == 200) {
                     if (debug) console.log(TAG, 'setp2');
                     localStorage_additem_add(arrayVal);
@@ -1890,7 +1894,7 @@
             let master_temp = [];
             for (let i = 0; i < localStorage.length; i++) {
                 let master_temp = [];
-                localStorage.getItem(localStorage.key(i)).split(',').forEach(function(e) {
+                localStorage.getItem(localStorage.key(i)).split(',').forEach(function (e) {
                     master_temp.push(parseInt(e));
                 })
                 if (master_temp.length == LBsize79) {
@@ -1908,7 +1912,7 @@
             let temp2 = [];
             let temp = '';
             let iv = 0;
-            tx.forEach(function(e) {
+            tx.forEach(function (e) {
                 for (let i = 0; i < LBsize79 - 2; i++) {
                     temp2.push(e[i]);
                 }
@@ -1936,7 +1940,7 @@
             for (let i = 1; i <= LMax3743; i++) {
                 tt.push(i);
             }
-            let temp = tt.filter(function(ia) {
+            let temp = tt.filter(function (ia) {
                 if (tempar.indexOf(ia) == -1) {
                     return ia;
                 }
@@ -1977,7 +1981,7 @@
             console.info('T_ncont():', 'すべての出番数字の合計');
         }
 
-        window.addEventListener('beforeunload', function() {
+        window.addEventListener('beforeunload', function () {
             const TAG = 'log_window.addEventListener->';
             // console.log('beforeunload');
             // return '本当に離れますか？';
@@ -1986,13 +1990,13 @@
             event.returnValue = '';
         });
 
-        window.addEventListener('load', function() {
+        window.addEventListener('load', function () {
             let debug = false;
             const TAG = 'log_window.addEventListener->';
             if (debug) console.log(TAG, 'window.onload');
             document.title = PGtitle;
             F_hit_table();
-            setTimeout(function() {
+            setTimeout(function () {
                 console.log(TAG, 'roolclock');
                 localStorage_pageload();
                 roolclock();
@@ -2006,11 +2010,11 @@
             help();
         });
 
-        window.addEventListener('DOMContentLoaded', function() {
+        window.addEventListener('DOMContentLoaded', function () {
             console.log('window.DOMContentLoaded');
         });
 
-        document.addEventListener('DOMContentLoaded', function() {
+        document.addEventListener('DOMContentLoaded', function () {
             console.log('document.DOMContentLoaded');
         });
     </script>
