@@ -290,11 +290,11 @@
             return contB;
         }
 
-        function fns(arrayVal, set1 = 0, set2 = 0, set3 = 10, set5 = 0) {
+        function fns(arrayValt, set1 = 0, set2 = 0, set3 = 10, set5 = 0) {
             //
             let debug = false;
             const TAG = 'log_fns->';
-            arrayVal = arrayVal.concat();
+            arrayVal = arrayValt.concat();
             if (!arrayVal) {
                 return;
             }
@@ -385,7 +385,7 @@
             } while (fc = fc.nextElementSibling);
 
             if (xca >= set3) {
-                console.info('fns( [' + arrayVal.concat().sort((a, b) => a - b) + '] )' + '  d3c = ' + xca + ' sort');
+                console.info('fns( [' + arrayValt.concat().sort((a, b) => a - b) + '] )' + '  d3c = ' + xca + ' sort');
                 console.info('fns( [' + arrayVal + '] )' + '  d3c = ' + xca);
                 console.info(T_toRegExp(arrayVal));
             }
