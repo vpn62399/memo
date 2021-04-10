@@ -385,18 +385,17 @@
             } while (fc = fc.nextElementSibling);
 
             if (xca >= set3) {
-                console.info('fns( [' + arrayValt.concat().sort((a, b) => a - b) + '] )' + '  d3c = ' + xca + ' sort');
-                console.info('fns( [' + arrayVal + '] )' + '  d3c = ' + xca);
-                console.info(T_toRegExp(arrayVal));
+                console.info(T_toRegExp(arrayValt));
             }
         }
 
-        function T_toRegExp(arrayVal) {
+        function T_toRegExp(arrayValt) {
             // T_toRegExp-> (01)|(20)|(27)|(29)|(38)|(39)|(31)|(H) に出力
             // T_toRegExp-> ( 1  )|( 20 )|( 27 )|( 29 )|( 38 )|( 39 )|( 31 )|( H ) に出力
             let temp = [];
             let temp2 = [];
             const TAG = 'T_toRegExp->';
+            arrayVal = arrayValt.concat();
             arrayVal.forEach(function (e) {
                 let nums = '';
                 let nums2 = '';
