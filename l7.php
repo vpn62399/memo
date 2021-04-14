@@ -663,7 +663,7 @@
         }
 
         //l7.html:294 fns( [2,16,25,12,33,5,20,29,31,4] )  d3c = 55
-        function F_lsloop(intval = LBsize79, algorithm = 4) {
+        function F_lsloop(intval = LBsize79, algorithm = 1) {
             // 循環にランダム番号を生成する、抽選番号マスターアレーを2次元配列と参照する．
             let debug = false;
             const TAG = 'log_F_lsloop->';
@@ -828,6 +828,17 @@
                     }
                 }, 30)
             }
+        }
+
+        function T_ml() {
+            let j = [];
+            do {
+                let c = Math.floor(Math.random() * (1 - 38) + 38);
+                j.indexOf(c) == -1 ? j.push(c) : '';
+            } while (j.length < 7);
+            j.sort((a, b) => a - b);
+            T_cpt2(j);
+            return j;
         }
 
         function T_toYaxis(arrayVal) {
