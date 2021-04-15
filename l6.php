@@ -904,6 +904,17 @@
             }
         }
 
+        function T_ml() {
+            let j = [];
+            do {
+                let c = Math.floor(Math.random() * (1 - 44) + 44);
+                j.indexOf(c) == -1 ? j.push(c) : '';
+            } while (j.length < 6);
+            j.sort((a, b) => a - b);
+            T_cpt2(j);
+            return j;
+        }
+
         function T_toYaxis(arrayVal) {
             // T_baseReport(new T_toYaxis(G_LocalMaster).value,1,1);
             let temp = [];
