@@ -830,14 +830,18 @@
             }
         }
 
-        function T_ml() {
+        function T_ml(tagArr = []) {
             let j = [];
             do {
                 let c = Math.floor(Math.random() * (1 - 38) + 38);
                 j.indexOf(c) == -1 ? j.push(c) : '';
             } while (j.length < 7);
             j.sort((a, b) => a - b);
-            T_cpt2(j);
+
+            if (0 === tagArr.length) {
+                T_cpt2(j);
+                return j;
+            }
             return j;
         }
 
