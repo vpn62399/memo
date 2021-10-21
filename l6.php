@@ -2084,26 +2084,7 @@
             <div>xx,xx,xx,xx,xx,xx,xx</div>
         </div>
         <br>
-        <div class="tableaera">
-            <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
-                <tbody id="tb2">
-                    <tr align="right">
-                        <td style="display:none">getItem</td>
-                        <td>DEL date</td>
-                        <td class="n">(x1)</td>
-                        <td class="n">(x2)</td>
-                        <td class="n">(x3)</td>
-                        <td class="n">(x4)</td>
-                        <td class="n">(x5)</td>
-                        <td class="n">(x6)</td>
-                        <td class="n">(x7)</td>
-                        <td>SetItem(5)</td>
-                        <td>レ7</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <br>
+
         <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
             <tbody id="tb3">
                 <tr>
@@ -2390,6 +2371,26 @@
             </table>
         </div>
         //////////////////// Works ////////////////
+        <div class="tableaera">
+            <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
+                <tbody id="tb2">
+                    <tr align="right">
+                        <td style="display:none">getItem</td>
+                        <td>DEL date</td>
+                        <td class="n">(x1)</td>
+                        <td class="n">(x2)</td>
+                        <td class="n">(x3)</td>
+                        <td class="n">(x4)</td>
+                        <td class="n">(x5)</td>
+                        <td class="n">(x6)</td>
+                        <td class="n">(x7)</td>
+                        <td>SetItem(5)</td>
+                        <td>レ7</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+        <br>
         <P> </P>
         <div class="tableaera">
             <table table border="1" cellspacing="0" cellpadding="1" bordercolor="#333333" style="display:''">
