@@ -412,6 +412,7 @@
             // console.log(TAG, temp.toString().replaceAll(',', '|'));
             // 正規表現
             // /g 正規表現すべて選択
+            console.log(TAG, arrayVal.toString());
             console.log(TAG, temp.toString().replace(/,/g, '|'));
             console.log(TAG, temp2.toString().replace(/,/g, '|'));
         }
