@@ -663,8 +663,10 @@
             return numsArray;
         }
 
+        G_basenums = [];
+
         //l7.html:294 fns( [2,16,25,12,33,5,20,29,31,4] )  d3c = 55
-        function F_lsloop(intval = LBsize79, algorithm = 4) {
+        function F_lsloop(intval = LBsize79, algorithm = 5) {
             // 循環にランダム番号を生成する、抽選番号マスターアレーを2次元配列と参照する．
             let debug = false;
             const TAG = 'log_F_lsloop->';
@@ -702,6 +704,15 @@
                                 21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
                                 31, 32, 33, 34, 35, 36, 37
                             ];
+                            G_basenums = nums.concat();
+                            break;
+                        case 5:
+                            // 2021/11/29 可能な数字を指定
+                            nums = [1, 5, 13, 14, 15, 16, 17, 18, 19,
+                                22, 24, 25, 26, 27, 28, 29, 30,
+                                31, 32, 33, 36, 37
+                            ];
+                            G_basenums = nums.concat();
                             break;
                     }
 
@@ -1955,6 +1966,8 @@
             for (let i = 1; i <= LMax3743; i++) {
                 tt.push(i);
             }
+            tt = G_basenums;
+            console.log(TAG, G_basenums);
             let temp = tt.filter(function (ia) {
                 if (tempar.indexOf(ia) == -1) {
                     return ia;
