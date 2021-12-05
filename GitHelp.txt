@@ -26,6 +26,8 @@ Main Porcelain Commands
    gui                  A portable graphical interface to Git
    init             **  Create an empty Git repository or reinitialize an existing one
    log              **  Show commit logs
+                        git log --help
+                        git log --all
    merge            **  Join two or more development histories together
    mv               **  Move or rename a file, a directory, or a symlink
    notes                Add or inspect object notes
