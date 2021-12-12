@@ -739,7 +739,7 @@
         }
 
         //l7.html:294 fns( [2,16,25,12,33,5,20,29,31,4] )  d3c = 55
-        function F_lsloop(intval = LBsize79, algorithm = 4) {
+        function F_lsloop(intval = LBsize79, algorithm = 5) {
             // 循環にランダム番号を生成する、抽選番号マスターアレーを2次元配列と参照する．
             let debug = false;
             const TAG = 'log_F_lsloop->';
@@ -778,6 +778,9 @@
                                 31, 32, 33, 34, 35, 36, 37, 38, 39, 40,
                                 41, 42, 43
                             ];
+                            break;
+                        case 5:
+                            nums = [4, 6, 15, 16, 19, 22, 23, 26, 37, 43]; //1646
                             break;
                     }
 
