@@ -702,7 +702,8 @@
                             nums = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
                                 11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
                                 21, 22, 23, 24, 25, 26, 27, 28, 29, 30,
-                                31, 32, 33, 34, 35, 36, 37];
+                                31, 32, 33, 34, 35, 36, 37
+                            ];
                             G_basenums = nums.concat();
                             break;
                         case 5:
@@ -1704,6 +1705,15 @@
             }
         }
 
+        function ToolsBut_click() {
+            let debug = false;
+            const TAG = 'log_ToolsBut_click()';
+            let tbt1 = document.getElementById('Toolsbut1');
+            tbt1.addEventListener('click', function () {
+                T_L6ck4();
+            });
+        }
+
         function T_show_topNums() {
             // index の順番は数字の出番の順番になり。
             // index（順番), 0(抽選番号), 1(番号の出回数)
@@ -2035,6 +2045,11 @@
             help();
         });
 
+        window.addEventListener('load', function () {
+            ToolsBut_click();
+            console.log('9999999999999999999999999999');
+        });
+
         window.addEventListener('DOMContentLoaded', function () {
             console.log('window.DOMContentLoaded');
         });
@@ -2338,6 +2353,10 @@
                     </tr>
                 </tbody>
             </table>
+        </div>
+        <P></P>
+        <div class="Toolsbuttons">
+            <button id="Toolsbut1" type=button>T_L6ck4</button>
         </div>
         <p></p>
         <div class="tableaera">
