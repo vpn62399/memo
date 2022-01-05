@@ -1,0 +1,88 @@
+================================ RESTART: Shell ================================
+import sqlite3
+
+db = 'loto.db'
+con = sqlite3.connect(db)
+csql = con.execute('select s1,s2,s3,s4,s5,s6 from loto7 limit 5')
+for cl in csql:
+    for val in list(cl):
+        print(str(val)+',' ,end='')
+    print('\n\r')
+csql.close()	
+con.close()
+
+
+
+================================ RESTART: Shell ================================
+C Tkinter：基本的な GUI ツールキット
+
+================================ RESTART: Shell ================================
+def
+
+================================ RESTART: Shell ================================
+import csv
+
+================================ RESTART: Shell ================================
+import sys
+print(’args >’,sys.argv)
+
+================================ RESTART: Shell ================================
+import pathlib
+import os
+==
+os.getcwd()
+'C:\\Users\\NUC\\AppData\\Local\\Programs\\Python\\Python310'
+
+==
+os.chdir('c:/')
+pp = pathlib.Path(os.getcwd())
+os.listdir(pp)
+os.listdir(os.getcwd())
+
+==
+os.system('cls')
+os.system('set')
+os.environ['TEMP']
+'C:\\Users\\NUC\\AppData\\Local\\Temp'
+
+==
+os.path.isfile('fff.txt')
+os.path.getsize('fff.txt')
+os.path.isdir(os.getcwd())
+os.remove()
+os.rmdir()
+os.path.abspath(__file__)
+os.path.dirname(__file__)
+os.path.dirname(os.getcwd())
+os.path.split(os.getcwd())
+os.path.splitext(os.getcwd()+'\\fff.txt')
+os.path.join(a,b)
+os.sep
+
+==
+from pathlib import Path
+Path.cwd()
+
+import pathlib
+pathlib.Path.cwd()
+pathlib.Path.home()
+P=pathlib.Path.home()
+p.is_dir()
+p.is_file()
+p.parent
+list(pathlib.Path.cwd().glob('*'))
+list(pathlib.Path.cwd().glob('*.dll'))
+
+p = list(pathlib.Path.cwd().glob('fff.txt'))
+type(p)
+type(p[0])
+x=pathlib.Path(p[0])
+x.name
+x.suffix
+x.parent
+x.as_uri()
+x.read_text(encoding='utf-8')
+.mkdir()
+.rmdir()
+.unlink()
+

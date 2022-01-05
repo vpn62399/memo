@@ -1,0 +1,135 @@
+Sub ConnectToMysqlDatabase_Select()
+    'ADOを使用してMySQLに接続
+    Dim cn As New ADODB.Connection
+    cn.ConnectionString = "Driver={MySQL ODBC 8.0 Unicode Driver};" & _
+                          "Server=localhost;" & _
+                          "Database=test_db;" & _
+                          "User=root;" & _
+                          "Password=toor"
+    cn.Open
+
+    'SELECT文の実行（取得した内容の確認）
+    Dim rs As New ADODB.Recordset
+    rs.Open "SELECT * FROM 商品リスト", cn 'SQL文の実行
+    Do Until rs.EOF
+        Debug.Print rs("商品ID") & ", " & rs("商品名") & ", " & rs("単価")
+        rs.MoveNext
+    Loop
+
+    'メモリの解放（無くとも構わない）
+    rs.Close: Set rs = Nothing
+    cn.Close: Set cn = Nothinga
+
+
+Excle,Access Mysql 接続手順
+Sub sql()
+    Dim cn As New ADODB.Connection
+    cn.ConnectionString = "Driver={MySQL ODBC 8.0 Unicode Driver};" & _
+                          "Server=192.168.11.113;" & _
+                          "Database=mysql;" & _
+                          "User=appUSER;" & _
+                          "Password=toor"
+    cn.Open
+    Dim rn As New ADODB.Recordset
+    rn.Open "select User,Host from mysql.user", cn
+
+    Do Until rn.EOF
+        Debug.Print rn("Host"), rn("User")
+        Debug.Print rn!host, rn!user
+        rn.MoveNext
+    Loop
+
+    rn.Close
+    cn.Close
+End Sub
+
+
+その２
+Sub samp2()
+   Dim cn As New ADODB.Connection
+   cn.Open "DRIVER={MySQL ODBC 8.0 Unicode Driver};Server=localhost;Database=mysql;User=root;Password=toor"
+   Dim rn As New ADODB.Recordset
+   Set rn = cn.Execute("select * from mysql.user")
+   Do Until rn.EOF
+        Debug.Print rn!host, rn!User
+        rn.MoveNext
+    Loop
+
+    Debug.Print "samp2"
+    rn.Close
+    cn.Close
+End Sub
+================================================================
+Public Const cnc = "Driver={MySQL ODBC 8.0 Unicode Driver};" & _
+                          "Server=192.168.11.113;" & _
+                          "Database=mysql;" & _
+                          "User=appUSER;" & _
+                          "Password=toor"
+================================================================
+
+
+
+
+================================================================
+MySQL
+show databases;
+show variables like '%default%';
+SHOW COLUMNS FROM mysql.user;
+SHOW GRANTS FOR user;
+SHOW GRANTS FOR current_user();
+select version();
+
+SET PASSWORD FOR appUSER = 'toor';
+ALTER USER appUSER IDENTIFIED BY 'toor'
+
+drop user appUSER;
+drop user appUSER@;
+
+create user 'appUSER'@'%'
+select host,user,authentication_string  from user;
+grant all on accdb.* to appUSER;
+revoke ALL PRIVILEGES ON `mysql`.`accdb` from `appUSER`@`%`;
+
+create database AccDB;
+
+\s
+SELECT CONNECTION_ID();
+SELECT CURRENT_USER();
+SELECT DATABASE();
+SELECT LAST_INSERT_ID();
+SELECT USER();
+SELECT VERSION();
+SELECT VERSION(), CURRENT_DATE; 
+SHOW PROCESSLIST;
+SHOW STATUS like '%user%';
+SHOW VARIABLES; 
+
+
+
+use database
+
+DELIMITER //
+create procedure xxxx()
+begin
+select user from mysql.user;
+end //
+DELIMITER ;
+
+SHOW PROCEDURE STATUS LIKE 存储过程名;
+show procedure status like '%xx%' \G
+https://dev.mysql.com/doc/refman/5.6/ja/show-procedure-status.html
+
+show create procedure xxxx \G
+
+DROP {PROCEDURE | FUNCTION} [IF EXISTS] sp_name
+
+
+mysql> create procedure xxx()
+    -> begin
+    ->  declare v1 int default 1;
+    -> while v1 <100 do
+    -> set v1 = v1+1;
+    -> select current_user();
+    -> end while;
+    -> end;
+    -> //
