@@ -86,3 +86,7 @@ x.read_text(encoding='utf-8')
 .rmdir()
 .unlink()
 
+================================ RESTART: Shell ================================
+import tkinter
+tkinter._test()
+tkinter.Tcl().eval('info patchlevel')
