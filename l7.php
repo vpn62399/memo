@@ -34,7 +34,22 @@
             req.open("GET", url, true);
             req.send(null);
         }
-        F_httprequest();
+
+        // F_httprequest();
+ 
+        async function testFetch() {
+            let url = '/' + CSVFile + '?key=' + Math.floor(Math.random() * (1 - 100) + 100);
+            try {
+                let pri = await fetch(url);
+                let csvt = await pri.text();
+                F_create_master(csvt);
+                F_read_ajax(csvt);
+            } catch (error) {
+                console.log('error');
+            }
+        }
+
+        testFetch();
 
         function F_read_ajax(str) {
             let debug = false;
