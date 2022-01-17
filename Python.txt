@@ -90,3 +90,9 @@ x.read_text(encoding='utf-8')
 import tkinter
 tkinter._test()
 tkinter.Tcl().eval('info patchlevel')
+
+
+
+
+
+================================ RESTART: Shell ================================
