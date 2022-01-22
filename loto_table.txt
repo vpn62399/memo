@@ -10,10 +10,10 @@ CREATE TABLE loto6(
   "s6" INTEGER,
   "b1" INTEGER,
   "n1" INTEGER,
-  "n2" TEXT,
-  "n3" TEXT,
-  "z1" TEXT,
-  "z2" TEXT
+  "n2" INTEGER,
+  "n3" INTEGER,
+  "z1" INTEGER,
+  "z2" INTEGER
 );
 
 CREATE TABLE loto6c(
@@ -42,10 +42,10 @@ CREATE TABLE loto7(
   "b1" INTEGER,
   "b2" INTEGER,
   "n1" INTEGER,
-  "n2" TEXT,
-  "n3" TEXT,
-  "z1" TEXT,
-  "z2" TEXT
+  "n2" INTEGER,
+  "n3" INTEGER,
+  "z2" INTEGER,
+  "z1" INTEGER
 );
 
 CREATE TABLE loto7c(
@@ -60,7 +60,22 @@ CREATE TABLE loto7c(
   "s7" INTEGER,
   "b1" INTEGER,
   "b2" INTEGER,
-  "WIN" INTEGER
+  "Z1" INTEGER,
+  "Z2" INTEGER
+);
+
+CREATE TABLE alll7(
+    "id" INTEGER PRIMARY KEY,
+    "s1" INTEGER, 
+    "s2" INTEGER, 
+    "s3" INTEGER, 
+    "s4" INTEGER, 
+    "s5" INTEGER, 
+    "s6" INTEGER, 
+    "s7" INTEGER, 
+    "b1" INTEGER, 
+    "b2" INTEGER, 
+    "t1" INTEGER
 );
 
 ////////////////////////////////////////////////////////////////////////
@@ -95,7 +110,7 @@ select t1,d1,z1,s1,s2,s3,s4,s5,s6,z2,z2,b1 from loto6 order by s1,s2,s3,s4,s5,s6
 
 .mode table
 .once xNum_l7.txt
-select t1,d1,z1,s1,s2,s3,s4,s5,s6,s7,z2,z2,b1,b2 from loto7 order by s1,s2,s3,s4,s5,s6,s7;
+select t1,d1,z1,s1,s2,s3,s4,s5,s6,s7," ",z2,b1,b2 from loto7 order by s1,s2,s3,s4,s5,s6,s7;
 
 
 ////////////////////////////////////////////////////////////////////////
