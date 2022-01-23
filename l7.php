@@ -36,7 +36,7 @@
         }
 
         // F_httprequest();
- 
+
         async function testFetch() {
             let url = '/' + CSVFile + '?key=' + Math.floor(Math.random() * (1 - 100) + 100);
             try {
@@ -79,6 +79,7 @@
                 temp.pop();
                 temp.pop();
                 tr_place[16].innerText = fns2(temp, 0, 0);
+                tr_place[17].innerText = td_data[15];
                 ttable.insertBefore(ircc, ttfe);
             } while (tr != '');
         }
@@ -430,6 +431,7 @@
             console.log(TAG, arrayVal.toString());
             console.log(TAG, temp.toString().replace(/,/g, '|'));
             console.log(TAG, temp2.toString().replace(/,/g, '|'));
+            console.log(TAG, "select * from alll7 where s1=" + arrayVal[0] + " and s2=" + arrayVal[1] + " and s3=" + arrayVal[2] + " and s4=" + arrayVal[3] + " and s5=" + arrayVal[4] + " and s6=" + arrayVal[5] + " and s7=" + arrayVal[6] + ";");
         }
 
         function T_cpt2(arrayVal = [0, 0, 0, 0, 0, 0, 0, 0, 0], nid = 5) {
@@ -2417,6 +2419,7 @@
                         <td>BL</td>
                         <td>レ9</td>
                         <td>レ7</td>
+                        <td>ll7</td>
                     </tr>
                     <tr id=nx1 align="right">
                         <td>000</td>
@@ -2436,6 +2439,7 @@
                         <td class="bl">X</td>
                         <td>レ9</td>
                         <td>レ7</td>
+                        <td>ll7</td>
                     </tr>
                     <tr id=nx2 align="right">
                         <td>000</td>
@@ -2455,6 +2459,7 @@
                         <td class="bl">X</td>
                         <td>レ9</td>
                         <td>レ7</td>
+                        <td>ll7</td>
                     </tr>
                     <tr id=nx3 align="right">
                         <td>000</td>
@@ -2474,6 +2479,7 @@
                         <td class="bl">X</td>
                         <td>レ9</td>
                         <td>レ7</td>
+                        <td>ll7</td>
                     </tr>
                     <tr id=nx4 align="right">
                         <td>000</td>
@@ -2493,6 +2499,7 @@
                         <td class="bl">X</td>
                         <td>レ9</td>
                         <td>レ7</td>
+                        <td>ll7</td>
                     </tr>
                     <tr id=nx5 align="right">
                         <td>000</td>
@@ -2512,6 +2519,7 @@
                         <td class="bl">X</td>
                         <td>レ9</td>
                         <td>レ7</td>
+                        <td>ll7</td>
                     </tr>
                     <tr align="right">
                         <td>回別</td>
@@ -2531,6 +2539,7 @@
                         <td class="bl">BL</td>
                         <td>レ9</td>
                         <td>レ7</td>
+                        <td>ll7</td>
                     </tr>
                 </tbody>
             </table>
