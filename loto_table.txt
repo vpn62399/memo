@@ -78,7 +78,20 @@ CREATE TABLE alll7(
     "t1" INTEGER
 );
 
+CREATE TABLE alll6(
+    "id" INTEGER PRIMARY KEY,
+    "s1" INTEGER, 
+    "s2" INTEGER, 
+    "s3" INTEGER, 
+    "s4" INTEGER, 
+    "s5" INTEGER, 
+    "s6" INTEGER, 
+    "b1" INTEGER, 
+    "t1" INTEGER
+);
+
 ////////////////////////////////////////////////////////////////////////
+
 .open loto.db
 .mode csv
 delete from loto6;
@@ -113,11 +126,18 @@ select t1,d1,z1,s1,s2,s3,s4,s5,s6,z2,z2,b1 from loto6 order by s1,s2,s3,s4,s5,s6
 .once xNum_l7.txt
 select t1,d1,z1,s1,s2,s3,s4,s5,s6,s7," ",z2,b1,b2 from loto7 order by s1,s2,s3,s4,s5,s6,s7;
 
-////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////;
 .open alll7.db
 .mode csv
 delete from loto7;
 .import loto7.csv loto7
+.databases
+.mode table
+
+.open alll6.db
+.mode csv
+delete from loto6;
+.import loto6.csv loto6
 .databases
 .mode table
 

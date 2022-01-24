@@ -51,9 +51,11 @@ delete from loto7;
 
 
 """
+############################################################################
+#                           Loto7                                          #
+############################################################################
 
-
-def createSQL():
+def createSQL_loto7():
     dbname = 'alll7.db'
     if not pathlib.Path(dbname).is_file():
         crt = "create table if not exists alll7(id INTEGER PRIMARY KEY,s1 INTEGER, s2 INTEGER, s3 INTEGER, s4 INTEGER, s5 INTEGER, s6 INTEGER, s7 INTEGER, b1 INTEGER, b2 INTEGER, t1 INTEGER)"
@@ -64,7 +66,7 @@ def createSQL():
         print('sql-end')
 
 
-def createNUM():
+def createNUM_loto7():
     f = open('alll7.csv', 'a+', newline='')
     cw = csv.writer(f)
     s1, s2, s3, s4, s5, s6, s7 = 0, 0, 0, 0, 0, 0, 0
@@ -85,8 +87,47 @@ def createNUM():
     f.close()
     print(cnt)
     cnt = 0
-    print('end')
+    print('end_loto7_10295472')
 
 
-# createNUM()
+# createNUM_Loto7():
 # createSQL()
+
+############################################################################
+#                           Loto6                                          #
+############################################################################
+
+def createSQL_loto6():
+    dbname = 'alll6.db'
+    if not pathlib.Path(dbname).is_file():
+        crt = "create table if not exists alll6(id INTEGER PRIMARY KEY,s1 INTEGER, s2 INTEGER, s3 INTEGER, s4 INTEGER, s5 INTEGER, s6 INTEGER, b1 INTEGER, t1 INTEGER)"
+        con = sqlite3.connect(dbname)
+        con.execute(crt)
+        con.commit()
+        con.close
+        print('sql-end')
+
+def createNUM_loto6():
+    f = open('alll6.csv', 'a+', newline='')
+    cw = csv.writer(f)
+    s1, s2, s3, s4, s5, s6 = 0, 0, 0, 0, 0, 0
+    cnt = 0
+    lst = 38
+    for s1 in range(1, lst+1):
+        for s2 in range(s1+1, lst+2):
+            for s3 in range(s2+1, lst+3):
+                for s4 in range(s3+1, lst+4):
+                    for s5 in range(s4+1, lst+5):
+                        for s6 in range(s5+1, lst+6):
+                            cnt = cnt+1
+                            ast = [cnt, s1, s2, s3, s4,
+                                   s5, s6, '', '']
+                            cw.writerow(ast)
+    pass
+    f.close()
+    print(cnt)
+    cnt = 0
+    print('end_loto6_6096454')
+
+# createNUM_loto6()
+createSQL_loto6()
