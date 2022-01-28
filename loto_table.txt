@@ -108,17 +108,15 @@ delete from loto6c;
 .mode table
 
 .mode table 
-.output xNum_l6c.txt
+.once xNum_l6c.txt
 select rowid,* from loto6c;
-.output stdout
 
 .mode table 
-.output xNum_l7c.txt
-select rowid,* from loto7c;
-.output stdout
+.once xNum_l7c.txt
+select rowid,* from loto7c order by t1 desc ,z2;
 
 .mode table 
-.output xNum_l6.txt
+.once xNum_l6.txt
 select t1,d1,z1,s1,s2,s3,s4,s5,s6,z2,z2,b1 from loto6 order by s1,s2,s3,s4,s5,s6;
 .output stdout
 
@@ -126,11 +124,13 @@ select t1,d1,z1,s1,s2,s3,s4,s5,s6,z2,z2,b1 from loto6 order by s1,s2,s3,s4,s5,s6
 .once xNum_l7.txt
 select t1,d1,z1,s1,s2,s3,s4,s5,s6,s7," ",z2,b1,b2 from loto7 order by s1,s2,s3,s4,s5,s6,s7;
 
-////////////////////////////////////////////////////////////////////////;
+##################################################################
 .open alll7.db
 .mode csv
 delete from loto7;
 .import loto7.csv loto7
+delete from loto7c;
+.import loto7c.csv loto7c
 .databases
 .mode table
 
@@ -138,8 +138,11 @@ delete from loto7;
 .mode csv
 delete from loto6;
 .import loto6.csv loto6
+delete from loto6c;
+.import loto6c.csv loto6c
 .databases
 .mode table
+
 
 ////////////////////////////////////////////////////////////////////////
 .mode table 
@@ -153,43 +156,8 @@ select t1,d1,z1,s1,s2,s3,s4,s5,s6,s7,z2,z2,b1,b2 from loto7 order by z1,s1,s2,s3
 .output stdout
 
 ////////////////////////////////////////////////////////////////////////
-// memo2
-CREATE TABLE n7k(
-  "s1" INTEGER,
-  "s2" INTEGER,
-  "s3" INTEGER,
-  "s4" INTEGER,
-  "s5" INTEGER,
-  "s6" INTEGER,
-  "s7" INTEGER,
-  "n1" INTEGER,
-  "n2" INTEGER,
-  "n3" INTEGER
-); 
-
-.mode csv
-.import 7_cklist.txt n7k
-.mode table
-
-
-CREATE TABLE n9k(
-  "s1" INTEGER,
-  "s2" INTEGER,
-  "s3" INTEGER,
-  "s4" INTEGER,
-  "s5" INTEGER,
-  "s6" INTEGER,
-  "s7" INTEGER,
-  "s8" INTEGER,
-  "s9" INTEGER,
-  "n1" INTEGER,
-  "n2" INTEGER,
-  "n3" INTEGER
-); 
-
-.mode csv
-.import 9_cklist.txt n9k
-.mode table
+select  * from loto7c inner join alll7 on loto7c.s1=alll7.s1 and loto7c.s2=alll7.s2 and loto7c.s3=alll7.s3 and loto7c.s4=alll7.s4 and loto7c.s5=alll7.s5 and loto7c.s6=alll7.s6 and loto7c.s7=alll7.s7; 
+select loto7c.t1,loto7c.d1,loto7c.s1,loto7c.s2,loto7c.s3,loto7c.s4,loto7c.s5,loto7c.s6,loto7c.s7,loto7c.b1,loto7c.b2,loto7c.Z1,alll7.id from loto7c inner join alll7 on loto7c.s1=alll7.s1 and loto7c.s2=alll7.s2 and loto7c.s3=alll7.s3 and loto7c.s4=alll7.s4 and loto7c.s5=alll7.s5 and loto7c.s6=alll7.s6 and loto7c.s7=alll7.s7; 
 
 
 ////////////////////////////////////////////////////////////////////////
