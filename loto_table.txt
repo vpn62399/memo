@@ -12,8 +12,8 @@ CREATE TABLE loto6(
   "n1" INTEGER,
   "n2" INTEGER,
   "n3" INTEGER,
-  "z1" INTEGER,
-  "z2" INTEGER
+  "z2" INTEGER,
+  "z1" INTEGER
 );
 
 CREATE TABLE loto6c(
@@ -26,7 +26,8 @@ CREATE TABLE loto6c(
   "s5" INTEGER,
   "s6" INTEGER,
   "b1" INTEGER,
-  "WIN" INTEGER
+  "z1" INTEGER,
+  "z2" INTEGER
 );
 
 CREATE TABLE loto7(
@@ -109,20 +110,19 @@ delete from loto6c;
 
 .mode table 
 .once xNum_l6c.txt
-select rowid,* from loto6c;
+select * from loto6c order by t1 desc ,z2;
 
 .mode table 
 .once xNum_l7c.txt
-select rowid,* from loto7c order by t1 desc ,z2;
+select * from loto7c order by t1 desc ,z2;
 
 .mode table 
 .once xNum_l6.txt
-select t1,d1,z1,s1,s2,s3,s4,s5,s6,z2,z2,b1 from loto6 order by s1,s2,s3,s4,s5,s6;
-.output stdout
+select t1,d1,z1,s1,s2,s3,s4,s5,s6,"",z2,b1 from loto6 order by s1,s2,s3,s4,s5,s6;
 
 .mode table
 .once xNum_l7.txt
-select t1,d1,z1,s1,s2,s3,s4,s5,s6,s7," ",z2,b1,b2 from loto7 order by s1,s2,s3,s4,s5,s6,s7;
+select t1,d1,z1,s1,s2,s3,s4,s5,s6,s7,"",z2,b1,b2 from loto7 order by s1,s2,s3,s4,s5,s6,s7;
 
 ##################################################################
 .open alll7.db

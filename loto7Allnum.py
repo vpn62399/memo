@@ -12,6 +12,11 @@ import os
 # s6=(s5-1)-36
 # s7=(s6-1)-37
 
+
+############################################################################
+#                           Loto7                                          #
+############################################################################
+
 """
 .mode csv
 delete from loto7;
@@ -51,9 +56,7 @@ delete from loto7;
 
 
 """
-############################################################################
-#                           Loto7                                          #
-############################################################################
+
 
 def createSQL_loto7():
     dbname = 'alll7.db'
@@ -96,6 +99,38 @@ def createNUM_loto7():
 ############################################################################
 #                           Loto6                                          #
 ############################################################################
+
+"""
+6,  select loto6.z1,alll6.id from loto6 inner join alll6 on loto6.z1=alll6.id;
+    .mode column
+7,  select "update alll6 set t1=(select t1 from loto6 where t1=",t1,") where id=",z1,";" from loto6;
+8,  select * from loto6 inner join alll6 on loto6.t1 = alll6.t1 limit 3;
+    select * from loto6 inner join alll6 on loto6.t1 = alll6.t1 order by loto6.t1 desc limit 3;
+    select * from loto6,alll6 where loto6.s1=alll6.s1 and loto6.s2=alll6.s2 and loto6.s3=alll6.s3 and loto6.s4=alll6.s4 and loto6.s5=alll6.s5 and loto6.s6=alll6.s6;
+
+t1    d1         s1  s2  s3  s4  s5  s6  b1  n1  n2   n3  z2  z1    id    s1  s2  s3  s4  s5  s6  b1  t1
+----  ---------  --  --  --  --  --  --  --  --  ---  --  --  ----  ----  --  --  --  --  --  --  --  ----
+43    2001/7/26  1   2   3   15  24  26  27  3   -    -   B   6416  6416  1   2   3   15  24  26      43
+1574  2021/4/5   1   2   3   20  31  32  13  1   3 g  -   E   8032  8032  1   2   3   20  31  32      1574
+423   2008/12/4  1   2   3   30  35  36  21  7   -    -   J   9559  9559  1   2   3   30  35  36      423
+
+9,  select * from loto6c inner join alll6 on loto6c.s1 = alll6.s1 and loto6c.s2 = alll6.s2 and loto6c.s3 = alll6.s3 and loto6c.s4 = alll6.s4 and loto6c.s5 = alll6.s5 and loto6c.s6 = alll6.s6;
+
+    .mode csv
+    .once t6cc.csv
+10, select loto6c.t1,loto6c.d1,loto6c.s1,loto6c.s2,loto6c.s3,loto6c.s4,loto6c.s5,loto6c.s6,loto6c.b1,loto6c.z2,alll6.id from loto6c inner join alll6 on loto6c.s1 = alll6.s1 and loto6c.s2 = alll6.s2 and loto6c.s3 = alll6.s3 and loto6c.s4 = alll6.s4 and loto6c.s5 = alll6.s5 and loto6c.s6 = alll6.s6;
+
+
++------+------------+----+----+----+----+----+----+----+----+----+---------+----+----+----+----+----+----+----+------+
+|  t1  |     d1     | s1 | s2 | s3 | s4 | s5 | s6 | b1 | z2 | z1 |   id    | s1 | s2 | s3 | s4 | s5 | s6 | b1 |  t1  |
++------+------------+----+----+----+----+----+----+----+----+----+---------+----+----+----+----+----+----+----+------+
+| 1658 | 2022/01/27 | 10 | 11 | 19 | 29 | 30 | 36 | 37 | E  |    | 4776435 | 10 | 11 | 19 | 29 | 30 | 36 |    | 1658 |
+| 1658 | 2022/01/27 | 4  | 11 | 14 | 15 | 40 | 41 |    |    |    | 2605423 | 4  | 11 | 14 | 15 | 40 | 41 |    |      |
+| 1658 | 2022/01/27 | 7  | 19 | 25 | 29 | 34 | 36 |    | 5  |    | 4102691 | 7  | 19 | 25 | 29 | 34 | 36 |    |      |
+
+
+
+"""
 
 def createSQL_loto6():
     dbname = 'alll6.db'
