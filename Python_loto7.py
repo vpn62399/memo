@@ -68,7 +68,22 @@ def t4():
     plt.show()
 
 
+def tx1(num):
+    import csv
+    f = open('xStep-L7.csv', 'r')
+    da = csv.reader(f)
+    for x in da:
+        if int(num) > int(x[0]) and int(num) < int(x[1]):
+            if int(x[2]) > 1:
+                return 2
+            return 1
+    return 0
+
+# tx1(8149925)
+
+
 def t5():
+    # 番号指定
     import sqlite3
     con = sqlite3.connect('alll7.db')
     sqlcmd = '''select * from alll7 where s1=5 and s2=17 and s3!=18 and id>6850000 and id<6880000 and id=abs(random())%10295473 limit 3'''
@@ -81,6 +96,62 @@ def t5():
             print("localStorage_additem([{},{},{},{},{},{},{},{},{}])".format(
                 xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], xx[7], 0, xx[0]))
             x = x+1
-        if x > 200:
+        if x > 5:
             break
-t5()
+
+
+def t6():
+    # 番号指定
+
+    import sqlite3
+    con = sqlite3.connect('alll7.db')
+    sqlcmd = '''select * from alll7 where id=abs(random())%10295473'''
+
+    # sqlcmd = '''select * from alll7 where id=abs(random())%10295473 and id >1458200 and id < 8041128 '''
+    # loto7.loc[:,12].describe()
+    # mean	5365861e+06
+    # std	3031056e+06
+    # min	1458200e+04
+    # 25%	2820762e+06
+    # 50%	5539011e+06
+    # 75%	8041128e+06
+    # max	1027423e+07
+
+    # sqlcmd = '''select * from alll7 where id=abs(random())%10295473 and id >2940107 and id < 9016912 '''
+    # loto7.loc[0:20,[12]].describe()
+    # mean	4965708e+06
+    # std	5729267e+06
+    # min	9145050e+05
+    # 25%	2940107e+06
+    # 50%	4965708e+06
+    # 75%	6991310e+06
+    # max	9016912e+06
+
+    inar = [31,9,33]
+    notinar = [14,19,7,27,3,4,6,10,11,12,16,20,23,24,25,30]
+
+    x = 1
+    while True:
+        cur = con.execute(sqlcmd)
+        for xx in cur:
+            nocnt = 0
+            cnt = 0
+            for j in notinar:
+                if j in xx:
+                    nocnt = nocnt + 1
+
+            if nocnt == 1:
+                for j in inar:
+                    if j in xx:
+                        cnt = cnt + 1
+                if cnt > 1:
+                    tck = tx1(xx[0])
+                    if tck == 0 or tck > 1:
+                        print("localStorage_additem([{},{},{},{},{},{},{},{},{}])".format(
+                            xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], xx[7], tck, xx[0]))
+                        x = x+1
+        if x > 10:
+            break
+
+
+t6()

@@ -131,8 +131,6 @@ delete from loto7;
 .import loto7.csv loto7
 delete from loto7c;
 .import loto7c.csv loto7c
-.databases
-.mode table
 
 .open alll6.db
 .mode csv
@@ -140,6 +138,14 @@ delete from loto6;
 .import loto6.csv loto6
 delete from loto6c;
 .import loto6c.csv loto6c
+
+.open loto.db
+.mode csv 
+.once xStep-L7.csv
+select z1-z1%10000,z1-z1%10000+10000,count(z1-z1%10000),t1 from loto7 group by (z1-z1%10000);
+.once xStep-L6.csv
+select z1-z1%1000,z1-z1%1000+1000,count(z1-z1%1000),t1 from loto6 group by (z1-z1%1000);
+
 .databases
 .mode table
 
