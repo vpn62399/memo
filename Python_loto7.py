@@ -101,8 +101,7 @@ def t5():
 
 
 def t6():
-    # 番号指定
-
+    # 番号指定 Loto7
     import sqlite3
     con = sqlite3.connect('alll7.db')
     sqlcmd = '''select * from alll7 where id=abs(random())%10295473'''
@@ -127,8 +126,9 @@ def t6():
     # 75%	6991310e+06
     # max	9016912e+06
 
-    inar = [31, 9, 33]
-    notinar = [14, 19, 7, 27, 3, 4, 6, 10, 11, 12, 16, 20, 23, 24, 25, 30]
+    # 番号指定 Loto7
+    inar = [5, 9, 15, 17, 31, 33, 36]
+    notinar = [3, 4, 6, 11, 12, 16, 20, 23]
 
     x = 1
     while True:
@@ -184,3 +184,40 @@ def t7():
             cur.close()
             break
 # t7()
+
+
+def t8():
+    # 番号指定 Loto6
+    import sqlite3
+    con = sqlite3.connect('alll6.db')
+    sqlcmd = '''select * from alll6 where id=abs(random())% 6096455'''
+
+    inar = [12, 26]
+    notinar = [23, 24]
+
+    x = 1
+    while True:
+        cur = con.execute(sqlcmd)
+        for xx in cur:
+            nocnt = 0
+            cnt = 0
+            for j in notinar:
+                if j in xx:
+                    nocnt = nocnt + 1
+
+            if nocnt == 1:
+                for j in inar:
+                    if j in xx:
+                        cnt = cnt + 1
+                if cnt > 1:
+                    tck = tx1(xx[0])
+                    if tck == 0 or tck > 1:
+                        print("localStorage_additem([{},{},{},{},{},{},{}])".format(
+                            xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], tck, xx[0]))
+                        x = x+1
+        if x > 10:
+            cur.close()
+            break
+
+
+# t8()
