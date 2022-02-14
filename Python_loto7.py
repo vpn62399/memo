@@ -127,8 +127,8 @@ def t6():
     # 75%	6991310e+06
     # max	9016912e+06
 
-    inar = [31,9,33]
-    notinar = [14,19,7,27,3,4,6,10,11,12,16,20,23,24,25,30]
+    inar = [31, 9, 33]
+    notinar = [14, 19, 7, 27, 3, 4, 6, 10, 11, 12, 16, 20, 23, 24, 25, 30]
 
     x = 1
     while True:
@@ -151,7 +151,36 @@ def t6():
                             xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], xx[7], tck, xx[0]))
                         x = x+1
         if x > 10:
+            cur.close()
             break
 
 
 t6()
+
+
+def t7():
+    # 平均値の前後+2-2 (vls + lv)
+    # 当たる確率低い
+    import sqlite3
+    con = sqlite3.connect('alll7.db')
+    sqlcmd = '''select * from alll7 where id=abs(random())%10295473'''
+    vls = [4, 12, 16, 20, 25, 29, 33]
+    x = 0
+    lv = 4
+    while True:
+        cur = con.execute(sqlcmd)
+        for xx in cur:
+            if int(xx[1]) > (vls[0]-lv) and int(xx[1]) < (vls[0]+lv):
+                if int(xx[2]) > (vls[1]-lv) and int(xx[2]) < (vls[1]+lv):
+                    if int(xx[3]) > (vls[2]-lv) and int(xx[3]) < (vls[2]+lv):
+                        if int(xx[4]) > (vls[3]-lv) and int(xx[4]) < (vls[3]+lv):
+                            if int(xx[5]) > (vls[4]-lv) and int(xx[5]) < (vls[4]+lv):
+                                if int(xx[6]) > (vls[5]-lv) and int(xx[6]) < (vls[5]+lv):
+                                    if int(xx[7]) > (vls[6]-lv) and int(xx[7]) < (vls[6]+lv):
+                                        print("localStorage_additem([{},{},{},{},{},{},{},{},{}])".format(
+                                            xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], xx[7], '', xx[0]))
+                                        x = x+1
+        if x > 10:
+            cur.close()
+            break
+# t7()
