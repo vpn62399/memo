@@ -155,7 +155,7 @@ def t6():
             break
 
 
-t6()
+# t6()
 
 
 def t7():
@@ -192,8 +192,8 @@ def t8():
     con = sqlite3.connect('alll6.db')
     sqlcmd = '''select * from alll6 where id=abs(random())% 6096455'''
 
-    inar = [12, 26]
-    notinar = [23, 24]
+    inar = [2, 4, 8]
+    notinar = [1, 3, 6, 19, 21, 27, 39]
 
     x = 1
     while True:
@@ -205,11 +205,11 @@ def t8():
                 if j in xx:
                     nocnt = nocnt + 1
 
-            if nocnt == 1:
+            if nocnt == 0:
                 for j in inar:
                     if j in xx:
                         cnt = cnt + 1
-                if cnt > 1:
+                if cnt == 2:
                     tck = tx1(xx[0])
                     if tck == 0 or tck > 1:
                         print("localStorage_additem([{},{},{},{},{},{},{}])".format(
@@ -221,3 +221,29 @@ def t8():
 
 
 # t8()
+
+def t9():
+    # 組み合わせ確認
+    import sqlite3
+    con = sqlite3.connect('alll6.db')
+    sqlcmd = '''select t1,d1,s1,s2,s3,s4,s5,s6 from loto6'''
+    list(range(1, 38))
+
+    for i in range(1, 38):
+        pass
+        # print(i)
+
+    cr = con.execute(sqlcmd)
+    ct = 0
+    ck = [2, 4, 18]
+    for b in ck:
+        print(b)
+
+    for jj in cr:
+        if ck[0] in jj and ck[1] in jj and ck[2] in jj:
+            print(jj)
+            ct += 1
+    print(ck, ct)
+
+
+t9()
