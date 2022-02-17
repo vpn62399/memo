@@ -235,7 +235,7 @@ def t9():
 
     cr = con.execute(sqlcmd)
     ct = 0
-    ck = [2, 4, 18]
+    ck = [27,20,21]
     for b in ck:
         print(b)
 
