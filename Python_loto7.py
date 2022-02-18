@@ -102,9 +102,11 @@ def t5():
 
 def t6():
     # 番号指定 Loto7
+    # 出る番号と除外番号を指定し，ランダムに番号を出す
     import sqlite3
     con = sqlite3.connect('alll7.db')
-    sqlcmd = '''select * from alll7 where id=abs(random())%10295473'''
+    # sqlcmd = '''select * from alll7 where id=abs(random())%10295473'''
+    sqlcmd = '''select * from alll7 where id=abs(random())%10280000'''
 
     # sqlcmd = '''select * from alll7 where id=abs(random())%10295473 and id >1458200 and id < 8041128 '''
     # loto7.loc[:,12].describe()
@@ -129,6 +131,9 @@ def t6():
     # 番号指定 Loto7
     inar = [5, 9, 15, 17, 31, 33, 36]
     notinar = [3, 4, 6, 11, 12, 16, 20, 23]
+
+    tag = [[5, 9, 15, 17, 31, 33, 36],[3, 4, 6, 11, 12, 16, 20, 23]]
+
 
     x = 1
     while True:
@@ -188,6 +193,7 @@ def t7():
 
 def t8():
     # 番号指定 Loto6
+    # 出る番号と除外番号を指定し，ランダムに番号を出す
     import sqlite3
     con = sqlite3.connect('alll6.db')
     sqlcmd = '''select * from alll6 where id=abs(random())% 6096455'''
@@ -235,7 +241,7 @@ def t9():
 
     cr = con.execute(sqlcmd)
     ct = 0
-    ck = [27,20,21]
+    ck = [27, 20, 21]
     for b in ck:
         print(b)
 
@@ -244,6 +250,30 @@ def t9():
             print(jj)
             ct += 1
     print(ck, ct)
+    con.close()
 
 
-t9()
+# t9()
+
+def ta():
+    # 組み合わせ確認
+    import sqlite3
+    con = sqlite3.connect('alll6.db')
+    sqlcmd = '''select s1,s2,s3,s4,s5,s6 from loto6 limit 100'''
+    aln = list(range(1, 44))
+    print(aln)
+    print("")
+
+    for tag in aln:
+        cr = con.execute(sqlcmd)
+        cas = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+               0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        for jj in cr:
+            if tag in jj:
+                for x in jj:
+                    cas[x] = cas[x]+1
+        print(tag, cas)
+    con.close()
+
+
+# ta()
