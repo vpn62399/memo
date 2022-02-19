@@ -52,7 +52,7 @@ def t7t2k(tag, v):
                 print(tag[i], tag[j])
                 print(t2k([tag[i], tag[j]]))
             if t2k([tag[i], tag[j]]) < 8:
-                fc=fc+1
+                fc = fc+1
             if fc == 2:
                 f = 0
     con.close()
@@ -218,7 +218,7 @@ def t6():
             break
 
 
-t6()
+# t6()
 # print(t2k([35, 36]))
 # print(t7t2k([5,17,20,21,31,34,35], 1))
 # 000	2020/1/1	6	11	19	22	24	31	35	0	7425431	0	nx5	0	A	22	22	ll7
@@ -319,22 +319,30 @@ def t9():
 def ta():
     # 組み合わせ確認
     import sqlite3
+    import csv
+    f = open('xList-L7.csv', 'w', newline='')
     con = sqlite3.connect('alll7.db')
     sqlcmd = '''select s1,s2,s3,s4,s5,s6,s7 from loto7 '''
-    aln = list(range(1, 44))
+    aln = list(range(1, 38))
     print(aln)
     print("")
 
+    cw = csv.writer(f, delimiter='\t')
     for tag in aln:
         cr = con.execute(sqlcmd)
-        cas = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-               0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        cas6 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        cas7 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         for jj in cr:
             if tag in jj:
                 for x in jj:
-                    cas[x] = cas[x]+1
-        print(tag, cas)
+                    if x >= tag:
+                        cas7[x] = cas7[x]+1
+        print(tag, cas7)
+        cw.writerow(cas7)
     con.close()
+    f.close()
 
 
-# ta()
+ta()
