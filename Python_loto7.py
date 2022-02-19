@@ -10,6 +10,57 @@ import pandas as pd
 import matplotlib.pyplot as plt
 
 
+def t2k(tag):
+    import sqlite3
+    con = sqlite3.connect('alll7.db')
+    sqlcmd = '''select s1,s2,s3,s4,s5,s6,s7 from loto7 '''
+    cas = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    cr = con.execute(sqlcmd)
+    for da in cr:
+        if tag[0] in da:
+            for x in da:
+                cas[x] = cas[x]+1
+        pass
+
+    # print(cas)
+    # print(tag[1])
+    # print(cas[tag[1]])
+    con.close()
+    if cas[tag[1]] < 13:
+        return cas[tag[1]]
+    else:
+        return cas[tag[1]]
+
+# print (t2k([1, 12]))
+# t2k([1, 12])
+
+
+def t7t2k(tag, v):
+    import sqlite3
+    con = sqlite3.connect('alll7.db')
+    sqlcmd = '''select s1,s2,s3,s4,s5,s6,s7 from loto7 '''
+    # print(tag)
+    # print(len(tag))
+    x = len(tag)
+    y = len(tag)
+    f = 1
+    fc = 0
+    for i in range(x):
+        for j in range(y):
+            if v == 1:
+                print(tag[i], tag[j])
+                print(t2k([tag[i], tag[j]]))
+            if t2k([tag[i], tag[j]]) < 8:
+                fc=fc+1
+            if fc == 2:
+                f = 0
+    con.close()
+    return f
+
+# print(t7t2k([2,16,17,24,25,35,36]))
+
+
 def t1():
     url1 = 'https://raw.githubusercontent.com/kankanla/memo/master/loto7.csv'
     url2 = 'https://raw.githubusercontent.com/kankanla/memo/master/loto7c.csv'
@@ -69,6 +120,7 @@ def t4():
 
 
 def tx1(num):
+    # xStep-L7.csv ファイルから出番の間隔確認
     import csv
     f = open('xStep-L7.csv', 'r')
     da = csv.reader(f)
@@ -129,39 +181,47 @@ def t6():
     # max	9016912e+06
 
     # 番号指定 Loto7
-    inar = [5, 9, 15, 17, 31, 33, 36]
-    notinar = [3, 4, 6, 11, 12, 16, 20, 23]
-
-    tag = [[5, 9, 15, 17, 31, 33, 36],[3, 4, 6, 11, 12, 16, 20, 23]]
-
+    # tag = [[回数],[予想番号],[除外番号]]
+    # tag = [[458],[5, 9, 15, '17+', 31, '33+', 36],[3, 4, 6, '11+', '12+', 16, 20, 23]]
+    tag = [
+        [459],
+        [12, 15, 9, 26, 30, 35, 34, 11, 13, 21, 27, 23, 31, 36],
+        [33, 20, 18, 29, 6, 1, 32, 28]
+    ]
 
     x = 1
     while True:
         cur = con.execute(sqlcmd)
         for xx in cur:
-            nocnt = 0
-            cnt = 0
-            for j in notinar:
+            nocnt = 0  # 除外カウンタ
+            incnt = 0  # 存在カウンタ
+            for j in tag[2]:
                 if j in xx:
                     nocnt = nocnt + 1
 
             if nocnt == 1:
-                for j in inar:
+                for j in tag[1]:
                     if j in xx:
-                        cnt = cnt + 1
-                if cnt > 1:
-                    tck = tx1(xx[0])
+                        incnt = incnt + 1
+                if incnt > 1:
+                    tck = tx1(xx[0])  # 間隔確認
                     if tck == 0 or tck > 1:
-                        print("localStorage_additem([{},{},{},{},{},{},{},{},{}])".format(
-                            xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], xx[7], tck, xx[0]))
-                        x = x+1
+                        # print(xx)
+                        # print(xx[1:8])
+                        # print (t7t2k(list(xx[1:8])))
+                        if t7t2k(list(xx[1:8]), 0) == 1:   # 組合せよく出る番号の組合せ
+                            print("localStorage_additem([{},{},{},{},{},{},{},{},{}])".format(
+                                xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], xx[7], tck, xx[0]))
+                            x = x+1
         if x > 10:
-            cur.close()
+            con.close()
             break
 
 
-# t6()
-
+t6()
+# print(t2k([35, 36]))
+# print(t7t2k([5,17,20,21,31,34,35], 1))
+# 000	2020/1/1	6	11	19	22	24	31	35	0	7425431	0	nx5	0	A	22	22	ll7
 
 def t7():
     # 平均値の前後+2-2 (vls + lv)
@@ -229,10 +289,10 @@ def t8():
 # t8()
 
 def t9():
-    # 組み合わせ確認
+    # 3個の数字組み合わせ数を確認する．
     import sqlite3
-    con = sqlite3.connect('alll6.db')
-    sqlcmd = '''select t1,d1,s1,s2,s3,s4,s5,s6 from loto6'''
+    con = sqlite3.connect('alll7.db')
+    sqlcmd = '''select t1,d1,s1,s2,s3,s4,s5,s6,s7 from loto7'''
     list(range(1, 38))
 
     for i in range(1, 38):
@@ -241,7 +301,8 @@ def t9():
 
     cr = con.execute(sqlcmd)
     ct = 0
-    ck = [27, 20, 21]
+    # ck = [8,13,15,21,23,26,30,34]
+    ck = [30, 23, 26]
     for b in ck:
         print(b)
 
@@ -258,8 +319,8 @@ def t9():
 def ta():
     # 組み合わせ確認
     import sqlite3
-    con = sqlite3.connect('alll6.db')
-    sqlcmd = '''select s1,s2,s3,s4,s5,s6 from loto6 limit 100'''
+    con = sqlite3.connect('alll7.db')
+    sqlcmd = '''select s1,s2,s3,s4,s5,s6,s7 from loto7 '''
     aln = list(range(1, 44))
     print(aln)
     print("")
