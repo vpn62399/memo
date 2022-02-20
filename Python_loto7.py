@@ -5,6 +5,7 @@
 # pip list
 # pip show selenium
 
+import csv
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -32,34 +33,67 @@ def t2k(tag):
     else:
         return cas[tag[1]]
 
-# print (t2k([1, 12]))
-# t2k([1, 12])
+# print (t2k([37, 1]))
+# t2k([1, 37])
 
 
 def t7t2k(tag, v):
-    import sqlite3
-    con = sqlite3.connect('alll7.db')
-    sqlcmd = '''select s1,s2,s3,s4,s5,s6,s7 from loto7 '''
-    # print(tag)
-    # print(len(tag))
     x = len(tag)
     y = len(tag)
     f = 1
-    fc = 0
+    fc8 = 0  # 8より小さいの組合せ
+    fc8c = 2  # 8より小さいの組合せ2個より多い場合,廃棄
+    fc16 = 0  # 16より小さいの組合せ
+    fc16c = 27  # 16より小さいの組合せ27個より多い場合,場合廃棄
+    vw = []
     for i in range(x):
         for j in range(y):
             if v == 1:
                 print(tag[i], tag[j])
                 print(t2k([tag[i], tag[j]]))
-            if t2k([tag[i], tag[j]]) < 8:
-                fc = fc+1
-            if fc == 2:
+                vw.append(t2k([tag[i], tag[j]]))
+            if v == 2:
+                vw.append(t2k([tag[i], tag[j]]))
+            temp = t2k([tag[i], tag[j]])
+            if temp < 8:
+                fc8 = fc8+1
+            if fc8 == fc8c:
                 f = 0
-    con.close()
+            if temp < 16:
+                fc16 = fc16+1
+            if fc16 > fc16c:
+                f = 0
+    if v == 1:
+        vw.sort()
+        print(tag, vw)
+    if v == 2:
+        vw.sort()
+        return vw
     return f
 
 # print(t7t2k([2,16,17,24,25,35,36]))
 
+
+def t7t2klist():
+    fw = open('xList2-l7.csv', 'w', newline='')
+    fr = open('loto7c.csv', 'r')
+    cr = csv.reader(fr)
+
+    for cc in cr:
+        cw = csv.writer(fw, delimiter='\t')
+        tl = []
+        tl.append(cc)
+        temp = t7t2k([int(cc[2]), int(cc[3]), int(cc[4]), int(
+            cc[5]), int(cc[6]), int(cc[7]), int(cc[8])], 2)
+        for i in temp:
+            tl.append(i)
+        cw.writerow(tl)
+        # break
+    fw.close()
+    fr.close()
+
+
+# t7t2klist()
 
 def t1():
     url1 = 'https://raw.githubusercontent.com/kankanla/memo/master/loto7.csv'
@@ -77,46 +111,6 @@ def t1():
     # lpd.plot('d1', ['s1', 's2', 's3', 's4', 's5', 's6', 's7'])
     plt.show()
     print('77')
-
-
-def t2():
-    import numpy as np
-    import pandas as pd
-    import matplotlib.pyplot as plt
-    url1 = 'https://raw.githubusercontent.com/kankanla/memo/master/loto7.csv'
-    lpd = pd.read_csv(url1, header=None)
-    lpd.plot()
-    plt.show()
-
-
-def t3():
-    filename = 'alll7.csv'
-    lpd = pd.read_csv(filename)
-    tpd = lpd['n1']
-    print(tpd.head())
-    # tpd.plot()
-    # lpd.plot()
-    # plt.show()
-
-
-def t4():
-    import pandas as pd
-    import numpy as np
-    import matplotlib.pyplot as plt
-    url1 = 'https://raw.githubusercontent.com/kankanla/memo/master/loto7.csv'
-    url2 = 'https://raw.githubusercontent.com/kankanla/memo/master/loto7c.csv'
-
-    lpd1 = pd.read_csv(url1, header=None, usecols=[0, 2, 15])
-    lpd2 = pd.read_csv(url2, header=None)
-
-    temp2 = lpd1.loc[lpd1[2] == 3]
-    temp = lpd2.loc[lpd2[11].isnull()]
-    lpd2 = temp.loc[:, [0, 12]]
-    lpd3 = pd.merge(lpd2, temp2, left_on=0, right_on=0)
-    print(lpd3.head(10))
-    # plt.plot(lpd3[0:100])
-    lpd3[0:900].plot()
-    plt.show()
 
 
 def tx1(num):
@@ -138,6 +132,7 @@ def t5():
     # 番号指定
     import sqlite3
     con = sqlite3.connect('alll7.db')
+    # 指定番号を固定,他の番号をランダム選択
     sqlcmd = '''select * from alll7 where s1=5 and s2=17 and s3!=18 and id>6850000 and id<6880000 and id=abs(random())%10295473 limit 3'''
     x = 1
     while True:
@@ -184,9 +179,19 @@ def t6():
     # tag = [[回数],[予想番号],[除外番号]]
     # tag = [[458],[5, 9, 15, '17+', 31, '33+', 36],[3, 4, 6, '11+', '12+', 16, 20, 23]]
     tag = [
+        [459],  # 回数
+        [12, 15, 9, 26, 33, 30, 35, 34, 11, 13, 21, 27, 23, 31, 36],  # 存在リスト
+        [33, 20, 18, 29, 6, 1, 32, 28],  # 非存在リスト
+        [1],  # 存在回数
+        [1]  # 非存在回数
+    ]
+
+    tagx = [
         [459],
-        [12, 15, 9, 26, 30, 35, 34, 11, 13, 21, 27, 23, 31, 36],
-        [33, 20, 18, 29, 6, 1, 32, 28]
+        list(range(1, 38)),
+        list(range(38, 48)),
+        [0],
+        [0]
     ]
 
     x = 1
@@ -199,11 +204,11 @@ def t6():
                 if j in xx:
                     nocnt = nocnt + 1
 
-            if nocnt == 1:
+            if nocnt == tag[4][0]:
                 for j in tag[1]:
                     if j in xx:
                         incnt = incnt + 1
-                if incnt > 1:
+                if incnt > tag[3][0]:
                     tck = tx1(xx[0])  # 間隔確認
                     if tck == 0 or tck > 1:
                         # print(xx)
@@ -218,10 +223,12 @@ def t6():
             break
 
 
-# t6()
+t6()
+# t7t2klist()
 # print(t2k([35, 36]))
-# print(t7t2k([5,17,20,21,31,34,35], 1))
+# print(t7t2k([   7,11,12,14,19,21    ], 1))
 # 000	2020/1/1	6	11	19	22	24	31	35	0	7425431	0	nx5	0	A	22	22	ll7
+
 
 def t7():
     # 平均値の前後+2-2 (vls + lv)
@@ -345,4 +352,4 @@ def ta():
     f.close()
 
 
-ta()
+# ta()
