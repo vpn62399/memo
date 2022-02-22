@@ -95,6 +95,16 @@ def t7t2klist():
 
 # t7t2klist()
 
+def t7t2kone(cc):
+    # print(cc)
+    temp = t7t2k([int(cc[0]), int(cc[1]), int(cc[2]), int(
+        cc[3]), int(cc[4]), int(cc[5]), int(cc[6])], 2)
+    print(temp)
+
+
+# t7t2one([0,0,1,2,3,4,5,6,7])
+
+
 def t1():
     url1 = 'https://raw.githubusercontent.com/kankanla/memo/master/loto7.csv'
     url2 = 'https://raw.githubusercontent.com/kankanla/memo/master/loto7c.csv'
@@ -178,13 +188,15 @@ def t6():
     # 番号指定 Loto7
     # tag = [[回数],[予想番号],[除外番号]]
     # tag = [[458],[5, 9, 15, '17+', 31, '33+', 36],[3, 4, 6, '11+', '12+', 16, 20, 23]]
-    tag = [
+    tag2 = [
         [459],  # 回数
         [12, 15, 9, 26, 33, 30, 35, 34, 11, 13, 21, 27, 23, 31, 36],  # 存在リスト
         [33, 20, 18, 29, 6, 1, 32, 28],  # 非存在リスト
         [1],  # 存在回数
         [1]  # 非存在回数
     ]
+
+    tag = [[459], [2,5,6,7,8,9,10,11,12,13,14,15,17,18,21,22,23,24,26,27,31,33,34,36], [1,3,4,16,19,20,25,28,29,30,32,35,37], [2], [2]]
 
     tagx = [
         [459],
