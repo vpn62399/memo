@@ -144,7 +144,7 @@ def t6():
     # tag = [[回数],[予想番号],[除外番号]]
     # tag = [[458],[5, 9, 15, '17+', 31, '33+', 36],[3, 4, 6, '11+', '12+', 16, 20, 23]]
     tag = [
-        [1665],  # 回数
+        [1668],  # 回数
         [28,37,2,38,12,26,8],  # 存在リスト
         [34,20,3,41,1,7,29],  # 非存在リスト
         [3],  # 存在回数
@@ -159,6 +159,8 @@ def t6():
         [3]
     ]
 
+    f=open('temp.txt','w')
+    ccont=1000    # 結果の回数
     x = 1
     while True:
         cur = con.execute(sqlcmd)
@@ -180,16 +182,20 @@ def t6():
                         # print(xx[1:8])
                         # print (t7t2k(list(xx[1:8])))
                         if t7t2k(list(xx[1:7]), 0) == 1:   # 組合せよく出る番号の組合せ
-                            print("localStorage_additem([{},{},{},{},{},{},{}])".format(
-                                xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], tck))
-                            x = x+1
-        if x > 100:
+                            if ccont < 11:
+                                print("localStorage_additem([{},{},{},{},{},{},{}])".format(
+                                    xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], tck))
+                        f.write("localStorage_additem([{},{},{},{},{},{},{}])\n".format(
+                                    xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], tck))
+                        x = x+1
+        if x > ccont:
             con.close()
+            f.close()
             break
 
 
-t6()
-# t7t2klist()
+# t6()
+t7t2klist()
 # print(t2k([35, 36]))
 # print(t7t2k([   7,11,12,14,19,21    ], 1))
 # 000	2020/1/1	6	11	19	22	24	31	35	0	7425431	0	nx5	0	A	22	22	ll7
