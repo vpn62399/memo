@@ -92,20 +92,20 @@ CREATE TABLE alll6(
 );
 
 ////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+#                         LOTO6
 
 .open loto.db
 .mode csv
 delete from loto6;
-delete from loto7;
 .import loto6.csv loto6
-.import loto7.csv loto7
 .mode table
 
 .mode csv
-delete from loto7c;
 delete from loto6c;
 .import loto6c.csv loto6c
-.import loto7c.csv loto7c
 .mode table
 
 .mode table 
@@ -113,12 +113,43 @@ delete from loto6c;
 select * from loto6c order by t1 desc ,z2;
 
 .mode table 
-.once xNum_l7c.txt
-select * from loto7c order by t1 desc ,z2;
-
-.mode table 
 .once xNum_l6.txt
 select t1,d1,z1,s1,s2,s3,s4,s5,s6,"",z2,b1 from loto6 order by s1,s2,s3,s4,s5,s6;
+
+##################################################################
+.open alll6.db
+.mode csv
+delete from loto6;
+.import loto6.csv loto6
+delete from loto6c;
+.import loto6c.csv loto6c
+
+.open loto.db
+.mode csv 
+.once xStep-L6.csv
+select z1-z1%1000,z1-z1%1000+1000,count(z1-z1%1000),t1 from loto6 group by (z1-z1%1000);
+
+.databases
+.mode table
+
+
+////////////////////////////////////////////////////////////////////////
+#                      LOTO7
+
+.open loto.db
+.mode csv
+delete from loto7;
+.import loto7.csv loto7
+.mode table
+
+.mode csv
+delete from loto7c;
+.import loto7c.csv loto7c
+.mode table
+
+.mode table 
+.once xNum_l7c.txt
+select * from loto7c order by t1 desc ,z2;
 
 .mode table
 .once xNum_l7.txt
@@ -132,17 +163,8 @@ delete from loto7;
 delete from loto7c;
 .import loto7c.csv loto7c
 
-.open alll6.db
-.mode csv
-delete from loto6;
-.import loto6.csv loto6
-delete from loto6c;
-.import loto6c.csv loto6c
-
 .open loto.db
 .mode csv 
-.once xStep-L7.csv
-select z1-z1%1000,z1-z1%1000+1000,count(z1-z1%1000),t1 from loto7 group by (z1-z1%1000);
 .once xStep-L6.csv
 select z1-z1%1000,z1-z1%1000+1000,count(z1-z1%1000),t1 from loto6 group by (z1-z1%1000);
 
@@ -150,6 +172,9 @@ select z1-z1%1000,z1-z1%1000+1000,count(z1-z1%1000),t1 from loto6 group by (z1-z
 .mode table
 
 
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
+////////////////////////////////////////////////////////////////////////
 ////////////////////////////////////////////////////////////////////////
 .mode table 
 .output xNum_l6.txt
