@@ -185,8 +185,12 @@ def t6():
                             if ccont < 11:
                                 print("localStorage_additem([{},{},{},{},{},{},{}])".format(
                                     xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], tck))
-                        f.write("localStorage_additem([{},{},{},{},{},{},{}])\n".format(
+                            f.write("localStorage_additem([{},{},{},{},{},{},{}])\n".format(
                                     xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], tck))
+                            print(x,end='\r')
+                            if list(xx[1:7]) == [5,16,21,24,31,34]:
+                                print(list(xx[1:7]))
+                                break
                         x = x+1
         if x > ccont:
             con.close()
@@ -194,8 +198,8 @@ def t6():
             break
 
 
-# t6()
-t7t2klist()
+t6()
+# t7t2klist()
 # print(t2k([35, 36]))
 # print(t7t2k([   7,11,12,14,19,21    ], 1))
 # 000	2020/1/1	6	11	19	22	24	31	35	0	7425431	0	nx5	0	A	22	22	ll7
