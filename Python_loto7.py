@@ -7,6 +7,7 @@
 
 import sys
 import csv
+import os
 import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
@@ -198,7 +199,9 @@ def t6():
     ]
 
     # tag = [[459], [2+,5,6,7+,8+,9,10+,11,12,13,14,15,17,18,21,22,23,24,26,27,31,33,34,36], [1,3,4+,16,19,20+,25,28,29+,30,32,35,37], [3], [3]]
-    tag = [[460], [1,2,3,4,5,6,7,9,10,11,12,14,15,17,19,20,21,23,24,26,27,28,30,31,32,33,34,35,36,37], [8,13,16,18,22,25,29], [3], [1]]
+    # tag = [[460], [1, 2, 3, 4+, 5*, 6*, 7, 9*, 10, 11, 12, 14, 15, 17, 19, 20, 21, 23*, 24, 26, 27*, 28*, 30*, 31, 32, 33, 34, 35, 36, 37], [8, 13+, 16, 18, 22, 25, 29], [3], [1]]
+    tag = [[460], [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 14, 15, 17, 19, 20, 21, 23, 24,
+                   26, 27, 28, 30, 31, 32, 33, 34, 35, 36, 37], [8, 13, 16, 18, 22, 25, 29], [3], [1]]
 
     tagx = [
         [459],
@@ -208,9 +211,11 @@ def t6():
         [0]
     ]
 
-    f=open('temp.txt','w')
-    ccont=1000    # 結果の回数
+    f = open('temp.txt', 'w')
+    ccont = 10    # 結果の回数
     x = 1
+    pool = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
+            20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37]
     while True:
         cur = con.execute(sqlcmd)
         for xx in cur:
@@ -237,8 +242,8 @@ def t6():
                             f.write("localStorage_additem([{},{},{},{},{},{},{},{},{}])\n".format(
                                 xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], xx[7], tck, xx[0]))
                             x = x+1
-                            print(x,end='\r')
-                            if list(xx[1:8]) == [2,4,7,8,10,20,29]:
+                            print(x, end='\r')
+                            if list(xx[1:8]) == [2, 4, 7, 8, 10, 20, 29]:
                                 print(list(xx[1:8]))
                                 break
         if x > ccont:
@@ -257,97 +262,82 @@ def t6():
 
 
 def t7():
-    # 平均値の前後+2-2 (vls + lv)
-    # 当たる確率低い
+    print('////////////////////////////////////////////')
+    print('////////////////////////////////////////////')
+    print('////////////////////////////////////////////')
     import sqlite3
     con = sqlite3.connect('alll7.db')
-    sqlcmd = '''select * from alll7 where id=abs(random())%10295473'''
-    vls = [4, 12, 16, 20, 25, 29, 33]
-    x = 0
-    lv = 4
+    # sqlcmd = '''select * from alll7 where id=abs(random())%10295473'''
+    sqlcmd = '''select * from alll7 where id=abs(random())%10280000'''
+    pool = list(range(1, 38))
+    epool = [
+        [],
+        []
+    ]
+    for val in epool:
+        for v in val:
+            pool.remove(v)
+    xc = 0
+    sqlcnt = 0
+    f = open('temp.txt', 'w')
+
     while True:
         cur = con.execute(sqlcmd)
-        for xx in cur:
-            if int(xx[1]) > (vls[0]-lv) and int(xx[1]) < (vls[0]+lv):
-                if int(xx[2]) > (vls[1]-lv) and int(xx[2]) < (vls[1]+lv):
-                    if int(xx[3]) > (vls[2]-lv) and int(xx[3]) < (vls[2]+lv):
-                        if int(xx[4]) > (vls[3]-lv) and int(xx[4]) < (vls[3]+lv):
-                            if int(xx[5]) > (vls[4]-lv) and int(xx[5]) < (vls[4]+lv):
-                                if int(xx[6]) > (vls[5]-lv) and int(xx[6]) < (vls[5]+lv):
-                                    if int(xx[7]) > (vls[6]-lv) and int(xx[7]) < (vls[6]+lv):
-                                        print("localStorage_additem([{},{},{},{},{},{},{},{},{}])".format(
-                                            xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], xx[7], '', xx[0]))
-                                        x = x+1
-        if x > 10:
-            cur.close()
+        sqlcnt = sqlcnt+1
+        for val in cur:
+            tf = True
+            temp = val[1:8]
+            print('                                                       ', end='\r')
+            print(sqlcnt, val, end='\r')
+            if t7t2k(list(val[1:8]), 0) == 1:
+                for v in temp:
+                    if v not in pool:
+                        tf = False
+                        break
+
+                if tf == True:
+                    for vx in temp:
+                        pool.remove(vx)
+
+                    tck = tx1(val[0])
+                    print("localStorage_additem([{},{},{},{},{},{},{},{},{}])".format(
+                        val[1], val[2], val[3], val[4], val[5], val[6], val[7], tck, val[0]))
+                    f.write("localStorage_additem([{},{},{},{},{},{},{},{},{}])\n".format(
+                        val[1], val[2], val[3], val[4], val[5], val[6], val[7], tck, val[0]))
+
+                    tl = []
+                    tl.append(val)
+                    temp = t7t2k([int(val[1]), int(val[2]), int(val[3]), int(
+                        val[4]), int(val[5]), int(val[6]), int(val[7])], 2)
+                    for i in temp:
+                        tl.append(i)
+                    fw = open('xList2-l7.csv', 'a', newline='')
+                    cw = csv.writer(fw, delimiter='\t')
+                    cw.writerow(tl)
+                    fw.close()
+                    sqlcnt = 0
+                    xc = xc+1
+                    print('///', pool)
+                    if len(pool) <= 3:
+                        pool = list(range(1, 38))
+                        print(pool)
+                        print('////////////////////////////////////////////////////')
+
+        if sqlcnt > 3000:
+            pool = list(range(1, 38))
+        if xc == 100:
+            print(pool)
             break
-# t7()
-
-
-def t8():
-    # 番号指定 Loto6
-    # 出る番号と除外番号を指定し，ランダムに番号を出す
-    import sqlite3
-    con = sqlite3.connect('alll6.db')
-    sqlcmd = '''select * from alll6 where id=abs(random())% 6096455'''
-
-    inar = [2, 4, 8]
-    notinar = [1, 3, 6, 19, 21, 27, 39]
-
-    x = 1
-    while True:
-        cur = con.execute(sqlcmd)
-        for xx in cur:
-            nocnt = 0
-            cnt = 0
-            for j in notinar:
-                if j in xx:
-                    nocnt = nocnt + 1
-
-            if nocnt == 0:
-                for j in inar:
-                    if j in xx:
-                        cnt = cnt + 1
-                if cnt == 2:
-                    tck = tx1(xx[0])
-                    if tck == 0 or tck > 1:
-                        print("localStorage_additem([{},{},{},{},{},{},{}])".format(
-                            xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], tck, xx[0]))
-                        x = x+1
-        if x > 10:
-            cur.close()
+        if sqlcnt == 10000:
+            print("///1Gend", pool)
+            f.close()
+            fw.close()
+            con.close()
             break
 
 
-# t8()
+t7()
 
-def t9():
-    # 3個の数字組み合わせ数を確認する．
-    import sqlite3
-    con = sqlite3.connect('alll7.db')
-    sqlcmd = '''select t1,d1,s1,s2,s3,s4,s5,s6,s7 from loto7'''
-    list(range(1, 38))
-
-    for i in range(1, 38):
-        pass
-        # print(i)
-
-    cr = con.execute(sqlcmd)
-    ct = 0
-    # ck = [8,13,15,21,23,26,30,34]
-    ck = [30, 23, 26]
-    for b in ck:
-        print(b)
-
-    for jj in cr:
-        if ck[0] in jj and ck[1] in jj and ck[2] in jj:
-            print(jj)
-            ct += 1
-    print(ck, ct)
-    con.close()
-
-
-# t9()
 
 def ta():
     # 組み合わせ確認
@@ -378,4 +368,4 @@ def ta():
     f.close()
 
 
-ta()
+# ta()
