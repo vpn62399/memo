@@ -198,7 +198,7 @@ def t6():
             break
 
 
-t6()
+# t6()
 # t7t2klist()
 # print(t2k([35, 36]))
 # print(t7t2k([   7,11,12,14,19,21    ], 1))
