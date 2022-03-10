@@ -216,6 +216,7 @@ def t6():
     x = 1
     pool = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
             20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37]
+    pool = [i for i in range(1, 38)]
     while True:
         cur = con.execute(sqlcmd)
         for xx in cur:
@@ -252,13 +253,6 @@ def t6():
             # sys.stdout.write('end')
             break
 
-
-# t6()
-t7t2klist()
-# print(t2k([35, 36]))
-# print(t7t2k([   2,4,7,8,10,20,29    ], 1))
-# 000	2020/1/1	6	11	19	22	24	31	35	0	7425431	0	nx5	0	A	22	22	ll7
-# fns([4,7,10,21,28,34,36])
 
 
 def t7():
@@ -325,7 +319,7 @@ def t7():
 
         if sqlcnt > 3000:
             pool = list(range(1, 38))
-        if xc == 100:
+        if xc == 10:
             print(pool)
             break
         if sqlcnt == 10000:
@@ -336,7 +330,13 @@ def t7():
             break
 
 
-# t7()
+t7()
+# t6()
+# t7t2klist()
+# print(t2k([35, 36]))
+# print(t7t2k([   2,4,7,8,10,20,29    ], 1))
+# 000	2020/1/1	6	11	19	22	24	31	35	0	7425431	0	nx5	0	A	22	22	ll7
+# fns([4,7,10,21,28,34,36])
 
 
 def ta():
@@ -353,8 +353,8 @@ def ta():
     cw = csv.writer(f, delimiter='\t')
     for tag in aln:
         cr = con.execute(sqlcmd)
-        cas6 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+        cas6 = [0 for i in range(45)]
+        cas7 = [0 for i in range(38)]
         cas7 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         for jj in cr:
