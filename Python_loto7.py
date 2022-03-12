@@ -254,7 +254,6 @@ def t6():
             break
 
 
-
 def t7():
     print('////////////////////////////////////////////')
     print('////////////////////////////////////////////')
@@ -265,8 +264,8 @@ def t7():
     sqlcmd = '''select * from alll7 where id=abs(random())%10280000'''
     pool = list(range(1, 38))
     epool = [
-        [],
-        []
+        [5, 12, 17, 22, 24, 32, 36],
+        [1,13,16,18,26,27,29]
     ]
     for val in epool:
         for v in val:
@@ -330,7 +329,7 @@ def t7():
             break
 
 
-t7()
+# t7()
 # t6()
 # t7t2klist()
 # print(t2k([35, 36]))
@@ -368,4 +367,4 @@ def ta():
     f.close()
 
 
-# ta()
+ta()
