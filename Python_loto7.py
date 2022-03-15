@@ -19,6 +19,7 @@ def t2k(tag):
     sqlcmd = '''select s1,s2,s3,s4,s5,s6,s7 from loto7 '''
     cas = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
            0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    cas = [0 for i in range(39)]
     cr = con.execute(sqlcmd)
     for da in cr:
         if tag[0] in da:
@@ -35,7 +36,9 @@ def t2k(tag):
     else:
         return cas[tag[1]]
 
-# print (t2k([37, 1]))
+# print (t2k([37, 13]))
+# print (t2k([37, 21]))
+# print (t2k([37, 2]))
 # t2k([1, 37])
 
 
@@ -73,7 +76,8 @@ def t7t2k(tag, v):
         return vw
     return f
 
-# print(t7t2k([2,16,17,24,25,35,36]))
+# print(t7t2k([2,16,17,24,25,35,36],1))   ## return 0
+# print(t7t2k([9,14,22,26,27,33,37],1))   ## return 1
 
 
 def t7t2klist():
@@ -244,9 +248,12 @@ def t6():
                                 xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], xx[7], tck, xx[0]))
                             x = x+1
                             print(x, end='\r')
-                            if list(xx[1:8]) == [2, 4, 7, 8, 10, 20, 29]:
+                            ttx = list(xx[1:8])
+                            ttxtag = [2, 4, 7, 8, 10, 20, 29]
+                            print(ttx, ttxtag)
+                            if ttx == ttxtag:
                                 print(list(xx[1:8]))
-                                break
+                            break
         if x > ccont:
             con.close()
             f.close()
@@ -264,9 +271,20 @@ def t7():
     sqlcmd = '''select * from alll7 where id=abs(random())%10280000'''
     pool = list(range(1, 38))
     epool = [
-        [5, 12, 17, 22, 24, 32, 36],
-        [1,13,16,18,26,27,29]
+        [],
+        [],
+        [],
+        [],
     ]
+
+    # epool = [
+    #     [1,5,11,16,21,31,33],
+    #     [9,15,26,27,28,29,32],
+    #     [6,17,18,20,22,35,36],
+    #     [2,4,7,12,14,19,30],
+    # ]
+
+
     for val in epool:
         for v in val:
             pool.remove(v)
@@ -300,6 +318,15 @@ def t7():
 
                     tl = []
                     tl.append(val)
+                    ttx = list(val[1:8])
+                    ttxtag = [4, 7, 10, 21, 28, 34, 36]
+                    if ttx == ttxtag:
+                        print("////////////////////////////////////////////////////")
+                        print(ttx, ttxtag)
+                        print(list(val[1:8]))
+                        print("////////////////////////////////////////////////////")
+                        break
+
                     temp = t7t2k([int(val[1]), int(val[2]), int(val[3]), int(
                         val[4]), int(val[5]), int(val[6]), int(val[7])], 2)
                     for i in temp:
@@ -311,25 +338,32 @@ def t7():
                     sqlcnt = 0
                     xc = xc+1
                     print('///', pool)
-                    if len(pool) <= 3:
-                        pool = list(range(1, 38))
-                        print(pool)
-                        print('////////////////////////////////////////////////////')
 
-        if sqlcnt > 3000:
-            pool = list(range(1, 38))
-        if xc == 10:
+                if sqlcnt > 3000:
+                    pool = list(range(1, 38))
+                    for val in epool:
+                        for v in val:
+                            pool.remove(v)
+                    sqlcnt = 0
+                    print('/4/', pool)
+                    print('/////////////////////////////////////////333////////')
+                    print('                                                       ', end='\r')
+
+        if xc == 1000:
             print(pool)
             break
-        if sqlcnt == 10000:
+        if sqlcnt == 100000:
             print("///1Gend", pool)
+            sqlcnt = 0
             f.close()
             fw.close()
             con.close()
             break
+    f.close()
+    fw.close()
+    con.close()
 
-
-# t7()
+t7()
 # t6()
 # t7t2klist()
 # print(t2k([35, 36]))
@@ -367,4 +401,4 @@ def ta():
     f.close()
 
 
-ta()
+# ta()
