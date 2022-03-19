@@ -270,27 +270,26 @@ def t7():
     # sqlcmd = '''select * from alll7 where id=abs(random())%10295473'''
     sqlcmd = '''select * from alll7 where id=abs(random())%10280000'''
     pool = list(range(1, 38))
-    epool = [
+
+    epool=[
         [],
         [],
         [],
-        [],
+        []
     ]
 
     # epool = [
-    #     [1,5,11,16,21,31,33],
-    #     [9,15,26,27,28,29,32],
-    #     [6,17,18,20,22,35,36],
-    #     [2,4,7,12,14,19,30],
+    #     [11,15,21,22,26,32,34],
+    #     [1, 7, 10, 17, 28, 31, 36],
+    #     [4,5,8,12,19,29,35],
+    #     [6, 9, 14, 18, 23, 24, 33],
     # ]
-
 
     for val in epool:
         for v in val:
             pool.remove(v)
     xc = 0
     sqlcnt = 0
-    f = open('temp.txt', 'w')
 
     while True:
         cur = con.execute(sqlcmd)
@@ -313,13 +312,14 @@ def t7():
                     tck = tx1(val[0])
                     print("localStorage_additem([{},{},{},{},{},{},{},{},{}])".format(
                         val[1], val[2], val[3], val[4], val[5], val[6], val[7], tck, val[0]))
+                    f = open('temp.txt', 'a')
                     f.write("localStorage_additem([{},{},{},{},{},{},{},{},{}])\n".format(
                         val[1], val[2], val[3], val[4], val[5], val[6], val[7], tck, val[0]))
-
+                    f.close()
                     tl = []
                     tl.append(val)
                     ttx = list(val[1:8])
-                    ttxtag = [4, 7, 10, 21, 28, 34, 36]
+                    ttxtag = [7, 11, 24, 27, 29, 34, 35]
                     if ttx == ttxtag:
                         print("////////////////////////////////////////////////////")
                         print(ttx, ttxtag)
@@ -339,15 +339,24 @@ def t7():
                     xc = xc+1
                     print('///', pool)
 
-                if sqlcnt > 3000:
+                if sqlcnt > 900:
                     pool = list(range(1, 38))
                     for val in epool:
                         for v in val:
                             pool.remove(v)
                     sqlcnt = 0
                     print('/4/', pool)
-                    print('/////////////////////////////////////////333////////')
-                    print('                                                       ', end='\r')
+                    print('///////////////////////////////////333////////')
+                    print('                                                ', end='\r')
+
+                    f = open('temp.txt', 'a')
+                    f.write('//------\n')
+                    f.close()
+
+                    fw = open('xList2-l7.csv', 'a', newline='')
+                    cw = csv.writer(fw, delimiter='\t')
+                    cw.writerow([])
+                    fw.close()
 
         if xc == 1000:
             print(pool)
@@ -355,19 +364,17 @@ def t7():
         if sqlcnt == 100000:
             print("///1Gend", pool)
             sqlcnt = 0
-            f.close()
-            fw.close()
             con.close()
             break
-    f.close()
-    fw.close()
     con.close()
 
-t7()
+
+# t7()
 # t6()
 # t7t2klist()
 # print(t2k([35, 36]))
-# print(t7t2k([   2,4,7,8,10,20,29    ], 1))
+# print(t7t2k([2,3,13,20,27,30,37], 1))
+# 2,3,13,16,20,25,27,30,37
 # 000	2020/1/1	6	11	19	22	24	31	35	0	7425431	0	nx5	0	A	22	22	ll7
 # fns([4,7,10,21,28,34,36])
 
@@ -388,6 +395,7 @@ def ta():
         cr = con.execute(sqlcmd)
         cas6 = [0 for i in range(45)]
         cas7 = [0 for i in range(38)]
+        cas7 = [0] * 38
         cas7 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
                 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
         for jj in cr:
