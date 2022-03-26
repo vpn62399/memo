@@ -5,12 +5,13 @@
 # pip list
 # pip show selenium
 
-import sys
 import csv
 import os
+import sys
+
+import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
-import matplotlib.pyplot as plt
 
 
 def t2k(tag):
@@ -110,6 +111,39 @@ def t7t2kone(cc):
 
 # t7t2one([0,0,1,2,3,4,5,6,7])
 
+def bas2(tag):
+    import sqlite3
+    con = sqlite3.connect('alll7.db')
+    sqlcmd = 'select * from loto7'
+    cas = [i for i in range(1, 38)]
+    cr = con.execute(sqlcmd)
+    llist = []
+    print('////////////////////////////////////////')
+    print('///////////////           //////////////')
+    print('////////////////////////////////////////')
+    for val in cr:
+        temp = list(val[2:9])
+        flg = 0
+        for k in tag:
+            if k not in temp:
+                flg = 1
+        if flg == 0:
+            print(val)
+            # print(str(val[0])+'  '+str(val[1]), temp)
+            for k in temp:
+                llist.append(k)
+            # llist.append(temp)
+    print('////////////////////////////////////////')
+    print('all', llist)
+    for k in cas:
+        if llist.count(k) >= 5:
+            print(k, str(llist.count(k))+'  ++')
+        elif llist.count(k) == 0:
+            print(k, str(llist.count(k))+'  --')
+        else:
+            print(k, str(llist.count(k))+'    ')
+# bas2([7,11])
+
 
 def t1():
     url1 = 'https://raw.githubusercontent.com/kankanla/memo/master/loto7.csv'
@@ -142,25 +176,6 @@ def tx1(num):
     return 0
 
 # tx1(8149925)
-
-
-def t5():
-    # 番号指定
-    import sqlite3
-    con = sqlite3.connect('alll7.db')
-    # 指定番号を固定,他の番号をランダム選択
-    sqlcmd = '''select * from alll7 where s1=5 and s2=17 and s3!=18 and id>6850000 and id<6880000 and id=abs(random())%10295473 limit 3'''
-    x = 1
-    while True:
-        cur = con.execute(sqlcmd)
-        for xx in cur:
-            # print(xx)
-            # print("T_cpt2([{},{},{},{},{},{},{},{}])".format(xx[1],xx[2],xx[3],xx[4],xx[5],xx[6],xx[7],xx[0]))
-            print("localStorage_additem([{},{},{},{},{},{},{},{},{}])".format(
-                xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], xx[7], 0, xx[0]))
-            x = x+1
-        if x > 5:
-            break
 
 
 def t6():
@@ -204,8 +219,7 @@ def t6():
 
     # tag = [[459], [2+,5,6,7+,8+,9,10+,11,12,13,14,15,17,18,21,22,23,24,26,27,31,33,34,36], [1,3,4+,16,19,20+,25,28,29+,30,32,35,37], [3], [3]]
     # tag = [[460], [1, 2, 3, 4+, 5*, 6*, 7, 9*, 10, 11, 12, 14, 15, 17, 19, 20, 21, 23*, 24, 26, 27*, 28*, 30*, 31, 32, 33, 34, 35, 36, 37], [8, 13+, 16, 18, 22, 25, 29], [3], [1]]
-    tag = [[460], [1, 2, 3, 4, 5, 6, 7, 9, 10, 11, 12, 14, 15, 17, 19, 20, 21, 23, 24,
-                   26, 27, 28, 30, 31, 32, 33, 34, 35, 36, 37], [8, 13, 16, 18, 22, 25, 29], [3], [1]]
+    tag = [[463], [5, 6, 27], [0], [2], [0]]
 
     tagx = [
         [459],
@@ -215,8 +229,7 @@ def t6():
         [0]
     ]
 
-    f = open('temp.txt', 'w')
-    ccont = 10    # 結果の回数
+    ccont = 100    # 結果の回数
     x = 1
     pool = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19,
             20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37]
@@ -244,15 +257,13 @@ def t6():
                             if ccont < 11:
                                 print("localStorage_additem([{},{},{},{},{},{},{},{},{}])".format(
                                     xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], xx[7], tck, xx[0]))
+                            f = open('temp.txt', 'a')
                             f.write("localStorage_additem([{},{},{},{},{},{},{},{},{}])\n".format(
                                 xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], xx[7], tck, xx[0]))
+                            f.close()
                             x = x+1
                             print(x, end='\r')
                             ttx = list(xx[1:8])
-                            ttxtag = [2, 4, 7, 8, 10, 20, 29]
-                            print(ttx, ttxtag)
-                            if ttx == ttxtag:
-                                print(list(xx[1:8]))
                             break
         if x > ccont:
             con.close()
@@ -265,25 +276,20 @@ def t7():
     print('////////////////////////////////////////////')
     print('////////////////////////////////////////////')
     print('////////////////////////////////////////////')
+    import random
     import sqlite3
     con = sqlite3.connect('alll7.db')
     # sqlcmd = '''select * from alll7 where id=abs(random())%10295473'''
-    sqlcmd = '''select * from alll7 where id=abs(random())%10280000'''
+    # sqlcmd = '''select * from alll7 where id=abs(random())%10280000'''
+    sqlcmd = 'select * from alll7 where id='
     pool = list(range(1, 38))
 
-    epool=[
-        [],
-        [],
-        [],
-        []
+    epool = [
+        # [5, 6, 11, 21, 26, 27, 33],
+        # [1, 9, 15, 23, 25, 30, 34],
+        # [12, 13, 14, 17, 24, 29, 36],
+        # [2, 4, 8, 20, 22, 28, 31]
     ]
-
-    # epool = [
-    #     [11,15,21,22,26,32,34],
-    #     [1, 7, 10, 17, 28, 31, 36],
-    #     [4,5,8,12,19,29,35],
-    #     [6, 9, 14, 18, 23, 24, 33],
-    # ]
 
     for val in epool:
         for v in val:
@@ -292,13 +298,16 @@ def t7():
     sqlcnt = 0
 
     while True:
-        cur = con.execute(sqlcmd)
+        cur = con.execute(sqlcmd+str(random.randint(1, 10280000)))
         sqlcnt = sqlcnt+1
         for val in cur:
             tf = True
             temp = val[1:8]
             print('                                                       ', end='\r')
             print(sqlcnt, val, end='\r')
+            # 03	07	13	16	19	24	30
+            if (temp[0] != 3 or temp[1] != 7 or temp[2] !=13 or temp[3] !=16 or temp[4] != 19 or temp[5] !=24 or temp[6] != 30):
+                break
             if t7t2k(list(val[1:8]), 0) == 1:
                 for v in temp:
                     if v not in pool:
@@ -319,7 +328,7 @@ def t7():
                     tl = []
                     tl.append(val)
                     ttx = list(val[1:8])
-                    ttxtag = [7, 11, 24, 27, 29, 34, 35]
+                    ttxtag = [3, 7, 13, 16, 19, 24, 30]
                     if ttx == ttxtag:
                         print("////////////////////////////////////////////////////")
                         print(ttx, ttxtag)
@@ -345,7 +354,7 @@ def t7():
                         for v in val:
                             pool.remove(v)
                     sqlcnt = 0
-                    print('/4/', pool)
+                    print('//4//', pool)
                     print('///////////////////////////////////333////////')
                     print('                                                ', end='\r')
 
@@ -361,7 +370,7 @@ def t7():
         if xc == 1000:
             print(pool)
             break
-        if sqlcnt == 100000:
+        if sqlcnt == 1000000:
             print("///1Gend", pool)
             sqlcnt = 0
             con.close()
@@ -371,9 +380,12 @@ def t7():
 
 # t7()
 # t6()
+# bas2([7,11])
+# bas2([16,24])
 # t7t2klist()
 # print(t2k([35, 36]))
-# print(t7t2k([2,3,13,20,27,30,37], 1))
+# print(t7t2k([3,7,10,16,18,19,32,35,37], 1))
+# print(t7t2k([2,4,9,17,18,31,32], 1))
 # 2,3,13,16,20,25,27,30,37
 # 000	2020/1/1	6	11	19	22	24	31	35	0	7425431	0	nx5	0	A	22	22	ll7
 # fns([4,7,10,21,28,34,36])
@@ -381,8 +393,8 @@ def t7():
 
 def ta():
     # 組み合わせ確認
-    import sqlite3
     import csv
+    import sqlite3
     f = open('xList-L7.csv', 'w', newline='')
     con = sqlite3.connect('alll7.db')
     sqlcmd = '''select s1,s2,s3,s4,s5,s6,s7 from loto7 '''
