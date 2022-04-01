@@ -285,10 +285,10 @@ def t7():
     pool = list(range(1, 38))
 
     epool = [
-        # [5, 6, 11, 21, 26, 27, 33],
-        # [1, 9, 15, 23, 25, 30, 34],
-        # [12, 13, 14, 17, 24, 29, 36],
-        # [2, 4, 8, 20, 22, 28, 31]
+        # [13,15,19,21,32,33,34],
+        # [9,10,17,18,27,35,37],
+        # [5,6,8,26,28,29,30],
+        [1,4,11,16,22,23,25]
     ]
 
     for val in epool:
@@ -306,8 +306,10 @@ def t7():
             print('                                                       ', end='\r')
             print(sqlcnt, val, end='\r')
             # 03	07	13	16	19	24	30
-            if (temp[0] != 3 or temp[1] != 7 or temp[2] !=13 or temp[3] !=16 or temp[4] != 19 or temp[5] !=24 or temp[6] != 30):
-                break
+            # if (temp[0] != 3 or temp[1] != 7 or temp[2] !=13 or temp[3] !=16 or temp[4] != 19 or temp[5] !=24 or temp[6] != 30):
+            #     break
+            # if (temp[0] != 2 or temp[1] != 7 ):
+            #     break
             if t7t2k(list(val[1:8]), 0) == 1:
                 for v in temp:
                     if v not in pool:
@@ -348,7 +350,7 @@ def t7():
                     xc = xc+1
                     print('///', pool)
 
-                if sqlcnt > 900:
+                if sqlcnt > 9000:
                     pool = list(range(1, 38))
                     for val in epool:
                         for v in val:
@@ -378,14 +380,14 @@ def t7():
     con.close()
 
 
-# t7()
+t7()
 # t6()
 # bas2([7,11])
-# bas2([16,24])
+# bas2([8,26])
 # t7t2klist()
 # print(t2k([35, 36]))
 # print(t7t2k([3,7,10,16,18,19,32,35,37], 1))
-# print(t7t2k([2,4,9,17,18,31,32], 1))
+# print(t7t2k([3,7,14,20,24,31,36], 1))
 # 2,3,13,16,20,25,27,30,37
 # 000	2020/1/1	6	11	19	22	24	31	35	0	7425431	0	nx5	0	A	22	22	ll7
 # fns([4,7,10,21,28,34,36])
