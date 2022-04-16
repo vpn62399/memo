@@ -111,7 +111,7 @@ def t7t2kone(cc):
 
 # t7t2one([0,0,1,2,3,4,5,6,7])
 
-def bas2(tag):
+def bas2(tag,l=9):
     import sqlite3
     con = sqlite3.connect('alll7.db')
     sqlcmd = 'select * from loto7'
@@ -122,7 +122,7 @@ def bas2(tag):
     print('///////////////           //////////////')
     print('////////////////////////////////////////')
     for val in cr:
-        temp = list(val[2:9])
+        temp = list(val[2:l])
         flg = 0
         for k in tag:
             if k not in temp:
@@ -285,16 +285,16 @@ def t7():
     pool = list(range(1, 38))
 
     epool = [
-        # [12,15,21,25,26,31]
-        # [3,4,16,20,23,28,30,32],
-        # [9,10,17,18,27,35,37],
-        # [5,6,8,26,28,29,30],
+        # [4,5,13,16,23,32,36],
+        # [4,5,27,28,29,32,36],
+        # [7,8,9,21,24,31,35],
         # [1,4,11,16,22,23,25]
     ]
 
     for val in epool:
         for v in val:
-            pool.remove(v)
+            if v in pool:
+                pool.remove(v)
     xc = 0
     sqlcnt = 0
 
@@ -309,7 +309,7 @@ def t7():
             # 03	07	13	16	19	24	30
             # if (temp[0] != 3 or temp[1] != 7 or temp[2] !=13 or temp[3] !=16 or temp[4] != 19 or temp[5] !=24 or temp[6] != 30):
             #     break
-            # if (temp[0] != 2 or temp[1] != 7 ):
+            # if (temp[0] != 3 or temp[1] != 4 ):
             #     break
             if t7t2k(list(val[1:8]), 0) == 1:
                 for v in temp:
@@ -351,11 +351,12 @@ def t7():
                     xc = xc+1
                     print('///', pool)
 
-                if sqlcnt > 9000:
+                if sqlcnt > 6000:
                     pool = list(range(1, 38))
                     for val in epool:
                         for v in val:
-                            pool.remove(v)
+                            if v in pool:
+                                pool.remove(v)
                     sqlcnt = 0
                     print('//4//', pool)
                     print('///////////////////////////////////333////////')
@@ -381,14 +382,14 @@ def t7():
     con.close()
 
 
-# t7()
+t7()
 # t6()
-# bas2([7,11])
-# bas2([4,9])
+# bas2([7,11])  # 9 or 11
+# bas2([1,8],9)  # 9 or 11
 # t7t2klist()
 # print(t2k([35, 36]))
 # print(t7t2k([3,7,10,16,18,19,32,35,37], 1))
-# print(t7t2k([4,9,15,18,23,34,36], 1))
+# print(t7t2k([4,6,7,15,26,29,32], 1))
 # 2,3,13,16,20,25,27,30,37
 # 000	2020/1/1	6	11	19	22	24	31	35	0	7425431	0	nx5	0	A	22	22	ll7
 # fns([4,7,10,21,28,34,36])
@@ -425,4 +426,4 @@ def ta():
     f.close()
 
 
-ta()
+# ta()
