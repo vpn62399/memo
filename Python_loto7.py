@@ -285,10 +285,19 @@ def t7():
     pool = list(range(1, 38))
 
     epool = [
-        # [4,5,13,16,23,32,36],
-        # [4,5,27,28,29,32,36],
-        # [7,8,9,21,24,31,35],
-        # [1,4,11,16,22,23,25]
+        # [7,8,14,21,24,34,37],
+        # [7,8,9,17,24,35,36],
+        # [2,15,18,23,24,27,34],
+        # [2,7,15,24,29,32,37],
+        # [3,7,11,17,29,31,37],
+        # [1,7,9,14,25,31,34]
+    ]
+
+    tag = [
+        [2,4,0,0,0,0,0],
+        [3,7,0,0,0,0,0],
+        [7,8,0,0,0,0,0],
+        [7,11,0,0,0,0,0]
     ]
 
     for val in epool:
@@ -306,10 +315,10 @@ def t7():
             temp = val[1:8]
             print('                                                       ', end='\r')
             print(sqlcnt, val, end='\r')
-            # 03	07	13	16	19	24	30
-            # if (temp[0] != 3 or temp[1] != 7 or temp[2] !=13 or temp[3] !=16 or temp[4] != 19 or temp[5] !=24 or temp[6] != 30):
+            # 7 8 11 13 14 26 30
+            # if (temp[0] != 7 or temp[1] != 8 or temp[2] !=11 or temp[3] !=13 or temp[4] != 14 or temp[5] !=26 or temp[6] != 30):
             #     break
-            # if (temp[0] != 3 or temp[1] != 4 ):
+            # if (temp[0] != 1 or temp[1] != 5 ):
             #     break
             if t7t2k(list(val[1:8]), 0) == 1:
                 for v in temp:
@@ -351,7 +360,7 @@ def t7():
                     xc = xc+1
                     print('///', pool)
 
-                if sqlcnt > 6000:
+                if sqlcnt > 3000:
                     pool = list(range(1, 38))
                     for val in epool:
                         for v in val:
@@ -371,10 +380,10 @@ def t7():
                     cw.writerow([])
                     fw.close()
 
-        if xc == 1000:
+        if xc == 10000:
             print(pool)
             break
-        if sqlcnt == 1000000:
+        if sqlcnt == 100000000000:
             print("///1Gend", pool)
             sqlcnt = 0
             con.close()
@@ -382,14 +391,20 @@ def t7():
     con.close()
 
 
-t7()
+# t7()
 # t6()
 # bas2([7,11])  # 9 or 11
-# bas2([1,8],9)  # 9 or 11
-# t7t2klist()
+# bas2([12,13],9)  # 9 or 11
+#7,11,15,22,26,?,35
+# localStorage_additem([7,11,15,22,26,33,35,0,8001570])
+# localStorage_additem([2,4,9,18,19,21,29,0,2360284])
+# localStorage_additem([1,5,8,20,30,32,34,0,920417])
+# localStorage_additem([6,13,24,27,28,31,37,0,7529705])
+# localStorage_additem([3,14,16,17,23,25,36,0,0])
+t7t2klist()
 # print(t2k([35, 36]))
 # print(t7t2k([3,7,10,16,18,19,32,35,37], 1))
-# print(t7t2k([4,6,7,15,26,29,32], 1))
+# print(t7t2k([3,14, 16, 17, 23, 25, 36], 1))
 # 2,3,13,16,20,25,27,30,37
 # 000	2020/1/1	6	11	19	22	24	31	35	0	7425431	0	nx5	0	A	22	22	ll7
 # fns([4,7,10,21,28,34,36])
