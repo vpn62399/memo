@@ -404,11 +404,11 @@ t7()
 # bas2([7,11])  # 9 or 11
 # bas2([3,12],9)  # 9 or 11
 #7,11,15,22,26,?,35
-# localStorage_additem([7,11,15,22,26,33,35,0,8001570])
-# localStorage_additem([2,4,9,18,19,21,29,0,2360284])
-# localStorage_additem([1,5,8,20,30,32,34,0,920417])
-# localStorage_additem([6,13,24,27,28,31,37,0,7529705])
-# localStorage_additem([3,14,16,17,23,25,36,0,0])
+# localStorage_additem([7,11,24,28,31,36,37,0,8028009])
+# localStorage_additem([7,11,24,30,31,32,36,0,8028089])
+# localStorage_additem([7,11,24,28,31,33,37,0,8028003])
+# localStorage_additem([7,11,24,30,32,36,37,0,8028110])
+
 # t7t2klist()
 # print(t2k([35, 36]))
 # print(t7t2k([3,7,10,16,18,19,32,35,37], 1))
