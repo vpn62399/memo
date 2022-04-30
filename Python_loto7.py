@@ -285,9 +285,9 @@ def t7():
     pool = list(range(1, 38))
 
     epool = [
-        # [7,8,14,21,24,34,37],
-        # [7,8,9,17,24,35,36],
-        # [2,15,18,23,24,27,34],
+        # [7,11,24,28,31,33,37],
+        # [4,8,13,18,22,23,35],
+        # [3,6,9,15,25,30,32],
         # [2,7,15,24,29,32,37],
         # [3,7,11,17,29,31,37],
         # [1,7,9,14,25,31,34]
@@ -316,10 +316,18 @@ def t7():
             print('                                                       ', end='\r')
             print(sqlcnt, val, end='\r')
             # 7 8 11 13 14 26 30
+            # すべての数字が含むか
             # if (temp[0] != 7 or temp[1] != 8 or temp[2] !=11 or temp[3] !=13 or temp[4] != 14 or temp[5] !=26 or temp[6] != 30):
             #     break
-            # if (temp[0] != 1 or temp[1] != 5 ):
+            # 先頭数字が含むか
+            # if (temp[0] != 7 or temp[1] != 11 or temp[2] !=24):
             #     break
+            # 数字が含むか
+            # if 8 not in temp or 13 not in temp :
+            #     break
+            # if 8 or 13 not in temp:
+            #     break
+
             if t7t2k(list(val[1:8]), 0) == 1:
                 for v in temp:
                     if v not in pool:
@@ -391,17 +399,17 @@ def t7():
     con.close()
 
 
-# t7()
+t7()
 # t6()
 # bas2([7,11])  # 9 or 11
-# bas2([12,13],9)  # 9 or 11
+# bas2([3,12],9)  # 9 or 11
 #7,11,15,22,26,?,35
 # localStorage_additem([7,11,15,22,26,33,35,0,8001570])
 # localStorage_additem([2,4,9,18,19,21,29,0,2360284])
 # localStorage_additem([1,5,8,20,30,32,34,0,920417])
 # localStorage_additem([6,13,24,27,28,31,37,0,7529705])
 # localStorage_additem([3,14,16,17,23,25,36,0,0])
-t7t2klist()
+# t7t2klist()
 # print(t2k([35, 36]))
 # print(t7t2k([3,7,10,16,18,19,32,35,37], 1))
 # print(t7t2k([3,14, 16, 17, 23, 25, 36], 1))
