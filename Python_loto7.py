@@ -318,8 +318,8 @@ def t7():
             # 7 8 11 13 14 26 30
             # 1,6,8,13,16,30,33,23,28
             # すべての数字が含むか
-            if (temp[0] != 1 or temp[1] != 6 or temp[2] !=8 or temp[3] !=13 or temp[4] != 16 or temp[5] !=30 or temp[6] != 33):
-                break
+            # if (temp[0] != 1 or temp[1] != 6 or temp[2] !=8 or temp[3] !=13 or temp[4] != 16 or temp[5] !=30 or temp[6] != 33):
+            #     break
             # 先頭数字が含むか
             # if (temp[0] != 7 or temp[1] != 11 or temp[2] !=24):
             #     break
@@ -400,7 +400,7 @@ def t7():
     con.close()
 
 
-# t7()
+t7()
 # t6()
 # bas2([7,11])  # 9 or 11
 # bas2([12],9)  # 9 or 11
