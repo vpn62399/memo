@@ -111,7 +111,7 @@ def t7t2kone(cc):
 
 # t7t2one([0,0,1,2,3,4,5,6,7])
 
-def bas2(tag,l=9):
+def bas2(tag, l=9):
     import sqlite3
     con = sqlite3.connect('alll7.db')
     sqlcmd = 'select * from loto7'
@@ -294,10 +294,10 @@ def t7():
     ]
 
     tag = [
-        [2,4,0,0,0,0,0],
-        [3,7,0,0,0,0,0],
-        [7,8,0,0,0,0,0],
-        [7,11,0,0,0,0,0]
+        [2, 4, 0, 0, 0, 0, 0],
+        [3, 7, 0, 0, 0, 0, 0],
+        [7, 8, 0, 0, 0, 0, 0],
+        [7, 11, 0, 0, 0, 0, 0]
     ]
 
     for val in epool:
@@ -306,8 +306,9 @@ def t7():
                 pool.remove(v)
     xc = 0
     sqlcnt = 0
-
+    keep = 40000
     while True:
+        keep = keep-1
         cur = con.execute(sqlcmd+str(random.randint(1, 10280000)))
         sqlcnt = sqlcnt+1
         for val in cur:
@@ -315,11 +316,18 @@ def t7():
             temp = val[1:8]
             print('                                                       ', end='\r')
             print(sqlcnt, val, end='\r')
+            if keep > 0:
+                sqlcnt = sqlcnt-1
+                break
+            keep = 4000
             # 7 8 11 13 14 26 30
-            # 1,6,8,13,16,30,33,23,28
+            # 2,3,9,16,27,32,36
             # すべての数字が含むか
-            # if (temp[0] != 1 or temp[1] != 6 or temp[2] !=8 or temp[3] !=13 or temp[4] != 16 or temp[5] !=30 or temp[6] != 33):
+            # if (temp[0] != 2 or temp[1] != 3 or temp[2] != 9 or temp[3] != 16 or temp[4] != 27 or temp[5] != 32 or temp[6] != 36):
             #     break
+            # else:
+            #     print('sqlcnt', sqlcnt)
+
             # 先頭数字が含むか
             # if (temp[0] != 7 or temp[1] != 11 or temp[2] !=24):
             #     break
@@ -349,7 +357,7 @@ def t7():
                     tl = []
                     tl.append(val)
                     ttx = list(val[1:8])
-                    ttxtag = [7,8,13,17,30,32,36]
+                    ttxtag = [7, 8, 13, 17, 30, 32, 36]
                     if ttx == ttxtag:
                         print("////////////////////////////////////////////////////")
                         print(ttx, ttxtag)
@@ -369,7 +377,7 @@ def t7():
                     xc = xc+1
                     print('///', pool)
 
-                if sqlcnt > 3000:
+                if sqlcnt > 300:
                     pool = list(range(1, 38))
                     for val in epool:
                         for v in val:
@@ -389,7 +397,7 @@ def t7():
                     cw.writerow([])
                     fw.close()
 
-        if xc == 10000:
+        if xc == 100:
             print(pool)
             break
         if sqlcnt == 100000000000:
@@ -404,7 +412,7 @@ t7()
 # t6()
 # bas2([7,11])  # 9 or 11
 # bas2([12],9)  # 9 or 11
-#7,11,15,22,26,?,35
+# 7,11,15,22,26,?,35
 # localStorage_additem([7,11,24,28,31,36,37,0,8028009])
 # localStorage_additem([7,11,24,30,31,32,36,0,8028089])
 # localStorage_additem([7,11,24,28,31,33,37,0,8028003])
@@ -416,8 +424,9 @@ t7()
 # 2,3,13,16,20,25,27,30,37
 # 000	2020/1/1	6	11	19	22	24	31	35	0	7425431	0	nx5	0	A	22	22	ll7
 # fns([4,7,10,21,28,34,36])
-    # localStorage_additem([12,15,21,25,26,31,0,0,0])
-    # localStorage_additem([3,4,16,20,23,28,30,32,0])
+# localStorage_additem([12,15,21,25,26,31,0,0,0])
+# localStorage_additem([3,4,16,20,23,28,30,32,0])
+
 
 def ta():
     # 組み合わせ確認
