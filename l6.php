@@ -445,7 +445,9 @@
             console.log(TAG, temp.toString().replace(/,/g, '|'));
             console.log(TAG, temp2.toString().replace(/,/g, '|'));
             arrayVal.pop();
+            arrayVal.pop();
             arrayVal.sort((a,b)=>a-b);
+            console.log("(a,b)=>a-b",arrayVal)
             console.log(TAG, "select * from alll6 where s1=" + arrayVal[0] + " and s2=" + arrayVal[1] + " and s3=" + arrayVal[2] + " and s4=" + arrayVal[3] + " and s5=" + arrayVal[4] + " and s6=" + arrayVal[5] + ";");
 
         }
