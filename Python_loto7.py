@@ -319,14 +319,14 @@ def t7():
             if keep > 0:
                 sqlcnt = sqlcnt-1
                 break
-            keep = 4000
+            keep = 100
             # 7 8 11 13 14 26 30
             # 5, 6, 7, 8, 32, 33, 34, 36
             # すべての数字が含むか
-            if (temp[0] != 5 or temp[1] != 6 or temp[2] != 7 or temp[3] != 8 or temp[4] != 32 or temp[5] != 34 or temp[6] != 36):
-                break
-            else:
-                print('sqlcnt', sqlcnt)
+            # if (temp[0] != 5 or temp[1] != 6 or temp[2] != 7 or temp[3] != 8 or temp[4] != 32 or temp[5] != 34 or temp[6] != 36):
+            #     break
+            # else:
+            #     print('sqlcnt', sqlcnt)
 
             # 先頭数字が含むか
             # if (temp[0] != 7 or temp[1] != 11 or temp[2] !=24):
@@ -408,7 +408,7 @@ def t7():
     con.close()
 
 
-t7()
+# t7()
 
 # t6()
 # bas2([7,11])  # 9 or 11
@@ -418,7 +418,7 @@ t7()
 # localStorage_additem([7,11,24,30,31,32,36,0,8028089])
 # localStorage_additem([7,11,24,28,31,33,37,0,8028003])
 # localStorage_additem([7,11,24,30,32,36,37,0,8028110])
-# t7t2klist()
+t7t2klist()
 # print(t2k([35, 36]))
 # print(t7t2k([3,7,10,16,18,19,32,35,37], 1))
 # print(t7t2k([3,14, 16, 17, 23, 25, 36], 1))
