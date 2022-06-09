@@ -66,6 +66,13 @@
                 }
                 let ircc = ttfe.cloneNode(true);
                 let tr_place = ircc.getElementsByTagName('td');
+                if (location.search == '?sort') {
+                    stemp = td_data.slice(2, 9);
+                    stemp.sort((a, b) => a - b);
+                    for (i = 0; i < 7; i++) {
+                        td_data[i + 2] = stemp[i]
+                    }
+                }
                 let temp = [];
                 for (let i = 0; i <= 14; ++i) {
                     if (i <= 1 || i >= 11) {
@@ -436,8 +443,8 @@
             arrayVal.pop();
             arrayVal.pop();
             arrayVal.pop();
-            arrayVal.sort((a,b)=>a-b);
-            console.log("sort((a,b)=>a-b",arrayVal)
+            arrayVal.sort((a, b) => a - b);
+            console.log("sort((a,b)=>a-b", arrayVal)
             console.log(TAG, "select * from alll7 where s1=" + arrayVal[0] + " and s2=" + arrayVal[1] + " and s3=" + arrayVal[2] + " and s4=" + arrayVal[3] + " and s5=" + arrayVal[4] + " and s6=" + arrayVal[5] + " and s7=" + arrayVal[6] + ";");
         }
 

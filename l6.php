@@ -83,6 +83,15 @@
                 }
                 let ircc = ttfe.cloneNode(true);
                 let tr_place = ircc.getElementsByTagName('td');
+
+                if (location.search == '?sort') {
+                    stemp = td_data.slice(2, 8);
+                    stemp.sort((a, b) => a - b);
+                    for (i = 0; i <= 5; i++) {
+                        td_data[i + 2] = stemp[i]
+                    }
+                }
+
                 let temp = [];
                 for (let i = 0; i <= 12; ++i) {
                     if (i <= 1 || i >= 9) {
