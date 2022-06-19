@@ -408,7 +408,7 @@ def t7():
     con.close()
 
 
-t7()
+# t7()
 
 # t6()
 # bas2([7,11])  # 9 or 11
@@ -459,4 +459,4 @@ def ta():
     f.close()
 
 
-# ta()
+ta()
