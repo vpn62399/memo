@@ -328,9 +328,10 @@ def t7():
             # else:
             #     print('sqlcnt', sqlcnt)
 
-            # 先頭数字が含むか
-            if (temp[0] != 7 or temp[1] != 11 ):
-                break
+            # # 先頭数字が含むか
+            # if (temp[0] != 7 or temp[1] != 11 ):
+            #     break
+
             # 数字が含むか
             # if 8 not in temp or 13 not in temp :
             #     break
@@ -409,6 +410,7 @@ def t7():
 
 
 # t7()
+
 
 # t6()
 # bas2([7,11])  # 9 or 11
