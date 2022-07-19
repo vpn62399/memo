@@ -15,7 +15,8 @@ def t2k(tag):
     import sqlite3
     con = sqlite3.connect('alll6.db')
     sqlcmd = '''select s1,s2,s3,s4,s5,s6 from loto6 '''
-    cas = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+    cas = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
     cr = con.execute(sqlcmd)
     for da in cr:
         if tag[0] in da:
@@ -159,8 +160,8 @@ def t6():
         [0]
     ]
 
-    f=open('temp.txt','w')
-    ccont=1000    # 結果の回数
+    f = open('temp.txt', 'w')
+    ccont = 1000    # 結果の回数
     x = 1
     while True:
         cur = con.execute(sqlcmd)
@@ -187,8 +188,8 @@ def t6():
                                     xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], tck))
                             f.write("localStorage_additem([{},{},{},{},{},{},{}])\n".format(
                                     xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], tck))
-                            print(x,end='\r')
-                            if list(xx[1:7]) == [5,16,21,24,31,34]:
+                            print(x, end='\r')
+                            if list(xx[1:7]) == [5, 16, 21, 24, 31, 34]:
                                 print(list(xx[1:7]))
                                 break
                         x = x+1
@@ -197,43 +198,185 @@ def t6():
             f.close()
             break
 
-
-# t6()
-t7t2klist()
-# print(t2k([35, 36]))
-# print(t7t2k([   7,11,12,14,19,21    ], 1))
-# 000	2020/1/1	6	11	19	22	24	31	35	0	7425431	0	nx5	0	A	22	22	ll7
-
-
-
-
-def t9():
-    # 3個の数字組み合わせ数を確認する．
+def bas2(tag, l=7):
     import sqlite3
-    con = sqlite3.connect('loto.db')
-    sqlcmd = '''select t1,d1,s1,s2,s3,s4,s5,s6, from loto7'''
-    list(range(1, 44))
-
-    for i in range(1, 44):
-        pass
-        # print(i)
-
+    con = sqlite3.connect('alll6.db')
+    sqlcmd = 'select * from loto6'
+    cas = [i for i in range(1, 44)]
     cr = con.execute(sqlcmd)
-    ct = 0
-    # ck = [8,13,15,21,23,26,30,34]
-    ck = [30, 23, 26]
-    for b in ck:
-        print(b)
+    llist = []
+    print('////////////////////////////////////////')
+    print('///////////////           //////////////')
+    print('////////////////////////////////////////')
+    for val in cr:
+        temp = list(val[2:l])
+        flg = 0
+        for k in tag:
+            if k not in temp:
+                flg = 1
+        if flg == 0:
+            print(val)
+            # print(str(val[0])+'  '+str(val[1]), temp)
+            for k in temp:
+                llist.append(k)
+            # llist.append(temp)
+    print('////////////////////////////////////////')
+    print('all', llist)
+    for k in cas:
+        if llist.count(k) >= 5:
+            print(k, str(llist.count(k))+'  ++')
+        elif llist.count(k) == 0:
+            print(k, str(llist.count(k))+'  --')
+        else:
+            print(k, str(llist.count(k))+'    ')
+# bas2([7,11])
 
-    for jj in cr:
-        if ck[0] in jj and ck[1] in jj and ck[2] in jj:
-            print(jj)
-            ct += 1
-    print(ck, ct)
+
+
+def t7():
+    print('////////////////////////////////////////////')
+    print('////////////////////////////////////////////')
+    print('////////////////////////////////////////////')
+    import random
+    import sqlite3
+    con = sqlite3.connect('alll6.db')
+    sqlcmd = 'select * from alll6 where id='
+    pool = list(range(1, 44))
+
+    epool = [
+        # [7,11,24,28,31,33,37],
+        # [4,8,13,18,22,23,35],
+        # [3,6,9,15,25,30,32],
+        # [2,7,15,24,29,32,37],
+        # [3,7,11,17,29,31,37],
+        # [1,7,9,14,25,31,34]
+    ]
+
+    tag = [
+        [2, 4, 0, 0, 0, 0, 0],
+        [3, 7, 0, 0, 0, 0, 0],
+        [7, 8, 0, 0, 0, 0, 0],
+        [7, 11, 0, 0, 0, 0, 0]
+    ]
+
+    for val in epool:
+        for v in val:
+            if v in pool:
+                pool.remove(v)
+    xc = 0
+    sqlcnt = 0
+    keep = 40000
+    while True:
+        keep = keep-1
+        cur = con.execute(sqlcmd+str(random.randint(1, 6096454)))
+        sqlcnt = sqlcnt+1
+        for val in cur:
+            tf = True
+            temp = val[1:7]
+            print('                                                       ', end='\r')
+            print(sqlcnt, val, end='\r')
+            if keep > 0:
+                sqlcnt = sqlcnt-1
+                break
+            keep = 100
+            # 7 8 11 13 14 26 30
+            # 5, 6, 7, 8, 32, 33, 34, 36
+            # すべての数字が含むか
+            # if (temp[0] != 5 or temp[1] != 6 or temp[2] != 7 or temp[3] != 8 or temp[4] != 32 or temp[5] != 34 ):
+            #     break
+            # else:
+            #     print('sqlcnt', sqlcnt)
+
+            # 先頭数字が含むか
+            if (temp[0] != 16 or temp[1] != 18):
+                break
+
+            # 数字が含むか
+            # if 8 not in temp or 13 not in temp :
+            #     break
+            # if 8 or 13 not in temp:
+            #     break
+
+            if t7t2k(list(val[1:7]), 0) == 1:
+                for v in temp:
+                    if v not in pool:
+                        tf = False
+                        break
+
+                if tf == True:
+                    for vx in temp:
+                        pool.remove(vx)
+
+                    tck = tx1(val[0])
+                    print("localStorage_additem([{},{},{},{},{},{},{}])".format(
+                        val[1], val[2], val[3], val[4], val[5], val[6], val[0]))
+                    f = open('temp.txt', 'a')
+                    f.write("localStorage_additem([{},{},{},{},{},{},{}])\n".format(
+                        val[1], val[2], val[3], val[4], val[5], val[6], val[0]))
+                    f.close()
+                    tl = []
+                    tl.append(val)
+                    ttx = list(val[1:7])
+                    ttxtag = [7, 8, 13, 17, 30, 32, 36]
+                    if ttx == ttxtag:
+                        print("////////////////////////////////////////////////////")
+                        print(ttx, ttxtag)
+                        print(list(val[1:7]))
+                        print("////////////////////////////////////////////////////")
+                        break
+
+                    temp = t7t2k([int(val[1]), int(val[2]), int(val[3]), int(
+                        val[4]), int(val[5]), int(val[6])], 2)
+                    for i in temp:
+                        tl.append(i)
+                    fw = open('xList2-l6.csv', 'a', newline='')
+                    cw = csv.writer(fw, delimiter='\t')
+                    cw.writerow(tl)
+                    fw.close()
+                    sqlcnt = 0
+                    xc = xc+1
+                    print('///', pool)
+
+                if sqlcnt > 300:
+                    pool = list(range(1, 44))
+                    for val in epool:
+                        for v in val:
+                            if v in pool:
+                                pool.remove(v)
+                    sqlcnt = 0
+                    print('//4//', pool)
+                    print('///////////////////////////////////333////////')
+                    print('                                                ', end='\r')
+
+                    f = open('temp.txt', 'a')
+                    f.write('//------\n')
+                    f.close()
+
+                    fw = open('xList2-l6.csv', 'a', newline='')
+                    cw = csv.writer(fw, delimiter='\t')
+                    cw.writerow([])
+                    fw.close()
+
+        if xc == 100:
+            print(pool)
+            break
+        if sqlcnt == 100000000000:
+            print("///1Gend", pool)
+            sqlcnt = 0
+            con.close()
+            break
     con.close()
 
 
-# t9()
+# t7()
+# bas2([27,37],7) #7 or 8
+
+# t6()
+# t7t2klist()
+# print(t2k([22, 25]))
+# print(t7t2k([   7,11,12,14,19,21    ], 1))
+# 000	2020/1/1	6	11	19	22	24	31	35	0	7425431	0	nx5	0	A	22	22	ll7
+
 
 def ta():
     # 組み合わせ確認
