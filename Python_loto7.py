@@ -329,7 +329,7 @@ def t7():
             #     print('sqlcnt', sqlcnt)
 
             # # 先頭数字が含むか
-            if (temp[0] != 3 or temp[1] != 19 ):
+            if (temp[0] != 9 or temp[1] != 15 or temp[2] !=16 ):
                 break
 
             # 数字が含むか
@@ -414,13 +414,13 @@ def t7():
 
 # t6()
 # bas2([3,21])  # 9 or 11
-bas2([7,17],9)  # 9 or 11
+# bas2([7,17],9)  # 9 or 11
 # 7,11,15,22,26,?,35
 # localStorage_additem([7,11,24,28,31,36,37,0,8028009])
 # localStorage_additem([7,11,24,30,31,32,36,0,8028089])
 # localStorage_additem([7,11,24,28,31,33,37,0,8028003])
 # localStorage_additem([7,11,24,30,32,36,37,0,8028110])
-t7t2klist()
+# t7t2klist()
 # print(t2k([35, 36]))
 # print(t7t2k([3,7,10,16,18,19,32,35,37], 1))
 # print(t7t2k([3,14, 16, 17, 23, 25, 36], 1))
@@ -461,4 +461,4 @@ def ta():
     f.close()
 
 
-# ta()
+ta()

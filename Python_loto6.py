@@ -288,7 +288,7 @@ def t7():
             #     print('sqlcnt', sqlcnt)
 
             # 先頭数字が含むか
-            if (temp[0] != 16 or temp[1] != 18):
+            if (temp[0] != 15 or temp[1] != 16):
                 break
 
             # 数字が含むか
@@ -348,7 +348,7 @@ def t7():
                     print('///////////////////////////////////333////////')
                     print('                                                ', end='\r')
 
-                    f = open('temp.txt', 'a')
+                    f = open('l6temp.txt', 'a')
                     f.write('//------\n')
                     f.close()
 
@@ -406,4 +406,4 @@ def ta():
     f.close()
 
 
-# ta()
+ta()
