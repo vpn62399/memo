@@ -257,7 +257,7 @@ def t6():
                             if ccont < 11:
                                 print("localStorage_additem([{},{},{},{},{},{},{},{},{}])".format(
                                     xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], xx[7], tck, xx[0]))
-                            f = open('temp.txt', 'a')
+                            f = open('xList2-l7temp.txt', 'a')
                             f.write("localStorage_additem([{},{},{},{},{},{},{},{},{}])\n".format(
                                 xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], xx[7], tck, xx[0]))
                             f.close()
@@ -351,7 +351,7 @@ def t7():
                     tck = tx1(val[0])
                     print("localStorage_additem([{},{},{},{},{},{},{},{},{}])".format(
                         val[1], val[2], val[3], val[4], val[5], val[6], val[7], tck, val[0]))
-                    f = open('temp.txt', 'a')
+                    f = open('xList2-l7temp.txt', 'a')
                     f.write("localStorage_additem([{},{},{},{},{},{},{},{},{}])\n".format(
                         val[1], val[2], val[3], val[4], val[5], val[6], val[7], tck, val[0]))
                     f.close()
@@ -389,7 +389,7 @@ def t7():
                     print('///////////////////////////////////333////////')
                     print('                                                ', end='\r')
 
-                    f = open('temp.txt', 'a')
+                    f = open('xList2-l7temp.txt', 'a')
                     f.write('//------\n')
                     f.close()
 
@@ -409,7 +409,7 @@ def t7():
     con.close()
 
 
-# t7()
+t7()
 
 
 # t6()
@@ -461,4 +461,4 @@ def ta():
     f.close()
 
 
-ta()
+# ta()

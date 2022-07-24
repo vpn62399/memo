@@ -288,7 +288,7 @@ def t7():
             #     print('sqlcnt', sqlcnt)
 
             # 先頭数字が含むか
-            if (temp[0] != 15 or temp[1] != 16):
+            if (temp[0] != 14 or temp[1] != 19):
                 break
 
             # 数字が含むか
@@ -310,7 +310,7 @@ def t7():
                     tck = tx1(val[0])
                     print("localStorage_additem([{},{},{},{},{},{},{}])".format(
                         val[1], val[2], val[3], val[4], val[5], val[6], val[0]))
-                    f = open('temp.txt', 'a')
+                    f = open('xList2-l6temp.txt', 'a')
                     f.write("localStorage_additem([{},{},{},{},{},{},{}])\n".format(
                         val[1], val[2], val[3], val[4], val[5], val[6], val[0]))
                     f.close()
@@ -348,7 +348,7 @@ def t7():
                     print('///////////////////////////////////333////////')
                     print('                                                ', end='\r')
 
-                    f = open('l6temp.txt', 'a')
+                    f = open('xList2-l6temp.txt', 'a')
                     f.write('//------\n')
                     f.close()
 
@@ -368,7 +368,7 @@ def t7():
     con.close()
 
 
-# t7()
+t7()
 # bas2([27,37],7) #7 or 8
 
 # t6()
@@ -406,4 +406,4 @@ def ta():
     f.close()
 
 
-ta()
+# ta()
