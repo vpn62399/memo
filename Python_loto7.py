@@ -329,8 +329,8 @@ def t7():
             #     print('sqlcnt', sqlcnt)
 
             # # 先頭数字が含むか
-            if (temp[0] != 9 or temp[1] != 15 or temp[2] !=16 ):
-                break
+            # if (temp[0] != 9 or temp[1] != 15 or temp[2] !=16 ):
+            #     break
 
             # 数字が含むか
             # if 8 not in temp or 13 not in temp :
@@ -409,7 +409,7 @@ def t7():
     con.close()
 
 
-# t7()
+t7()
 
 
 # t6()
@@ -461,4 +461,4 @@ def ta():
     f.close()
 
 
-ta()
+# ta()
