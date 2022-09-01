@@ -329,8 +329,8 @@ def t7():
             #     print('sqlcnt', sqlcnt)
 
             # # 先頭数字が含むか
-            # if (temp[0] != 9 or temp[1] != 15 or temp[2] !=16 ):
-            #     break
+            if (temp[0] != 7 or temp[1] != 11):
+                break
 
             # 数字が含むか
             # if 8 not in temp or 13 not in temp :
@@ -370,7 +370,8 @@ def t7():
                         val[4]), int(val[5]), int(val[6]), int(val[7])], 2)
                     for i in temp:
                         tl.append(i)
-                    fw = open('xList2-l7.csv', 'a', newline='')
+                    fw = open('xList2-l7temp.txt', 'a', newline='')
+                    # fw = open('xList2-l7.csv', 'a', newline='')   del
                     cw = csv.writer(fw, delimiter='\t')
                     cw.writerow(tl)
                     fw.close()
@@ -393,7 +394,8 @@ def t7():
                     f.write('//------\n')
                     f.close()
 
-                    fw = open('xList2-l7.csv', 'a', newline='')
+                    fw = open('xList2-l7temp.txt', 'a', newline='')
+                    # fw = open('xList2-l7.csv', 'a', newline='')    del
                     cw = csv.writer(fw, delimiter='\t')
                     cw.writerow([])
                     fw.close()

@@ -329,7 +329,7 @@ def t7():
                         val[4]), int(val[5]), int(val[6])], 2)
                     for i in temp:
                         tl.append(i)
-                    fw = open('xList2-l6.csv', 'a', newline='')
+                    fw = open('xList2-l6temp.txt', 'a', newline='')
                     cw = csv.writer(fw, delimiter='\t')
                     cw.writerow(tl)
                     fw.close()
@@ -352,7 +352,7 @@ def t7():
                     f.write('//------\n')
                     f.close()
 
-                    fw = open('xList2-l6.csv', 'a', newline='')
+                    fw = open('xList2-l6temp.txt', 'a', newline='')
                     cw = csv.writer(fw, delimiter='\t')
                     cw.writerow([])
                     fw.close()
