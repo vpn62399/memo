@@ -411,7 +411,7 @@ def t7():
     con.close()
 
 
-# t7()
+t7()
 
 
 # t6()
@@ -463,4 +463,4 @@ def ta():
     f.close()
 
 
-ta()
+# ta()
