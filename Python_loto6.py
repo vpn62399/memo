@@ -406,4 +406,4 @@ def ta():
     f.close()
 
 
-ta()
+# ta()
