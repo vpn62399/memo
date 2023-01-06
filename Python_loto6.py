@@ -198,6 +198,7 @@ def t6():
             f.close()
             break
 
+
 def bas2(tag, l=7):
     import sqlite3
     con = sqlite3.connect('alll6.db')
@@ -230,7 +231,6 @@ def bas2(tag, l=7):
         else:
             print(k, str(llist.count(k))+'    ')
 # bas2([7,11])
-
 
 
 def t7():
@@ -288,7 +288,7 @@ def t7():
             #     print('sqlcnt', sqlcnt)
 
             # 先頭数字が含むか
-            if (temp[0] != 7 or temp[1] != 11):
+            if (temp[0] != 2 or temp[1] != 5 or temp[2] != 7):
                 break
 
             # 数字が含むか
