@@ -329,12 +329,12 @@ def t7():
             #     print('sqlcnt', sqlcnt)
 
             # # 先頭数字が含むか
-            # if (temp[0] != 5 or temp[1] != 10 or temp[2] != 18):
-            #     break
+            if (temp[0] != 11  or temp[0] != 13 and temp[1] != 15):
+                break
 
             # 数字が含むか
-            if 9 not in temp or 15 not in temp or 32 not in temp:
-                break
+            # if  2 not in temp or 9 not in temp or 18 not in temp:
+            #     break
             # if 31 or 36 not in temp:
             #     break
 
@@ -411,12 +411,12 @@ def t7():
     con.close()
 
 
-# t7()
+t7()
 
 
 # t6()
 # bas2([3,21])  # 9 or 11
-bas2([3,8,15],9)  # 9 or 11 ()
+# bas2([2,9,18],9)  # 9 or 11 ()
 # 7,11,15,22,26,?,35
 # localStorage_additem([7,11,24,28,31,36,37,0,8028009])
 # localStorage_additem([7,11,24,30,31,32,36,0,8028089])

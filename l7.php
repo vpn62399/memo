@@ -2020,6 +2020,22 @@
             return temp;
         }
 
+        function new2() {
+            for (let i = 0; i < 10; i++) {
+                const numbers = new Set();
+
+                while (numbers.size < 7) {
+                    const array = new Uint32Array(1);
+                    window.crypto.getRandomValues(array);
+                    const num = array[0] % 37 + 1;
+                    numbers.add(num);
+                }
+
+                const sortedNumbers = [...numbers].sort((a, b) => a - b);
+                console.log(`第 ${i + 1} 次选择的数字是：${sortedNumbers.join(', ')}`);
+            }
+        }
+
         function help() {
             console.info('G_addr:', '選択番号複数');
             console.info('G_fnsa:', '選択番号1個追加');
