@@ -329,7 +329,7 @@ def t7():
             #     print('sqlcnt', sqlcnt)
 
             # # 先頭数字が含むか
-            if (temp[0] != 11  or temp[0] != 13 and temp[1] != 15):
+            if (temp[0] != 11 or temp[0] != 13 and temp[1] != 15):
                 break
 
             # 数字が含むか
@@ -411,12 +411,12 @@ def t7():
     con.close()
 
 
-t7()
+# t7()
 
 
 # t6()
 # bas2([3,21])  # 9 or 11
-# bas2([2,9,18],9)  # 9 or 11 ()
+# bas2([8,17],9)  # 9 or 11 ()
 # 7,11,15,22,26,?,35
 # localStorage_additem([7,11,24,28,31,36,37,0,8028009])
 # localStorage_additem([7,11,24,30,31,32,36,0,8028089])
@@ -464,3 +464,60 @@ def ta():
 
 
 # ta()
+
+
+# 2023-04-24
+# localStorage_additem([7,11,24,28,31,36,37,0,8028009])
+# localStorage_additem([7,11,24,30,31,32,36,0,8028089])
+# localStorage_additem([7,11,24,28,31,33,37,0,8028003])
+# localStorage_additem([7,11,24,30,32,36,37,0,8028110])
+
+# 2023-02-25 10:29:31
+# localStorage_additem([6,21,24,28,31,36,37,0,0])
+# localStorage_additem([8,21,24,28,31,33,37,0,0])
+# localStorage_additem([6,17,24,30,31,32,36,0,0])
+# localStorage_additem([8,17,24,30,32,36,37,0,0])
+
+
+# 2023-03-05 22:50:41
+# 含む当選回数の回数をカウントする
+def fcck():
+    import csv
+    import sqlite3
+    conn = sqlite3.connect('alll7.db')
+
+    cursor1 = conn.cursor()
+    cursor2 = conn.cursor()
+
+    sql1 = 'select s1,s2,s3,s4,s5,s6,s7,rowid from alll7 '
+    cursor1.execute(sql1)
+    while True:
+        re1 = cursor1.fetchone()
+        cursor1.fetchmany
+        if re1 is None:
+            print('re1end')
+            break
+        tag = [re1[0], re1[1], re1[2], re1[3], re1[4], re1[5], re1[6]]
+        tagindex = re1[7]
+        countc = 0
+
+        sql2 = 'select s1,s2,s3,s4,s5,s6,s7 from loto7'
+        cursor2.execute(sql2)
+        while True:
+            re2 = cursor2.fetchone()
+            if re2 is None:
+                break
+            count = 0
+            for jj in re2:
+                if jj in tag:
+                    count += 1
+            if count > 4:
+                countc += 1
+        if countc > 6:
+            print('-------------------------------------------')
+            print(re2[0], re2[1], re2[2], re2[3], re2[4], re2[5], re2[6])
+            print(str(tag) + '---' + str(tagindex) + '---' + str(countc))
+            print('-------------------------------------------')
+
+
+fcck()
