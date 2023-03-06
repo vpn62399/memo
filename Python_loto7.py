@@ -467,16 +467,21 @@ def ta():
 
 
 # 2023-04-24
-# localStorage_additem([7,11,24,28,31,36,37,0,8028009])
-# localStorage_additem([7,11,24,30,31,32,36,0,8028089])
-# localStorage_additem([7,11,24,28,31,33,37,0,8028003])
-# localStorage_additem([7,11,24,30,32,36,37,0,8028110])
+# localStorage_additem([7,11,24,28,31,36,37,0,8028009]) 8028009 0
+# localStorage_additem([6,11,24,28,31,36,37,0,0])   7434234 2
+
+# localStorage_additem([7,11,24,30,31,32,36,0,8028089]) 8028089 0
+# localStorage_additem([3,17,24,30,31,32,36,0,0])   4875743 3
+
+# localStorage_additem([7,11,24,28,31,33,37,0,8028003]) 8028003 2
+# localStorage_additem([7,11,24,30,32,36,37,0,8028110]) 8028110 2
+
 
 # 2023-02-25 10:29:31
-# localStorage_additem([6,21,24,28,31,36,37,0,0])
-# localStorage_additem([8,21,24,28,31,33,37,0,0])
-# localStorage_additem([6,17,24,30,31,32,36,0,0])
-# localStorage_additem([8,17,24,30,32,36,37,0,0])
+# localStorage_additem([6,21,24,28,31,36,37,0,0])   7656456 2
+# localStorage_additem([8,21,24,28,31,33,37,0,0])   8725245 1
+# localStorage_additem([6,17,24,30,31,32,36,0,0])   7625784 3
+# localStorage_additem([8,17,24,30,32,36,37,0,0])   8694600 2
 
 
 # 2023-03-05 22:50:41
