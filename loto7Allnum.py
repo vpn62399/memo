@@ -135,7 +135,7 @@ t1    d1         s1  s2  s3  s4  s5  s6  b1  n1  n2   n3  z2  z1    id    s1  s2
 def createSQL_loto6():
     dbname = 'alll6.db'
     if not pathlib.Path(dbname).is_file():
-        crt = "create table if not exists alll6(id INTEGER PRIMARY KEY,s1 INTEGER, s2 INTEGER, s3 INTEGER, s4 INTEGER, s5 INTEGER, s6 INTEGER, b1 INTEGER, t1 INTEGER)"
+        crt = "create table if not exists alll6(id INTEGER PRIMARY KEY,s1 INTEGER, s2 INTEGER, s3 INTEGER, s4 INTEGER, s5 INTEGER, s6 INTEGER, b1 INTEGER, t1 INTEGER,fcck INTEGER)"
         con = sqlite3.connect(dbname)
         con.execute(crt)
         con.commit()
@@ -156,7 +156,7 @@ def createNUM_loto6():
                         for s6 in range(s5+1, lst+6):
                             cnt = cnt+1
                             ast = [cnt, s1, s2, s3, s4,
-                                   s5, s6, '', '']
+                                   s5, s6, '0', '0','0']
                             cw.writerow(ast)
     pass
     f.close()
@@ -164,5 +164,5 @@ def createNUM_loto6():
     cnt = 0
     print('end_loto6_6096454')
 
-# createNUM_loto6()
 createSQL_loto6()
+createNUM_loto6()

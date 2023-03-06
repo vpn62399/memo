@@ -406,4 +406,55 @@ def ta():
     f.close()
 
 
-# ta()
+ta()
+
+
+
+# 2023-03-05 22:50:41
+# 含む当選回数の回数をカウントする
+# alter table alll6 add column fcck integer;
+def fcck():
+    import csv
+    import sqlite3
+    conn = sqlite3.connect('alll6.db')
+    conn2 =sqlite3.connect('loto.db')
+
+    cursor1 = conn.cursor()
+    cursor2 = conn2.cursor()
+
+    sql1 = 'select s1,s2,s3,s4,s5,s6,rowid from alll6 '
+    cursor1.execute(sql1)
+    while True:
+        re1 = cursor1.fetchone()
+        cursor1.fetchmany
+        if re1 is None:
+            print('re1end')
+            break
+        tag = [re1[0], re1[1], re1[2], re1[3], re1[4], re1[5]]
+        tagindex = re1[6]
+        countc = 0
+
+        sql2 = 'select s1,s2,s3,s4,s5,s6 from loto6'
+        cursor2.execute(sql2)
+        while True:
+            re2 = cursor2.fetchone()
+            if re2 is None:
+                break
+            count = 0
+            for jj in re2:
+                if jj in tag:
+                    count += 1
+            if count > 3:
+                countc += 1
+        if countc > 6:
+            print('-------------------------------------------')
+            print(str(tag) + '---' + str(tagindex) + '---' + str(countc))
+            print('-------------------------------------------')
+            sql3="update alll6 set fcck=%d where rowid=%d"%(countc,tagindex)
+            conn.execute(sql3)
+            conn.commit()
+# fcck()
+
+# -------------------------------------------
+# [7, 10, 15, 17, 35, 42]---3888222---7
+# -------------------------------------------

@@ -513,11 +513,15 @@ def fcck():
                     count += 1
             if count > 4:
                 countc += 1
-        if countc > 6:
+        if countc > 15:
             print('-------------------------------------------')
-            print(re2[0], re2[1], re2[2], re2[3], re2[4], re2[5], re2[6])
             print(str(tag) + '---' + str(tagindex) + '---' + str(countc))
             print('-------------------------------------------')
+        sqlup = "update alll7 set fcck=%d where id=%d;" % (countc, tagindex)
+        print (sqlup)
+        conn.execute(sqlup)
+        conn.commit()
+    conn.close()
 
 
 fcck()
