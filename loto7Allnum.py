@@ -132,6 +132,7 @@ t1    d1         s1  s2  s3  s4  s5  s6  b1  n1  n2   n3  z2  z1    id    s1  s2
 
 """
 
+
 def createSQL_loto6():
     dbname = 'alll6.db'
     if not pathlib.Path(dbname).is_file():
@@ -141,6 +142,7 @@ def createSQL_loto6():
         con.commit()
         con.close
         print('sql-end')
+
 
 def createNUM_loto6():
     f = open('alll6.csv', 'a+', newline='')
@@ -156,7 +158,7 @@ def createNUM_loto6():
                         for s6 in range(s5+1, lst+6):
                             cnt = cnt+1
                             ast = [cnt, s1, s2, s3, s4,
-                                   s5, s6, '0', '0','0']
+                                   s5, s6, '0', '0', '0']
                             cw.writerow(ast)
     pass
     f.close()
@@ -164,5 +166,62 @@ def createNUM_loto6():
     cnt = 0
     print('end_loto6_6096454')
 
-createSQL_loto6()
-createNUM_loto6()
+# createSQL_loto6()
+# createNUM_loto6()
+
+
+def fcck43():
+    import itertools
+    import sqlite3
+    dbname = 'alll6.db'
+    try:
+        crt = "create table if not exists fcck43(id INTEGER PRIMARY KEY,s1 INTEGER, s2 INTEGER, s3 INTEGER, fcck INTEGER)"
+        con = sqlite3.connect(dbname)
+        con.execute(crt)
+        con.commit()
+        con.close
+    except:
+        print('error')
+        exit
+
+    con = sqlite3.connect(dbname)
+    combos = list(itertools.combinations(range(1, 44), 3))
+    for k in combos:
+        addint = 'insert into fcck43(s1,s2,s3)values(%d,%d,%d)' % (
+            k[0], k[1], k[2])
+        print(addint)
+        con.execute(addint)
+    con.commit()
+    con.close
+    print("kkk")
+
+
+# fcck43()
+
+
+def fcck37():
+    import itertools
+    import sqlite3
+    try:
+        dbname = 'alll7.db'
+        crt = "create table if not exists fcck37(id INTEGER PRIMARY KEY,s1 INTEGER, s2 INTEGER, s3 INTEGER,fcck INTEGER)"
+        con = sqlite3.connect(dbname)
+        con.execute(crt)
+        con.commit()
+        con.close()
+    except:
+        print('error')
+
+    con = sqlite3.connect(dbname)
+    combos = list(itertools.combinations(range(1, 38), 3))
+    for k in combos:
+        addint = 'insert into fcck37(s1,s2,s3)values(%d,%d,%d)' % (
+            k[0], k[1], k[2])
+        print(addint)
+        con.execute(addint)
+    con.commit()
+    con.close
+    print("kkk")
+
+
+# fcck37()
