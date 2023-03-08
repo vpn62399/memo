@@ -409,7 +409,6 @@ def ta():
 # ta()
 
 
-
 # 2023-03-05 22:50:41
 # 含む当選回数の回数をカウントする
 # alter table alll6 add column fcck integer;
@@ -417,7 +416,7 @@ def fcck():
     import csv
     import sqlite3
     conn = sqlite3.connect('alll6.db')
-    conn2 =sqlite3.connect('loto.db')
+    conn2 = sqlite3.connect('loto.db')
 
     cursor1 = conn.cursor()
     cursor2 = conn2.cursor()
@@ -450,7 +449,8 @@ def fcck():
             print('-------------------------------------------')
             print(str(tag) + '---' + str(tagindex) + '---' + str(countc))
             print('-------------------------------------------')
-            sql3="update alll6 set fcck=%d where rowid=%d"%(countc,tagindex)
+            sql3 = "update alll6 set fcck=%d where rowid=%d" % (
+                countc, tagindex)
             conn.execute(sql3)
             conn.commit()
 # fcck()
@@ -460,12 +460,11 @@ def fcck():
 # -------------------------------------------
 
 
-
 # 三つ数字出る回数
 def fcck43():
     import sqlite3
     conn = sqlite3.connect('alll6.db')
-    conn2 =sqlite3.connect('loto.db')
+    conn2 = sqlite3.connect('loto.db')
 
     cursor1 = conn.cursor()
     cursor2 = conn2.cursor()
@@ -494,11 +493,15 @@ def fcck43():
                     count += 1
             if count == 3:
                 countc += 1
+            sql3 = "update fcck43 set fcck=%d where rowid=%d" % (
+                countc, tagindex)
+            # print(sql3)
+            conn.execute(sql3)
+            conn.commit()
         if countc > 6:
             print('-------------------------------------------')
             print(str(tag) + '---' + str(tagindex) + '---' + str(countc))
             print('-------------------------------------------')
-            sql3="update fcck43 set fcck=%d where rowid=%d"%(countc,tagindex)
-            conn.execute(sql3)
-            conn.commit()
+
+
 fcck43()
