@@ -199,7 +199,7 @@ def fcck43():
 # fcck43()
 
 
-def fcck37():
+def fcck373():
     import itertools
     import sqlite3
     try:
@@ -224,4 +224,32 @@ def fcck37():
     print("kkk")
 
 
-# fcck37()
+# fcck373()
+
+
+def fcck374():
+    import itertools
+    import sqlite3
+    try:
+        dbname = 'alll7.db'
+        crt = "create table if not exists fcck374(id INTEGER PRIMARY KEY,s1 INTEGER, s2 INTEGER, s3 INTEGER,s4 INTEGER,fcck INTEGER)"
+        con = sqlite3.connect(dbname)
+        con.execute(crt)
+        con.commit()
+        con.close()
+    except:
+        print('error')
+
+    con = sqlite3.connect(dbname)
+    combos = list(itertools.combinations(range(1, 38), 4))
+    for k in combos:
+        addint = 'insert into fcck374(s1,s2,s3,s4,fcck)values(%d,%d,%d,%d,%d)' % (
+            k[0], k[1], k[2], k[3], 0)
+        print(addint)
+        con.execute(addint)
+    con.commit()
+    con.close
+    print("kkk")
+
+
+fcck374()

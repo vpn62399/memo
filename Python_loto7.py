@@ -281,7 +281,7 @@ def t7():
     con = sqlite3.connect('alll7.db')
     # sqlcmd = '''select * from alll7 where id=abs(random())%10295473'''
     # sqlcmd = '''select * from alll7 where id=abs(random())%10280000'''
-    sqlcmd = 'select * from alll7 where id='
+    sqlcmd = 'select * from alll7 where fcck > 3 and id='
     pool = list(range(1, 38))
 
     epool = [
@@ -329,7 +329,11 @@ def t7():
             #     print('sqlcnt', sqlcnt)
 
             # # 先頭数字が含むか
-            if (temp[0] != 11 or temp[0] != 13 and temp[1] != 15):
+            # if (temp[0] != 3 or temp[0] != 18 or temp[0] != 26 or temp[0] !=30):
+            #     break
+
+            # Array Not in array
+            if( 3  not in temp or 6 not in temp or 29 not in temp and 31 not in temp):
                 break
 
             # 数字が含むか
@@ -411,7 +415,7 @@ def t7():
     con.close()
 
 
-# t7()
+t7()
 
 
 # t6()
@@ -534,7 +538,7 @@ def fcck():
 
 
 # 三つ数字出る回数
-def fcck43():
+def fcck373():
     import sqlite3
     conn = sqlite3.connect('alll7.db')
     conn2 = sqlite3.connect('loto.db')
@@ -576,4 +580,49 @@ def fcck43():
             print('-------------------------------------------')
 
 
-fcck43()
+# fcck373()
+
+# 4つ数字の連続
+def fcck374():
+    import sqlite3
+    conn = sqlite3.connect('alll7.db')
+    conn2 = sqlite3.connect('loto.db')
+
+    cursor1 = conn.cursor()
+    cursor2 = conn2.cursor()
+
+    sql1 = 'select s1,s2,s3,s4,rowid from fcck374'
+    cursor1.execute(sql1)
+    while True:
+        re1 = cursor1.fetchone()
+        cursor1.fetchmany
+        if re1 is None:
+            print('re1end')
+            break
+        tag = [re1[0], re1[1], re1[2], re1[3]]
+        tagindex = re1[4]
+        countc = 0
+
+        sql2 = 'select s1,s2,s3,s4,s5,s6,s7 from loto7'
+        cursor2.execute(sql2)
+        while True:
+            re2 = cursor2.fetchone()
+            if re2 is None:
+                break
+            count = 0
+            for jj in re2:
+                if jj in tag:
+                    count += 1
+            if count == 4:
+                countc += 1
+            sql3 = "update fcck374 set fcck=%d where rowid=%d" % (
+                countc, tagindex)
+            conn.execute(sql3)
+            conn.commit()
+        if countc > 6:
+            print('-------------------------------------------')
+            print(str(tag) + '---' + str(tagindex) + '---' + str(countc))
+            print('-------------------------------------------')
+
+
+# fcck374()

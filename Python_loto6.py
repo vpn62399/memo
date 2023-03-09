@@ -445,15 +445,15 @@ def fcck():
                     count += 1
             if count > 3:
                 countc += 1
-        if countc > 6:
-            print('-------------------------------------------')
-            print(str(tag) + '---' + str(tagindex) + '---' + str(countc))
-            print('-------------------------------------------')
             sql3 = "update alll6 set fcck=%d where rowid=%d" % (
                 countc, tagindex)
             conn.execute(sql3)
             conn.commit()
-# fcck()
+        if countc > 6:
+            print('-------------------------------------------')
+            print(str(tag) + '---' + str(tagindex) + '---' + str(countc))
+            print('-------------------------------------------')
+fcck()
 
 # -------------------------------------------
 # [7, 10, 15, 17, 35, 42]---3888222---7
@@ -504,4 +504,4 @@ def fcck43():
             print('-------------------------------------------')
 
 
-fcck43()
+# fcck43()
