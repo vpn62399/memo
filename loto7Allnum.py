@@ -170,12 +170,12 @@ def createNUM_loto6():
 # createNUM_loto6()
 
 
-def fcck43():
+def fcck434():
     import itertools
     import sqlite3
     dbname = 'alll6.db'
     try:
-        crt = "create table if not exists fcck43(id INTEGER PRIMARY KEY,s1 INTEGER, s2 INTEGER, s3 INTEGER, fcck INTEGER)"
+        crt = "create table if not exists fcck434(id INTEGER PRIMARY KEY,s1 INTEGER, s2 INTEGER, s3 INTEGER, s4 INTEGER, fcck INTEGER)"
         con = sqlite3.connect(dbname)
         con.execute(crt)
         con.commit()
@@ -185,10 +185,10 @@ def fcck43():
         exit
 
     con = sqlite3.connect(dbname)
-    combos = list(itertools.combinations(range(1, 44), 3))
+    combos = list(itertools.combinations(range(1, 44), 4))
     for k in combos:
-        addint = 'insert into fcck43(s1,s2,s3)values(%d,%d,%d)' % (
-            k[0], k[1], k[2])
+        addint = 'insert into fcck434(s1,s2,s3,s4)values(%d,%d,%d,%d)' % (
+            k[0], k[1], k[2], k[3])
         print(addint)
         con.execute(addint)
     con.commit()
@@ -196,7 +196,7 @@ def fcck43():
     print("kkk")
 
 
-# fcck43()
+fcck434()
 
 
 def fcck373():
@@ -252,4 +252,4 @@ def fcck374():
     print("kkk")
 
 
-fcck374()
+# fcck374()

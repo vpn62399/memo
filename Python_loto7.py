@@ -415,7 +415,7 @@ def t7():
     con.close()
 
 
-t7()
+# t7()
 
 
 # t6()
@@ -522,15 +522,17 @@ def fcck():
             for jj in re2:
                 if jj in tag:
                     count += 1
+            # 4つある
             if count > 4:
                 countc += 1
-        if countc > 15:
+            sqlup = "update alll7 set fcck5=%d where id=%d;" % (countc, tagindex)
+            conn.execute(sqlup)
+        if countc > 2:
             print('-------------------------------------------')
             print(str(tag) + '---' + str(tagindex) + '---' + str(countc))
             print('-------------------------------------------')
-        sqlup = "update alll7 set fcck=%d where id=%d;" % (countc, tagindex)
-        conn.execute(sqlup)
-        conn.commit()
+            conn.commit()
+    conn.commit()
     conn.close()
 
 
@@ -626,3 +628,19 @@ def fcck374():
 
 
 # fcck374()
+
+def nfcck(nums):
+    import itertools
+    import sqlite3
+    combos = list(itertools.combinations(nums, 3))
+
+    dbname = 'alll7.db'
+    con = sqlite3.connect(dbname)
+    cursor = con.cursor()
+    sql = 'select * from fcck37 where s1=%d and s2=%d and s3=%d'
+    for cs in combos:
+        cursor.execute(sql % (cs[0], cs[1], cs[2]))
+        re = cursor.fetchone()
+        print(re)
+
+# nfcck([6,21,24,28,31,36,37])

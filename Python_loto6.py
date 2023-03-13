@@ -240,7 +240,7 @@ def t7():
     import random
     import sqlite3
     con = sqlite3.connect('alll6.db')
-    sqlcmd = 'select * from alll6 where id='
+    sqlcmd = 'select * from alll6 where fcck3 >2 and fcck4 >10 and id='
     pool = list(range(1, 44))
 
     epool = [
@@ -288,7 +288,10 @@ def t7():
             #     print('sqlcnt', sqlcnt)
 
             # 先頭数字が含むか
-            if (temp[0] != 2 or temp[1] != 5 or temp[2] != 7):
+            # if (temp[0] != 2 or temp[1] != 5 or temp[2] != 7):
+            #     break
+
+            if(4 not in temp or 17 not in temp or 42 not in temp):
                 break
 
             # 数字が含むか
@@ -421,11 +424,11 @@ def fcck():
     cursor1 = conn.cursor()
     cursor2 = conn2.cursor()
 
-    sql1 = 'select s1,s2,s3,s4,s5,s6,rowid from alll6 '
+    sql1 = 'select s1,s2,s3,s4,s5,s6,rowid from alll6'
     cursor1.execute(sql1)
     while True:
         re1 = cursor1.fetchone()
-        cursor1.fetchmany
+        # cursor1.fetchmany
         if re1 is None:
             print('re1end')
             break
@@ -443,17 +446,23 @@ def fcck():
             for jj in re2:
                 if jj in tag:
                     count += 1
-            if count > 3:
+            #
+            if count > 2:
                 countc += 1
-            sql3 = "update alll6 set fcck=%d where rowid=%d" % (
+            sql3 = "update alll6 set fcck3=%d where rowid=%d" % (
                 countc, tagindex)
             conn.execute(sql3)
-            conn.commit()
-        if countc > 6:
+        if countc > 60:
             print('-------------------------------------------')
             print(str(tag) + '---' + str(tagindex) + '---' + str(countc))
             print('-------------------------------------------')
-fcck()
+            conn.commit()
+    conn.commit()
+    conn.close()
+    conn2.close()
+
+
+# fcck()
 
 # -------------------------------------------
 # [7, 10, 15, 17, 35, 42]---3888222---7
@@ -497,11 +506,76 @@ def fcck43():
                 countc, tagindex)
             # print(sql3)
             conn.execute(sql3)
-            conn.commit()
         if countc > 6:
+            conn.commit()
             print('-------------------------------------------')
             print(str(tag) + '---' + str(tagindex) + '---' + str(countc))
             print('-------------------------------------------')
+    conn.commit()
+    conn.close()
 
 
-# fcck43()
+def fcck434():
+    import sqlite3
+    conn = sqlite3.connect('alll6.db')
+    conn2 = sqlite3.connect('loto.db')
+
+    cursor1 = conn.cursor()
+    cursor2 = conn2.cursor()
+
+    sql1 = 'select s1,s2,s3,s4,rowid from fcck434 '
+    cursor1.execute(sql1)
+    while True:
+        re1 = cursor1.fetchone()
+        cursor1.fetchmany
+        if re1 is None:
+            print('re1end')
+            break
+        tag = [re1[0], re1[1], re1[2],re1[3]]
+        tagindex = re1[4]
+        countc = 0
+
+        sql2 = 'select s1,s2,s3,s4,s5,s6 from loto6'
+        cursor2.execute(sql2)
+        while True:
+            re2 = cursor2.fetchone()
+            if re2 is None:
+                break
+            count = 0
+            for jj in re2:
+                if jj in tag:
+                    count += 1
+            if count == 4:
+                countc += 1
+            sql3 = "update fcck434 set fcck=%d where rowid=%d" % (
+                countc, tagindex)
+            # print(sql3)
+            conn.execute(sql3)
+        if countc > 2:
+            conn.commit()
+            print('-------------------------------------------')
+            print(str(tag) + '---' + str(tagindex) + '---' + str(countc))
+            print('-------------------------------------------')
+    conn.commit()
+    conn.close()
+    print('fcck434end')
+
+fcck434()
+fcck43()
+
+def nfcck(nums):
+    import itertools
+    import sqlite3
+    combos = list(itertools.combinations(nums, 3))
+
+    dbname = 'alll6.db'
+    con = sqlite3.connect(dbname)
+    cursor = con.cursor()
+    sql = 'select * from fcck43 where s1=%d and s2=%d and s3=%d'
+    for cs in combos:
+        cursor.execute(sql % (cs[0], cs[1], cs[2]))
+        re = cursor.fetchone()
+        print(re)
+
+
+# nfcck([4, 17, 20, 22, 41, 42])
