@@ -333,7 +333,7 @@ def t7():
             #     break
 
             # Array Not in array
-            if( 3  not in temp or 6 not in temp or 29 not in temp and 31 not in temp):
+            if(3 not in temp or 6 not in temp or 29 not in temp and 31 not in temp):
                 break
 
             # 数字が含むか
@@ -525,7 +525,8 @@ def fcck():
             # 4つある
             if count > 4:
                 countc += 1
-            sqlup = "update alll7 set fcck5=%d where id=%d;" % (countc, tagindex)
+            sqlup = "update alll7 set fcck5=%d where id=%d;" % (
+                countc, tagindex)
             conn.execute(sqlup)
         if countc > 2:
             print('-------------------------------------------')
@@ -644,3 +645,28 @@ def nfcck(nums):
         print(re)
 
 # nfcck([6,21,24,28,31,36,37])
+
+
+def numscount():
+    import sqlite3
+    com = [0]*38
+    dbname = 'alll7.db'
+    con = sqlite3.connect(dbname)
+    sql = 'select loto7.s1,loto7.s2,loto7.s3,loto7.s4,loto7.s5,loto7.s6,loto7.s7 from loto7 join alll7 on loto7.z1= alll7.id where alll7.fcck4>13 '
+    sql = 'select loto7.s1,loto7.s2,loto7.s3,loto7.s4,loto7.s5,loto7.s6,loto7.s7 from loto7 join alll7 on loto7.z1= alll7.id where alll7.fcck5>3 '
+    cursor = con.cursor()
+    cursor.execute(sql)
+    while True:
+        re = cursor.fetchone()
+        # print(re)
+        if re is None:
+            break
+        for v in re:
+            com[v] += 1
+    print(com)
+    for v in range(38):
+        if com[v] != 0:
+            print(v, '--------', com[v])
+
+
+# numscount()
