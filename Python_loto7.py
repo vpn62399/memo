@@ -281,7 +281,7 @@ def t7():
     con = sqlite3.connect('alll7.db')
     # sqlcmd = '''select * from alll7 where id=abs(random())%10295473'''
     # sqlcmd = '''select * from alll7 where id=abs(random())%10280000'''
-    sqlcmd = 'select * from alll7 where fcck > 3 and id='
+    sqlcmd = 'select * from alll7 where fcck4 > 5 and fcck5 > 0 and id='
     pool = list(range(1, 38))
 
     epool = [
@@ -333,7 +333,8 @@ def t7():
             #     break
 
             # Array Not in array
-            if(3 not in temp or 6 not in temp or 29 not in temp and 31 not in temp):
+            if(8 not in temp or 15 not in temp or 24 not in temp and 35 not in temp):
+                # fcck4 > 5 and fcck5 >0
                 break
 
             # 数字が含むか
@@ -654,6 +655,7 @@ def numscount():
     con = sqlite3.connect(dbname)
     sql = 'select loto7.s1,loto7.s2,loto7.s3,loto7.s4,loto7.s5,loto7.s6,loto7.s7 from loto7 join alll7 on loto7.z1= alll7.id where alll7.fcck4>13 '
     sql = 'select loto7.s1,loto7.s2,loto7.s3,loto7.s4,loto7.s5,loto7.s6,loto7.s7 from loto7 join alll7 on loto7.z1= alll7.id where alll7.fcck5>3 '
+    sql = 'select s1,s2,s3,s4 from fcck374 where fcck =4'
     cursor = con.cursor()
     cursor.execute(sql)
     while True:

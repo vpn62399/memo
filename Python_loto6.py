@@ -240,7 +240,7 @@ def t7():
     import random
     import sqlite3
     con = sqlite3.connect('alll6.db')
-    sqlcmd = 'select * from alll6 where fcck3 >2 and fcck4 >10 and id='
+    sqlcmd = 'select * from alll6 where fcck3 >2 and fcck4 >3 and fcck3 > 50 and id='
     pool = list(range(1, 44))
 
     epool = [
@@ -291,7 +291,8 @@ def t7():
             # if (temp[0] != 2 or temp[1] != 5 or temp[2] != 7):
             #     break
 
-            if(4 not in temp or 17 not in temp or 42 not in temp):
+            if(5 not in temp or 8 not in temp or 20 not in temp):
+                # fcck4 >3 and fcck3 > 50 
                 break
 
             # 数字が含むか
@@ -560,8 +561,8 @@ def fcck434():
     conn.close()
     print('fcck434end')
 
-fcck434()
-fcck43()
+# fcck434()
+# fcck43()
 
 def nfcck(nums):
     import itertools
