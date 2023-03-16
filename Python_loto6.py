@@ -424,14 +424,14 @@ def fcck(fcc):
         print("ORGerror")
         return
     if fcc == 2:
-        countmax = 3
-        countshow = 80
-        upsql = "update alll6 set fcck3=%d where id=%d;"
+        countmax = 2
+        countshow = 60
+        upsql = "update alll6 set fcck3=%d where id=%d"
         pass
     if fcc == 3:
-        countmax = 4
-        countshow = 11
-        upsql = "update alll6 set fcck4=%d where id=%d;"
+        countmax = 3
+        countshow = 6
+        upsql = "update alll6 set fcck4=%d where id=%d"
         pass
 
     conn = sqlite3.connect('alll6.db')
@@ -460,12 +460,11 @@ def fcck(fcc):
             for jj in re2:
                 if jj in tag:
                     count += 1
-            #
             if count > countmax:
                 countc += 1
-            # print(upsql % (countc, tagindex))
-            conn.execute(upsql % (countc, tagindex))
-        if countc > 80:
+        # print(upsql % (countc, tagindex))
+        conn.execute(upsql % (countc, tagindex))
+        if countc > countshow:
             print('-------------------------------------------')
             print(str(tag) + '---' + str(tagindex) + '---' + str(countc))
             print('-------------------------------------------')
