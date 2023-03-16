@@ -484,10 +484,8 @@ fcck(3)
 def fcck43():
     import sqlite3
     conn = sqlite3.connect('alll6.db')
-    conn2 = sqlite3.connect('loto.db')
-
     cursor1 = conn.cursor()
-    cursor2 = conn2.cursor()
+    cursor2 = conn.cursor()
 
     sql1 = 'select s1,s2,s3,rowid from fcck43 '
     cursor1.execute(sql1)
@@ -529,10 +527,8 @@ def fcck43():
 def fcck434():
     import sqlite3
     conn = sqlite3.connect('alll6.db')
-    conn2 = sqlite3.connect('loto.db')
-
     cursor1 = conn.cursor()
-    cursor2 = conn2.cursor()
+    cursor2 = conn.cursor()
 
     sql1 = 'select s1,s2,s3,s4,rowid from fcck434 '
     cursor1.execute(sql1)
@@ -560,7 +556,6 @@ def fcck434():
                 countc += 1
             sql3 = "update fcck434 set fcck=%d where rowid=%d" % (
                 countc, tagindex)
-            # print(sql3)
             conn.execute(sql3)
         if countc > 2:
             conn.commit()

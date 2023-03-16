@@ -558,10 +558,8 @@ fcck(5)
 def fcck373():
     import sqlite3
     conn = sqlite3.connect('alll7.db')
-    conn2 = sqlite3.connect('loto.db')
-
     cursor1 = conn.cursor()
-    cursor2 = conn2.cursor()
+    cursor2 = conn.cursor()
 
     sql1 = 'select s1,s2,s3,rowid from fcck37 '
     cursor1.execute(sql1)
@@ -605,10 +603,8 @@ fcck373()
 def fcck374():
     import sqlite3
     conn = sqlite3.connect('alll7.db')
-    conn2 = sqlite3.connect('loto.db')
-
     cursor1 = conn.cursor()
-    cursor2 = conn2.cursor()
+    cursor2 = conn.cursor()
 
     sql1 = 'select s1,s2,s3,s4,rowid from fcck374'
     cursor1.execute(sql1)
