@@ -420,7 +420,7 @@ def fcck(fcc):
     import csv
     import sqlite3
 
-    if fcc != 2 or fcc != 3:
+    if fcc != 2 and fcc != 3:
         print("ORGerror")
         return
     if fcc == 2:

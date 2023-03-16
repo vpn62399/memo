@@ -499,7 +499,7 @@ def fcck(fcc):
     import csv
     import sqlite3
 
-    if fcc != 4 or fcc != 5:
+    if fcc != 4 and fcc != 5:
         print("ORGerror")
         return
     if fcc == 4:
@@ -541,7 +541,7 @@ def fcck(fcc):
                 countc += 1
             # print(upsql % (countc, tagindex))
             conn.execute(upsql % (countc, tagindex))
-        if countc > 5:
+        if countc > 9:
             print('-------------------------------------------')
             print(str(tag) + '---' + str(tagindex) + '---' + str(countc))
             print('-------------------------------------------')
