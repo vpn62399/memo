@@ -504,10 +504,12 @@ def fcck(fcc):
         return
     if fcc == 4:
         countmax = 3
+        countshow = 20
         upsql = "update alll7 set fcck4=%d where id=%d;"
         pass
     if fcc == 5:
         countmax = 4
+        countshow = 5
         upsql = "update alll7 set fcck5=%d where id=%d;"
         pass
 
@@ -541,7 +543,7 @@ def fcck(fcc):
                 countc += 1
             # print(upsql % (countc, tagindex))
             conn.execute(upsql % (countc, tagindex))
-        if countc > 9:
+        if countc > countshow:
             print('-------------------------------------------')
             print(str(tag) + '---' + str(tagindex) + '---' + str(countc))
             print('-------------------------------------------')

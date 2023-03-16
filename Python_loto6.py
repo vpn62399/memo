@@ -425,10 +425,12 @@ def fcck(fcc):
         return
     if fcc == 2:
         countmax = 3
+        countshow = 80
         upsql = "update alll6 set fcck3=%d where id=%d;"
         pass
     if fcc == 3:
         countmax = 4
+        countshow = 11
         upsql = "update alll6 set fcck4=%d where id=%d;"
         pass
 
