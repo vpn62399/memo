@@ -493,19 +493,32 @@ def ta():
 
 # 2023-03-05 22:50:41
 # 含む当選回数の回数をカウントする
-def fcck():
+# if fcc = 4
+
+def fcck(fcc):
     import csv
     import sqlite3
-    conn = sqlite3.connect('alll7.db')
 
+    if fcc != 4 or fcc != 5:
+        print("ORGerror")
+        return
+    if fcc == 4:
+        countmax = 3
+        upsql = "update alll7 set fcck4=%d where id=%d;"
+        pass
+    if fcc == 5:
+        countmax = 4
+        upsql = "update alll7 set fcck5=%d where id=%d;"
+        pass
+
+    conn = sqlite3.connect('alll7.db')
     cursor1 = conn.cursor()
     cursor2 = conn.cursor()
-
-    sql1 = 'select s1,s2,s3,s4,s5,s6,s7,rowid from alll7 '
+    sql1 = 'select s1,s2,s3,s4,s5,s6,s7,rowid from alll7;'
     cursor1.execute(sql1)
     while True:
         re1 = cursor1.fetchone()
-        cursor1.fetchmany
+        # cursor1.fetchmany
         if re1 is None:
             print('re1end')
             break
@@ -524,12 +537,11 @@ def fcck():
                 if jj in tag:
                     count += 1
             # 4つある
-            if count > 4:
+            if count > countmax:
                 countc += 1
-            sqlup = "update alll7 set fcck5=%d where id=%d;" % (
-                countc, tagindex)
-            conn.execute(sqlup)
-        if countc > 2:
+            # print(upsql % (countc, tagindex))
+            conn.execute(upsql % (countc, tagindex))
+        if countc > 5:
             print('-------------------------------------------')
             print(str(tag) + '---' + str(tagindex) + '---' + str(countc))
             print('-------------------------------------------')
@@ -538,7 +550,8 @@ def fcck():
     conn.close()
 
 
-# fcck()
+fcck(4)
+fcck(5)
 
 
 # 三つ数字出る回数
@@ -578,15 +591,17 @@ def fcck373():
                 countc, tagindex)
             conn.execute(sql3)
             conn.commit()
-        if countc > 6:
+        if countc > 9:
             print('-------------------------------------------')
             print(str(tag) + '---' + str(tagindex) + '---' + str(countc))
             print('-------------------------------------------')
 
 
-# fcck373()
+fcck373()
 
 # 4つ数字の連続
+
+
 def fcck374():
     import sqlite3
     conn = sqlite3.connect('alll7.db')
@@ -629,7 +644,8 @@ def fcck374():
             print('-------------------------------------------')
 
 
-# fcck374()
+fcck374()
+
 
 def nfcck(nums):
     import itertools

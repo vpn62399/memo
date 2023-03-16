@@ -292,7 +292,7 @@ def t7():
             #     break
 
             if(5 not in temp or 8 not in temp or 20 not in temp):
-                # fcck4 >3 and fcck3 > 50 
+                # fcck4 >3 and fcck3 > 50
                 break
 
             # 数字が含むか
@@ -416,14 +416,25 @@ def ta():
 # 2023-03-05 22:50:41
 # 含む当選回数の回数をカウントする
 # alter table alll6 add column fcck integer;
-def fcck():
+def fcck(fcc):
     import csv
     import sqlite3
-    conn = sqlite3.connect('alll6.db')
-    conn2 = sqlite3.connect('loto.db')
 
+    if fcc != 2 or fcc != 3:
+        print("ORGerror")
+        return
+    if fcc == 2:
+        countmax = 3
+        upsql = "update alll6 set fcck3=%d where id=%d;"
+        pass
+    if fcc == 3:
+        countmax = 4
+        upsql = "update alll6 set fcck4=%d where id=%d;"
+        pass
+
+    conn = sqlite3.connect('alll6.db')
     cursor1 = conn.cursor()
-    cursor2 = conn2.cursor()
+    cursor2 = conn.cursor()
 
     sql1 = 'select s1,s2,s3,s4,s5,s6,rowid from alll6'
     cursor1.execute(sql1)
@@ -448,22 +459,21 @@ def fcck():
                 if jj in tag:
                     count += 1
             #
-            if count > 2:
+            if count > countmax:
                 countc += 1
-            sql3 = "update alll6 set fcck3=%d where rowid=%d" % (
-                countc, tagindex)
-            conn.execute(sql3)
-        if countc > 60:
+            # print(upsql % (countc, tagindex))
+            conn.execute(upsql % (countc, tagindex))
+        if countc > 80:
             print('-------------------------------------------')
             print(str(tag) + '---' + str(tagindex) + '---' + str(countc))
             print('-------------------------------------------')
             conn.commit()
     conn.commit()
     conn.close()
-    conn2.close()
 
 
-# fcck()
+fcck(2)
+fcck(3)
 
 # -------------------------------------------
 # [7, 10, 15, 17, 35, 42]---3888222---7
@@ -532,7 +542,7 @@ def fcck434():
         if re1 is None:
             print('re1end')
             break
-        tag = [re1[0], re1[1], re1[2],re1[3]]
+        tag = [re1[0], re1[1], re1[2], re1[3]]
         tagindex = re1[4]
         countc = 0
 
@@ -561,8 +571,10 @@ def fcck434():
     conn.close()
     print('fcck434end')
 
-# fcck434()
-# fcck43()
+
+fcck434()
+fcck43()
+
 
 def nfcck(nums):
     import itertools
