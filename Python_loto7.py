@@ -504,7 +504,7 @@ def fcck(fcc):
         return
     if fcc == 4:
         countmax = 3
-        countshow = 15
+        countshow = 16
         upsql = "update alll7 set fcck4=%d where id=%d;"
         pass
     if fcc == 5:
@@ -687,7 +687,7 @@ def numscount():
 # numscount()
 
 
-# fcck(4)
-# fcck(5)
-# fcck373()
-# fcck374()
+fcck(4)
+fcck(5)
+fcck373()
+fcck374()

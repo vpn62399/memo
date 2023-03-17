@@ -425,7 +425,7 @@ def fcck(fcc):
         return
     if fcc == 2:
         countmax = 2
-        countshow = 60
+        countshow = 65
         upsql = "update alll6 set fcck3=%d where id=%d"
         pass
     if fcc == 3:
@@ -473,8 +473,8 @@ def fcck(fcc):
     conn.close()
 
 
-fcck(2)
-fcck(3)
+# fcck(2)
+# fcck(3)
 
 # -------------------------------------------
 # [7, 10, 15, 17, 35, 42]---3888222---7
@@ -568,8 +568,8 @@ def fcck434():
     print('fcck434end')
 
 
-fcck434()
-fcck43()
+# fcck434()
+# fcck43()
 
 
 def nfcck(nums):
@@ -588,3 +588,9 @@ def nfcck(nums):
 
 
 # nfcck([4, 17, 20, 22, 41, 42])
+
+
+fcck(2)
+fcck(3)
+fcck434()
+fcck43()
