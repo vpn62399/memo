@@ -552,8 +552,8 @@ def fcck(fcc):
     conn.close()
 
 
-fcck(4)
-fcck(5)
+# fcck(4)
+# fcck(5)
 
 
 # 三つ数字出る回数
@@ -597,11 +597,9 @@ def fcck373():
             print('-------------------------------------------')
 
 
-fcck373()
+# fcck373()
 
 # 4つ数字の連続
-
-
 def fcck374():
     import sqlite3
     conn = sqlite3.connect('alll7.db')
@@ -642,7 +640,7 @@ def fcck374():
             print('-------------------------------------------')
 
 
-fcck374()
+# fcck374()
 
 
 def nfcck(nums):
@@ -659,7 +657,7 @@ def nfcck(nums):
         re = cursor.fetchone()
         print(re)
 
-# nfcck([6,21,24,28,31,36,37])
+# nfcck([1,5,10,17,20,27,37])
 
 
 def numscount():
@@ -670,6 +668,7 @@ def numscount():
     sql = 'select loto7.s1,loto7.s2,loto7.s3,loto7.s4,loto7.s5,loto7.s6,loto7.s7 from loto7 join alll7 on loto7.z1= alll7.id where alll7.fcck4>13 '
     sql = 'select loto7.s1,loto7.s2,loto7.s3,loto7.s4,loto7.s5,loto7.s6,loto7.s7 from loto7 join alll7 on loto7.z1= alll7.id where alll7.fcck5>3 '
     sql = 'select s1,s2,s3,s4 from fcck374 where fcck =4'
+    sql = 'select s1,s2,s3,s4,s5,s6,s7 from loto7 limit 10'
     cursor = con.cursor()
     cursor.execute(sql)
     while True:
@@ -686,3 +685,9 @@ def numscount():
 
 
 # numscount()
+
+
+# fcck(4)
+# fcck(5)
+# fcck373()
+# fcck374()
