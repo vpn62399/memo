@@ -587,10 +587,10 @@ def nfcck(nums):
         print(re)
 
 
-# nfcck([4, 17, 20, 22, 41, 42])
+# nfcck([5,6,8,20,27,36])
 
 
-fcck(2)
-fcck(3)
-fcck434()
-fcck43()
+# fcck(2)
+# fcck(3)
+# fcck434()
+# fcck43()

@@ -612,7 +612,7 @@ def fcck374():
         re1 = cursor1.fetchone()
         cursor1.fetchmany
         if re1 is None:
-            print('re1end')
+            print('fcck374--end')
             break
         tag = [re1[0], re1[1], re1[2], re1[3]]
         tagindex = re1[4]
@@ -657,7 +657,7 @@ def nfcck(nums):
         re = cursor.fetchone()
         print(re)
 
-# nfcck([1,5,10,17,20,27,37])
+# nfcck([1, 5, 10, 17, 20, 27, 37])
 
 
 def numscount():
@@ -687,7 +687,7 @@ def numscount():
 # numscount()
 
 
-fcck(4)
-fcck(5)
-fcck373()
-fcck374()
+# fcck(4)
+# fcck(5)
+# fcck373()
+# fcck374()
