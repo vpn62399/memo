@@ -526,6 +526,7 @@ def fcck43():
 
 
 def fcck434():
+    print(fcck434.__name__)
     import sqlite3
     conn = sqlite3.connect('alll6.db')
     cursor1 = conn.cursor()
@@ -573,6 +574,7 @@ def fcck434():
 
 
 def nfcck(nums):
+    print(nfcck.__name__)
     import itertools
     import sqlite3
     combos = list(itertools.combinations(nums, 3))
@@ -587,9 +589,7 @@ def nfcck(nums):
         print(re)
 
 
-# nfcck([5,6,8,20,27,36])
-
-
+# nfcck([5, 16, 19, 21, 30, 35])
 # fcck(2)
 # fcck(3)
 # fcck434()
