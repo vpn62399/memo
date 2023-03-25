@@ -6,10 +6,6 @@
 # pip show selenium
 
 import csv
-import numpy as np
-import pandas as pd
-import matplotlib.pyplot as plt
-
 
 def t2k(tag):
     import sqlite3
@@ -234,6 +230,7 @@ def bas2(tag, l=7):
 
 
 def t7():
+    print(t7.__name__)
     print('////////////////////////////////////////////')
     print('////////////////////////////////////////////')
     print('////////////////////////////////////////////')
@@ -370,6 +367,7 @@ def t7():
             con.close()
             break
     con.close()
+    print(t7.__name__)
 
 
 # t7()
@@ -383,6 +381,7 @@ def t7():
 
 
 def ta():
+    print(ta.__name__)
     # 組み合わせ確認
     import sqlite3
     import csv
@@ -408,7 +407,7 @@ def ta():
         cw.writerow(cas6)
     con.close()
     f.close()
-
+    print(ta.__name__)
 
 # ta()
 
@@ -417,6 +416,7 @@ def ta():
 # 含む当選回数の回数をカウントする
 # alter table alll6 add column fcck integer;
 def fcck(fcc):
+    print(fcck.__name__)
     import csv
     import sqlite3
 
@@ -471,6 +471,7 @@ def fcck(fcc):
             conn.commit()
     conn.commit()
     conn.close()
+    print(fcck.__name__)
 
 
 # fcck(2)
@@ -483,6 +484,7 @@ def fcck(fcc):
 
 # 三つ数字出る回数
 def fcck43():
+    print(fcck43.__name__)
     import sqlite3
     conn = sqlite3.connect('alll6.db')
     cursor1 = conn.cursor()
@@ -523,6 +525,7 @@ def fcck43():
             print('-------------------------------------------')
     conn.commit()
     conn.close()
+    print(fcck43.__name__)
 
 
 def fcck434():
@@ -567,6 +570,7 @@ def fcck434():
     conn.commit()
     conn.close()
     print('fcck434end')
+    print(fcck434.__name__)
 
 
 # fcck434()
@@ -587,6 +591,7 @@ def nfcck(nums):
         cursor.execute(sql % (cs[0], cs[1], cs[2]))
         re = cursor.fetchone()
         print(re)
+    print(nfcck.__name__)
 
 
 # nfcck([5, 16, 19, 21, 30, 35])

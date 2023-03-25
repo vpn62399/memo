@@ -9,11 +9,6 @@ import csv
 import os
 import sys
 
-import matplotlib.pyplot as plt
-import numpy as np
-import pandas as pd
-
-
 def t2k(tag):
     import sqlite3
     con = sqlite3.connect('alll7.db')
@@ -179,6 +174,7 @@ def tx1(num):
 
 
 def t6():
+    print(t6.__name__)
     # 番号指定 Loto7
     # 出る番号と除外番号を指定し，ランダムに番号を出す
     import sqlite3
@@ -270,9 +266,11 @@ def t6():
             f.close()
             # sys.stdout.write('end')
             break
+    print(t6.__name__)
 
 
 def t7():
+    print(t7.__name__)
     print('////////////////////////////////////////////')
     print('////////////////////////////////////////////')
     print('////////////////////////////////////////////')
@@ -414,6 +412,7 @@ def t7():
             con.close()
             break
     con.close()
+    print(t7.__name__)
 
 
 # t7()
@@ -439,6 +438,7 @@ def t7():
 
 
 def ta():
+    print(ta.__name__)
     # 組み合わせ確認
     import csv
     import sqlite3
@@ -466,6 +466,7 @@ def ta():
         cw.writerow(cas7)
     con.close()
     f.close()
+    print(ta.__name__)
 
 
 # ta()
@@ -496,6 +497,7 @@ def ta():
 # if fcc = 4
 
 def fcck(fcc):
+    print(fcck.__name__)
     import csv
     import sqlite3
 
@@ -550,6 +552,7 @@ def fcck(fcc):
             conn.commit()
     conn.commit()
     conn.close()
+    print(fcck.__name__)
 
 
 # fcck(4)
@@ -558,6 +561,7 @@ def fcck(fcc):
 
 # 三つ数字出る回数
 def fcck373():
+    print(fcck373.__name__)
     import sqlite3
     conn = sqlite3.connect('alll7.db')
     cursor1 = conn.cursor()
@@ -595,12 +599,13 @@ def fcck373():
             print('-------------------------------------------')
             print(str(tag) + '---' + str(tagindex) + '---' + str(countc))
             print('-------------------------------------------')
-
+    print(fcck373.__name__)
 
 # fcck373()
 
 # 4つ数字の連続
 def fcck374():
+    print(fcck374.__name__)
     import sqlite3
     conn = sqlite3.connect('alll7.db')
     cursor1 = conn.cursor()
@@ -638,12 +643,13 @@ def fcck374():
             print('-------------------------------------------')
             print(str(tag) + '---' + str(tagindex) + '---' + str(countc))
             print('-------------------------------------------')
-
+    print(fcck374.__name__)
 
 # fcck374()
 
 
 def nfcck(nums):
+    print(nfcck.__name__)
     import itertools
     import sqlite3
     combos = list(itertools.combinations(nums, 3))
@@ -656,19 +662,23 @@ def nfcck(nums):
         cursor.execute(sql % (cs[0], cs[1], cs[2]))
         re = cursor.fetchone()
         print(re)
+    print(nfcck.__name__)
 
-# nfcck([1, 5, 10, 17, 20, 27, 37])
+# nfcck([3,15,17,22,26,27,28])
 
 
 def numscount():
+    print(numscount.__name__)
     import sqlite3
     com = [0]*38
     dbname = 'alll7.db'
     con = sqlite3.connect(dbname)
-    sql = 'select loto7.s1,loto7.s2,loto7.s3,loto7.s4,loto7.s5,loto7.s6,loto7.s7 from loto7 join alll7 on loto7.z1= alll7.id where alll7.fcck4>13 '
-    sql = 'select loto7.s1,loto7.s2,loto7.s3,loto7.s4,loto7.s5,loto7.s6,loto7.s7 from loto7 join alll7 on loto7.z1= alll7.id where alll7.fcck5>3 '
-    sql = 'select s1,s2,s3,s4 from fcck374 where fcck =4'
-    sql = 'select s1,s2,s3,s4,s5,s6,s7 from loto7 limit 10'
+    sql = 'select s1,s2,s3,s4,s5,s6,s7 from loto7'
+    # sql = 'select loto7.s1,loto7.s2,loto7.s3,loto7.s4,loto7.s5,loto7.s6,loto7.s7 from loto7 join alll7 on loto7.z1= alll7.id where alll7.fcck4>13 '
+    # sql = 'select loto7.s1,loto7.s2,loto7.s3,loto7.s4,loto7.s5,loto7.s6,loto7.s7 from loto7 join alll7 on loto7.z1= alll7.id where alll7.fcck5>3 '
+    # sql = 'select s1,s2,s3,s4 from fcck374 where fcck =4'
+    sql = 'select s1,s2,s3,s4,s5,s6,s7 from loto7 limit 20'
+    # sql = 'select s1,s2,s3,s4,s5,s6,s7 from loto7 where t1 > 464'
     cursor = con.cursor()
     cursor.execute(sql)
     while True:
@@ -682,11 +692,10 @@ def numscount():
     for v in range(38):
         if com[v] != 0:
             print(v, '--------', com[v])
+    print(numscount.__name__)
 
 
 # numscount()
-
-
 # fcck(4)
 # fcck(5)
 # fcck373()
