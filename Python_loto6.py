@@ -594,8 +594,46 @@ def nfcck(nums):
     print(nfcck.__name__)
 
 
+def numscount():
+    print(numscount.__name__)
+    import sqlite3
+    com = [0]*44
+    dbname = 'alll6.db'
+    con = sqlite3.connect(dbname)
+    sql = 'select s1,s2,s3,s4,s5,s6,s7 from loto7'
+    # sql = 'select loto7.s1,loto7.s2,loto7.s3,loto7.s4,loto7.s5,loto7.s6,loto7.s7 from loto7 join alll7 on loto7.z1= alll7.id where alll7.fcck4>13 '
+    # sql = 'select loto7.s1,loto7.s2,loto7.s3,loto7.s4,loto7.s5,loto7.s6,loto7.s7 from loto7 join alll7 on loto7.z1= alll7.id where alll7.fcck5>3 '
+    # sql = 'select s1,s2,s3,s4 from fcck374 where fcck =4'
+    sql = 'select s1,s2,s3,s4,s5,s6 from loto6 where s1=18'
+    # sql = 'select s1,s2,s3,s4,s5,s6 from loto6 where t1 > 464'
+    cursor = con.cursor()
+    cursor.execute(sql)
+    while True:
+        re = cursor.fetchone()
+        # print(re)
+        if re is None:
+            break
+        for v in re:
+            com[v] += 1
+    print(com)
+    for v in range(44):
+        if com[v] != 0:
+            print(v, '--------', com[v]-0)
+    print(numscount.__name__)
+
+
+# numscount()
 # nfcck([5, 16, 19, 21, 30, 35])
 # fcck(2)
 # fcck(3)
 # fcck434()
 # fcck43()
+
+
+# localStorage_additem([18,24,32,39,41,42,0])
+# localStorage_additem([16,21,30,31,36,43,0])
+# localStorage_additem([16,32,34,35,36,39,0])
+
+    # 5907390 | 18 | 24 | 32 | 39 | 41 | 42 |    |    | 10    | 48    |
+    # 5773154 | 16 | 21 | 30 | 31 | 36 | 43 |    |    | 10    | 49    |
+    # 5799775 | 16 | 32 | 34 | 35 | 36 | 39 |    |    | 14    | 62    |
