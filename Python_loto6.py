@@ -7,17 +7,63 @@
 
 import csv
 
+
 def t2k(tag):
     import sqlite3
-    con = sqlite3.connect('alll6.db')
-    sqlcmd = '''select s1,s2,s3,s4,s5,s6 from loto6 '''
-    cas = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-           0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+
+    con = sqlite3.connect("alll6.db")
+    sqlcmd = """select s1,s2,s3,s4,s5,s6 from loto6 """
+    cas = [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+    ]
     cr = con.execute(sqlcmd)
     for da in cr:
         if tag[0] in da:
             for x in da:
-                cas[x] = cas[x]+1
+                cas[x] = cas[x] + 1
         pass
 
     # print(cas)
@@ -28,6 +74,7 @@ def t2k(tag):
         return cas[tag[1]]
     else:
         return cas[tag[1]]
+
 
 # print (t2k([37, 1]))
 # t2k([1, 37])
@@ -52,11 +99,11 @@ def t7t2k(tag, v):
                 vw.append(t2k([tag[i], tag[j]]))
             temp = t2k([tag[i], tag[j]])
             if temp < 8:
-                fc8 = fc8+1
+                fc8 = fc8 + 1
             if fc8 == fc8c:
                 f = 0
             if temp < 16:
-                fc16 = fc16+1
+                fc16 = fc16 + 1
             if fc16 > fc16c:
                 f = 0
     if v == 1:
@@ -67,20 +114,22 @@ def t7t2k(tag, v):
         return vw
     return f
 
+
 # print(t7t2k([2,16,17,24,25,35,36]))
 
 
 def t7t2klist():
-    fw = open('xList2-l6.csv', 'w', newline='')
-    fr = open('loto6c.csv', 'r')
+    fw = open("xList2-l6.csv", "w", newline="")
+    fr = open("loto6c.csv", "r")
     cr = csv.reader(fr)
 
     for cc in cr:
-        cw = csv.writer(fw, delimiter='\t')
+        cw = csv.writer(fw, delimiter="\t")
         tl = []
         tl.append(cc)
-        temp = t7t2k([int(cc[2]), int(cc[3]), int(cc[4]), int(
-            cc[5]), int(cc[6]), int(cc[7])], 2)
+        temp = t7t2k(
+            [int(cc[2]), int(cc[3]), int(cc[4]), int(cc[5]), int(cc[6]), int(cc[7])], 2
+        )
         for i in temp:
             tl.append(i)
         cw.writerow(tl)
@@ -95,7 +144,8 @@ def t7t2klist():
 def tx1(num):
     # xStep-L6.csv ファイルから出番の間隔確認
     import csv
-    f = open('xStep-L6.csv', 'r')
+
+    f = open("xStep-L6.csv", "r")
     da = csv.reader(f)
     for x in da:
         if int(num) > int(x[0]) and int(num) < int(x[1]):
@@ -104,22 +154,27 @@ def tx1(num):
             return 1
     return 0
 
+
 # tx1(8149925)
 
 
 def t5():
     # 番号指定
     import sqlite3
-    con = sqlite3.connect('alll6.db')
+
+    con = sqlite3.connect("alll6.db")
     # 指定番号を固定,他の番号をランダム選択
-    sqlcmd = '''select * from alll6 where s1=5 and s2=17 and s3!=18 and id>6850000 and id<6880000 and id=abs(random())%10295473 limit 3'''
+    sqlcmd = """select * from alll6 where s1=5 and s2=17 and s3!=18 and id>6850000 and id<6880000 and id=abs(random())%10295473 limit 3"""
     x = 1
     while True:
         cur = con.execute(sqlcmd)
         for xx in cur:
-            print("localStorage_additem([{},{},{},{},{},{},{},{}])".format(
-                xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], 0, xx[0]))
-            x = x+1
+            print(
+                "localStorage_additem([{},{},{},{},{},{},{},{}])".format(
+                    xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], 0, xx[0]
+                )
+            )
+            x = x + 1
         if x > 5:
             break
 
@@ -128,8 +183,9 @@ def t6():
     # 番号指定 Loto6
     # 出る番号と除外番号を指定し，ランダムに番号を出す
     import sqlite3
-    con = sqlite3.connect('alll6.db')
-    sqlcmd = '''select * from alll6 where id=abs(random())%6096454'''
+
+    con = sqlite3.connect("alll6.db")
+    sqlcmd = """select * from alll6 where id=abs(random())%6096454"""
 
     # sqlcmd = '''select * from alll7 where id=abs(random())%10295473 and id >1458200 and id < 8041128 '''
     # loto7.loc[:,12].describe()
@@ -148,16 +204,10 @@ def t6():
     #     [1]  # 非存在回数
     # ]
 
-    tag = [
-        [1699],
-        list(range(19, 44)),
-        list(range(1, 18)),
-        [3],
-        [0]
-    ]
+    tag = [[1699], list(range(19, 44)), list(range(1, 18)), [3], [0]]
 
-    f = open('temp.txt', 'w')
-    ccont = 1000    # 結果の回数
+    f = open("temp.txt", "w")
+    ccont = 1000  # 結果の回数
     x = 1
     while True:
         cur = con.execute(sqlcmd)
@@ -178,17 +228,23 @@ def t6():
                         # print(xx)
                         # print(xx[1:8])
                         # print (t7t2k(list(xx[1:8])))
-                        if t7t2k(list(xx[1:7]), 0) == 1:   # 組合せよく出る番号の組合せ
+                        if t7t2k(list(xx[1:7]), 0) == 1:  # 組合せよく出る番号の組合せ
                             if ccont < 11:
-                                print("localStorage_additem([{},{},{},{},{},{},{}])".format(
-                                    xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], tck))
-                            f.write("localStorage_additem([{},{},{},{},{},{},{}])\n".format(
-                                    xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], tck))
-                            print(x, end='\r')
+                                print(
+                                    "localStorage_additem([{},{},{},{},{},{},{}])".format(
+                                        xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], tck
+                                    )
+                                )
+                            f.write(
+                                "localStorage_additem([{},{},{},{},{},{},{}])\n".format(
+                                    xx[1], xx[2], xx[3], xx[4], xx[5], xx[6], tck
+                                )
+                            )
+                            print(x, end="\r")
                             if list(xx[1:7]) == [5, 16, 21, 24, 31, 34]:
                                 print(list(xx[1:7]))
                                 break
-                        x = x+1
+                        x = x + 1
         if x > ccont:
             con.close()
             f.close()
@@ -197,14 +253,15 @@ def t6():
 
 def bas2(tag, l=7):
     import sqlite3
-    con = sqlite3.connect('alll6.db')
-    sqlcmd = 'select * from loto6'
+
+    con = sqlite3.connect("alll6.db")
+    sqlcmd = "select * from loto6"
     cas = [i for i in range(1, 44)]
     cr = con.execute(sqlcmd)
     llist = []
-    print('////////////////////////////////////////')
-    print('///////////////           //////////////')
-    print('////////////////////////////////////////')
+    print("////////////////////////////////////////")
+    print("///////////////           //////////////")
+    print("////////////////////////////////////////")
     for val in cr:
         temp = list(val[2:l])
         flg = 0
@@ -217,27 +274,30 @@ def bas2(tag, l=7):
             for k in temp:
                 llist.append(k)
             # llist.append(temp)
-    print('////////////////////////////////////////')
-    print('all', llist)
+    print("////////////////////////////////////////")
+    print("all", llist)
     for k in cas:
         if llist.count(k) >= 5:
-            print(k, str(llist.count(k))+'  ++')
+            print(k, str(llist.count(k)) + "  ++")
         elif llist.count(k) == 0:
-            print(k, str(llist.count(k))+'  --')
+            print(k, str(llist.count(k)) + "  --")
         else:
-            print(k, str(llist.count(k))+'    ')
+            print(k, str(llist.count(k)) + "    ")
+
+
 # bas2([7,11])
 
 
 def t7():
     print(t7.__name__)
-    print('////////////////////////////////////////////')
-    print('////////////////////////////////////////////')
-    print('////////////////////////////////////////////')
+    print("////////////////////////////////////////////")
+    print("////////////////////////////////////////////")
+    print("////////////////////////////////////////////")
     import random
     import sqlite3
-    con = sqlite3.connect('alll6.db')
-    sqlcmd = 'select * from alll6 where fcck3 >2 and fcck4 >3 and fcck3 > 50 and id='
+
+    con = sqlite3.connect("alll6.db")
+    sqlcmd = "select * from alll6 where fcck3 >2 and fcck4 >3 and fcck3 > 50 and id="
     pool = list(range(1, 44))
 
     epool = [
@@ -253,7 +313,7 @@ def t7():
         [2, 4, 0, 0, 0, 0, 0],
         [3, 7, 0, 0, 0, 0, 0],
         [7, 8, 0, 0, 0, 0, 0],
-        [7, 11, 0, 0, 0, 0, 0]
+        [7, 11, 0, 0, 0, 0, 0],
     ]
 
     for val in epool:
@@ -264,16 +324,16 @@ def t7():
     sqlcnt = 0
     keep = 40000
     while True:
-        keep = keep-1
-        cur = con.execute(sqlcmd+str(random.randint(1, 6096454)))
-        sqlcnt = sqlcnt+1
+        keep = keep - 1
+        cur = con.execute(sqlcmd + str(random.randint(1, 6096454)))
+        sqlcnt = sqlcnt + 1
         for val in cur:
             tf = True
             temp = val[1:7]
-            print('                                                       ', end='\r')
-            print(sqlcnt, val, end='\r')
+            print("                                                       ", end="\r")
+            print(sqlcnt, val, end="\r")
             if keep > 0:
-                sqlcnt = sqlcnt-1
+                sqlcnt = sqlcnt - 1
                 break
             keep = 100
             # 7 8 11 13 14 26 30
@@ -288,7 +348,7 @@ def t7():
             # if (temp[0] != 2 or temp[1] != 5 or temp[2] != 7):
             #     break
 
-            if(5 not in temp or 8 not in temp or 20 not in temp):
+            if 5 not in temp or 8 not in temp or 20 not in temp:
                 # fcck4 >3 and fcck3 > 50
                 break
 
@@ -309,11 +369,17 @@ def t7():
                         pool.remove(vx)
 
                     tck = tx1(val[0])
-                    print("localStorage_additem([{},{},{},{},{},{},{}])".format(
-                        val[1], val[2], val[3], val[4], val[5], val[6], val[0]))
-                    f = open('xList2-l6temp.txt', 'a')
-                    f.write("localStorage_additem([{},{},{},{},{},{},{}])\n".format(
-                        val[1], val[2], val[3], val[4], val[5], val[6], val[0]))
+                    print(
+                        "localStorage_additem([{},{},{},{},{},{},{}])".format(
+                            val[1], val[2], val[3], val[4], val[5], val[6], val[0]
+                        )
+                    )
+                    f = open("xList2-l6temp.txt", "a")
+                    f.write(
+                        "localStorage_additem([{},{},{},{},{},{},{}])\n".format(
+                            val[1], val[2], val[3], val[4], val[5], val[6], val[0]
+                        )
+                    )
                     f.close()
                     tl = []
                     tl.append(val)
@@ -326,17 +392,26 @@ def t7():
                         print("////////////////////////////////////////////////////")
                         break
 
-                    temp = t7t2k([int(val[1]), int(val[2]), int(val[3]), int(
-                        val[4]), int(val[5]), int(val[6])], 2)
+                    temp = t7t2k(
+                        [
+                            int(val[1]),
+                            int(val[2]),
+                            int(val[3]),
+                            int(val[4]),
+                            int(val[5]),
+                            int(val[6]),
+                        ],
+                        2,
+                    )
                     for i in temp:
                         tl.append(i)
-                    fw = open('xList2-l6temp.txt', 'a', newline='')
-                    cw = csv.writer(fw, delimiter='\t')
+                    fw = open("xList2-l6temp.txt", "a", newline="")
+                    cw = csv.writer(fw, delimiter="\t")
                     cw.writerow(tl)
                     fw.close()
                     sqlcnt = 0
-                    xc = xc+1
-                    print('///', pool)
+                    xc = xc + 1
+                    print("///", pool)
 
                 if sqlcnt > 300:
                     pool = list(range(1, 44))
@@ -345,16 +420,16 @@ def t7():
                             if v in pool:
                                 pool.remove(v)
                     sqlcnt = 0
-                    print('//4//', pool)
-                    print('///////////////////////////////////333////////')
-                    print('                                                ', end='\r')
+                    print("//4//", pool)
+                    print("///////////////////////////////////333////////")
+                    print("                                                ", end="\r")
 
-                    f = open('xList2-l6temp.txt', 'a')
-                    f.write('//------\n')
+                    f = open("xList2-l6temp.txt", "a")
+                    f.write("//------\n")
                     f.close()
 
-                    fw = open('xList2-l6temp.txt', 'a', newline='')
-                    cw = csv.writer(fw, delimiter='\t')
+                    fw = open("xList2-l6temp.txt", "a", newline="")
+                    cw = csv.writer(fw, delimiter="\t")
                     cw.writerow([])
                     fw.close()
 
@@ -385,29 +460,29 @@ def ta():
     # 組み合わせ確認
     import sqlite3
     import csv
-    f = open('xList-L6.csv', 'w', newline='')
-    con = sqlite3.connect('loto.db')
-    sqlcmd = '''select s1,s2,s3,s4,s5,s6 from loto6 '''
+
+    f = open("xList-L6.csv", "w", newline="")
+    con = sqlite3.connect("loto.db")
+    sqlcmd = """select s1,s2,s3,s4,s5,s6 from loto6 """
     aln = list(range(1, 44))
     print(aln)
     print("")
 
-    cw = csv.writer(f, delimiter='\t')
+    cw = csv.writer(f, delimiter="\t")
     for tag in aln:
         cr = con.execute(sqlcmd)
-        cas6 = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
-                0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
-
+        cas6 = [0] * 45
         for jj in cr:
             if tag in jj:
                 for x in jj:
                     if x >= tag:
-                        cas6[x] = cas6[x]+1
+                        cas6[x] = cas6[x] + 1
         print(tag, cas6)
         cw.writerow(cas6)
     con.close()
     f.close()
     print(ta.__name__)
+
 
 # ta()
 
@@ -434,23 +509,23 @@ def fcck(fcc):
         upsql = "update alll6 set fcck4=%d where id=%d"
         pass
 
-    conn = sqlite3.connect('alll6.db')
+    conn = sqlite3.connect("alll6.db")
     cursor1 = conn.cursor()
     cursor2 = conn.cursor()
 
-    sql1 = 'select s1,s2,s3,s4,s5,s6,rowid from alll6'
+    sql1 = "select s1,s2,s3,s4,s5,s6,rowid from alll6"
     cursor1.execute(sql1)
     while True:
         re1 = cursor1.fetchone()
         # cursor1.fetchmany
         if re1 is None:
-            print('re1end')
+            print("re1end")
             break
         tag = [re1[0], re1[1], re1[2], re1[3], re1[4], re1[5]]
         tagindex = re1[6]
         countc = 0
 
-        sql2 = 'select s1,s2,s3,s4,s5,s6 from loto6'
+        sql2 = "select s1,s2,s3,s4,s5,s6 from loto6"
         cursor2.execute(sql2)
         while True:
             re2 = cursor2.fetchone()
@@ -465,9 +540,9 @@ def fcck(fcc):
         # print(upsql % (countc, tagindex))
         conn.execute(upsql % (countc, tagindex))
         if countc > countshow:
-            print('-------------------------------------------')
-            print(str(tag) + '---' + str(tagindex) + '---' + str(countc))
-            print('-------------------------------------------')
+            print("-------------------------------------------")
+            print(str(tag) + "---" + str(tagindex) + "---" + str(countc))
+            print("-------------------------------------------")
             conn.commit()
     conn.commit()
     conn.close()
@@ -486,23 +561,24 @@ def fcck(fcc):
 def fcck43():
     print(fcck43.__name__)
     import sqlite3
-    conn = sqlite3.connect('alll6.db')
+
+    conn = sqlite3.connect("alll6.db")
     cursor1 = conn.cursor()
     cursor2 = conn.cursor()
 
-    sql1 = 'select s1,s2,s3,rowid from fcck43 '
+    sql1 = "select s1,s2,s3,rowid from fcck43 "
     cursor1.execute(sql1)
     while True:
         re1 = cursor1.fetchone()
         cursor1.fetchmany
         if re1 is None:
-            print('re1end')
+            print("re1end")
             break
         tag = [re1[0], re1[1], re1[2]]
         tagindex = re1[3]
         countc = 0
 
-        sql2 = 'select s1,s2,s3,s4,s5,s6 from loto6'
+        sql2 = "select s1,s2,s3,s4,s5,s6 from loto6"
         cursor2.execute(sql2)
         while True:
             re2 = cursor2.fetchone()
@@ -514,15 +590,14 @@ def fcck43():
                     count += 1
             if count == 3:
                 countc += 1
-            sql3 = "update fcck43 set fcck=%d where rowid=%d" % (
-                countc, tagindex)
+            sql3 = "update fcck43 set fcck=%d where rowid=%d" % (countc, tagindex)
             # print(sql3)
             conn.execute(sql3)
         if countc > 6:
             conn.commit()
-            print('-------------------------------------------')
-            print(str(tag) + '---' + str(tagindex) + '---' + str(countc))
-            print('-------------------------------------------')
+            print("-------------------------------------------")
+            print(str(tag) + "---" + str(tagindex) + "---" + str(countc))
+            print("-------------------------------------------")
     conn.commit()
     conn.close()
     print(fcck43.__name__)
@@ -531,23 +606,24 @@ def fcck43():
 def fcck434():
     print(fcck434.__name__)
     import sqlite3
-    conn = sqlite3.connect('alll6.db')
+
+    conn = sqlite3.connect("alll6.db")
     cursor1 = conn.cursor()
     cursor2 = conn.cursor()
 
-    sql1 = 'select s1,s2,s3,s4,rowid from fcck434 '
+    sql1 = "select s1,s2,s3,s4,rowid from fcck434 "
     cursor1.execute(sql1)
     while True:
         re1 = cursor1.fetchone()
         cursor1.fetchmany
         if re1 is None:
-            print('re1end')
+            print("re1end")
             break
         tag = [re1[0], re1[1], re1[2], re1[3]]
         tagindex = re1[4]
         countc = 0
 
-        sql2 = 'select s1,s2,s3,s4,s5,s6 from loto6'
+        sql2 = "select s1,s2,s3,s4,s5,s6 from loto6"
         cursor2.execute(sql2)
         while True:
             re2 = cursor2.fetchone()
@@ -559,17 +635,16 @@ def fcck434():
                     count += 1
             if count == 4:
                 countc += 1
-            sql3 = "update fcck434 set fcck=%d where rowid=%d" % (
-                countc, tagindex)
+            sql3 = "update fcck434 set fcck=%d where rowid=%d" % (countc, tagindex)
             conn.execute(sql3)
         if countc > 2:
             conn.commit()
-            print('-------------------------------------------')
-            print(str(tag) + '---' + str(tagindex) + '---' + str(countc))
-            print('-------------------------------------------')
+            print("-------------------------------------------")
+            print(str(tag) + "---" + str(tagindex) + "---" + str(countc))
+            print("-------------------------------------------")
     conn.commit()
     conn.close()
-    print('fcck434end')
+    print("fcck434end")
     print(fcck434.__name__)
 
 
@@ -581,12 +656,13 @@ def nfcck(nums):
     print(nfcck.__name__)
     import itertools
     import sqlite3
+
     combos = list(itertools.combinations(nums, 3))
 
-    dbname = 'alll6.db'
+    dbname = "alll6.db"
     con = sqlite3.connect(dbname)
     cursor = con.cursor()
-    sql = 'select * from fcck43 where s1=%d and s2=%d and s3=%d'
+    sql = "select * from fcck43 where s1=%d and s2=%d and s3=%d"
     for cs in combos:
         cursor.execute(sql % (cs[0], cs[1], cs[2]))
         re = cursor.fetchone()
@@ -597,14 +673,15 @@ def nfcck(nums):
 def numscount():
     print(numscount.__name__)
     import sqlite3
-    com = [0]*44
-    dbname = 'alll6.db'
+
+    com = [0] * 44
+    dbname = "alll6.db"
     con = sqlite3.connect(dbname)
-    sql = 'select s1,s2,s3,s4,s5,s6,s7 from loto7'
+    sql = "select s1,s2,s3,s4,s5,s6,s7 from loto7"
     # sql = 'select loto7.s1,loto7.s2,loto7.s3,loto7.s4,loto7.s5,loto7.s6,loto7.s7 from loto7 join alll7 on loto7.z1= alll7.id where alll7.fcck4>13 '
     # sql = 'select loto7.s1,loto7.s2,loto7.s3,loto7.s4,loto7.s5,loto7.s6,loto7.s7 from loto7 join alll7 on loto7.z1= alll7.id where alll7.fcck5>3 '
     # sql = 'select s1,s2,s3,s4 from fcck374 where fcck =4'
-    sql = 'select s1,s2,s3,s4,s5,s6 from loto6 where s1=18'
+    sql = "select s1,s2,s3,s4,s5,s6 from loto6 where s1=18"
     # sql = 'select s1,s2,s3,s4,s5,s6 from loto6 where t1 > 464'
     cursor = con.cursor()
     cursor.execute(sql)
@@ -618,12 +695,12 @@ def numscount():
     print(com)
     for v in range(44):
         if com[v] != 0:
-            print(v, '--------', com[v]-0)
+            print(v, "--------", com[v] - 0)
     print(numscount.__name__)
 
 
 # numscount()
-# nfcck([5, 16, 19, 21, 30, 35])
+# nfcck([9 ,19 ,24 ,25 ,26 ,39])
 # fcck(2)
 # fcck(3)
 # fcck434()
@@ -634,6 +711,6 @@ def numscount():
 # localStorage_additem([16,21,30,31,36,43,0])
 # localStorage_additem([16,32,34,35,36,39,0])
 
-    # 5907390 | 18 | 24 | 32 | 39 | 41 | 42 |    |    | 10    | 48    |
-    # 5773154 | 16 | 21 | 30 | 31 | 36 | 43 |    |    | 10    | 49    |
-    # 5799775 | 16 | 32 | 34 | 35 | 36 | 39 |    |    | 14    | 62    |
+# 5907390 | 18 | 24 | 32 | 39 | 41 | 42 |    |    | 10    | 48    |
+# 5773154 | 16 | 21 | 30 | 31 | 36 | 43 |    |    | 10    | 49    |
+# 5799775 | 16 | 32 | 34 | 35 | 36 | 39 |    |    | 14    | 62    |
