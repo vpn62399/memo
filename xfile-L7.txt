@@ -436,7 +436,9 @@ select z1-z1%1000,z1-z1%1000+1000,count(z1-z1%1000),t1 from loto7 group by (z1-z
 
 
 2023-03-25 17:30:51
-sqlite> select *  from fcck374 where fcck=4;
+.open alll7.db
+.mode table 
+select *  from fcck374 where fcck=4;
 +-------+----+----+----+----+------+
 |  id   | s1 | s2 | s3 | s4 | fcck |
 +-------+----+----+----+----+------+
@@ -458,8 +460,9 @@ sqlite> select *  from fcck374 where fcck=4;
 | 65269 | 24 | 29 | 34 | 35 | 4    |
 +-------+----+----+----+----+------+
 
-
-sqlite> select *  from loto7 join alll7 on loto7.z1=alll7.id where alll7.s1>12 order by loto7.s1;
+.open alll7.db
+.mode table 
+select *  from loto7 join alll7 on loto7.z1=alll7.id where alll7.s1>12 order by loto7.s1;
 +-----+------------+----+----+----+----+----+----+----+----+----+----+------+------+----+----------+----------+----+----+----+----+----+----+----+----+----+-----+-------+-------+
 | t1  |     d1     | s1 | s2 | s3 | s4 | s5 | s6 | s7 | b1 | b2 | n1 |  n2  |  n3  | z2 |    z1    |    id    | s1 | s2 | s3 | s4 | s5 | s6 | s7 | b1 | b2 | t1  | fcck4 | fcck5 |
 +-----+------------+----+----+----+----+----+----+----+----+----+----+------+------+----+----------+----------+----+----+----+----+----+----+----+----+----+-----+-------+-------+

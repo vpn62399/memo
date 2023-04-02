@@ -59,38 +59,37 @@ delete from loto7;
 
 
 def createSQL_loto7():
-    dbname = 'alll7.db'
+    dbname = "alll7.db"
     if not pathlib.Path(dbname).is_file():
         crt = "create table if not exists alll7(id INTEGER PRIMARY KEY,s1 INTEGER, s2 INTEGER, s3 INTEGER, s4 INTEGER, s5 INTEGER, s6 INTEGER, s7 INTEGER, b1 INTEGER, b2 INTEGER, t1 INTEGER)"
         con = sqlite3.connect(dbname)
         con.execute(crt)
         con.commit()
         con.close
-        print('sql-end')
+        print("sql-end")
 
 
 def createNUM_loto7():
-    f = open('alll7.csv', 'a+', newline='')
+    f = open("alll7.csv", "a+", newline="")
     cw = csv.writer(f)
     s1, s2, s3, s4, s5, s6, s7 = 0, 0, 0, 0, 0, 0, 0
     cnt = 0
     lst = 31
-    for s1 in range(1, lst+1):
-        for s2 in range(s1+1, lst+2):
-            for s3 in range(s2+1, lst+3):
-                for s4 in range(s3+1, lst+4):
-                    for s5 in range(s4+1, lst+5):
-                        for s6 in range(s5+1, lst+6):
-                            for s7 in range(s6+1, lst+7):
-                                cnt = cnt+1
-                                ast = [cnt, s1, s2, s3, s4,
-                                       s5, s6, s7, '', '', '']
+    for s1 in range(1, lst + 1):
+        for s2 in range(s1 + 1, lst + 2):
+            for s3 in range(s2 + 1, lst + 3):
+                for s4 in range(s3 + 1, lst + 4):
+                    for s5 in range(s4 + 1, lst + 5):
+                        for s6 in range(s5 + 1, lst + 6):
+                            for s7 in range(s6 + 1, lst + 7):
+                                cnt = cnt + 1
+                                ast = [cnt, s1, s2, s3, s4, s5, s6, s7, "", "", ""]
                                 cw.writerow(ast)
     pass
     f.close()
     print(cnt)
     cnt = 0
-    print('end_loto7_10295472')
+    print("end_loto7_10295472")
 
 
 # createNUM_Loto7():
@@ -134,37 +133,37 @@ t1    d1         s1  s2  s3  s4  s5  s6  b1  n1  n2   n3  z2  z1    id    s1  s2
 
 
 def createSQL_loto6():
-    dbname = 'alll6.db'
+    dbname = "alll6.db"
     if not pathlib.Path(dbname).is_file():
         crt = "create table if not exists alll6(id INTEGER PRIMARY KEY,s1 INTEGER, s2 INTEGER, s3 INTEGER, s4 INTEGER, s5 INTEGER, s6 INTEGER, b1 INTEGER, t1 INTEGER,fcck INTEGER)"
         con = sqlite3.connect(dbname)
         con.execute(crt)
         con.commit()
         con.close
-        print('sql-end')
+        print("sql-end")
 
 
 def createNUM_loto6():
-    f = open('alll6.csv', 'a+', newline='')
+    f = open("alll6.csv", "a+", newline="")
     cw = csv.writer(f)
     s1, s2, s3, s4, s5, s6 = 0, 0, 0, 0, 0, 0
     cnt = 0
     lst = 38
-    for s1 in range(1, lst+1):
-        for s2 in range(s1+1, lst+2):
-            for s3 in range(s2+1, lst+3):
-                for s4 in range(s3+1, lst+4):
-                    for s5 in range(s4+1, lst+5):
-                        for s6 in range(s5+1, lst+6):
-                            cnt = cnt+1
-                            ast = [cnt, s1, s2, s3, s4,
-                                   s5, s6, '0', '0', '0']
+    for s1 in range(1, lst + 1):
+        for s2 in range(s1 + 1, lst + 2):
+            for s3 in range(s2 + 1, lst + 3):
+                for s4 in range(s3 + 1, lst + 4):
+                    for s5 in range(s4 + 1, lst + 5):
+                        for s6 in range(s5 + 1, lst + 6):
+                            cnt = cnt + 1
+                            ast = [cnt, s1, s2, s3, s4, s5, s6, "0", "0", "0"]
                             cw.writerow(ast)
     pass
     f.close()
     print(cnt)
     cnt = 0
-    print('end_loto6_6096454')
+    print("end_loto6_6096454")
+
 
 # createSQL_loto6()
 # createNUM_loto6()
@@ -173,7 +172,8 @@ def createNUM_loto6():
 def fcck434():
     import itertools
     import sqlite3
-    dbname = 'alll6.db'
+
+    dbname = "alll6.db"
     try:
         crt = "create table if not exists fcck434(id INTEGER PRIMARY KEY,s1 INTEGER, s2 INTEGER, s3 INTEGER, s4 INTEGER, fcck INTEGER)"
         con = sqlite3.connect(dbname)
@@ -181,14 +181,18 @@ def fcck434():
         con.commit()
         con.close
     except:
-        print('error')
+        print("error")
         exit
 
     con = sqlite3.connect(dbname)
     combos = list(itertools.combinations(range(1, 44), 4))
     for k in combos:
-        addint = 'insert into fcck434(s1,s2,s3,s4)values(%d,%d,%d,%d)' % (
-            k[0], k[1], k[2], k[3])
+        addint = "insert into fcck434(s1,s2,s3,s4)values(%d,%d,%d,%d)" % (
+            k[0],
+            k[1],
+            k[2],
+            k[3],
+        )
         print(addint)
         con.execute(addint)
     con.commit()
@@ -196,27 +200,27 @@ def fcck434():
     print("kkk")
 
 
-fcck434()
+# fcck434()
 
 
 def fcck373():
     import itertools
     import sqlite3
+
     try:
-        dbname = 'alll7.db'
+        dbname = "alll7.db"
         crt = "create table if not exists fcck37(id INTEGER PRIMARY KEY,s1 INTEGER, s2 INTEGER, s3 INTEGER,fcck INTEGER)"
         con = sqlite3.connect(dbname)
         con.execute(crt)
         con.commit()
         con.close()
     except:
-        print('error')
+        print("error")
 
     con = sqlite3.connect(dbname)
     combos = list(itertools.combinations(range(1, 38), 3))
     for k in combos:
-        addint = 'insert into fcck37(s1,s2,s3)values(%d,%d,%d)' % (
-            k[0], k[1], k[2])
+        addint = "insert into fcck37(s1,s2,s3)values(%d,%d,%d)" % (k[0], k[1], k[2])
         print(addint)
         con.execute(addint)
     con.commit()
@@ -230,26 +234,73 @@ def fcck373():
 def fcck374():
     import itertools
     import sqlite3
+
     try:
-        dbname = 'alll7.db'
+        dbname = "alll7.db"
         crt = "create table if not exists fcck374(id INTEGER PRIMARY KEY,s1 INTEGER, s2 INTEGER, s3 INTEGER,s4 INTEGER,fcck INTEGER)"
         con = sqlite3.connect(dbname)
         con.execute(crt)
         con.commit()
         con.close()
     except:
-        print('error')
+        print("error")
 
-    con = sqlite3.connect(dbname)
-    combos = list(itertools.combinations(range(1, 38), 4))
-    for k in combos:
-        addint = 'insert into fcck374(s1,s2,s3,s4,fcck)values(%d,%d,%d,%d,%d)' % (
-            k[0], k[1], k[2], k[3], 0)
-        print(addint)
-        con.execute(addint)
-    con.commit()
-    con.close
-    print("kkk")
+    try:
+        con = sqlite3.connect(dbname)
+        combos = list(itertools.combinations(range(1, 38), 4))
+        for k in combos:
+            addint = "insert into fcck374(s1,s2,s3,s4,fcck)values(%d,%d,%d,%d,%d)" % (
+                k[0],
+                k[1],
+                k[2],
+                k[3],
+                0,
+            )
+            print(addint)
+            con.execute(addint)
+        con.commit()
+        con.close
+        print("kkk")
+    except:
+        print("error")
 
 
 # fcck374()
+
+
+def fcck372():
+    import sqlite3
+    import itertools
+
+    try:
+        dbname = "alll7.db"
+        con = sqlite3.connect(dbname)
+        crt = "create table if not exists fcck372(id INTEGER PRIMARY KEY,s1 INTEGER, s2 ,fcck INTEGER)"
+        con = sqlite3.connect(dbname)
+        con.execute(crt)
+        con.commit()
+        con.close()
+    except:
+        print("error")
+        pass
+
+    try:
+        combos = list(itertools.combinations(range(1, 38), 2))
+        con = sqlite3.connect(dbname)
+        for k in combos:
+            addint = "insert into fcck372(s1,s2,fcck)values(%d,%d,%d)" % (
+                k[0],
+                k[1],
+                0,
+            )
+            print(addint)
+            con.execute(addint)
+        con.commit()
+        con.close
+        print("kkk")
+        pass
+    except:
+        pass
+
+
+fcck372()

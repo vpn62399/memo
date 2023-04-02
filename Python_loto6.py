@@ -666,6 +666,10 @@ def nfcck(nums):
     for cs in combos:
         cursor.execute(sql % (cs[0], cs[1], cs[2]))
         re = cursor.fetchone()
+        if re[4] == 0:
+            print(re ,'---0')
+        else:
+            print(re)
         print(re)
     print(nfcck.__name__)
 
@@ -700,7 +704,8 @@ def numscount():
 
 
 # numscount()
-# nfcck([9 ,19 ,24 ,25 ,26 ,39])
+# nfcck(  [  4, 11, 13, 26, 27, 36  ]   )
+# nfcck(  [  16,21,30,31,36,43  ]   ) # 0==1
 # fcck(2)
 # fcck(3)
 # fcck434()

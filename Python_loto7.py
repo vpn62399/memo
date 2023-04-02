@@ -15,46 +15,6 @@ def t2k(tag):
 
     con = sqlite3.connect("alll7.db")
     sqlcmd = """select s1,s2,s3,s4,s5,s6,s7 from loto7 """
-    cas = [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-    ]
     cas = [0 for i in range(39)]
     cr = con.execute(sqlcmd)
     for da in cr:
@@ -353,6 +313,64 @@ def t6():
     print(t6.__name__)
 
 
+# 三つの組み合わせてOはないかを確認する．
+def nfcck(nums, pg=0):
+    print(nfcck.__name__)
+    import itertools
+    import sqlite3
+
+    flag = 0
+    combos = list(itertools.combinations(nums, 3))
+    dbname = "alll7.db"
+    con = sqlite3.connect(dbname)
+    cursor = con.cursor()
+    sql = "select * from fcck37 where s1=%d and s2=%d and s3=%d"
+    for cs in combos:
+        cursor.execute(sql % (cs[0], cs[1], cs[2]))
+        re = cursor.fetchone()
+        if re[4] <= 1:
+            if pg == 0:
+                pass
+                print(re, "----", str(re[4]))
+            if re[4] == 0:
+                flag += 1
+        else:
+            if pg == 0:
+                pass
+                print(re)
+    return flag
+    print(nfcck.__name__)
+
+
+# 三つの組み合わせてOはないかを確認する．
+def nfcck2(nums, pg=0):
+    print(nfcck2.__name__)
+    import itertools
+    import sqlite3
+
+    flag = 0
+    combos = list(itertools.combinations(nums, 2))
+    dbname = "alll7.db"
+    con = sqlite3.connect(dbname)
+    cursor = con.cursor()
+    sql = "select * from fcck372 where s1=%d and s2=%d"
+    for cs in combos:
+        cursor.execute(sql % (cs[0], cs[1]))
+        re = cursor.fetchone()
+        if re[3] <= 11:
+            if pg == 0:
+                pass
+                print(re, "----", str(re[3]))
+            if re[3] < 11:
+                flag += 1
+        else:
+            if pg == 0:
+                pass
+                print(re)
+    return flag
+    print(nfcck2.__name__)
+
+
 def t7():
     print(t7.__name__)
     print("////////////////////////////////////////////")
@@ -413,8 +431,8 @@ def t7():
             #     print('sqlcnt', sqlcnt)
 
             # # 先頭数字が含むか
-            # if temp[0] != 13 or temp[1] != 15 or temp[2] != 21:
-            #     break
+            if temp[0] != 7 or temp[1] != 11 or temp[2] != 24:
+                break
 
             # Array Not in array
             # if 8 not in temp or 15 not in temp or 24 not in temp and 35 not in temp:
@@ -425,8 +443,27 @@ def t7():
             # if  9 not in temp or 15 not in temp or 26 not in temp or 34 not in temp:
             # if  10 not in temp or 27 not in temp or 32 not in temp or 33 not in temp:
             # if  15 not in temp or 26 not in temp or 34 not in temp or 36 not in temp:
-            if 17 not in temp or 22 not in temp or 26 not in temp:
+            # if 17 not in temp or 22 not in temp or 26 not in temp:
+            #                break
+
+            nfcckck = nfcck(
+                [temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6]], 1
+            )
+            print(nfcckck)
+            if nfcckck > 4:
+                print("--nfcckck--" + str(nfcckck) + "--nfcckck--")
+                print("---- 2023-04-02 08:14:47 ----")
                 break
+
+            nfcckck2 = nfcck2(
+                [temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6]], 1
+            )
+            print(nfcckck2)
+            if nfcckck2 > 1:
+                print("--nfcckck2--" + str(nfcckck2) + "--nfcckck2--")
+                print("---- 2023-04-03 01:33:42 ----")
+                break
+
             # if 31 or 36 not in temp:
             #     break
 
@@ -725,6 +762,49 @@ def fcck373():
 
 # fcck373()
 
+# 二つ数字出る回数
+def fcck372():
+    print(fcck372.__name__)
+    import sqlite3
+
+    conn = sqlite3.connect("alll7.db")
+    cursor1 = conn.cursor()
+    cursor2 = conn.cursor()
+
+    sql1 = "select s1,s2,rowid from fcck372 "
+    cursor1.execute(sql1)
+    while True:
+        re1 = cursor1.fetchone()
+        cursor1.fetchmany
+        if re1 is None:
+            print("re1end")
+            break
+        tag = [re1[0], re1[1]]
+        tagindex = re1[2]
+        countc = 0
+
+        sql2 = "select s1,s2,s3,s4,s5,s6,s7 from loto7"
+        cursor2.execute(sql2)
+        while True:
+            re2 = cursor2.fetchone()
+            if re2 is None:
+                break
+            count = 0
+            for jj in re2:
+                if jj in tag:
+                    count += 1
+            if count == 2:
+                countc += 1
+            sql3 = "update fcck372 set fcck=%d where rowid=%d" % (countc, tagindex)
+            conn.execute(sql3)
+            conn.commit()
+        if countc > 9:
+            print("-------------------------------------------")
+            print(str(tag) + "---" + str(tagindex) + "---" + str(countc))
+            print("-------------------------------------------")
+    print(fcck372.__name__)
+
+
 # 4つ数字の連続
 def fcck374():
     print(fcck374.__name__)
@@ -771,25 +851,7 @@ def fcck374():
 # fcck374()
 
 
-def nfcck(nums):
-    print(nfcck.__name__)
-    import itertools
-    import sqlite3
-
-    combos = list(itertools.combinations(nums, 3))
-
-    dbname = "alll7.db"
-    con = sqlite3.connect(dbname)
-    cursor = con.cursor()
-    sql = "select * from fcck37 where s1=%d and s2=%d and s3=%d"
-    for cs in combos:
-        cursor.execute(sql % (cs[0], cs[1], cs[2]))
-        re = cursor.fetchone()
-        print(re)
-    print(nfcck.__name__)
-
-
-# nfcck(  [7, 11, 24, 30, 32, 36, 37]  )
+# print(nfcck([6, 10, 27, 30, 32, 33, 36], 1))  # 0==4
 
 
 def numscount():
@@ -806,6 +868,7 @@ def numscount():
     # sql = 'select s1,s2,s3,s4,s5,s6,s7 from loto7 limit 20'
     sql = "select s1,s2,s3,s4,s5,s6,s7 from loto7 where t1 > 464"
     sql = "select s1,s2,s3 from fcck37 where fcck > 1"
+    sql = "select s1 ,s2 from fcck372 where fcck = 9"
     cursor = con.cursor()
     cursor.execute(sql)
     while True:
@@ -818,12 +881,34 @@ def numscount():
     print(com)
     for v in range(38):
         if com[v] != 0:
-            print(v, "--------", com[v] - 450)
+            print(v, "--------", com[v] - 0)
     print(numscount.__name__)
 
 
+def qqq(t1):
+    import sqlite3
+
+    con = sqlite3.connect("alll7.db")
+    sql = "select s1,s2,s3,s4,s5,s6,s7 from loto7 where t1={}".format(t1)
+    print(sql)
+
+    cursor = con.cursor()
+    cursor.execute(sql)
+    f = cursor.fetchone()
+    print(f)
+    nfcck([f[0], f[1], f[2], f[3], f[4], f[5], f[6]])
+    print(f)
+
+
+# t7()
+# tag =[1,7,9,14,25,31,34]
+# nfcck(tag, 0)
+# nfcck2(tag, 0)
+# qqq(513)
 # numscount()
+
 # fcck(4)
 # fcck(5)
 # fcck373()
 # fcck374()
+# fcck372()
