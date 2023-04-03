@@ -897,6 +897,7 @@ def qqq(t1):
     f = cursor.fetchone()
     print(f)
     nfcck([f[0], f[1], f[2], f[3], f[4], f[5], f[6]])
+    nfcck2([f[0], f[1], f[2], f[3], f[4], f[5], f[6]])
     print(f)
 
 
