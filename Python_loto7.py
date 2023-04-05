@@ -387,10 +387,10 @@ def t7():
     pool = list(range(1, 38))
 
     epool = [
-        # [7,11,24,28,31,33,37],
-        # [4,8,13,18,22,23,35],
-        # [3,6,9,15,25,30,32],
-        # [2,7,15,24,29,32,37],
+        # [14, 17, 18, 26, 27, 32, 34],
+        # [1, 7, 10, 11, 15, 22, 31],
+        # [3, 9, 16, 23, 25, 36, 37],
+        # [5, 8, 12, 19, 21, 24, 30],
         # [3,7,11,17,29,31,37],
         # [1,7,9,14,25,31,34]
     ]
@@ -431,7 +431,7 @@ def t7():
             #     print('sqlcnt', sqlcnt)
 
             # # 先頭数字が含むか
-            if temp[0] != 7 or temp[1] != 11 or temp[2] != 24:
+            if temp[0] != 6 or temp[1] != 7 or temp[2] != 10:
                 break
 
             # Array Not in array
@@ -444,7 +444,8 @@ def t7():
             # if  10 not in temp or 27 not in temp or 32 not in temp or 33 not in temp:
             # if  15 not in temp or 26 not in temp or 34 not in temp or 36 not in temp:
             # if 17 not in temp or 22 not in temp or 26 not in temp:
-            #                break
+            if 25 not in temp or 26 not in temp or 27 not in temp:
+                break
 
             nfcckck = nfcck(
                 [temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6]], 1
