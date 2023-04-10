@@ -431,8 +431,8 @@ def t7():
             #     print('sqlcnt', sqlcnt)
 
             # # 先頭数字が含むか
-            if temp[0] != 6 or temp[1] != 7 or temp[2] != 10:
-                break
+            # if temp[0] != 6 or temp[1] != 7 or temp[2] != 10:
+            #     break
 
             # Array Not in array
             # if 8 not in temp or 15 not in temp or 24 not in temp and 35 not in temp:
@@ -443,8 +443,9 @@ def t7():
             # if  9 not in temp or 15 not in temp or 26 not in temp or 34 not in temp:
             # if  10 not in temp or 27 not in temp or 32 not in temp or 33 not in temp:
             # if  15 not in temp or 26 not in temp or 34 not in temp or 36 not in temp:
-            # if 17 not in temp or 22 not in temp or 26 not in temp:
-            if 25 not in temp or 26 not in temp or 27 not in temp:
+            # if  17 not in temp or 22 not in temp or 26 not in temp:
+            # 2023-04-10 01:49:55 [10,17,22,26]
+            if 10 not in temp or 17 not in temp or 22 not in temp or 26 not in temp:
                 break
 
             nfcckck = nfcck(
@@ -763,6 +764,7 @@ def fcck373():
 
 # fcck373()
 
+
 # 二つ数字出る回数
 def fcck372():
     print(fcck372.__name__)
@@ -870,6 +872,13 @@ def numscount():
     sql = "select s1,s2,s3,s4,s5,s6,s7 from loto7 where t1 > 464"
     sql = "select s1,s2,s3 from fcck37 where fcck > 1"
     sql = "select s1 ,s2 from fcck372 where fcck = 9"
+    sql = "select s1,s2,s3 from fcck37 where s1=12 and fcck > 4"
+    sql = "select s1,s2,s3,s4 from fcck374 where s1=12 and fcck > 2"
+    sql = "select s1,s2,s3 from fcck37 where fcck > 6 and (s1=15 or s2=15 or s3=15)"
+    sql = "select s1,s2,s3 from fcck37 where fcck > 0 and (s1=15 or s2=15 or s3=15)"
+    sql = "select s1,s2,s3,s4,s5,s6,s7 from loto7 where s1=15 or s2=15 or s3=15 or s4=15 or s5=15 or s5=15 or s7=15"
+    sql = "select s1,s2,s3,s4,s5,s6,s7 from loto7 where t1 > 450 and (s1=15 or s2=15 or s3=15 or s4=15 or s5=15 or s5=15 or s7=15)"
+    sql = "select s1,s2,s3,s4,s5,s6,s7 from loto7 where t1 > 500"
     cursor = con.cursor()
     cursor.execute(sql)
     while True:
@@ -903,10 +912,10 @@ def qqq(t1):
 
 
 # t7()
-# tag =[3, 6, 10, 16, 26, 29, 31]
+# tag = [6,7,10,12,17,22,26]
 # nfcck(tag, 0)
 # nfcck2(tag, 0)
-# qqq(513)
+# qqq(517)
 # numscount()
 
 # fcck(4)

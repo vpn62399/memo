@@ -670,7 +670,6 @@ def nfcck(nums):
             print(re ,'---0')
         else:
             print(re)
-        print(re)
     print(nfcck.__name__)
 
 
@@ -702,9 +701,10 @@ def numscount():
             print(v, "--------", com[v] - 0)
     print(numscount.__name__)
 
-
+t7()
 # numscount()
-# nfcck(  [  4, 11, 13, 26, 27, 36  ]   )
+# tag = [7, 31, 32, 36, 39, 42]
+# nfcck(  tag   )
 # nfcck(  [  16,21,30,31,36,43  ]   ) # 0==1
 # fcck(2)
 # fcck(3)
