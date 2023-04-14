@@ -489,7 +489,7 @@ def t7():
                             val[5],
                             val[6],
                             val[7],
-                            tck,
+                            tck + 90,
                             val[0],
                         )
                     )
@@ -503,7 +503,7 @@ def t7():
                             val[5],
                             val[6],
                             val[7],
-                            tck,
+                            tck + 90,
                             val[0],
                         )
                     )
@@ -912,7 +912,7 @@ def qqq(t1):
 
 
 # t7()
-# tag = [6,7,10,12,17,22,26]
+# tag = [5, 8, 11, 24, 30, 32, 36]
 # nfcck(tag, 0)
 # nfcck2(tag, 0)
 # qqq(517)

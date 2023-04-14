@@ -701,7 +701,7 @@ def numscount():
             print(v, "--------", com[v] - 0)
     print(numscount.__name__)
 
-t7()
+# t7()
 # numscount()
 # tag = [7, 31, 32, 36, 39, 42]
 # nfcck(  tag   )
