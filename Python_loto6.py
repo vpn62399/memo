@@ -558,8 +558,8 @@ def fcck(fcc):
 
 
 # 三つ数字出る回数
-def fcck43():
-    print(fcck43.__name__)
+def fcck433():
+    print(fcck433.__name__)
     import sqlite3
 
     conn = sqlite3.connect("alll6.db")
@@ -600,7 +600,52 @@ def fcck43():
             print("-------------------------------------------")
     conn.commit()
     conn.close()
-    print(fcck43.__name__)
+    print(fcck433.__name__)
+
+
+def fcck432():
+    print(fcck432.__name__)
+    import sqlite3
+
+    conn = sqlite3.connect("alll6.db")
+    cursor1 = conn.cursor()
+    cursor2 = conn.cursor()
+
+    sql1 = "select s1,s2,rowid from fcck432 "
+    cursor1.execute(sql1)
+    while True:
+        re1 = cursor1.fetchone()
+        cursor1.fetchmany
+        if re1 is None:
+            print("re1end")
+            break
+        tag = [re1[0], re1[1]]
+        tagindex = re1[2]
+        countc = 0
+
+        sql2 = "select s1,s2,s3,s4,s5,s6 from loto6"
+        cursor2.execute(sql2)
+        while True:
+            re2 = cursor2.fetchone()
+            if re2 is None:
+                break
+            count = 0
+            for jj in re2:
+                if jj in tag:
+                    count += 1
+            if count == 2:
+                countc += 1
+            sql3 = "update fcck432 set fcck=%d where rowid=%d" % (countc, tagindex)
+            # print(sql3)
+            conn.execute(sql3)
+        if countc > 6:
+            conn.commit()
+            print("-------------------------------------------")
+            print(str(tag) + "---" + str(tagindex) + "---" + str(countc))
+            print("-------------------------------------------")
+    conn.commit()
+    conn.close()
+    print(fcck432.__name__)
 
 
 def fcck434():
@@ -649,7 +694,7 @@ def fcck434():
 
 
 # fcck434()
-# fcck43()
+# fcck433()
 
 
 def nfcck(nums):
@@ -663,14 +708,41 @@ def nfcck(nums):
     con = sqlite3.connect(dbname)
     cursor = con.cursor()
     sql = "select * from fcck43 where s1=%d and s2=%d and s3=%d"
+    sqlmax = "select max(fcck) from fcck43"
+    sqlmin = "select min(fcck) from fcck43"
     for cs in combos:
         cursor.execute(sql % (cs[0], cs[1], cs[2]))
         re = cursor.fetchone()
         if re[4] == 0:
-            print(re ,'---0')
+            print(re, "---0")
         else:
             print(re)
+    print("fcck2 max = 10  min = 0")
     print(nfcck.__name__)
+
+
+def nfcck2(nums):
+    print(nfcck2.__name__)
+    import itertools
+    import sqlite3
+
+    combos = list(itertools.combinations(nums, 2))
+
+    dbname = "alll6.db"
+    con = sqlite3.connect(dbname)
+    cursor = con.cursor()
+    sql = "select * from fcck432 where s1=%d and s2=%d "
+    sqlmax = "select max(fcck) from fcck432"
+    sqlmin = "select min(fcck) from fcck432"
+    for cs in combos:
+        cursor.execute(sql % (cs[0], cs[1]))
+        re = cursor.fetchone()
+        if re[2] == 0:
+            print(re, "---0")
+        else:
+            print(re)
+    print("fcck2 max = 44  min = 13")
+    print(nfcck2.__name__)
 
 
 def numscount():
@@ -701,15 +773,18 @@ def numscount():
             print(v, "--------", com[v] - 0)
     print(numscount.__name__)
 
+
 # t7()
 # numscount()
-# tag = [7, 31, 32, 36, 39, 42]
-# nfcck(  tag   )
-# nfcck(  [  16,21,30,31,36,43  ]   ) # 0==1
+tag = [7, 31, 32, 36, 39, 42]
+nfcck(tag)
+nfcck2(tag)
+# nfcck(  [  5, 14, 19, 23, 30, 42  ]   ) # 0==1
 # fcck(2)
 # fcck(3)
 # fcck434()
-# fcck43()
+# fcck433()
+# fcck432()
 
 
 # localStorage_additem([18,24,32,39,41,42,0])

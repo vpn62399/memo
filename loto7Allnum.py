@@ -203,6 +203,37 @@ def fcck434():
 # fcck434()
 
 
+def fcck432():
+    import itertools
+    import sqlite3
+
+    dbname = "alll6.db"
+    try:
+        crt = "create table if not exists fcck432(id INTEGER PRIMARY KEY,s1 INTEGER, s2 INTEGER, fcck INTEGER)"
+        con = sqlite3.connect(dbname)
+        con.execute(crt)
+        con.commit()
+        con.close
+    except:
+        print("error")
+        exit
+
+    con = sqlite3.connect(dbname)
+    combos = list(itertools.combinations(range(1, 44), 2))
+    for k in combos:
+        addint = "insert into fcck432(s1,s2)values(%d,%d)" % (
+            k[0],
+            k[1],
+        )
+        print(addint)
+        con.execute(addint)
+    con.commit()
+    con.close
+    print("kkk")
+
+# fcck432()
+
+
 def fcck373():
     import itertools
     import sqlite3
@@ -303,4 +334,4 @@ def fcck372():
         pass
 
 
-fcck372()
+# fcck372()

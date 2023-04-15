@@ -338,11 +338,12 @@ def nfcck(nums, pg=0):
             if pg == 0:
                 pass
                 print(re)
+    print("fcck max = 10  min = 0")
     return flag
     print(nfcck.__name__)
 
 
-# 三つの組み合わせてOはないかを確認する．
+# 2つの組み合わせてOはないかを確認する．
 def nfcck2(nums, pg=0):
     print(nfcck2.__name__)
     import itertools
@@ -367,6 +368,7 @@ def nfcck2(nums, pg=0):
             if pg == 0:
                 pass
                 print(re)
+    print("fcck max = 32  min = 7")
     return flag
     print(nfcck2.__name__)
 
@@ -912,9 +914,9 @@ def qqq(t1):
 
 
 # t7()
-# tag = [5, 8, 11, 24, 30, 32, 36]
-# nfcck(tag, 0)
-# nfcck2(tag, 0)
+tag = [5, 8, 11, 24, 30, 32, 36]
+nfcck(tag, 0)
+nfcck2(tag, 0)
 # qqq(517)
 # numscount()
 
