@@ -447,7 +447,19 @@ def t7():
             # if  15 not in temp or 26 not in temp or 34 not in temp or 36 not in temp:
             # if  17 not in temp or 22 not in temp or 26 not in temp:
             # 2023-04-10 01:49:55 [10,17,22,26]
-            if 10 not in temp or 17 not in temp or 22 not in temp or 26 not in temp:
+            # if 10 not in temp or 17 not in temp or 22 not in temp or 26 not in temp:
+            # 2023-04-17 06:21:33 [7,15,31]
+            # if 7 not in temp or 15 not in temp or 31 not in temp:
+            # 2023-04-19 01:29:00 [7,8,13,15,24,26,30,32] -24
+            if (
+                7 not in temp
+                or 8 not in temp
+                or 13 not in temp
+                or 15 not in temp
+                or 26 not in temp
+                or 30 not in temp
+                or 32 not in temp
+            ):
                 break
 
             nfcckck = nfcck(
@@ -584,10 +596,12 @@ def t7():
 # bas2([3,21])  # 9 or 11
 # bas2([8,17],9)  # 9 or 11 ()
 # 7,11,15,22,26,?,35
-# localStorage_additem([7,11,24,28,31,36,37,0,8028009])
-# localStorage_additem([7,11,24,30,31,32,36,0,8028089])
-# localStorage_additem([7,11,24,28,31,33,37,0,8028003])
-# localStorage_additem([7,11,24,30,32,36,37,0,8028110])
+# localStorage_additem([7,11,24,28,31,36,37,90,8028009])
+# localStorage_additem([7,11,24,30,31,32,36,90,8028089])
+# localStorage_additem([7,11,24,28,31,33,37,90,8028003])
+# localStorage_additem([7,11,24,30,32,36,37,90,8028110])
+# localStorage_additem([7,8,13,15,26,30,32,90,7734642])  #2023-04-19 01:44:18
+# localStorage_additem([8,13,15,24,26,30,32,0,8572856])  #2023-04-19 01:44:18
 # t7t2klist()
 # print(t2k([35, 36]))
 # print(t7t2k([3,7,10,16,18,19,32,35,37], 1))
@@ -881,6 +895,9 @@ def numscount():
     sql = "select s1,s2,s3,s4,s5,s6,s7 from loto7 where s1=15 or s2=15 or s3=15 or s4=15 or s5=15 or s5=15 or s7=15"
     sql = "select s1,s2,s3,s4,s5,s6,s7 from loto7 where t1 > 450 and (s1=15 or s2=15 or s3=15 or s4=15 or s5=15 or s5=15 or s7=15)"
     sql = "select s1,s2,s3,s4,s5,s6,s7 from loto7 where t1 > 500"
+    sql = "select s1,s2,s3,s4 from fcck374 where fcck >3"
+    sql = "select s1,s2,s3 from fcck37 where fcck >7"
+
     cursor = con.cursor()
     cursor.execute(sql)
     while True:
@@ -914,9 +931,11 @@ def qqq(t1):
 
 
 # t7()
-tag = [5, 8, 11, 24, 30, 32, 36]
-nfcck(tag, 0)
-nfcck2(tag, 0)
+# tag = [7,8,13,15,24,26,30,32]   出やすい数字
+# tag = [7, 8, 13, 15, 26, 30, 32]
+# tag = [8,13,14,15,25,30,31]
+# nfcck(tag, 0)
+# nfcck2(tag, 0)
 # qqq(517)
 # numscount()
 
