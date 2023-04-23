@@ -780,11 +780,11 @@ def numscount():
 # nfcck(tag)
 # nfcck2(tag)
 # nfcck(  [  5, 14, 19, 23, 30, 42  ]   ) # 0==1
-# fcck(2)
-# fcck(3)
-# fcck434()
-# fcck433()
-# fcck432()
+fcck(2)
+fcck(3)
+fcck434()
+fcck433()
+fcck432()
 
 
 # localStorage_additem([18,24,32,39,41,42,0])

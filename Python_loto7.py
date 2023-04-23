@@ -384,8 +384,8 @@ def t7():
     con = sqlite3.connect("alll7.db")
     # sqlcmd = '''select * from alll7 where id=abs(random())%10295473'''
     # sqlcmd = '''select * from alll7 where id=abs(random())%10280000'''
-    sqlcmd = "select * from alll7 where fcck4 > 20 and fcck5 > 1 and id="
-    sqlcmd = "select * from alll7 where fcck4 > 10 and fcck5 > 0 and id="
+    # sqlcmd = "select * from alll7 where fcck4 > 20 and fcck5 > 1 and id="
+    sqlcmd = "select * from alll7 where fcck4 > 5 and fcck4 < 12 and fcck5 > 0 and id="
     pool = list(range(1, 38))
 
     epool = [
@@ -452,13 +452,11 @@ def t7():
             # if 7 not in temp or 15 not in temp or 31 not in temp:
             # 2023-04-19 01:29:00 [7,8,13,15,24,26,30,32] -24
             if (
-                7 not in temp
-                or 8 not in temp
-                or 13 not in temp
+                5 not in temp
+                or 9 not in temp
                 or 15 not in temp
-                or 26 not in temp
-                or 30 not in temp
-                or 32 not in temp
+                or 16 not in temp
+                or 36 not in temp
             ):
                 break
 
@@ -932,8 +930,8 @@ def qqq(t1):
 
 # t7()
 # tag = [7,8,13,15,24,26,30,32]   出やすい数字
-# tag = [7, 8, 13, 15, 26, 30, 32]
-# tag = [8,13,14,15,25,30,31]
+# tag = [1,3,6,13,14,26,29,31,32,34,35,36]
+# tag = [5,6,9,15,16,28,36]
 # nfcck(tag, 0)
 # nfcck2(tag, 0)
 # qqq(517)
