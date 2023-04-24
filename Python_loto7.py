@@ -895,6 +895,7 @@ def numscount():
     sql = "select s1,s2,s3,s4,s5,s6,s7 from loto7 where t1 > 500"
     sql = "select s1,s2,s3,s4 from fcck374 where fcck >3"
     sql = "select s1,s2,s3 from fcck37 where fcck >7"
+    sql = "select loto7.s1,loto7.s2,loto7.s3,loto7.s4, loto7.s5 ,loto7.s6 ,loto7.s7 from loto7 join alll7 on loto7.z1=alll7.id where fcck5 >2"
 
     cursor = con.cursor()
     cursor.execute(sql)
@@ -931,7 +932,7 @@ def qqq(t1):
 # t7()
 # tag = [7,8,13,15,24,26,30,32]   出やすい数字
 # tag = [1,3,6,13,14,26,29,31,32,34,35,36]
-# tag = [5,6,9,15,16,28,36]
+# tag = [5,9,10,15,16,36,37]
 # nfcck(tag, 0)
 # nfcck2(tag, 0)
 # qqq(517)
