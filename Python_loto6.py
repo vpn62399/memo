@@ -348,8 +348,20 @@ def t7():
             # if (temp[0] != 2 or temp[1] != 5 or temp[2] != 7):
             #     break
 
-            if 5 not in temp or 8 not in temp or 20 not in temp:
-                # fcck4 >3 and fcck3 > 50
+            # if 5 not in temp or 8 not in temp or 20 not in temp:
+            #     # fcck4 >3 and fcck3 > 50
+            #     break
+
+            # 2023-04-26 02:46:53
+            # 各数字はリストに含むか
+            # 19,25,28,32,33,38
+            inpool = [1, 5, 6, 7, 11, 15, 18, 19, 21, 26, 30, 32, 35, 36, 39, 40, 42]
+            flg1 = 0
+            for t in temp:
+                if t not in inpool:
+                    flg1 = 1
+                    break
+            if flg1 == 1:
                 break
 
             # 数字が含むか
@@ -756,8 +768,8 @@ def numscount():
     # sql = 'select loto7.s1,loto7.s2,loto7.s3,loto7.s4,loto7.s5,loto7.s6,loto7.s7 from loto7 join alll7 on loto7.z1= alll7.id where alll7.fcck4>13 '
     # sql = 'select loto7.s1,loto7.s2,loto7.s3,loto7.s4,loto7.s5,loto7.s6,loto7.s7 from loto7 join alll7 on loto7.z1= alll7.id where alll7.fcck5>3 '
     # sql = 'select s1,s2,s3,s4 from fcck374 where fcck =4'
-    sql = "select s1,s2,s3,s4,s5,s6 from loto6 where s1=18"
-    # sql = 'select s1,s2,s3,s4,s5,s6 from loto6 where t1 > 464'
+    # sql = "select s1,s2,s3,s4,s5,s6 from loto6 where s1=18"
+    sql = "select s1,s2,s3,s4,s5,s6 from loto6 where t1 > 1741"
     cursor = con.cursor()
     cursor.execute(sql)
     while True:
@@ -785,6 +797,7 @@ def numscount():
 # fcck434()
 # fcck433()
 # fcck432()
+# ta()
 
 
 # localStorage_additem([18,24,32,39,41,42,0])

@@ -1834,6 +1834,12 @@
             const TAG = 'log_localStorage_tonx5->';
             if (debug) console.log(TAG, this);
             let timeKey = this.previousElementSibling;
+            let clr = document.getElementsByClassName("clcolor");
+            for (v of clr) {
+                v.style.backgroundColor = '';
+            }
+            this.style.backgroundColor = 'red';
+            this.setAttribute("class", "clcolor");
             for (let i = 0; i < 8; i++) {
                 timeKey = timeKey.previousElementSibling;
             }
