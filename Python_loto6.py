@@ -788,16 +788,17 @@ def numscount():
 
 # t7()
 # numscount()
-# tag = [4, 11, 24, 35, 37, 42]
-# nfcck(tag)
-# nfcck2(tag)
+tag = [19,21,32,35,36,39]
+nfcck(tag)
+nfcck2(tag)
 # nfcck(  [  5, 14, 19, 23, 30, 42  ]   ) # 0==1
+# ta()
+
 # fcck(2)
 # fcck(3)
 # fcck434()
 # fcck433()
 # fcck432()
-# ta()
 
 
 # localStorage_additem([18,24,32,39,41,42,0])

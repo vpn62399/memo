@@ -385,7 +385,8 @@ def t7():
     # sqlcmd = '''select * from alll7 where id=abs(random())%10295473'''
     # sqlcmd = '''select * from alll7 where id=abs(random())%10280000'''
     # sqlcmd = "select * from alll7 where fcck4 > 20 and fcck5 > 1 and id="
-    sqlcmd = "select * from alll7 where fcck4 > 5 and fcck4 < 12 and fcck5 > 0 and id="
+    # sqlcmd = "select * from alll7 where fcck4 > 5 and fcck4 < 12 and fcck5 > 0 and id="
+    sqlcmd = "select * from alll7 where id="
     pool = list(range(1, 38))
 
     epool = [
@@ -451,14 +452,33 @@ def t7():
             # 2023-04-17 06:21:33 [7,15,31]
             # if 7 not in temp or 15 not in temp or 31 not in temp:
             # 2023-04-19 01:29:00 [7,8,13,15,24,26,30,32] -24
-            if (
-                5 not in temp
-                or 9 not in temp
-                or 15 not in temp
-                or 16 not in temp
-                or 36 not in temp
-            ):
+            # 2023-05-04 10:16:36 [4, 5, 6, 8, 11, 17, 27, 31, 35, 37, 41, 42]
+
+            # sqlite> select * from fcck37 where fcck > 7;
+            # | 2567 | 5  | 15 | 25 | 8    |
+            # | 3473 | 7  | 15 | 31 | 8    |
+            # | 3467 | 7  | 15 | 25 | 9    |
+            # | 3310 | 7  | 9  | 15 | 8    |
+            # | 4031 | 8  | 24 | 30 | 8    |
+
+            if (5 not in temp) or (15 not in temp) or (25 not in temp):
                 break
+
+            if (7 not in temp) or (15 not in temp) or (31 not in temp):
+                print("e2  ")
+                # break
+
+            if (7 not in temp) or (15 not in temp) or (25 not in temp):
+                print("e3   ")
+                break
+
+            if (7 not in temp) or (9 not in temp) or (15 not in temp):
+                print("e4    ")
+                break
+
+            if (8 not in temp) or (24 not in temp) or (30 not in temp):
+                print("e4    ")
+                # break
 
             nfcckck = nfcck(
                 [temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6]], 1
@@ -477,9 +497,6 @@ def t7():
                 print("--nfcckck2--" + str(nfcckck2) + "--nfcckck2--")
                 print("---- 2023-04-03 01:33:42 ----")
                 break
-
-            # if 31 or 36 not in temp:
-            #     break
 
             if t7t2k(list(val[1:8]), 0) == 1:
                 for v in temp:
@@ -924,18 +941,20 @@ def qqq(t1):
     cursor.execute(sql)
     f = cursor.fetchone()
     print(f)
+    print(t1)
     nfcck([f[0], f[1], f[2], f[3], f[4], f[5], f[6]])
     nfcck2([f[0], f[1], f[2], f[3], f[4], f[5], f[6]])
+    print(t1)
     print(f)
 
 
-# t7()
+t7()
 # tag = [7,8,13,15,24,26,30,32]   出やすい数字
 # tag = [1,3,6,13,14,26,29,31,32,34,35,36]
-# tag = [5,9,10,15,16,36,37]
+# tag = [7,8,9,13,15,25,30]
 # nfcck(tag, 0)
 # nfcck2(tag, 0)
-# qqq(517)
+# qqq(518)
 # numscount()
 # ta()
 
