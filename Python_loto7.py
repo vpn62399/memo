@@ -385,8 +385,8 @@ def t7():
     # sqlcmd = '''select * from alll7 where id=abs(random())%10295473'''
     # sqlcmd = '''select * from alll7 where id=abs(random())%10280000'''
     # sqlcmd = "select * from alll7 where fcck4 > 20 and fcck5 > 1 and id="
-    # sqlcmd = "select * from alll7 where fcck4 > 5 and fcck4 < 12 and fcck5 > 0 and id="
-    sqlcmd = "select * from alll7 where id="
+    sqlcmd = "select * from alll7 where fcck4 > 5 and fcck4 < 12 and fcck5 > 0 and id="
+    # sqlcmd = "select * from alll7 where id="
     pool = list(range(1, 38))
 
     epool = [
@@ -466,18 +466,6 @@ def t7():
 
             if (7 not in temp) or (15 not in temp) or (31 not in temp):
                 print("e2  ")
-                # break
-
-            if (7 not in temp) or (15 not in temp) or (25 not in temp):
-                print("e3   ")
-                break
-
-            if (7 not in temp) or (9 not in temp) or (15 not in temp):
-                print("e4    ")
-                break
-
-            if (8 not in temp) or (24 not in temp) or (30 not in temp):
-                print("e4    ")
                 # break
 
             nfcckck = nfcck(

@@ -13,52 +13,7 @@ def t2k(tag):
 
     con = sqlite3.connect("alll6.db")
     sqlcmd = """select s1,s2,s3,s4,s5,s6 from loto6 """
-    cas = [
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-    ]
+    cas = [0 for i in range(44)]
     cr = con.execute(sqlcmd)
     for da in cr:
         if tag[0] in da:
@@ -355,7 +310,8 @@ def t7():
             # 2023-04-26 02:46:53
             # 各数字はリストに含むか
             # 19,25,28,32,33,38
-            inpool = [1, 5, 6, 7, 11, 15, 18, 19, 21, 26, 30, 32, 35, 36, 39, 40, 42]
+            # inpool = [1, 5, 6, 7, 11, 15, 18, 19, 21, 26, 30, 32, 35, 36, 39, 40, 42]
+            inpool = list(range(1,44))
             flg1 = 0
             for t in temp:
                 if t not in inpool:
@@ -788,9 +744,9 @@ def numscount():
 
 # t7()
 # numscount()
-tag = [19,21,32,35,36,39]
-nfcck(tag)
-nfcck2(tag)
+# tag = [19,21,32,35,36,39]
+# nfcck(tag)
+# nfcck2(tag)
 # nfcck(  [  5, 14, 19, 23, 30, 42  ]   ) # 0==1
 # ta()
 
