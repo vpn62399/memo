@@ -307,11 +307,15 @@ def t7():
             #     # fcck4 >3 and fcck3 > 50
             #     break
 
+            #  10891 | 22 | 27 | 43 | 6    |
+            # if (22 not in temp) or (27 not in temp) or (43 not in temp):
+            #     break
+
             # 2023-04-26 02:46:53
             # 各数字はリストに含むか
             # 19,25,28,32,33,38
             # inpool = [1, 5, 6, 7, 11, 15, 18, 19, 21, 26, 30, 32, 35, 36, 39, 40, 42]
-            inpool = list(range(1,44))
+            inpool = list(range(1, 44))
             flg1 = 0
             for t in temp:
                 if t not in inpool:
@@ -744,9 +748,9 @@ def numscount():
 
 # t7()
 # numscount()
-# tag = [19,21,32,35,36,39]
-# nfcck(tag)
-# nfcck2(tag)
+tag = [1,7,14,32,41,42]
+nfcck(tag)
+nfcck2(tag)
 # nfcck(  [  5, 14, 19, 23, 30, 42  ]   ) # 0==1
 # ta()
 
