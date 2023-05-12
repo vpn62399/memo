@@ -90,7 +90,7 @@ sqlite> select * from loto7 join alll7 on loto7.z1 = alll7.id limit 10;
 
 
 
-
+///////////////////////////Loto6////////////////////////////////////////////
 2023-05-05 00:58:43
 666
 localStorage_additem([16,21,30,31,36,43,5773154])

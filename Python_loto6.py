@@ -748,9 +748,9 @@ def numscount():
 
 # t7()
 # numscount()
-tag = [1,7,14,32,41,42]
-nfcck(tag)
-nfcck2(tag)
+# tag = [8,9,18,19,30,36]
+# nfcck(tag)
+# nfcck2(tag)
 # nfcck(  [  5, 14, 19, 23, 30, 42  ]   ) # 0==1
 # ta()
 
