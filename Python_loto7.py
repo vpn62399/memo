@@ -942,7 +942,7 @@ def qqq(t1):
 # tag = [7,8,9,13,15,25,30]
 # nfcck(tag, 0)
 # nfcck2(tag, 0)
-# qqq(522)
+qqq(523)
 # numscount()
 # ta()
 
