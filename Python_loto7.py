@@ -461,12 +461,12 @@ def t7():
             # | 3310 | 7  | 9  | 15 | 8    |
             # | 4031 | 8  | 24 | 30 | 8    |
 
-            if (5 not in temp) or (15 not in temp) or (25 not in temp):
+            if (27 not in temp) or (31 not in temp):
                 break
 
-            if (7 not in temp) or (15 not in temp) or (31 not in temp):
-                print("e2  ")
-                # break
+            # if (7 not in temp) or (15 not in temp) or (31 not in temp):
+            #     print("e2  ")
+            #     # break
 
             nfcckck = nfcck(
                 [temp[0], temp[1], temp[2], temp[3], temp[4], temp[5], temp[6]], 1
@@ -871,8 +871,6 @@ def fcck374():
 
 
 # fcck374()
-
-
 # print(nfcck([6, 10, 27, 30, 32, 33, 36], 1))  # 0==4
 
 
@@ -936,6 +934,24 @@ def qqq(t1):
     print(f)
 
 
+# 作成の途中
+def qf():
+    import sqlite3
+
+    con = sqlite3.connect("alll7.db")
+    sql1 = "select s1,s2,s3,s4,s5,s6,s7 from loto7 limit 3 "
+    cur1 = con.cursor()
+    cur1.execute(sql1)
+
+    while True:
+        re1 = cur1.fetchone()
+        if re1 is None:
+            break
+        print(re1[0], re1[1], re1[2], re1[3], re1[4], re1[5], re1[6])
+        if 11 in re1:
+            print(re1)
+
+
 # t7()
 # tag = [7,8,13,15,24,26,30,32]   出やすい数字
 # tag = [1,3,6,13,14,26,29,31,32,34,35,36]
@@ -946,6 +962,7 @@ def qqq(t1):
 # qqq(525)
 # numscount()
 # ta()
+# qf()
 
 # fcck(4)
 # fcck(5)
