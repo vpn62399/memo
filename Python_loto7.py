@@ -461,7 +461,7 @@ def t7():
             # | 3310 | 7  | 9  | 15 | 8    |
             # | 4031 | 8  | 24 | 30 | 8    |
 
-            if (27 not in temp) or (31 not in temp):
+            if 34 not in temp:
                 break
 
             # if (7 not in temp) or (15 not in temp) or (31 not in temp):
@@ -886,19 +886,19 @@ def numscount():
     # sql = 'select loto7.s1,loto7.s2,loto7.s3,loto7.s4,loto7.s5,loto7.s6,loto7.s7 from loto7 join alll7 on loto7.z1= alll7.id where alll7.fcck5>3 '
     # sql = 'select s1,s2,s3,s4 from fcck374 where fcck =4'
     # sql = 'select s1,s2,s3,s4,s5,s6,s7 from loto7 limit 20'
-    sql = "select s1,s2,s3,s4,s5,s6,s7 from loto7 where t1 > 464"
-    sql = "select s1,s2,s3 from fcck37 where fcck > 1"
-    sql = "select s1 ,s2 from fcck372 where fcck = 9"
-    sql = "select s1,s2,s3 from fcck37 where s1=12 and fcck > 4"
-    sql = "select s1,s2,s3,s4 from fcck374 where s1=12 and fcck > 2"
-    sql = "select s1,s2,s3 from fcck37 where fcck > 6 and (s1=15 or s2=15 or s3=15)"
-    sql = "select s1,s2,s3 from fcck37 where fcck > 0 and (s1=15 or s2=15 or s3=15)"
-    sql = "select s1,s2,s3,s4,s5,s6,s7 from loto7 where s1=15 or s2=15 or s3=15 or s4=15 or s5=15 or s5=15 or s7=15"
-    sql = "select s1,s2,s3,s4,s5,s6,s7 from loto7 where t1 > 450 and (s1=15 or s2=15 or s3=15 or s4=15 or s5=15 or s5=15 or s7=15)"
-    sql = "select s1,s2,s3,s4,s5,s6,s7 from loto7 where t1 > 500"
-    sql = "select s1,s2,s3,s4 from fcck374 where fcck >3"
-    sql = "select s1,s2,s3 from fcck37 where fcck >7"
-    sql = "select loto7.s1,loto7.s2,loto7.s3,loto7.s4, loto7.s5 ,loto7.s6 ,loto7.s7 from loto7 join alll7 on loto7.z1=alll7.id where fcck5 >2"
+    sql = "select s1,s2,s3,s4,s5,s6,s7 from loto7 where t1 > 513"
+    # sql = "select s1,s2,s3 from fcck37 where fcck > 1"
+    # sql = "select s1 ,s2 from fcck372 where fcck = 9"
+    # sql = "select s1,s2,s3 from fcck37 where s1=12 and fcck > 4"
+    # sql = "select s1,s2,s3,s4 from fcck374 where s1=12 and fcck > 2"
+    # sql = "select s1,s2,s3 from fcck37 where fcck > 6 and (s1=15 or s2=15 or s3=15)"
+    # sql = "select s1,s2,s3 from fcck37 where fcck > 0 and (s1=15 or s2=15 or s3=15)"
+    # sql = "select s1,s2,s3,s4,s5,s6,s7 from loto7 where s1=15 or s2=15 or s3=15 or s4=15 or s5=15 or s5=15 or s7=15"
+    # sql = "select s1,s2,s3,s4,s5,s6,s7 from loto7 where t1 > 450 and (s1=15 or s2=15 or s3=15 or s4=15 or s5=15 or s5=15 or s7=15)"
+    # sql = "select s1,s2,s3,s4,s5,s6,s7 from loto7 where t1 > 500"
+    # sql = "select s1,s2,s3,s4 from fcck374 where fcck >3"
+    # sql = "select s1,s2,s3 from fcck37 where fcck >7"
+    # sql = "select loto7.s1,loto7.s2,loto7.s3,loto7.s4, loto7.s5 ,loto7.s6 ,loto7.s7 from loto7 join alll7 on loto7.z1=alll7.id where fcck5 >2"
 
     cursor = con.cursor()
     cursor.execute(sql)
@@ -952,7 +952,7 @@ def qf():
             print(re1)
 
 
-# t7()
+t7()
 # tag = [7,8,13,15,24,26,30,32]   出やすい数字
 # tag = [1,3,6,13,14,26,29,31,32,34,35,36]
 # tag = [5  , 8  , 15 , 26 , 32 , 34 , 36]

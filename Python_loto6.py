@@ -308,14 +308,24 @@ def t7():
             #     break
 
             #  10891 | 22 | 27 | 43 | 6    |
-            # if (22 not in temp) or (27 not in temp) or (43 not in temp):
+            # if (16 not in temp) or (32 not in temp) or (34 not in temp)or (35 not in temp)or (39 not in temp):
             #     break
+
+            if (
+                (16 not in temp)
+                or (32 not in temp)
+                or (34 not in temp)
+                or (35 not in temp)
+                or (39 not in temp)
+            ):
+                break
 
             # 2023-04-26 02:46:53
             # 各数字はリストに含むか
             # 19,25,28,32,33,38
-            # inpool = [1, 5, 6, 7, 11, 15, 18, 19, 21, 26, 30, 32, 35, 36, 39, 40, 42]
-            inpool = list(range(1, 44))
+            inpool = [1, 14, 29, 30, 32, 35, 6, 9, 15, 39, 43, 16, 18, 19, 34, 26, 41]
+            # inpool = list(range(1, 44))
+
             flg1 = 0
             for t in temp:
                 if t not in inpool:
@@ -729,7 +739,8 @@ def numscount():
     # sql = 'select loto7.s1,loto7.s2,loto7.s3,loto7.s4,loto7.s5,loto7.s6,loto7.s7 from loto7 join alll7 on loto7.z1= alll7.id where alll7.fcck5>3 '
     # sql = 'select s1,s2,s3,s4 from fcck374 where fcck =4'
     # sql = "select s1,s2,s3,s4,s5,s6 from loto6 where s1=18"
-    sql = "select s1,s2,s3,s4,s5,s6 from loto6 where t1 > 1741"
+    # sql = "select * from fcck432 where (s1=26 or s2=26) and fcck > 30 order by fcck"
+    sql = "select s1,s2,s3,s4,s5,s6 from loto6 where t1 > 1786"
     cursor = con.cursor()
     cursor.execute(sql)
     while True:
@@ -746,7 +757,7 @@ def numscount():
     print(numscount.__name__)
 
 
-# t7()
+t7()
 # numscount()
 # tag = [6, 16, 19, 24, 36, 41]
 # nfcck(tag)
