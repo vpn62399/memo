@@ -136,6 +136,10 @@ FROM テーブル名;
 SELECT カラム名, ... FROM テーブル名 GROUP BY カラム名, カラム名, ...;
 SELECT カラム名, ... FROM テーブル名 WHERE 条件式 GROUP BY カラム名, ...;
 SELECT カラム名, ... FROM テーブル名 GROUP BY カラム名, ... HAVING 条件式;
+例
+sqlite> select "PON SN", COUNT("PON SN") From F660A group by "PON SN" HAVING COUNT("PON SN") > 1;
+
+
 SELECT テーブル名.カラム名, ... FROM テーブル名1 INNER JOIN テーブル名2 ON テーブル名1.カラム名1 = テーブル名2.カラム名2;
 SELECT テーブル名.カラム名, ... FROM テーブル名1 LEFT OUTER JOIN テーブル名2 ON テーブル名1.カラム名1 = テーブル名2.カラム名2;
 SELECT テーブル名.カラム名, ... FROM テーブル名1 RIGHT OUTER JOIN テーブル名2 ON テーブル名1.カラム名1 = テーブル名2.カラム名2;
